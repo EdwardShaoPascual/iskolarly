@@ -21,8 +21,8 @@ A repository of Eddie Ron Adolph A. Vallejos and John Edward P. Pascual for thei
 ## Command(s)
 ------------
 ```
-* `git clone https://github.com/EddieVallejos/MalICSiApp_CMSC128_A5L.git`
-* `cd MalICSiApp_CMSC128_A5L`
+* `git clone https://github.com/EddieVallejos/iskolarly.git`
+* `cd iskolarly`
 
 To obtain packages that the back-end will be using..
 * `npm install`
