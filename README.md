@@ -1,4 +1,3 @@
-# ISKOlarly
 ISKOlarly
 ============
 
@@ -19,3 +18,33 @@ A repository of Eddie Ron Adolph A. Vallejos and John Edward P. Pascual for thei
 * The command "sudo n latest" will download the latest version of Node.js and if the version is not the latest after running the command, run `sudo ln -sf /usr/local/n/versions/node/7.7.2/bin/node /usr/bin/node`
 ```
 ------------
+## Command(s)
+------------
+```
+* `git clone https://github.com/EddieVallejos/MalICSiApp_CMSC128_A5L.git`
+* `cd MalICSiApp_CMSC128_A5L`
+
+To obtain packages that the back-end will be using..
+* `npm install`
+
+To obtain packages that the front-end will be using..
+* `cd frontend`
+* `bower install`
+
+To add npm packages to package.json..
+* `npm install --save <package>`
+
+To add npm packages to bower.json..
+* `bower install <package> --save`
+
+If session does not work with the app..
+* `sudo apt install redis-server`
+```
+
+## To start the web server
+------------
+```
+* `npm start` or `sudo npm start` 
+
+then check http://localhost:8000
+```
