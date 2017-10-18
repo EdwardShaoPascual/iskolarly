@@ -1,0 +1,29 @@
+{
+  "name": "iskolarly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon backend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EddieVallejos/iskolarly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EddieVallejos/iskolarly/issues"
+  },
+  "homepage": "https://github.com/EddieVallejos/iskolarly#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
+    "connect-redis": "^3.3.2",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "method-override": "^2.3.10",
+    "winston": "^2.4.0"
+  }
+}
