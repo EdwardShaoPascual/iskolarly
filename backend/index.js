@@ -36,7 +36,7 @@ start = () => {
     app.use(body_parser.json());
     app.use(require('compression')());
     app.use(router(express.Router()));
-    app.use(helmet);
+    app.use(helmet());
 
     // this will start app
     winston.log('info', 'Server listening on port', config.PORT);
