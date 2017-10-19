@@ -36,6 +36,9 @@ start = () => {
   app.use(require('compression')());
   app.use(router(express.Router()));
   app.use(helmet());
+  app.get('*', (req,res,next) => {
+    res.redirect('/#!/error_404')
+  })
 
   // this will start app
   winston.log('info', 'Server listening on port', config.PORT);
