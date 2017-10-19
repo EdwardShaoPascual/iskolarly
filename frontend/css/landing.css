@@ -1,10 +1,9 @@
 .Landing {
   background: url('./../assets/landing.jpg');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  min-height: 100%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
 }
 
 .Landing_over {
@@ -14,6 +13,7 @@
   -o-background-size: 100%;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
+  min-height: 100vh;
 }
 
 .Landing_over_info {
@@ -23,4 +23,12 @@
   -o-background-size: 100%;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
 }
