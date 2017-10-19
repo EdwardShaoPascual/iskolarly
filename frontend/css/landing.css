@@ -1,0 +1,26 @@
+.Landing {
+  background: url('./../assets/landing.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+}
+
+.Landing_over {
+  background-color: #000000 !important;
+  opacity: 0.7;
+  background-size: 100%;
+  -o-background-size: 100%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+}
+
+.Landing_over_info {
+  background-color: #FFFFFF !important;
+  opacity: 0.7;
+  background-size: 100%;
+  -o-background-size: 100%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+}
