@@ -14,11 +14,18 @@
   
   <body>
       <div ng-app="app">
+        <div ng-controller="nav-controller">
+          <div ng-show="checkURL()">
+            <div ng-include="'views/nav.html'"></div>
+          </div>
+        </div>
         <div ng-view></div>
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
         <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
         <script type="text/javascript" src="app.js"></script>
+
+        <script type="text/javascript" src="controllers/nav.controller.js"></script>        
       </div>
   </body>
 
