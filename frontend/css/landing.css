@@ -1,9 +1,9 @@
 .Landing {
-  background: url('./../assets/landing.jpg');
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  -o-background-size: 100%;
-  background-size: 100%;
+  background: url('./../assets/landing.jpg') no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   font-family: 'Roboto Black', sans-serif;
 }
 
@@ -14,6 +14,10 @@
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   min-height: 100vh;
+}
+
+.Landing_over_split {
+  border-right: 1px solid #999;
 }
 
 .Landing_over_separator {
