@@ -34,3 +34,30 @@
   font-size: 15px;
   text-align: center;
 }
+
+.Home_ann_padding {
+  padding-top: 10px;
+}
+
+.Home_ann_header {
+  font-family: 'Titillium Web', sans-serif;
+  color: rgba(236,240,241,1) !important;
+  padding-left: 50px;
+}
+
+.Home_ann_announcement {
+  font-family: 'Titillium Web', sans-serif;
+  background: rgba(236,240,241,1) !important;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.Home_ann_announcement_cont {
+  font-family: 'Titillium Web', sans-serif;
+  padding-left: 50px;
+  background: rgba(236,240,241,1) !important;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  border: solid 1px;
+}
