@@ -1,4 +1,36 @@
 .Home {
-  background-color: rgba(44,62,80,1) !important;    
+  background-color: rgba(44,62,80,1) !important; 
   height: 100vh;
+}
+
+.Home_info {
+  background-color: rgba(236,240,241,1) !important;   
+  height: 100vh;
+}
+
+.Home_info_padding {
+  padding-top: 50px;
+}
+
+.Home_info_pic {
+  text-align: center;
+}
+
+.Home_info_pic_holder {
+  border-radius: 50%;
+  height: 85px;
+  width: 85px;
+}
+
+.Home_info_name {
+  margin-top: 13px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 21px;
+  text-align: center;
+}
+
+.Home_info_studno {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 15px;
+  text-align: center;
 }
