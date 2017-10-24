@@ -11,6 +11,9 @@ mainApp.config(function($routeProvider, $locationProvider) {
     .when('/home', {
       templateUrl: 'views/home.html'
     })
+    .when('/courses', {
+      templateUrl: 'views/course.html'
+    })
     .when('/error_404', {
       templateUrl: 'views/error_404.html'
     })

@@ -1,0 +1,74 @@
+#t-cards {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #345; 
+}
+
+/* PANEL CARDS */
+.panel-default {
+    position: relative;
+    border: 2px solid black;
+}
+
+.panel {
+    position: relative;
+    background-color: black;
+}
+
+.panel-heading {
+    padding: 10px 20px;
+    padding-bottom: 30px;
+}
+
+.panel-default > .panel-heading {
+    background-color: white;
+}
+
+.panel-figure {
+    margin-top: -10%;
+}
+
+.small-text {
+    font-size: 15px;
+}
+
+/* CIRCLE IMAGES */
+.circle-img {
+    margin: 0 auto;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    border: 2px solid black;
+}
+  
+.circle-img img {
+    height: 100%;
+    transform: translateX(-50%);
+    margin-left: 50%;
+}
+
+/* CIRCLE BUTTONS AND DIVS */
+.circle-button {
+    background: #345;
+    border-radius: 200px;
+    color: white;
+    height: 55px;
+    font-weight: bold;
+    width: 55px;
+    text-align: center;
+    position: fixed;
+    bottom: 50px; 
+    right: 50px;
+}
+
+.circle-button span {
+    background: transparent;
+    border-color: transparent;
+    color: white;
+    margin-top: 20%;
+    margin-left: 5%;
+}
+
+.glyphicon {
+    font-size: 28px;
+}
