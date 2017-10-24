@@ -1,7 +1,9 @@
 #t-cards {
     padding-top: 80px;
     padding-bottom: 80px;
-    background-color: #345; 
+    background-color: rgba(44,62,80,1) !important;    
+    text-align: center;
+    height: 100vh;
 }
 
 /* PANEL CARDS */
