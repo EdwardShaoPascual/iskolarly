@@ -24,7 +24,6 @@ start = () => {
   winston.level = config.LOG_LEVEL || 'silly';
   winston.log('info', 'Starting', config.APP_NAME);
 
-
   // setting the environment for express
   winston.log('verbose', 'Binding 3rd-party middlewares');
   app.set('case sensitive routing', true);
@@ -35,9 +34,17 @@ start = () => {
   app.use(body_parser.json());
   app.use(require('compression')());
   app.use(router(express.Router()));
-  app.use(helmet());
+  
+  // app.use((req,res,next) => {
+  //   if ( !req.session.user  ) {
+  //     res.redirect('/error_404');
+  //   } else {
+  //     next();
+  //   }
+  // });
+
   app.get('*', (req,res,next) => {
-    res.redirect('/#!/error_404')
+    res.redirect('/#/error_404')
   })
 
   // this will start app
