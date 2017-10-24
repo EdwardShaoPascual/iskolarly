@@ -4,11 +4,11 @@
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  font-family: 'Roboto Black', sans-serif;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 .Landing_over {
-  background-color: rgba(0,0,0,.7) !important;
+  background-color: rgba(44,62,80,.7) !important;
   background-size: 100%;
   -o-background-size: 100%;
   -webkit-background-size: 100%;
@@ -37,7 +37,7 @@
 }
 
 .Landing_over_button {
-  background-color: #81000E;
+  background-color: rgba(231,76,60,1);
   fill-opacity: 1 !important;
   opacity: 1 !important;
   margin: 20px auto !important;
@@ -49,7 +49,7 @@
   padding: 17px;
   font-size: 115%;
   font-weight: bold;
-  color: rgba(255,255,255,1);
+  color: rgba(236,240,241,1);
   letter-spacing: 2px;
 }
 
