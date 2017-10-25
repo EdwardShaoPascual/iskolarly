@@ -1,6 +1,6 @@
 .Home {
   background-color: rgba(44,62,80,1) !important; 
-  height: 100vh;
+  height: 100%;
 }
 
 .Home_info {
@@ -45,6 +45,11 @@
   padding-left: 50px;
 }
 
+.Home_course_header {
+  font-family: 'Titillium Web', sans-serif;
+  color: rgba(236,240,241,1) !important;
+}
+
 .Home_ann_announcement {
   font-family: 'Titillium Web', sans-serif;
   background: rgba(236,240,241,1) !important;
@@ -72,3 +77,4 @@ hr {
   width: 96% !important;
   border: 1px solid white !important;
 }
+
