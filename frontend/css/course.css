@@ -1,4 +1,4 @@
-#t-cards {
+.Course_cards {
     padding-top: 80px;
     padding-bottom: 80px;
     background-color: rgba(44,62,80,1) !important;    
@@ -51,7 +51,7 @@
 
 /* CIRCLE BUTTONS AND DIVS */
 .circle-button {
-    background: #345;
+    background: black;
     border-radius: 200px;
     color: white;
     height: 55px;
