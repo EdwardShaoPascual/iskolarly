@@ -1,88 +1,92 @@
 .Course_cards {
-    padding-top: 80px;
-    padding-bottom: 80px;
-    background-color: rgba(44,62,80,1) !important;    
-    text-align: center;
-    height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: rgba(44,62,80,1) !important;    
+  text-align: center;
+  height: 100vh;
 }
 
 /* PANEL CARDS */
 .panel-default {
-    position: relative;
-    border: 2px solid black;
+  position: relative;
+  border: 2px solid black;
 }
 
 .panel {
-    position: relative;
-    background-color: black;
+  position: relative;
+  background-color: black;
 }
 
 .panel-heading {
-    padding: 10px 20px;
-    padding-bottom: 30px;
+  padding: 10px 20px;
+  padding-bottom: 30px;
 }
 
 .panel-default > .panel-heading {
-    background-color: white;
+  background-color: white;
 }
 
 .panel-figure {
-    margin-top: -10%;
+  margin-top: -10%;
 }
 
 .small-text {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 /* CIRCLE IMAGES */
 .circle-img {
-    margin: 0 auto;
-    width: 75px;
-    height: 75px;
-    overflow: hidden;
-    border: 2px solid black;
+  margin: 0 auto;
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  border: 2px solid black;
 }
-  
+
 .circle-img img {
-    height: 100%;
-    transform: translateX(-50%);
-    margin-left: 50%;
+  height: 100%;
+  transform: translateX(-50%);
+  margin-left: 50%;
 }
 
 /* CIRCLE BUTTONS AND DIVS */
 .circle-button {
-    background: black;
-    border-radius: 200px;
-    color: white;
-    height: 55px;
-    font-weight: bold;
-    width: 55px;
-    text-align: center;
-    position: fixed;
-    bottom: 50px; 
-    right: 50px;
+  background: black;
+  border-radius: 200px;
+  color: white;
+  height: 55px;
+  font-weight: bold;
+  width: 55px;
+  text-align: center;
+  position: fixed;
+  bottom: 50px; 
+  right: 50px;
+}
+
+.circle-button:hover {
+  
 }
 
 .circle-button span {
-    background: transparent;
-    border-color: transparent;
-    color: white;
-    margin-top: 20%;
-    margin-left: 5%;
+  background: transparent;
+  border-color: transparent;
+  color: white;
+  margin-top: 20%;
+  margin-left: 5%;
 }
 
 .glyphicon {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 /* SEARCH BAR */
 input {
-    left: 0px;
-    outline: none;
+  left: 0px;
+  outline: none;
 }
 
 input[type=search] {
-    left: 0px;
+  left: 0px;
 	-webkit-appearance: textfield;
 	-webkit-box-sizing: content-box;
 	font-family: inherit;
@@ -99,8 +103,8 @@ input[type=search] {
 	border: solid 1px #ccc;
 	padding: 3px 10px 3px 32px;
 	width: 200px;
-    border: 2px solid black;
-    left: 0px;
+  border: 2px solid black;
+  left: 0px;
     
 	-webkit-border-radius: 10em;
 	-moz-border-radius: 10em;
@@ -130,6 +134,6 @@ input::-webkit-input-placeholder {
 }
 
 .search-bar {
-    text-align: left;
-    margin-bottom: 3%;
+  text-align: left;
+  margin-bottom: 3%;
 }
