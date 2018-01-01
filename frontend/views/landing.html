@@ -9,7 +9,7 @@
                 <div class="Landing_over_split col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
                   <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                      <button type="button" class="Landing_over_button btn" id="Login" data-toggle="modal" data-target=".bd-example-modal-lg">SIGN  IN</button>
+                      <button type="button" class="Landing_over_button btn" id="Login" data-toggle="modal" data-target=".bd-example-modal-lgi">SIGN  IN</button>
                     </div>
                   </div>
                   <div class="row">
@@ -25,7 +25,7 @@
                   </div>
                   <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                      <button type="button" class="Landing_over_button btn">SIGN  UP</button>
+                      <button type="button" class="Landing_over_button btn" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">SIGN  UP</button>
                     </div>
                   </div>
                 </div>
@@ -41,7 +41,7 @@
     </div>
   </div>
   
-  <div class="modal fade bd-example-modal-lg" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal fade bd-example-modal-lgi" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -49,6 +49,7 @@
         </div>
         <div class="modal-body">
             <form>
+              <!-- Email -->
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputGroupSuccess1">Email address</label>
                 <div class="input-group">
@@ -59,11 +60,12 @@
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
+              <!-- Password -->
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputGroupSuccess1">Password</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                  <input type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
                 </div>
                 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
@@ -76,10 +78,111 @@
     </div>
   </div>
 
-  <script>
-    $('#Login').on('click', () => {
-      $('loginModal').modal('show')
-    })
+  <div class="modal fade bd-example-modal-lgs" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Sign Up</h4>
+          </div>
+          <div class="modal-body">
+              <form>
+                <!-- Name information -->
+                <div class="row">
+                  <div class="col-lg-4 form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">First Name</label>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-align-left"></i></span>
+                      <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter First Name">
+                    </div>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  </div>
+                  
+                  <div class="col-lg-4 form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">Middle Name</label>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-align-center"></i></span>                        
+                      <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
+                    </div>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  </div>
+
+                  <div class="col-lg-4 form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">Last Name</label>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-align-right"></i></span>                                                
+                      <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Last Name">
+                    </div>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  </div>
+                </div>
+                <!-- Name information helper -->
+                <div class="row">
+                  <div class="col-lg-12">
+                      <small id="identityHelp" class="form-text text-muted">We'll never expose your identity to anyone.</small>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <small id="identityHelp" class="form-text text-muted">&nbsp;</small>
+                    </div>
+                  </div>
+                <!-- Datetime Picker for Birthday, Gender -->
+                <div class="row">
+                  <div class="col-lg-6 form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">Birthdate</label>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>                        
+                      <input type="date" class="form-control datepick" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
+                    </div>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  </div>
+
+                  <div class="col-lg-6 form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">Gender</label>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                        
+                      <select class="form-control" id="sel1">
+                        <option>-----------</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Trans</option>
+                        <option>Gender Queer</option>
+                        <option>Something Else</option>
+                      </select>
+                    </div>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  </div>
+                </div>
+                <!-- Email -->
+                <div class="form-group has-success has-feedback">
+                  <label class="control-label" for="inputGroupSuccess1">Email address</label>
+                  <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                  </div>
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                </div>
+                <!-- Password -->
+                <div class="form-group has-success has-feedback">
+                  <label class="control-label" for="inputGroupSuccess1">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
+                  </div>
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button class="btn">Cancel</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script type="application/javascript">
+  
   </script>
 
 </div>
