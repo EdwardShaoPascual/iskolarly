@@ -68,6 +68,11 @@
   letter-spacing: 2px;
 }
 
+.Landing__Subs {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
 /* Predefined classes with modifications */
 
 .datepick {
@@ -105,7 +110,7 @@
   margin: 0 !important;
 }
 
-.glyphicon {
+.form-group .glyphicon {
   font-size: 14px !important;
 }
 
