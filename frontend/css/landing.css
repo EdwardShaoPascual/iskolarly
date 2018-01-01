@@ -37,7 +37,7 @@
 }
 
 .Landing_over_button {
-  background-color: rgba(231,76,60,1);
+  background-color: #337ab7;
   fill-opacity: 1 !important;
   opacity: 1 !important;
   margin: 20px auto !important;
@@ -53,6 +53,42 @@
   letter-spacing: 2px;
 }
 
+.Landing_over_button:hover {
+  color: rgba(236,240,241,1);
+  letter-spacing: 2px;
+}
+
+.Landing_over_button:after {
+  color: rgba(236,240,241,1);
+  letter-spacing: 2px;
+}
+
+.Landing_over_button:focus {
+  color: rgba(236,240,241,1);
+  letter-spacing: 2px;
+}
+
+/* Predefined classes with modifications */
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -63,6 +99,10 @@
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.glyphicon {
+  font-size: 14px !important;
 }
 
 @media screen and (max-width:991px) {

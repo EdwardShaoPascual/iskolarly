@@ -9,7 +9,7 @@
                 <div class="Landing_over_split col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
                   <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                      <button type="button" class="Landing_over_button btn">LOG  IN</button>
+                      <button type="button" class="Landing_over_button btn" id="Login" data-toggle="modal" data-target=".bd-example-modal-lg">SIGN  IN</button>
                     </div>
                   </div>
                   <div class="row">
@@ -30,7 +30,7 @@
                   </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
-                  HELLO
+                  SAMPLE
                 </div>
               </div>
             </div>
@@ -40,4 +40,46 @@
       </div>
     </div>
   </div>
+  
+  <div class="modal fade bd-example-modal-lg" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sign In</h4>
+        </div>
+        <div class="modal-body">
+            <form>
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputGroupSuccess1">Email address</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                </div>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputGroupSuccess1">Password</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                </div>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button class="btn">Cancel</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('#Login').on('click', () => {
+      $('loginModal').modal('show')
+    })
+  </script>
+
 </div>

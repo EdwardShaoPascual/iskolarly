@@ -14,7 +14,7 @@ module.exports = {
         host: 'localhost',
         user: 'root',
         password: 'root',
-        database: 'malicsi'
+        database: 'iskolarly'
     },
 
     ASSETS_DIR: path.normalize(__dirname + '/../front-end'),
