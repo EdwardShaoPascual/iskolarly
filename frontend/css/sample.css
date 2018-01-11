@@ -1,0 +1,19 @@
+.center-div {
+  margin: 0 auto;
+  margin-bottom: 3%;
+  width: 500px; 
+}
+
+.inner-div {
+  margin: 0 auto;
+  width: 250px; 
+}
+
+.btn-choices {
+  width: 120px;
+}
+
+.badge {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
