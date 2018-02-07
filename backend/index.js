@@ -34,14 +34,6 @@ start = () => {
   app.use(body_parser.json());
   app.use(require('compression')());
   app.use(router(express.Router()));
-  
-  // app.use((req,res,next) => {
-  //   if ( !req.session.user  ) {
-  //     res.redirect('/error_404');
-  //   } else {
-  //     next();
-  //   }
-  // });
 
   app.get('*', (req,res,next) => {
     res.redirect('/#/error_404')

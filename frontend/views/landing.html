@@ -41,7 +41,7 @@
     </div>
   </div>
   
-  <div class="modal fade bd-example-modal-lgi" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div ng-controller="landing-controller" class="modal fade bd-example-modal-lgi" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -54,7 +54,7 @@
                 <label class="control-label" for="inputGroupSuccess1">Email address</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                  <input ng-model="data.email" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
                 </div>
                 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
@@ -65,12 +65,12 @@
                 <label class="control-label" for="inputGroupSuccess1">Password</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
+                  <input ng-model="data.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
                 </div>
                 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
               </div>
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <button ng-click="login()" type="submit" class="btn btn-primary">Sign in</button>
               <button class="btn">Cancel</button>
             </form>
         </div>
