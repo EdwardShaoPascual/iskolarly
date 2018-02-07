@@ -24,10 +24,10 @@
 					headers: headers
 				})
 				.then(function(res) {
-					$window.location.href = '/#/user';
+					$window.location.href = '/#/home';
 					deferred.resolve(res.data);
 				}, function(err) {
-					deferred.reject(err.data);
+					deferred.reject(err);
 				})
 
 				return deferred.promise;
@@ -35,18 +35,17 @@
 
 			const sign_up = function (data) {
 				let deferred = $q.defer();
-
 				$http({
 					method: 'POST',
 					params: data,
 					xhrFields: {withCredentials: true},
-					url: '/api/sign_up',
+					url: '/api/register',
 					headers: headers
 				})
 				.then(function(res) {
 					deferred.resolve(res.data);
 				}, function(err) {
-					deferred.reject(err.data);
+					deferred.reject(err);
 				})
 
 				return deferred.promise;

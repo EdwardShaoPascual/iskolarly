@@ -4,8 +4,11 @@ const landing_controller = require(__dirname + '/../controller/landing.controlle
 
 module.exports = (router) => {
 
-  // landing page routes
-	router.post('/api/login',	 			                  landing_controller.login);
+  // -- LANDING PAGE ROUTES --
+  // POST
+  router.post('/api/login',	 			                  landing_controller.login);
+  router.post('/api/register',	 			              landing_controller.register);
+  
 	return router;
 
 }

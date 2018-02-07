@@ -54,7 +54,7 @@
                 <label class="control-label" for="inputGroupSuccess1">Email address</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input ng-model="data.email" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                  <input ng-model="loginData.email" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
                 </div>
                 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
@@ -65,7 +65,7 @@
                 <label class="control-label" for="inputGroupSuccess1">Password</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input ng-model="data.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
+                  <input ng-model="loginData.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
                 </div>
                 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
@@ -78,7 +78,7 @@
     </div>
   </div>
 
-  <div class="modal fade bd-example-modal-lgs" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div ng-controller="landing-controller" class="modal fade bd-example-modal-lgs" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -92,7 +92,7 @@
                     <label class="control-label" for="inputGroupSuccess1">First Name</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-align-left"></i></span>
-                      <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter First Name">
+                      <input ng-model="registerData.firstname" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter First Name">
                     </div>
                     <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                   </div>
@@ -101,7 +101,7 @@
                     <label class="control-label" for="inputGroupSuccess1">Middle Name</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-align-center"></i></span>                        
-                      <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
+                      <input ng-model="registerData.middlename" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
                     </div>
                     <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                   </div>
@@ -110,7 +110,7 @@
                     <label class="control-label" for="inputGroupSuccess1">Last Name</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-align-right"></i></span>                                                
-                      <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Last Name">
+                      <input ng-model="registerData.lastname" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Last Name">
                     </div>
                     <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                   </div>
@@ -132,22 +132,28 @@
                     <label class="control-label" for="inputGroupSuccess1">Birthdate</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>                        
-                      <input type="date" class="form-control datepick" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
+                      <input ng-model="registerData.birthday" type="date" class="form-control datepick" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
                     </div>
                     <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                   </div>
 
                   <div class="col-lg-4 form-group has-success has-feedback">
-                    <label class="control-label" for="inputGroupSuccess1">Gender</label>
+                    <label class="control-label" for="inputGroupSuccess1">College</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                        
-                      <select class="form-control" id="sel1">
-                        <option>-----------</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Trans</option>
-                        <option>Gender Queer</option>
-                        <option>Something Else</option>
+                      <select ng-init="registerData.college = registerData.college || '-----------'" ng-model="registerData.college" class="form-control" id="sel1">
+                        <option value="-----------">-----------</option>
+                        <option value="CA">CA</option>
+                        <option value="CAS">CAS</option>
+                        <option value="CDC">CDC</option>
+                        <option value="CEAT">CEAT</option>
+                        <option value="CEM">CEM</option>
+                        <option value="CFNR">CFNR</option>
+                        <option value="CHE">CHE</option>
+                        <option value="CPAf">CPAf</option>
+                        <option value="CVM">CVM</option>
+                        <option value="SESAM">SESAM</option>
+                        <option value="GS">GS</option>
                       </select>
                     </div>
                     <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
@@ -157,7 +163,7 @@
                       <label class="control-label" for="inputGroupSuccess1">Course</label>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>                                                
-                        <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Course">
+                        <input ng-model="registerData.course" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Course">
                       </div>
                       <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                     </div>
@@ -167,7 +173,17 @@
                   <label class="control-label" for="inputGroupSuccess1">Email address</label>
                   <div class="input-group">
                     <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                    <input ng-model="registerData.email" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                  </div>
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                </div>
+                <!-- Username -->
+                <div class="form-group has-success has-feedback">
+                  <label class="control-label" for="inputGroupSuccess1">Username</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
+                    <input ng-model="registerData.username" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
                   </div>
                   <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                   <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
@@ -177,12 +193,12 @@
                   <label class="control-label" for="inputGroupSuccess1">Password</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
+                    <input ng-model="registerData.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
                   </div>
                   <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                   <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign up</button>
+                <button ng-click="register()" type="submit" class="btn btn-primary">Sign up</button>
                 <button class="btn">Cancel</button>
               </form>
           </div>

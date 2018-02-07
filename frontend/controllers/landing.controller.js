@@ -9,23 +9,40 @@
 
   function landing_controller($scope, $window, $rootScope, $location, landing_service) {
     
-    $scope.data = {
+    $scope.loginData = {
       email: '',
       password: ''
     }
 
+    $scope.registerData = {
+      firstname: '',
+      middlename: '',
+      lastname: '',
+      email: '',
+      username: '',
+      password: '',
+      course: '',
+      birthday: '',
+      college: ''
+    }
+
     $scope.login = () => {
       landing_service
-      .user_login($scope.data)
+      .user_login($scope.loginData)
       .then(function(res) {
-
+        console.log(res);
       }, function(err) {
-        toastr.error(err.message);
-        $scope.data = {
-          username: '',
-          password: ''
-        };
+        console.log(err);
+      })
+    }
 
+    $scope.register = () => {
+      landing_service
+      .sign_up($scope.registerData)
+      .then(function(res) {
+        console.log(res);
+      }, function(err) {
+        console.log(err);
       })
     }
 
