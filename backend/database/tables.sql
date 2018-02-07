@@ -11,16 +11,16 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user (
 	user_id						int NOT NULL AUTO_INCREMENT,
 	firstname					varchar(256) NOT NULL,
-	middlename				varchar(256) NOT NULL,
+	middlename					varchar(256) NOT NULL,
 	lastname					varchar(256) NOT NULL,
-	email							varchar(256) NOT NULL,
+	email						varchar(256) NOT NULL,
 	username					varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
 	password					varchar(256) NOT NULL,
 	course						varchar(256) NOT NULL,
 	birthday					date NOT NULL,
 	college						enum('CA','CAS','CDC','CEAT','CEM','CFNR','CHE','CPAf','CVM','SESAM','GS') NOT NULL,
 	UNIQUE						(username),
-	PRIMARY KEY				(user_id)
+	PRIMARY KEY					(user_id)
 );
 
 DROP TABLE IF EXISTS course;
