@@ -4,8 +4,11 @@ const question_controller = require(__dirname + '/../controller/questionnaires.j
 const landing_controller = require(__dirname + '/../controller/landing.controller.js');
 
 module.exports = (router) => {
-  // landing page routes
-	router.post('/api/login',	 			                  landing_controller.login);
+
+  // -- LANDING PAGE ROUTES --
+  // POST
+  router.post('/api/login',	 			                  landing_controller.login);
+  router.post('/api/register',	 			              landing_controller.register);
   
   // quiz page routes  
   router.get('/quiz',                               question_controller.view_questionnaires);

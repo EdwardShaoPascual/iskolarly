@@ -1,18 +1,47 @@
 'use strict';
 
-const db      = require(__dirname + '/../lib/mysql');
-const fs      = require('fs');
-const bcrypt  = require('bcrypt');
+const db          = require(__dirname + '/../lib/mysql');
+const bcrypt      = require('bcrypt');
+const dateFormat  = require('dateformat');
 
 exports.login = function(req, res, next) {
   
-  let payload = req.body;
+  let payload = req.query;
 
-  let queryString = 'SELECT * FROM user WHERE username = ? AND password = ?';
+  let queryString = 'SELECT * FROM user WHERE email = ?';
   let saltRounds = 10;
-    // Store hash in your password DB.
     
-  db.query(queryString, [payload.username, payload.password], (err, result, args, last_query) => {
-
+  db.query(queryString, [payload.email], (err, result, args, last_query) => {
+    if (err) {
+      return res.status(500).send({message: "An error has encountered"})
+    } else if (result.length === 1) {
+      bcrypt.compare(payload.password, result[0].password, function(err, response) {
+        return res.send(response)
+      });
+    } else if (result.length === 0) {
+      return res.status(404).send({message: "Invalid email address or password"})
+    }
   });
+}
+
+exports.register = function(req, res, next) {
+  
+  let payload = req.query;
+
+  let queryString = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, course, birthday, college) VALUES (?,?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?)';
+  let saltOrRounds = 10;
+  bcrypt.hash(payload.password, saltOrRounds, (err, hash) => {
+    db.query(
+      queryString, 
+      [payload.firstname, payload.middlename, payload.lastname,
+      payload.email, payload.username, hash, payload.course,
+      dateFormat(payload.birthday,"dd-mm-yyyy"), payload.college], 
+      (err,result,args,last_query) => {
+        if (!err) {
+          return res.send(result);
+        }
+        return res.status(500).send({message: "An error has encountered"})
+      })
+  })
+    
 }
