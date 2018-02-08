@@ -76,3 +76,11 @@ CREATE TABLE record (
 		FOREIGN KEY (attachment_id) REFERENCES attachment (attachment_id)
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+DROP TABLE IF EXISTS questionnaires;
+CREATE TABLE questionnaires (
+	question_id						int NOT NULL AUTO_INCREMENT,
+	question_name					varchar(256) NOT NULL,
+	question_desc					varchar(256) NOT NULL,
+	PRIMARY KEY						(question_id)
+)

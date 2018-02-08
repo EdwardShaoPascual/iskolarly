@@ -3,16 +3,21 @@
   <h1>ADD QUESTIONNAIRE</h1>
   
   <div id="table" class="table-editable">
-    <span class="table-add glyphicon glyphicon-plus"></span>
+    <span class="table-add glyphicon glyphicon-plus"></span>    
+    <button id="export-btn" class="btn btn-primary" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">Add Questionnaire</button>
+    <br><br>
+    <!-- <p id="export"></p> -->
     <table class="table table-bordered table-responsive-md table-striped">
       <tr>
         <th>No.</th>
         <th>Name of Questionnaire</th>
+        <th>Description</th>
         <th class="text-center">Remove</th>
       </tr>
       <tr ng-repeat="users in user">
         <td>{{users.question_id}}</td>
         <td contenteditable="true">{{users.question_name}}</td>
+        <td contenteditable="true">{{users.question_desc}}</td>
         <td class="text-center">
           <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
         </td>
@@ -21,15 +26,48 @@
       <tr class="hide">
         <td>1</td>
         <td contenteditable="true">Untitled</td>
+        <td contenteditable="true">Untitled</td>
         <td class="text-center">
           <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
         </td>
       </tr>
     </table>
   </div>
-    
-  <button id="export-btn" class="btn btn-primary">Export Data</button>
-  <p id="export"></p>
+</div>
+
+
+<div ng-controller="quiz-controller" class="modal fade bd-example-modal-lgs" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Questionnaire</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Question name -->
+          <div class="form-group">
+            <label class="control-label" for="inputGroupSuccess1">Questionnaire name</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
+              <input ng-model="questionnairesData.question_name" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter name">
+            </div>
+          </div>
+
+          <!-- Question description -->
+          <div class="form-group">
+            <label class="control-label" for="inputGroupSuccess1">Add description</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+              <textarea ng-model="questionnairesData.question_desc" type="text" rows="5" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Add description here"></textarea>
+            </div>
+          </div>
+          
+          <button ng-click="questionnaires_add()" type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>

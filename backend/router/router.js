@@ -12,6 +12,7 @@ module.exports = (router) => {
   
   // quiz page routes  
   router.get('/quiz',                               question_controller.view_questionnaires);
+  router.post('/quiz',                              question_controller.add_questionnaires);
 
 	router.all('*', (req, res, next) => {
 	  res.status(404).send({message: 'Unmatched route :('});
