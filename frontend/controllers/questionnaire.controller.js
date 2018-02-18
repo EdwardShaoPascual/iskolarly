@@ -1,28 +1,30 @@
 'use strict';
 
-(() =>{
+(() => {
 	angular
 	.module('app')
-	.controller('quiz-controller', quiz_controller);
+	.controller('questionnaire-controller', questionnaire_controller);
 
-  quiz_controller.$inject = ['$routeParams', '$scope', '$window', 'QuizService'];
+  questionnaire_controller.$inject = ['$scope', '$window', 'QuestionnaireService'];
 
-	function quiz_controller($routeParams, $scope, $window, QuizService) {
+	function questionnaire_controller($scope, $window, QuestionnaireService) {
 		$scope.user = [];
 
 		$scope.questionnairesData = {
-      question_name: '',
-      question_desc: ''
+      questionnaire_name: '',
+      questionnaire_desc: '',
+      questionnaire_no: ''
     }
 
     $scope.questionnairesInfo = {
-      question_id: '',
-      question_name: '',
-      question_desc: ''
+      questionnaire_id: '',
+      questionnaire_name: '',
+      questionnaire_desc: '',
+      questionnaire_no: ''
     }
 
 		$scope.questionnaires_view = () => {
-			QuizService
+			QuestionnaireService
 			.view_questionnaires()
 			.then(function(res) {
 				$scope.user = res;
@@ -32,7 +34,7 @@
 		}
 
 		$scope.questionnaires_add = () => {
-			QuizService
+			QuestionnaireService
 			.add_questionnaires($scope.questionnairesData)
 			.then(function(res) {
         $scope.user = res;
@@ -48,37 +50,40 @@
     }
     
     $scope.questionnaires_get_info = (data) => {
-      $scope.question_id = data;
+      $scope.questionnaire_id = data;
 
-			QuizService
-			.get_info_questionnaires($scope.question_id)
+			QuestionnaireService
+			.get_info_questionnaires($scope.questionnaire_id)
 			.then(function(res) {
         $scope.questionnairesInfo = res[0];
-        $('#edit_quest_id').val($scope.questionnairesInfo.question_id);
-        $('#edit_quest_name').val($scope.questionnairesInfo.question_name);
-        $('#edit_quest_desc').val($scope.questionnairesInfo.question_desc);
+        $('#edit_quest_id').val($scope.questionnairesInfo.questionnaire_id);
+        $('#edit_quest_name').val($scope.questionnairesInfo.questionnaire_name);
+        $('#edit_quest_desc').val($scope.questionnairesInfo.questionnaire_desc);
+        $('#edit_quest_no').val($scope.questionnairesInfo.questionnaire_no);
 			}, function(err) {
 				console.log(err);
 			})
     }
     
     $scope.questionnaires_edit = () => {
-      let question_id = $('#edit_quest_id').val();
-      let question_name = $('#edit_quest_name').val();
-      let question_desc = $('#edit_quest_desc'). val();
+      let questionnaire_id = $('#edit_quest_id').val();
+      let questionnaire_name = $('#edit_quest_name').val();
+      let questionnaire_desc = $('#edit_quest_desc'). val();
+      let questionnaire_no = $('#edit_quest_no').val();
 
       $scope.edit_questionnairesData = {
-        question_id: question_id,
-        question_name: question_name,
-        question_desc: question_desc
+        questionnaire_id: questionnaire_id,
+        questionnaire_name: questionnaire_name,
+        questionnaire_desc: questionnaire_desc,
+        questionnaire_no: questionnaire_no
       }
 
-      QuizService
+      QuestionnaireService
       .edit_questionnaires($scope.edit_questionnairesData)
       .then(function(res) {
         swal({
           title: "Success!",
-          text: "File has been added.",
+          text: "File has been edited.",
           type: "success"
         })
       }, function(err) {
@@ -87,7 +92,7 @@
     }
 
     $scope.questionnaires_delete = (data) => {
-      $scope.question_id = data;
+      $scope.questionnaire_id = data;
 
       swal({
         title: "Are you sure?",
@@ -99,8 +104,8 @@
         closeOnConfirm: false
       },
       function(){
-        QuizService
-        .delete_questionnaires($scope.question_id)
+        QuestionnaireService
+        .delete_questionnaires($scope.questionnaire_id)
         .then(function(res) {
           swal({
             title: "Success!",
@@ -111,6 +116,12 @@
           console.log(err);
         })
       });
+    }
+
+    $scope.page_view = (data) => {
+      $scope.questionnaire_id = data;
+
+      window.location.href = '#/question/' + $scope.questionnaire_id;
     }
   }
 

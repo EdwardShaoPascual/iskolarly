@@ -29,7 +29,6 @@
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
     "node-sass": "^4.5.3",
-    "sweetalert": "^2.1.0",
     "winston": "^2.4.0"
   }
 }

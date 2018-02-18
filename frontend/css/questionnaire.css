@@ -1,0 +1,19 @@
+.custom-table {
+  width: 175px;
+}
+
+.custom {
+  width: 78px !important;
+  /* margin-left: 25px; */
+  /* margin-right: 25px; */
+  display: block;
+  margin: auto;
+}
+
+.desc {
+  width: 400px !important;
+}
+
+.change-name {
+  color: black;
+}

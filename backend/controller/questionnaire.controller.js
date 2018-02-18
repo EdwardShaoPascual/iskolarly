@@ -16,10 +16,10 @@ exports.view_questionnaires = (req, res, next) => {
 }
 
 exports.add_questionnaires = (req, res, next) => {
-  let query_string = 'INSERT INTO questionnaires (question_name, question_desc) VALUES (?, ?)'
-  let request_data = [req.query.question_name, req.query.question_desc]
+  let query_string = 'INSERT INTO questionnaires (questionnaire_name, questionnaire_desc, questionnaire_no) VALUES (?, ?, ?)'
+  let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no]
 
-  if (!req.query.question_name || !req.query.question_desc) {
+  if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
     console.log("Fill all the fields");
     return res.status(400).send("Fill all the fields");
   }
@@ -30,8 +30,8 @@ exports.add_questionnaires = (req, res, next) => {
 }
 
 exports.get_info_questionnaires = (req, res, next) => {
-  let query_string = 'SELECT * FROM questionnaires WHERE question_id = ?';
-  let request_data = [req.params.question_id]
+  let query_string = 'SELECT * FROM questionnaires WHERE questionnaire_id = ?';
+  let request_data = [req.params.questionnaire_id]
 
   db.query(query_string, request_data, (err, result) => {
     if (err) {
@@ -43,10 +43,10 @@ exports.get_info_questionnaires = (req, res, next) => {
 }
 
 exports.edit_questionnaires = (req, res, next) => {
-  let query_string = 'UPDATE questionnaires SET question_name = ?, question_desc = ? WHERE question_id = ?'
-  let request_data = [req.query.question_name, req.query.question_desc, req.query.question_id]
+  let query_string = 'UPDATE questionnaires SET questionnaire_name = ?, questionnaire_desc = ?, questionnaire_no = ? WHERE questionnaire_id = ?'
+  let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.questionnaire_id]
 
-  if (!req.query.question_name || !req.query.question_desc) {
+  if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
     console.log("Fill all the fields");
     return res.status(400).send("Fill all the fields");
   }
@@ -57,8 +57,8 @@ exports.edit_questionnaires = (req, res, next) => {
 }
 
 exports.delete_questionnaires = (req, res, next) => {
-  let query_string = 'DELETE FROM questionnaires WHERE question_id = ?';
-  let request_data = [req.params.question_id]
+  let query_string = 'DELETE FROM questionnaires WHERE questionnaire_id = ?';
+  let request_data = [req.params.questionnaire_id]
 
   db.query(query_string, request_data, (err, result) => {
     if (err) {

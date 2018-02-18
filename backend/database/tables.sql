@@ -25,10 +25,10 @@ CREATE TABLE user (
 
 DROP TABLE IF EXISTS course;
 CREATE TABLE course (
-	course_id							int NOT NULL AUTO_INCREMENT,
+	course_id						int NOT NULL AUTO_INCREMENT,
 	course_title					varchar(256),
-	course_description		varchar(256),
-	user_id								int NOT NULL,
+	course_description				varchar(256),
+	user_id							int NOT NULL,
 	PRIMARY KEY						(course_id),
 	CONSTRAINT						`fk_course_user`
 		FOREIGN KEY (user_id) REFERENCES user (user_id)
@@ -38,9 +38,9 @@ CREATE TABLE course (
 DROP TABLE IF EXISTS activity;
 CREATE TABLE activity (
 	activity_id 						int NOT NULL AUTO_INCREMENT,
-	activity_title					varchar(256),
-	activity_description		varchar(256),
-	user_id									int NOT NULL,
+	activity_title						varchar(256),
+	activity_description				varchar(256),
+	user_id								int NOT NULL,
 	course_id 							int NOT NULL,
 	PRIMARY KEY							(activity_id),
 	CONSTRAINT							`fk_activity_user`
@@ -79,8 +79,20 @@ CREATE TABLE record (
 
 DROP TABLE IF EXISTS questionnaires;
 CREATE TABLE questionnaires (
+	questionnaire_id				int NOT NULL AUTO_INCREMENT,
+	questionnaire_name				varchar(256) NOT NULL,
+	questionnaire_desc				varchar(256) NOT NULL,
+	questionnaire_no				int NOT NULL,
+	PRIMARY KEY						(questionnaire_id)
+);
+
+DROP TABLE IF EXISTS questions;
+CREATE TABLE questions (
 	question_id						int NOT NULL AUTO_INCREMENT,
-	question_name					varchar(256) NOT NULL,
+	questionnaire_id				int NOT NULL,
 	question_desc					varchar(256) NOT NULL,
-	PRIMARY KEY						(question_id)
-)
+	PRIMARY KEY						(question_id),
+	CONSTRAINT						`fk_questions_questionnaires`
+		FOREIGN KEY (questionnaire_id) REFERENCES questionnaires (questionnaire_id)
+		ON UPDATE CASCADE ON DELETE CASCADE
+);

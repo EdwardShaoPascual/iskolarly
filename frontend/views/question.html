@@ -1,0 +1,69 @@
+<div ng-controller="question-controller" ng-init="questions_view()" class="container">
+  <!-- Editable table -->
+  <h1>ADD QUESTIONNAIRE</h1>
+  
+  <button id="export-btn" class="btn btn-primary" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">Add Question</button>  
+
+  <table class="table table-bordered table-responsive-md table-striped">
+    <tr>
+      <th>No.</th>
+      <th>Question</th>
+      <th class="text-center">Edit</th>
+      <th class="text-center">Remove</th>
+    </tr>
+    <tr ng-repeat="questions in user">
+      <td>{{$index+1}}</td>
+      <!-- <td><a class="change-name" ng-click="page_view(questionnaires.questionnaire_id)">{{questionnaires.questionnaire_name}}</a></td> -->
+      <td class="custom-table text-center">{{questions.question_desc}}</td>
+      <td class="text-center">
+        <span class="table-remove"><button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded btn-sm btn-block custom" ng-click="questionnaires_get_info(questionnaires.questionnaire_id)">Edit</button></span>
+      </td>
+      <td class="text-center">
+        <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm btn-block custom" ng-click="questionnaires_delete(questionnaires.questionnaire_id)">Remove</button></span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Collapsible Group Item #1
+          </button>
+        </h5>
+      </div>
+  
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body" ng-repeat="questions in users">
+          <pre>{{questions.question_desc}}</pre>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+
+<div ng-controller="question-controller" class="modal fade bd-example-modal-lgs" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Questionnaire</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Question description -->
+          <div class="form-group">
+            <label class="control-label" for="inputGroupSuccess1">Add Question</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+              <textarea ng-model="questionsData.question_desc" type="text" rows="5" class="form-control" aria-describedby="inputGroupSuccess1Status" placeholder="Enter question"></textarea>
+            </div>
+          </div>
+
+          <button ng-click="questions_add()" type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,22 +3,22 @@
 (() => {
   angular
     .module('app')
-    .factory('QuizService', QuizService);
+    .factory('QuestionnaireService', QuestionnaireService);
 
-  QuizService.$inject = ['$http', '$q', '$window'];
+  QuestionnaireService.$inject = ['$http', '$q', '$window'];
 
   const headers = {
     'content-type': 'application/x-www-form-urlencoded'
   };
 
-  function QuizService($http, $q, $window) {
+  function QuestionnaireService($http, $q, $window) {
 
     function view_questionnaires() {
       let deferred = $q.defer();
 
       $http({
         method: 'GET',
-        url: '/api/view_quiz'
+        url: '/api/view_questionnaire'
       })
       .then(function(res) {
         deferred.resolve(res.data);
@@ -35,7 +35,7 @@
       $http({
         method: 'POST',
         params: data,
-        url: '/api/add_quiz',
+        url: '/api/add_questionnaire',
         headers: headers
       })
       .then(function(res) {
@@ -53,7 +53,7 @@
 
       $http({
         method: 'GET',
-        url: '/api/get_info_quiz/' + data
+        url: '/api/get_info_questionnaire/' + data
       })
       .then(function(res) {
         // $window.location.href = '/#/quiz';
@@ -71,7 +71,7 @@
       $http({
         method: 'POST',
         params: data,
-        url: '/api/edit_quiz',
+        url: '/api/edit_questionnaire',
         headers: headers
       })
       .then(function(res) {
@@ -86,13 +86,11 @@
 
     const delete_questionnaires = function (data) {
       let deferred = $q.defer();
-
-      console.log(data);
       
       $http({
         method: 'POST',
         params: data,
-        url: '/api/delete_quiz/' + data,
+        url: '/api/delete_questionnaire/' + data,
         headers: headers
       })
       .then(function(res) {
