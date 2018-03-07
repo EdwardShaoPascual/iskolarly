@@ -8,10 +8,10 @@ exports.login = function(req, res, next) {
   
   let payload = req.query;
 
-  let queryString = 'SELECT * FROM user WHERE email = ?';
-  let saltRounds = 10;
-    
-  db.query(queryString, [payload.email], (err, result, args, last_query) => {
+  let queryString = 'SELECT * FROM user WHERE username = ?';
+  let saltRounds = 15;
+
+  db.query(queryString, [payload.username], (err, result, args, last_query) => {
     if (err) {
       return res.status(500).send({message: "An error has encountered!"})
     } else if (result.length === 1) {
@@ -19,11 +19,11 @@ exports.login = function(req, res, next) {
         if (response === true) {
           return res.status(200).send(result)
         } else if (response === false) {
-          return res.status(404).send({message: "Invalid email address or password!"})
+          return res.status(404).send({message: "Invalid username or password!"})
         }
       });
     } else if (result.length === 0) {
-      return res.status(404).send({message: "Invalid email address or password!"})
+      return res.status(404).send({message: "Invalid username or password!"})
     }
   });
 }
@@ -33,7 +33,7 @@ exports.register = function(req, res, next) {
   let payload = req.query;
 
   let queryString = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, course, birthday, college) VALUES (?,?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?)';
-  let saltOrRounds = 10;
+  let saltOrRounds = 15;
   bcrypt.hash(payload.password, saltOrRounds, (err, hash) => {
     db.query(
       queryString, 

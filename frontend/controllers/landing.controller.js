@@ -10,7 +10,7 @@
   function landing_controller($scope, $window, $rootScope, $location, landing_service) {
     
     $scope.loginData = {
-      email: '',
+      username: '',
       password: ''
     }
 
@@ -34,7 +34,7 @@
         toastr.success("Your signing in is successful!", "Success")
       }, function(err) {
         $scope.loginData = {
-          email: '',
+          username: '',
           password: ''
         }
         toastr.error(err.data.message, 'Error');
