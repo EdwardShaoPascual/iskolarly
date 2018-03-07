@@ -1,21 +1,26 @@
-<div ng-controller="question-controller" ng-init="questions_view()" class="container">
-  <h1 id="val_name"></h1>
+<div ng-controller="question-controller" class="container">
+  <div ng-init="questions_get()"> 
+    <h1 id="val_name"></h1>
+    <h3 id="items"></h3>
+  </div>
   
-  <button id="export-btn" class="btn btn-primary" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">Add Question</button>
+  <button id="export-btn" ng-init="questions_check()" ng-disabled="isDisabled" ng-model="isDisabled" class="btn btn-primary" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">Add Question</button>
 
-  <div id="accordion" ng-repeat="questions in user">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne{{$index+1}}" aria-expanded="true" aria-controls="collapseOne">
-            Question Item #{{$index+1}}
-          </button>
-        </h5>
-      </div>
-  
-      <div id="collapseOne{{$index+1}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <pre>{{questions.question_desc}}</pre>
+  <div ng-init="questions_view()" >
+    <div class="accord-edit" id="accordion" ng-repeat="questions in user">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne{{$index+1}}" aria-expanded="true" aria-controls="collapseOne">
+              Question Item #{{$index+1}}
+            </button>
+          </h5>
+        </div>
+    
+        <div id="collapseOne{{$index+1}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <pre>{{questions.question_desc}}</pre>
+          </div>
         </div>
       </div>
     </div>
@@ -37,6 +42,29 @@
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
               <textarea ng-model="questionsData.question_desc" type="text" rows="5" class="form-control" aria-describedby="inputGroupSuccess1Status" placeholder="Enter question"></textarea>
             </div>
+
+            <br>
+            <table class="table table-bordered table-hover table-responsive" id="tableAddRow">
+              <thead>
+                <tr>
+                  <th>Answers</th>
+                  <th>Right</th>
+                  <th><span class="glyphicon glyphicon-plus addBtn" id="addBtn_0"></span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="tr_0">
+                  <td><input type="text" id="answer" class="form-control" /></td>
+                  <td>
+                    <select id="right" class="form-control">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </td>
+                  <td><span class="glyphicon glyphicon-minus removeBtn" id="removeBtn_0"></span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <button ng-click="questions_add()" type="submit" class="btn btn-primary">Submit</button>
@@ -46,3 +74,31 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    $('.addBtn').on('click', function () {
+      addTableRow();
+    });
+
+    $('.removeBtn').click(function () {
+      $(this).closest('tr').remove();
+    });
+
+    var i = 1;
+    function addTableRow() {
+      var tempTr = $('<tr><td><input type="text" id="answer_' + i + 
+                     '" class="form-control" /></td><td><select id="right_' + i + 
+                     '" class="form-control"><option>Yes</option><option>No</option></select></td><td><span class="glyphicon glyphicon-minus removeBtn" id="remove_' + i + 
+                     '"></span></td></tr>').on('click', function () {
+        $(this).closest('tr').remove();
+        $(document.body).on('click', '.TreatmentHistoryRemove', function (e) {
+          $(this).closest('tr').remove();
+        });
+      });
+      
+      $('#tableAddRow').append(tempTr);
+      i++;
+    }
+  });
+</script>

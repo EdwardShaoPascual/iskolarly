@@ -44,7 +44,7 @@
           type: "success"
         })
 			}, function(err) {
-        swal("Oops!", "Fill all the missing fields!", "error");        
+        swal("Oops!", "Fill all the missing fields!", "error");
 				console.log(err);
 			})
     }
@@ -87,6 +87,7 @@
           type: "success"
         })
       }, function(err) {
+        swal("Oops!", "Check all the fields!", "error");
         console.log(err);
       })
     }

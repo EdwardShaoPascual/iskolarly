@@ -29,6 +29,41 @@
       return deferred.promise;
     }
 
+    const get_questions = function (data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/api/get_question/' + data
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
+    const check_questions = function (data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'POST',
+        params: data,
+        url: '/api/check_question',
+        headers: headers
+      })
+      .then(function(res) {
+        // $window.location.href = '/#/quiz';
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+    }
+
     const add_questions = function (data) {
       let deferred = $q.defer();
 
@@ -50,6 +85,8 @@
 
     let service = {};
     service.view_questions = view_questions;
+    service.get_questions = get_questions;
+    service.check_questions = check_questions;
     service.add_questions = add_questions;
     return service;
   }

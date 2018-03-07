@@ -9,6 +9,7 @@
 
   function question_controller($routeParams, $scope, $window, QuestionService) {
     let questionnaire_id = $routeParams.questionnaire_id;
+    $scope.isDisabled = true;
     $scope.user = [];
 
     $scope.questionsData = {
@@ -21,13 +22,35 @@
 			.view_questions(questionnaire_id)
 			.then(function(res) {
         $scope.user = res;
-        $('#val_name').val($scope.user[0].questionnaire_name);
-        console.log($scope.user[0].questionnaire_name);
 			}, function(err) {
 				console.log(err);
 			})
 		}
 
+    $scope.questions_get = () => {
+			QuestionService
+			.get_questions(questionnaire_id)
+			.then(function(res) {
+        $scope.user = res;
+        $('#val_name').text($scope.user[0].questionnaire_name);
+        $('#items').text($scope.user[0].questionnaire_no + " items");
+			}, function(err) {
+				console.log(err);
+			})
+    }
+
+    $scope.questions_check = () => {
+      QuestionService
+      .check_questions($scope.questionsData)
+      .then(function(res) {
+        $scope.isDisabled = false;
+        return true;
+      }, function(err) {
+        $scope.isDisabled = true;
+        return false;
+			})
+    }
+    
 		$scope.questions_add = () => {
 			QuestionService
 			.add_questions($scope.questionsData)
@@ -39,7 +62,7 @@
           type: "success"
         })
 			}, function(err) {
-        swal("Oops!", "Fill all the missing fields!", "error");        
+        swal("Oops!", "Max question", "error");
 				console.log(err);
 			})
     }

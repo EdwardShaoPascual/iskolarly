@@ -39,7 +39,7 @@
         headers: headers
       })
       .then(function(res) {
-        // $window.location.href = '/#/quiz';
+        // $window.location.href = '/#/questionnaire';
         deferred.resolve(res.data);
       }, function(err) {
         deferred.reject(err);
@@ -56,7 +56,7 @@
         url: '/api/get_info_questionnaire/' + data
       })
       .then(function(res) {
-        // $window.location.href = '/#/quiz';
+        // $window.location.href = '/#/questionnaire';
         deferred.resolve(res.data);
       }, function(err) {
         deferred.reject(err);
@@ -75,7 +75,7 @@
         headers: headers
       })
       .then(function(res) {
-        // $window.location.href = '/#/quiz';
+        // $window.location.href = '/#/questionnaire';
         deferred.resolve(res.data);
       }, function(err) {
         deferred.reject(err);
@@ -94,7 +94,7 @@
         headers: headers
       })
       .then(function(res) {
-        // $window.location.href = '/#/quiz';
+        // $window.location.href = '/#/questionnaire';
         deferred.resolve(res.data);
       }, function(err) {
         deferred.reject(err);
