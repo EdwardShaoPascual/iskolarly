@@ -31,11 +31,13 @@
       .user_login($scope.loginData)
       .then(function(res) {
         console.log(res);
+        toastr.success('Login successful!', 'Success')
       }, function(err) {
         $scope.loginData = {
           email: '',
           password: ''
         }
+        toastr.error(err.data.message, 'Error');
       })
     }
 

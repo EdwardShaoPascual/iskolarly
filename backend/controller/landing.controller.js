@@ -13,17 +13,17 @@ exports.login = function(req, res, next) {
     
   db.query(queryString, [payload.email], (err, result, args, last_query) => {
     if (err) {
-      return res.status(500).send({message: "An error has encountered"})
+      return res.status(500).send({message: "An error has encountered!"})
     } else if (result.length === 1) {
       bcrypt.compare(payload.password, result[0].password, function(err, response) {
         if (response === true) {
           return res.status(200).send(result)
         } else if (response === false) {
-          return res.status(404).send({message: "Invalid email address or password"})
+          return res.status(404).send({message: "Invalid email address or password!"})
         }
       });
     } else if (result.length === 0) {
-      return res.status(404).send({message: "Invalid email address or password"})
+      return res.status(404).send({message: "Invalid email address or password!"})
     }
   });
 }
