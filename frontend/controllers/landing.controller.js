@@ -31,7 +31,7 @@
       .user_login($scope.loginData)
       .then(function(res) {
         console.log(res);
-        toastr.success('Login successful!', 'Success')
+        toastr.success("Your signing in is successful!", "Success")
       }, function(err) {
         $scope.loginData = {
           email: '',
@@ -42,13 +42,30 @@
     }
 
     $scope.register = () => {
-      landing_service
-      .sign_up($scope.registerData)
-      .then(function(res) {
-        console.log(res);
-      }, function(err) {
-        console.log(err);
-      })
+
+      if ($scope.registerData.username.length < 6) {
+        toastr.error("Username must be in length of at least 6 characters", 'Error');        
+      } else {
+        landing_service
+        .sign_up($scope.registerData)
+        .then(function(res) {
+          $('.modal').modal('hide');
+          toastr.success('Your signing up is successful!', 'Success')
+          $scope.registerData = {
+            firstname: '',
+            middlename: '',
+            lastname: '',
+            email: '',
+            username: '',
+            password: '',
+            course: '',
+            birthday: '',
+            college: ''
+          }
+        }, function(err) {
+          toastr.error(err.data.message, 'Error');
+        })
+      }
     }
 
   }
