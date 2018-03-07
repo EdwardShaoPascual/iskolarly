@@ -32,7 +32,10 @@
       .then(function(res) {
         console.log(res);
       }, function(err) {
-        console.log(err);
+        $scope.loginData = {
+          email: '',
+          password: ''
+        }
       })
     }
 
