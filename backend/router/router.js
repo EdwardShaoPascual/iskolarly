@@ -24,8 +24,10 @@ module.exports = (router) => {
   // -- QUESTION PAGE ROUTES --
   // GET
   router.get('/api/view_question/:questionnaire_id',                  question_controller.view_questions);
-
+  router.get('/api/get_question/:questionnaire_id',                   question_controller.get_questions);
+  
   // POST
+  router.post('/api/check_question',                                  question_controller.check_questions);
   router.post('/api/add_question',                                    question_controller.add_questions);
   
 	router.all('*', (req, res, next) => {
