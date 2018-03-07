@@ -18,6 +18,7 @@ CREATE TABLE user (
 	password					varchar(256) NOT NULL,
 	course						varchar(256) NOT NULL,
 	birthday					date NOT NULL,
+	role						enum('Student', 'Instructor') NOT NULL,
 	college						enum('CA','CAS','CDC','CEAT','CEM','CFNR','CHE','CPAf','CVM','SESAM','GS') NOT NULL,
 	UNIQUE						(username),
 	PRIMARY KEY					(user_id)

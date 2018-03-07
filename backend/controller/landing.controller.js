@@ -32,14 +32,14 @@ exports.register = function(req, res, next) {
   
   let payload = req.query;
 
-  let queryString = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, course, birthday, college) VALUES (?,?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?)';
+  let queryString = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, course, birthday, college, role) VALUES (?,?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?,?)';
   let saltOrRounds = 15;
   bcrypt.hash(payload.password, saltOrRounds, (err, hash) => {
     db.query(
       queryString, 
       [payload.firstname, payload.middlename, payload.lastname,
       payload.email, payload.username, hash, payload.course,
-      dateFormat(payload.birthday,"dd-mm-yyyy"), payload.college], 
+      dateFormat(payload.birthday,"dd-mm-yyyy"), payload.college, payload.role], 
       (err,result,args,last_query) => {
         if (!err) {
           return res.send(result);

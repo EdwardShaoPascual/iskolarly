@@ -198,6 +198,22 @@
                   <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                   <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                 </div>
+                
+                <div class="middle">
+                  <label ng-click="changeRoleToStd()">
+                    <input type="radio" name="radio" checked/>
+                    <div class="student box">
+                      <span>Student</span>
+                    </div>
+                  </label>
+                  <label ng-click="changeRoleToIns()">
+                    <input type="radio" name="radio"/>
+                    <div class="instructor box">
+                      <span>Instructor</span>
+                    </div>
+                  </label>
+                </div>
+
                 <button ng-click="register()" type="submit" class="btn btn-primary">Sign up</button>
                 <button class="btn" data-dismiss="modal" aria-label="Close">Cancel</button>
               </form>

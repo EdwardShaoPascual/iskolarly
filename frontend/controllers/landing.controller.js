@@ -23,7 +23,16 @@
       password: '',
       course: '',
       birthday: '',
-      college: ''
+      college: '',
+      role: 'Student'
+    }
+
+    $scope.changeRoleToStd = () => {
+      $scope.registerData.role = 'Student'
+    }
+
+    $scope.changeRoleToIns = () => {
+      $scope.registerData.role = 'Instructor'
     }
 
     $scope.login = () => {
@@ -52,7 +61,8 @@
           $scope.registerData.password === "" ||
           $scope.registerData.course === "" ||
           $scope.registerData.birthday === "" ||
-          $scope.registerData.college === "") {
+          $scope.registerData.college === "" ||
+          $scope.registerData.role === "") {
         toastr.error("Please fill all the missing fields!", 'Error');                         
       } 
       else if (pattern.test($scope.registerData.email) === false) {
