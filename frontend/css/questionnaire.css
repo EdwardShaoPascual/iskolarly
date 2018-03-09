@@ -1,3 +1,7 @@
+.Questionnaire {
+  height: 100vh !important;
+}
+
 .custom-table {
   width: 175px;
 }

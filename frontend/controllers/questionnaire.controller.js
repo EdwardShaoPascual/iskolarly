@@ -8,7 +8,7 @@
   questionnaire_controller.$inject = ['$scope', '$window', 'QuestionnaireService'];
 
 	function questionnaire_controller($scope, $window, QuestionnaireService) {
-		$scope.user = [];
+		$scope.user = new Array();
 
 		$scope.questionnairesData = {
       questionnaire_name: '',
@@ -27,25 +27,40 @@
 			QuestionnaireService
 			.view_questionnaires()
 			.then(function(res) {
-				$scope.user = res;
+        for (let i=0; i < res.length; i++) {
+          $scope.user.push(res[i]);
+        }
 			}, function(err) {
 				console.log(err);
-			})
+      })
 		}
 
 		$scope.questionnaires_add = () => {
+      $scope.questionnaires_view();
+      let data = {
+        questionnaire_id: '',
+        questionnaire_name: '',
+        questionnaire_desc: '',
+        questionnaire_no: ''
+      }
 			QuestionnaireService
 			.add_questionnaires($scope.questionnairesData)
 			.then(function(res) {
-        $scope.user = res;
+        data.questionnaire_id = res.insertId;
+        data.questionnaire_name = $scope.questionnairesData.questionnaire_name;
+        data.questionnaire_desc = $scope.questionnairesData.questionnaire_desc;
+        data.questionnaire_no = $scope.questionnairesData.questionnaire_no;
         swal({
           title: "Success!",
           text: "File has been added.",
           type: "success"
         })
+        $('#addQuestionnaire').modal('hide');
+        $scope.user.push(data);
+        console.log($scope.user);
 			}, function(err) {
-        swal("Oops!", "Fill all the missing fields!", "error");
 				console.log(err);
+        swal("Oops!", err.data, "error");
 			})
     }
     
@@ -92,9 +107,8 @@
       })
     }
 
-    $scope.questionnaires_delete = (data) => {
+    $scope.questionnaires_delete = (data, index) => {
       $scope.questionnaire_id = data;
-
       swal({
         title: "Are you sure?",
         text: "You will not be able to recover this file!",
@@ -113,6 +127,7 @@
             text: "File has been deleted.",
             type: "success"
           })
+          $scope.user.splice(index, 1);
         }, function(err) {
           console.log(err);
         })

@@ -20,8 +20,7 @@ exports.add_questionnaires = (req, res, next) => {
   let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no]
 
   if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
-    console.log("Fill all the fields");
-    return res.status(400).send("Fill all the fields");
+    return res.status(400).send("Please fill all the missing fields!");
   }
 
   db.query(query_string, request_data, (err, result) => {

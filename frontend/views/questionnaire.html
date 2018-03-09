@@ -1,4 +1,4 @@
-<div ng-controller="questionnaire-controller" ng-init="questionnaires_view()" class="container">
+<div ng-controller="questionnaire-controller" ng-init="questionnaires_view()" class="Questionnaire container">
   <!-- Editable table -->
   <h1>ADD QUESTIONNAIRE</h1>
   
@@ -22,7 +22,7 @@
           <span class="table-remove"><button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded btn-sm btn-block custom" ng-click="questionnaires_get_info(questionnaires.questionnaire_id)">Edit</button></span>
         </td>
         <td class="text-center">
-          <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm btn-block custom" ng-click="questionnaires_delete(questionnaires.questionnaire_id)">Remove</button></span>
+          <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm btn-block custom" ng-click="questionnaires_delete(questionnaires.questionnaire_id, $index)">Remove</button></span>
         </td>
       </tr>
     </table>
@@ -30,7 +30,7 @@
 </div>
 
 <!-- Add Modal -->
-<div ng-controller="questionnaire-controller" class="modal fade bd-example-modal-lgs" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div ng-controller="questionnaire-controller" class="modal fade bd-example-modal-lgs" id="addQuestionnaire" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -66,7 +66,7 @@
           </div>
 
           <button ng-click="questionnaires_add()" type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn">Cancel</button>
+          <button class="btn" data-dismiss="modal" aria-label="Close">Cancel</button>
         </form>
       </div>
     </div>
@@ -111,7 +111,7 @@
           </div>
 
           <button ng-click="questionnaires_edit()" type="submit" class="btn btn-primary">Save Changes</button>
-          <button class="btn">Cancel</button>
+          <button class="btn" data-dismiss="modal" aria-label="Close">Cancel</button>
         </form>
       </div>
     </div>
