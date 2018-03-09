@@ -54,10 +54,11 @@
           title: "Success!",
           text: "File has been added.",
           type: "success"
+        }, () => {
+          location.reload();          
         })
         $('#addQuestionnaire').modal('hide');
         $scope.user.push(data);
-        console.log($scope.user);
 			}, function(err) {
 				console.log(err);
         swal("Oops!", err.data, "error");
