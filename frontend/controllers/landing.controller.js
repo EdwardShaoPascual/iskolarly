@@ -15,7 +15,7 @@
     }
 
     $scope.registerData = {
-      firstname: '',
+      firstname: '', 
       middlename: '',
       lastname: '',
       email: '',
@@ -39,8 +39,13 @@
       landing_service
       .user_login($scope.loginData)
       .then(function(res) {
-        console.log(res);
+        $('#loginModal').modal('hide');
         toastr.success("Your signing in is successful!", "Success")
+        $scope.loginData = {
+          username: '',
+          password: ''
+        }
+        $window.location.href = '#/home';
       }, function(err) {
         $scope.loginData = {
           username: '',
@@ -78,7 +83,7 @@
         landing_service
         .sign_up($scope.registerData)
         .then(function(res) {
-          $('.modal').modal('hide');
+          $('.modal').modal('hide');          
           toastr.success('Your signing up is successful!', 'Success')
           $scope.registerData = {
             firstname: '',

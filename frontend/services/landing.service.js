@@ -23,7 +23,6 @@
           headers: headers
         })
         .then(function(res) {
-          $window.location.href = '/#/home';
           deferred.resolve(res.data);
         }, function(err) {
           deferred.reject(err);

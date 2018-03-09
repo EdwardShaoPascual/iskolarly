@@ -66,7 +66,6 @@
 
     const add_questions = function (data) {
       let deferred = $q.defer();
-
       $http({
         method: 'POST',
         params: data,

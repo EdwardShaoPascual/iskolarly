@@ -21,6 +21,7 @@ CREATE TABLE user (
 	role						enum('Student', 'Instructor') NOT NULL,
 	college						enum('CA','CAS','CDC','CEAT','CEM','CFNR','CHE','CPAf','CVM','SESAM','GS') NOT NULL,
 	UNIQUE						(username),
+	UNIQUE						(email),
 	PRIMARY KEY					(user_id)
 );
 
