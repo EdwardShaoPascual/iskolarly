@@ -5,7 +5,6 @@ const bcrypt      = require('bcrypt');
 const dateFormat  = require('dateformat');
 
 exports.login = function(req, res, next) {
-  
   let payload = req.query;
 
   let queryString = 'SELECT * FROM user WHERE username = ?';
@@ -14,6 +13,8 @@ exports.login = function(req, res, next) {
   db.query(queryString, [payload.username], (err, result, args, last_query) => {
     if (err) {
       return res.status(500).send({message: "An error has encountered!"})
+    } else if (result.length === 0) {
+      return res.status(500).send({message: "Invalid username or password!"})
     } else {
       bcrypt.compare(payload.password, result[0].password, function(err, response) {
         if (response === true) {

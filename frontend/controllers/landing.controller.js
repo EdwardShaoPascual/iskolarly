@@ -5,9 +5,9 @@
   .module('app')
   .controller('landing-controller', landing_controller)
 
-  landing_controller.$inject = ['$scope', '$window', '$rootScope','$location', 'landing-service'];
+  landing_controller.$inject = ['$scope', '$window', '$rootScope','$location', 'LandingService'];
 
-  function landing_controller($scope, $window, $rootScope, $location, landing_service) {
+  function landing_controller($scope, $window, $rootScope, $location, LandingService) {
     
     $scope.loginData = {
       username: '',
@@ -36,7 +36,7 @@
     }
 
     $scope.login = () => {
-      landing_service
+      LandingService
       .user_login($scope.loginData)
       .then(function(res) {
         $('#loginModal').modal('hide');
@@ -80,7 +80,7 @@
         toastr.error("Password must be in length of at least 8 characters!", 'Error');     
       } 
       else {
-        landing_service
+        LandingService
         .sign_up($scope.registerData)
         .then(function(res) {
           $('.modal').modal('hide');          

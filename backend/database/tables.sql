@@ -37,6 +37,18 @@ CREATE TABLE course (
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS course_code;
+CREATE TABLE course_code (
+	course_code						varchar(256),
+	time_start						date NOT NULL,
+	time_end						date NOT NULL,
+	course_id						int NOT NULL,
+	PRIMARY KEY						(course_code),
+	CONSTRAINT						`fk_course_code_course`
+		FOREIGN KEY (course_id) REFERENCES course (course_id)
+		ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 DROP TABLE IF EXISTS activity;
 CREATE TABLE activity (
 	activity_id 						int NOT NULL AUTO_INCREMENT,
