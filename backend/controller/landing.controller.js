@@ -18,7 +18,7 @@ exports.login = function(req, res, next) {
     } else {
       bcrypt.compare(payload.password, result[0].password, function(err, response) {
         if (response === true) {
-          return res.status(200).send(result)
+          return res.status(200).send(result);
         } else if (response === false) {
           return res.status(404).send({message: "Invalid username or password!"})
         }
