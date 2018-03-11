@@ -1,82 +1,62 @@
 <div ng-controller="courses-controller" ng-init="courses_view()">
-    <section class="Course_cards">
-        <div class="container">
-            <form class="search-bar">
-                <input type="search" placeholder="Search">
-            </form>
-        </div>
-        <div class="container">
-            <div class="row">
-                <span ng-repeat="course in courses">
-                  <div class="hvr-grow col-sm-6 col-md-3">
-                      <div class="panel panel-default panel-card">
-                          <div class="panel-heading">
-                              <small class="small-text">{{course.firstname + ' ' + course.lastname}}</small>
-                              <!-- <button class="btn btn-primary btn-sm" role="button">Follow</button> -->
-                          </div>
-                          <div class="panel-figure">
-                              <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
-                          </div>
-                          <div class="panel-body text-center">
-                              <h4 class="panel-header"><a href="javascript:void(0)">{{course.course_title}}</a></h4>
-                              <small>{{course.course_description}}.</small>
-                          </div>
-                      </div>   
-                  </div>
-                </span>
-                <div class="hvr-grow col-sm-6 col-md-3">
-                    <div class="panel panel-default panel-card">
-                        <div class="panel-heading">
-                            <small class="small-text">Caroline Natalie Peralta</small>
-                            <!-- <button class="btn btn-primary btn-sm" role="button">Follow</button> -->
-                        </div>
-                        <div class="panel-figure">
-                            <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
-                        </div>
-                        <div class="panel-body text-center">
-                            <h4 class="panel-header"><a href="javascript:void(0)">CMSC 124</a></h4>
-                            <small>A short description goes here.</small>
-                        </div>
-                    </div>   
-                </div>
-                <div class="hvr-grow col-sm-6 col-md-3">
-                    <div class="panel panel-default panel-card">
-                        <div class="panel-heading">
-                            <small class="small-text">Reginald Neil Recario</small>
-                            <!-- <button class="btn btn-primary btn-sm" role="button">Follow</button> -->
-                        </div>
-                        <div class="panel-figure">
-                            <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
-                        </div>
-                        <div class="panel-body text-center">
-                            <h4 class="panel-header"><a href="javascript:void(0)">CMSC 128</a></h4>
-                            <small>A short description goes here.</small>
-                        </div>
-                    </div>   
-                </div>
-                <div class="hvr-grow col-sm-6 col-md-3">
-                    <div class="panel panel-default panel-card">
-                        <div class="panel-heading">
-                            <small class="small-text">Maria Art Antonette Clarino</small>
-                            <!-- <button class="btn btn-primary btn-sm" role="button">Follow</button> -->
-                        </div>
-                        <div class="panel-figure">
-                            <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
-                        </div>
-                        <div class="panel-body text-center">
-                            <h4 class="panel-header"><a href="javascript:void(0)">CMSC 150</a></h4>
-                            <small>A short description goes here.</small>
-                        </div>
-                    </div>   
-                </div>
+  <section class="Course_cards">
+    <div class="container">
+        <form class="search-bar">
+            <input type="search" placeholder="Search">
+        </form>
+    </div>
+    <div class="container">
+      <div class="row">
+        <span ng-repeat="course in courses">
+          <div class="hvr-grow col-sm-6 col-md-3">
+            <div class="panel panel-default panel-card">
+              <div class="panel-heading">
+                <small class="small-text">{{course.firstname + ' ' + course.lastname}}</small>
+                <!-- <button class="btn btn-primary btn-sm" role="button">Follow</button> -->
+              </div>
+              <div class="panel-figure">
+                <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
+              </div>
+              <div class="panel-body text-center">
+                <h4 class="panel-header"><a href="javascript:void(0)">{{course.course_title}}</a></h4>
+                <small>{{course.course_description}}.</small>
+              </div>
+            </div>   
+          </div>
+        </span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="hvr-box-shadow-outset circle-button" data-toggle="modal" data-target=".bd-example-modal-enroll">
+  <!-- <button type="button" class="btn btn-default btn-lg"> -->
+      <span class="glyphicon glyphicon-plus"></span>
+  <!-- </button> -->
+</div>
+
+<div ng-controller="courses-controller" class="modal fade bd-example-modal-enroll" id="enrollModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Enroll to a Class</h4>
+      </div>
+      <div class="modal-body">
+          <form>
+            <!-- Class Code -->
+            <div class="form-group has-success has-feedback">
+              <label class="control-label" for="inputGroupSuccess1">Class Code</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input ng-model="course_code" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class code">
+              </div>
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
             </div>
-        </div>
-    </section>
+            <button ng-click="enroll_course()" type="submit" class="btn btn-primary" aria-label="Close">Enroll</button>
+            <button class="btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </form>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="hvr-box-shadow-outset circle-button">
-    <!-- <button type="button" class="btn btn-default btn-lg"> -->
-        <span class="glyphicon glyphicon-plus"></span>
-    <!-- </button> -->
-</div>
-

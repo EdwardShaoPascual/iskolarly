@@ -8,7 +8,9 @@
   courses_controller.$inject = ['$scope', '$window', 'CoursesService'];
 
 	function courses_controller($scope, $window, CoursesService) {
+    
     $scope.courses = [];
+    $scope.course_code = '';
 
     $scope.courses_view = () => {
       CoursesService
@@ -18,6 +20,10 @@
       }, function(err) {
         toastr.error(err.data.message, 'Error');
       })
+    }
+
+    $scope.enroll_course = () => {
+      $('#enrollModal').modal('hide');      
     }
   }
 
