@@ -16,10 +16,10 @@ CREATE TABLE user (
 	email						varchar(256) NOT NULL,
 	username					varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
 	password					varchar(256) NOT NULL,
-	course						varchar(256) NOT NULL,
+	course						varchar(256),
 	birthday					date NOT NULL,
 	role						enum('Student', 'Instructor') NOT NULL,
-	college						enum('CA','CAS','CDC','CEAT','CEM','CFNR','CHE','CPAf','CVM','SESAM','GS') NOT NULL,
+	college						enum('CA','CAS','CDC','CEAT','CEM','CFNR','CHE','CPAf','CVM','SESAM','GS'),
 	UNIQUE						(username),
 	UNIQUE						(email),
 	PRIMARY KEY					(user_id)
@@ -28,8 +28,8 @@ CREATE TABLE user (
 DROP TABLE IF EXISTS course;
 CREATE TABLE course (
 	course_id						int NOT NULL AUTO_INCREMENT,
-	course_title					varchar(256),
-	course_description				varchar(256),
+	course_title					varchar(256) NOT NULL,
+	course_description				varchar(256) NOT NULL,
 	user_id							int NOT NULL,
 	PRIMARY KEY						(course_id),
 	CONSTRAINT						`fk_course_user`
@@ -110,3 +110,11 @@ CREATE TABLE questions (
 		FOREIGN KEY (questionnaire_id) REFERENCES questionnaires (questionnaire_id)
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+DELIMITER |
+CREATE TRIGGER tr_course_course_code AFTER INSERT ON `course`
+	FOR EACH ROW 
+	BEGIN
+		INSERT INTO course_code VALUES (SUBSTRING(MD5(RAND()) FROM 1 FOR 6), NOW(), DATE_ADD(NOW, INTERVAL 30 DAY));
+	END;| 
+DELIMITER ;
