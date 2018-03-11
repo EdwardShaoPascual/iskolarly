@@ -10,6 +10,11 @@
   function landing_controller($scope, $window, $rootScope, $location, LandingService) {
     
     $scope.roleFlag = 0;
+
+    $scope.roleRadio = {
+      std: true,
+      ins: false
+    }
     
     $scope.loginData = {
       username: '',
@@ -34,6 +39,10 @@
       $scope.registerData.course = '';
       $scope.registerData.college = '-----------';
       $scope.roleFlag = 0;
+      $scope.roleRadio = {
+        std: true,
+        ins: false
+      }
     }
 
     $scope.changeRoleToIns = () => {
@@ -41,6 +50,10 @@
       $scope.registerData.course = 'N/A';
       $scope.registerData.college = 'N/A';
       $scope.roleFlag = 1;
+      $scope.roleRadio = {
+        std: false,
+        ins: true
+      }
     }
 
     $scope.login = () => {
@@ -108,6 +121,10 @@
             birthday: '',
             college: '',
             role: 'Student'
+          }
+          $scope.roleRadio = {
+            std: true,
+            ins: false
           }
         }, function(err) {
           toastr.error(err.data.message, 'Error');

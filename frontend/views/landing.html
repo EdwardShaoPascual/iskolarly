@@ -201,12 +201,12 @@
                 
                 <div class="middle">
                   <label ng-click="changeRoleToStd()">
-                    <input type="radio" name="radio" checked/>
+                    <input type="radio" name="radio" ng-checked="roleRadio.std"/>
                     <div class="student box">
                       <span>Student</span>
                     </div>
                   </label>
-                  <label ng-click="changeRoleToIns()">
+                  <label ng-click="changeRoleToIns()" ng-checked="roleRadio.ins">
                     <input type="radio" name="radio"/>
                     <div class="instructor box">
                       <span>Instructor</span>
