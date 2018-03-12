@@ -137,7 +137,7 @@
                     <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                   </div>
 
-                  <div class="col-lg-4 form-group has-success has-feedback">
+                  <div ng-if="registerData.role == 'Student'" class="col-lg-4 form-group has-success has-feedback">
                     <label class="control-label" for="inputGroupSuccess1">College</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                        
@@ -159,7 +159,7 @@
                     <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                   </div>
 
-                  <div class="col-lg-4 form-group has-success has-feedback">
+                  <div ng-if="registerData.role == 'Student'" class="col-lg-4 form-group has-success has-feedback">
                       <label class="control-label" for="inputGroupSuccess1">Course</label>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>                                                
@@ -201,12 +201,12 @@
                 
                 <div class="middle">
                   <label ng-click="changeRoleToStd()">
-                    <input type="radio" name="radio" checked/>
+                    <input type="radio" name="radio" ng-checked="roleRadio.std"/>
                     <div class="student box">
                       <span>Student</span>
                     </div>
                   </label>
-                  <label ng-click="changeRoleToIns()">
+                  <label ng-click="changeRoleToIns()" ng-checked="roleRadio.ins">
                     <input type="radio" name="radio"/>
                     <div class="instructor box">
                       <span>Instructor</span>

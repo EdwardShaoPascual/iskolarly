@@ -1,7 +1,6 @@
 'use strict';
 
 const db = require(__dirname + '/../lib/mysql');
-// const winston = require('winston');
 
 exports.view_questions = (req, res, next) => {
   let query_string = 'SELECT * FROM questions WHERE questionnaire_id = ?';

@@ -5,9 +5,16 @@
   .module('app')
   .controller('landing-controller', landing_controller)
 
-  landing_controller.$inject = ['$scope', '$window', '$rootScope','$location', 'landing-service'];
+  landing_controller.$inject = ['$scope', '$window', '$rootScope','$location', 'LandingService'];
 
-  function landing_controller($scope, $window, $rootScope, $location, landing_service) {
+  function landing_controller($scope, $window, $rootScope, $location, LandingService) {
+    
+    $scope.roleFlag = 0;
+
+    $scope.roleRadio = {
+      std: true,
+      ins: false
+    }
     
     $scope.loginData = {
       username: '',
@@ -28,15 +35,29 @@
     }
 
     $scope.changeRoleToStd = () => {
-      $scope.registerData.role = 'Student'
+      $scope.registerData.role = 'Student';
+      $scope.registerData.course = '';
+      $scope.registerData.college = '-----------';
+      $scope.roleFlag = 0;
+      $scope.roleRadio = {
+        std: true,
+        ins: false
+      }
     }
 
     $scope.changeRoleToIns = () => {
-      $scope.registerData.role = 'Instructor'
+      $scope.registerData.role = 'Instructor';
+      $scope.registerData.course = 'N/A';
+      $scope.registerData.college = 'N/A';
+      $scope.roleFlag = 1;
+      $scope.roleRadio = {
+        std: false,
+        ins: true
+      }
     }
 
     $scope.login = () => {
-      landing_service
+      LandingService
       .user_login($scope.loginData)
       .then(function(res) {
         $('#loginModal').modal('hide');
@@ -56,6 +77,10 @@
     }
 
     $scope.register = () => {
+      if ($scope.roleFlag === 1) {
+        $scope.registerData.course = "N/A";
+        $scope.registerData.college = "N/A";
+      }
       $scope.registerData.username = $scope.registerData.username.replace(" ", "");
       let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if ($scope.registerData.firstname === "" || 
@@ -80,7 +105,7 @@
         toastr.error("Password must be in length of at least 8 characters!", 'Error');     
       } 
       else {
-        landing_service
+        LandingService
         .sign_up($scope.registerData)
         .then(function(res) {
           $('.modal').modal('hide');          
@@ -94,7 +119,12 @@
             password: '',
             course: '',
             birthday: '',
-            college: ''
+            college: '',
+            role: 'Student'
+          }
+          $scope.roleRadio = {
+            std: true,
+            ins: false
           }
         }, function(err) {
           toastr.error(err.data.message, 'Error');

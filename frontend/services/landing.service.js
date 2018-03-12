@@ -3,15 +3,15 @@
 (() => {
   angular
     .module('app')
-    .factory('landing-service', landing_service);
+    .factory('LandingService', LandingService);
 
-    landing_service.$inject = ['$window', '$http', '$q'];
+    LandingService.$inject = ['$window', '$http', '$q'];
 
     const headers = {
       'content-type': 'application/x-www-form-urlencoded'
     };
 
-    function landing_service($window, $http, $q) {
+    function LandingService($window, $http, $q) {
     
       const user_login = function (data) {
         let deferred = $q.defer();

@@ -5,7 +5,6 @@ const bcrypt      = require('bcrypt');
 const dateFormat  = require('dateformat');
 
 exports.login = function(req, res, next) {
-  
   let payload = req.query;
 
   let queryString = 'SELECT * FROM user WHERE username = ?';
@@ -14,10 +13,12 @@ exports.login = function(req, res, next) {
   db.query(queryString, [payload.username], (err, result, args, last_query) => {
     if (err) {
       return res.status(500).send({message: "An error has encountered!"})
+    } else if (result.length === 0) {
+      return res.status(500).send({message: "Invalid username or password!"})
     } else {
       bcrypt.compare(payload.password, result[0].password, function(err, response) {
         if (response === true) {
-          return res.status(200).send(result)
+          return res.status(200).send(result);
         } else if (response === false) {
           return res.status(404).send({message: "Invalid username or password!"})
         }
@@ -30,7 +31,8 @@ exports.register = function(req, res, next) {
   
   let payload = req.query;
   
-  let queryString = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, course, birthday, college, role) VALUES (?,?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?,?)';
+  let queryStringStudent = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, course, birthday, college, role) VALUES (?,?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?,?)';
+  let queryStringInstr = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, birthday, role) VALUES (?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?)';
   let saltRounds = 10;
   let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -56,21 +58,40 @@ exports.register = function(req, res, next) {
     res.status(400).send({message: "Password must be in length of at least 8 characters!"});
   }
   else {
-    bcrypt.hash(payload.password, saltRounds, (err, hash) => {
-      db.query(
-        queryString, 
-        [payload.firstname, payload.middlename, payload.lastname,
-        payload.email, payload.username, hash, payload.course,
-        dateFormat(payload.birthday,"dd-mm-yyyy"), payload.college, payload.role], 
-        (err,result,args,last_query) => {
-          if (!err) {
-            return res.send(result);
-          } else if (err.code == "ER_DUP_ENTRY") {
-            return res.status(500).send({message: "The username or email address is already taken"})
-          }
-          return res.status(500).send({message: "An error has encountered"})
-        })
-    })
+    if (payload.role === 'Student') {
+      bcrypt.hash(payload.password, saltRounds, (err, hash) => {
+        db.query(
+          queryStringStudent, 
+          [payload.firstname, payload.middlename, payload.lastname,
+          payload.email, payload.username, hash, payload.course,
+          dateFormat(payload.birthday,"dd-mm-yyyy"), payload.college, payload.role], 
+          (err,result,args,last_query) => {
+            if (!err) {
+              return res.send(result);
+            } else if (err.code == "ER_DUP_ENTRY") {
+              return res.status(500).send({message: "The username or email address is already taken"})
+            }
+            return res.status(500).send({message: "An error has encountered"})
+          })
+      })
+    } 
+    else {
+      bcrypt.hash(payload.password, saltRounds, (err, hash) => {
+        db.query(
+          queryStringInstr, 
+          [payload.firstname, payload.middlename, payload.lastname,
+          payload.email, payload.username, hash,
+          dateFormat(payload.birthday,"dd-mm-yyyy"), payload.role], 
+          (err,result,args,last_query) => {
+            if (!err) {
+              return res.send(result);
+            } else if (err.code == "ER_DUP_ENTRY") {
+              return res.status(500).send({message: "The username or email address is already taken"})
+            }
+            return res.status(500).send({message: "An error has encountered"})
+          })
+      })
+    }
   }
     
 }
