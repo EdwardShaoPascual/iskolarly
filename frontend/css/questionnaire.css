@@ -7,11 +7,14 @@
 }
 
 .custom {
-  width: 78px !important;
+  width: 30px !important;
+  height: 25px !important;
+  padding: 0px;
+  margin: 0px;
   /* margin-left: 25px; */
   /* margin-right: 25px; */
-  display: block;
-  margin: auto;
+  /* display: block;
+  margin: auto; */
 }
 
 .desc {
@@ -20,4 +23,16 @@
 
 .change-name {
   color: black;
+}
+
+.glyphicon.glyphicon-pencil {
+  font-size: 15px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.glyphicon.glyphicon-remove {
+  font-size: 15px;
+  padding: 0px;
+  margin: 0px;
 }

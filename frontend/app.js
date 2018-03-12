@@ -17,8 +17,9 @@ mainApp.config(function($routeProvider, $locationProvider) {
     .when('/error_404', {
       templateUrl: 'views/error_404.html'
     })
-    .when('/sample', {
-      templateUrl: 'views/sample.html'
+    .when('/quiz', {
+      templateUrl: 'views/quiz.html',
+      controller: 'quiz-controller'
     })
     .when('/questionnaire', {
       templateUrl: 'views/questionnaire.html',
