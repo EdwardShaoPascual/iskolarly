@@ -31,7 +31,8 @@ module.exports = (router) => {
   // POST
   router.post('/api/check_question',                                  question_controller.check_questions);
   router.post('/api/add_question',                                    question_controller.add_questions);
-
+  router.post('/api/delete_question/:question_id',                    question_controller.delete_questions);
+  
   // -- QUIZ PAGE ROUTES --
   // GET
   router.get('/api/get_quiz/:questionnaire_id',                        quiz_controller.get_quiz);

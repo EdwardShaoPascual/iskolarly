@@ -66,6 +66,50 @@
 				console.log(err);
 			})
     }
+
+    $scope.questions_delete = (data, index) => {
+      $scope.question_id = data;
+      console.log($scope.question_id);
+      swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      },
+      function(){
+        QuestionService
+        .delete_questions($scope.question_id)
+        .then(function(res) {
+          swal({
+            title: "Success!",
+            text: "File has been deleted.",
+            type: "success"
+          })
+          $scope.user.splice(index, 1);
+        }, function(err) {
+          console.log(err);
+        })
+      });
+    }
+
+    $scope.answers_add = () => {
+			QuestionService
+			.add_answers($scope.answersData)
+			.then(function(res) {
+        $scope.user = res;
+        swal({
+          title: "Success!",
+          text: "File has been added.",
+          type: "success"
+        })
+			}, function(err) {
+        swal("Oops!", "Max question", "error");
+				console.log(err);
+			})
+    }
   }
 
 })();

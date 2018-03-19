@@ -1,3 +1,17 @@
 .accord-edit {
   border: 1px solid !important;
 }
+
+.quest-button {
+  width: 93% !important;
+  text-align: left !important;
+}
+
+.quest-remove {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}

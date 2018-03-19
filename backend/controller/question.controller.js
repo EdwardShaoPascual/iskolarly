@@ -54,3 +54,16 @@ exports.add_questions = (req, res, next) => {
     res.send(result);
   });
 }
+
+exports.delete_questions = (req, res, next) => {
+  let query_string = 'DELETE FROM questions WHERE question_id = ?';
+  let request_data = [req.params.question_id]
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}

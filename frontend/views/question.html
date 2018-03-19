@@ -11,9 +11,10 @@
       <div class="card">
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne{{$index+1}}" aria-expanded="true" aria-controls="collapseOne">
+            <button class="btn btn-link collapsed quest-button" data-toggle="collapse" data-target="#collapseOne{{$index+1}}" aria-expanded="true" aria-controls="collapseOne">
               Question Item #{{$index+1}}
             </button>
+            <button class="glyphicon glyphicon-remove quest-remove" ng-click="questions_delete(questions.question_id, $index)"></button>
           </h5>
         </div>
     

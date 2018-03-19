@@ -82,11 +82,31 @@
       return deferred.promise;
     }
 
+    const delete_questions = function (data) {
+      let deferred = $q.defer();
+      
+      $http({
+        method: 'POST',
+        params: data,
+        url: '/api/delete_question/' + data,
+        headers: headers
+      })
+      .then(function(res) {
+        // $window.location.href = '/#/question';
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+    }
+
     let service = {};
     service.view_questions = view_questions;
     service.get_questions = get_questions;
     service.check_questions = check_questions;
     service.add_questions = add_questions;
+    service.delete_questions = delete_questions;
     return service;
   }
 
