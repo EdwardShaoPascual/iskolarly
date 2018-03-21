@@ -18,7 +18,9 @@ exports.login = function(req, res, next) {
     } else {
       bcrypt.compare(payload.password, result[0].password, function(err, response) {
         if (response === true) {
-          return res.status(200).send(result);
+          req.session.user = result[0];
+          delete req.session.user.password;
+          return res.status(200).send(result[0]);
         } else if (response === false) {
           return res.status(404).send({message: "Invalid username or password!"})
         }

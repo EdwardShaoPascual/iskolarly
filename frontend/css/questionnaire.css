@@ -36,3 +36,7 @@
   padding: 0px;
   margin: 0px;
 }
+.change-name {
+  cursor: pointer !important;
+  text-decoration-line: underline !important;
+}

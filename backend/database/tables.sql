@@ -120,12 +120,13 @@ CREATE TABLE answers (
 	CONSTRAINT						`fk_answers_questions`
 		FOREIGN KEY (question_id) REFERENCES questions (question_id)
 		ON UPDATE CASCADE ON DELETE CASCADE
-)
+);
 
-DELIMITER |
-CREATE TRIGGER tr_course_course_code AFTER INSERT ON `course`
-	FOR EACH ROW 
+delimiter |
+
+CREATE TRIGGER tr_course_course_code AFTER INSERT ON `course` 
+	FOR EACH ROW
 	BEGIN
 		INSERT INTO course_code VALUES (SUBSTRING(MD5(RAND()) FROM 1 FOR 6), NOW(), DATE_ADD(NOW(), INTERVAL 31 DAY), NEW.course_id);
-	END;| 
-DELIMITER ;
+	END;|  
+delimiter ;

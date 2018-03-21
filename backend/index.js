@@ -6,6 +6,10 @@ const express       = require('express');
 const body_parser   = require('body-parser');
 const helmet        = require('helmet');
 const winston       = require('winston');
+const session       = require('express-session');
+const redis         = require('redis');
+const redis_store   = require('connect-redis')(session);
+const client        = redis.createClient();
 
 let start;
 let handler;
@@ -28,6 +32,20 @@ start = () => {
   winston.log('verbose', 'Binding 3rd-party middlewares');
   app.set('case sensitive routing', true);
   app.set('x-powered-by', false);
+
+  // session handling in server-side
+  app.use(session({
+    secret: config.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {maxAge: 60 * 1000 * 60 * 2 },
+    store: new redis_store({
+      host: 'localhost',
+      port: config.PORT,
+      client: client
+    })
+  }))
+
   app.use(express.static(__dirname + '/../frontend/'));
   app.use(require('method-override')());
   app.use(body_parser.urlencoded({extended: true}));
