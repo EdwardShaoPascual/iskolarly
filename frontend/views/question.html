@@ -1,4 +1,4 @@
-<div ng-controller="question-controller" class="container">
+<div ng-controller="question-controller" class="Question container">
   <div ng-init="questions_get()"> 
     <h1 id="val_name"></h1>
     <h3 id="items"></h3>
@@ -92,8 +92,10 @@
                      '" class="form-control" /></td><td><select id="right_' + i + 
                      '" class="form-control"><option>Yes</option><option>No</option></select></td><td><span class="glyphicon glyphicon-minus removeBtn" id="remove_' + i + 
                      '"></span></td></tr>').on('click', function () {
-        $(this).closest('tr').remove();
         $(document.body).on('click', '.TreatmentHistoryRemove', function (e) {
+          $(this).closest('tr').remove();
+        });
+        $('.removeBtn').click(function () {
           $(this).closest('tr').remove();
         });
       });

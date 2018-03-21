@@ -1,3 +1,7 @@
+.Question {
+  height: 100vh !important;
+}
+
 .accord-edit {
   border: 1px solid !important;
 }
