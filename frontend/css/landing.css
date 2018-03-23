@@ -4,11 +4,11 @@
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .Landing_over {
-  background-color: rgba(44,62,80,.7) !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
   background-size: 100%;
   -o-background-size: 100%;
   -webkit-background-size: 100%;
@@ -23,21 +23,21 @@
 .Landing_over_separator {
   width: 25px;
   height: 1px;
-  background-color: hsla(0,0%,100%,.6);
+  background-color: hsla(0,0%,100%,.8);
   margin: 20px 0;
 }
 
 .Landing_over_quest {
-  color: hsla(0,0%,100%,.6)!important;
+  color: hsla(0,0%,100%,.8)!important;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 22px!important;
 }
 
 .Landing_over_button {
-  background-color: #337ab7;
+  background-color: #3dbea7;
   fill-opacity: 1 !important;
   opacity: 1 !important;
   margin: 20px auto !important;
@@ -68,9 +68,33 @@
   letter-spacing: 2px;
 }
 
-.Landing__Subs {
+.Landing_Subs {
   padding-bottom: 0px !important;
   margin-bottom: 0px !important;
+}
+
+.Landing_over_brand {
+  font-family: 'Gloria Hallelujah', cursive;
+  color: hsla(0,0%,100%,.8)!important;
+  text-align: center !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 35px;
+  line-height: 22px!important;
+  padding-bottom: 10px;
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  display: flex;
+  align-items: center;
+}
+
+.Landing_over_brand_logo {
+  height: auto;
+  margin-left: 15px;
+}
+
+.Landing_over_brand_logo_label {
+  height: auto;
+  padding-left: 0px !important;
 }
 
 /* Predefined classes with modifications */
@@ -118,4 +142,44 @@
   .Landing_over_split {
     border: 0px;
   } 
+}
+
+@media screen and (max-width: 1199px) {
+  .Landing_over_quest {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 394px) {
+  .Landing_over_quest {
+    font-size: 7px;
+  }
+}
+
+@media screen and (max-width:1024px) {
+  .Landing_over_brand {
+    font-size: 30px;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .Landing_over_brand {
+    font-size: 55px;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width:550px) {
+  .Landing_over_brand {
+    font-size: 33px;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width:356px) {
+  .Landing_over_brand {
+    font-size: 23px;
+    padding-bottom: 10px;
+  }
 }

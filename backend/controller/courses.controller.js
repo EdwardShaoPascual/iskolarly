@@ -13,3 +13,11 @@ exports.view_courses = (req, res, next) => {
     }
   });
 }
+
+exports.check_auth = (req, res, next) => {
+  if (req.session.user === '' || req.session.user === undefined) {
+    return res.status(500).send({message: "There is no active session"});
+  } else {
+    res.send(req.session.user);
+  }
+}

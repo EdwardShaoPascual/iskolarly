@@ -9,7 +9,7 @@ mainApp.config(function($routeProvider, $locationProvider) {
       templateUrl: 'views/landing.html'
     })
     .when('/home', {
-      templateUrl: 'views/home.html'
+      templateUrl: 'views/home.html',
     })
     .when('/courses', {
       templateUrl: 'views/course.html'

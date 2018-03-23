@@ -29,8 +29,25 @@
       return deferred.promise;
     }
 
+    function check_auth() {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/api/check_auth'
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
     let service = {};
     service.view_courses = view_courses;
+    service.check_auth = check_auth;
     return service;
   }
 

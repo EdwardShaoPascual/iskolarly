@@ -11,6 +11,17 @@
     
     $scope.courses = [];
     $scope.course_code = '';
+    $scope.session = {};
+
+    $scope.check_auth = () => {
+      CoursesService
+      .check_auth()
+      .then(function (res) {
+        $scope.session = res;
+      }, function (err) {
+        console.log(err);
+      })
+    }
 
     $scope.courses_view = () => {
       CoursesService
