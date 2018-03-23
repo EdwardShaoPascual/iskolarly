@@ -81,7 +81,6 @@
   letter-spacing: 2px;
   font-size: 35px;
   line-height: 22px!important;
-  padding-bottom: 10px;
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   display: flex;
   align-items: center;
@@ -136,6 +135,25 @@
 
 .form-group .glyphicon {
   font-size: 14px !important;
+  color: #3dbea7 !important;
+}
+
+.has-success {
+  color: #3dbea7 !important;
+}
+
+.form-control {
+  border-color: #3dbea7 !important;
+}
+
+.control-label {
+  color: #3dbea7 !important;
+  border-color: #3dbea7 !important;
+}
+
+.input-group-addon {
+  color: #3dbea7 !important;
+  border-color: #3dbea7 !important;
 }
 
 @media screen and (max-width:991px) {
