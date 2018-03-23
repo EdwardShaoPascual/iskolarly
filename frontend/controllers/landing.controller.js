@@ -61,6 +61,7 @@
       .user_login($scope.loginData)
       .then(function(res) {
         $('#loginModal').modal('hide');
+        $('.modal').modal('hide');
         toastr.success("Your signing in is successful!", "Success")
         $scope.loginData = {
           username: '',
