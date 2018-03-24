@@ -116,6 +116,7 @@ CREATE TABLE answers (
 	answer_id						int NOT NULL AUTO_INCREMENT,
 	question_id						int NOT NULL,
 	choices							varchar(256) NOT NULL,
+	is_right						enum("Yes", "No") NOT NULL,
 	PRIMARY KEY						(answer_id),
 	CONSTRAINT						`fk_answers_questions`
 		FOREIGN KEY (question_id) REFERENCES questions (question_id)

@@ -20,7 +20,14 @@
     
         <div id="collapseOne{{$index+1}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
-            <pre>{{questions.question_desc}}</pre>
+            <pre>{{questions.question_desc}}
+              <button id="export-btn" class="btn btn-primary" id="Answer" data-toggle="modal" data-target=".bd-example-modal-lgs-2" ng-click="questions_get_info(questions.question_id)">Add Answers</button>
+            </pre>
+            <div class="container-fluid">
+              <div class="row" ng-init="answers_view(questions.question_id, $index)" >
+                <pre class="col-xs-6" ng-repeat="answers in answer[$index]">{{answers.choices}}</pre>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -32,7 +39,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Questionnaire</h4>
+        <h4 class="modal-title">Question</h4>
       </div>
       <div class="modal-body">
         <form>
@@ -43,8 +50,27 @@
               <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
               <textarea ng-model="questionsData.question_desc" type="text" rows="5" class="form-control" aria-describedby="inputGroupSuccess1Status" placeholder="Enter question"></textarea>
             </div>
+          </div>
 
-            <br>
+          <button ng-click="questions_add()" type="submit" class="btn btn-primary">Submit</button>
+          <button class="btn">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-controller="question-controller" class="modal fade bd-example-modal-lgs-2" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span ng-model="questionsInfo.question_id" id="edit_quest_id"></span>
+        <h4 class="modal-title">Answers</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Add multiple answers -->
+          <div class="form-group">
             <table class="table table-bordered table-hover table-responsive" id="tableAddRow">
               <thead>
                 <tr>
@@ -55,9 +81,9 @@
               </thead>
               <tbody>
                 <tr id="tr_0">
-                  <td><input type="text" id="answer" class="form-control" /></td>
+                  <td><input type="text" id="answer_0" class="form-control" ng-model="answersData.choices_0"/></td>
                   <td>
-                    <select id="right" class="form-control">
+                    <select id="right_0" class="form-control" ng-model="answersData.is_right_0">
                       <option>Yes</option>
                       <option>No</option>
                     </select>
@@ -68,7 +94,7 @@
             </table>
           </div>
 
-          <button ng-click="questions_add()" type="submit" class="btn btn-primary">Submit</button>
+          <button ng-click="answers_add()" type="submit" class="btn btn-primary">Submit</button>
           <button class="btn">Cancel</button>
         </form>
       </div>

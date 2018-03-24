@@ -62,7 +62,7 @@
           type: "success"
         })
 			}, function(err) {
-        swal("Oops!", "Max question", "error");
+        swal("Oops!", "Fill all fields", "error");
 				console.log(err);
 			})
     }
@@ -95,20 +95,64 @@
       });
     }
 
-    $scope.answers_add = () => {
+    $scope.answers_view = (data, index) => {
+      $scope.answer = [];
+      $scope.question_id = data;
+      console.log("data")
+      
+      console.log(data)
+
 			QuestionService
-			.add_answers($scope.answersData)
+			.view_answers($scope.question_id)
 			.then(function(res) {
-        $scope.user = res;
-        swal({
-          title: "Success!",
-          text: "File has been added.",
-          type: "success"
-        })
+        $scope.answer[index] = res;
+        console.log($scope.answer[index])
 			}, function(err) {
-        swal("Oops!", "Max question", "error");
 				console.log(err);
 			})
+		}
+
+    $scope.questions_get_info = (data) => {
+      $scope.question_id = data;
+
+			QuestionService
+			.get_info_questions($scope.question_id)
+			.then(function(res) {
+        $scope.questionsInfo = res[0];
+        $('#edit_quest_id').val($scope.questionsInfo.question_id);
+			}, function(err) {
+				console.log(err);
+			})
+    }
+
+    $scope.answers_add = () => {
+      $scope.question_id = $('#edit_quest_id').val();     
+      let id = $("input[type=text]:last").attr("id")
+
+      for(let i=0; i<=parseInt(id.substr(id.length -1)); i++) {
+        let a = $('#answer_'+i).val();
+        let b = $('#right_'+i).val();
+        if(a != undefined && b != undefined) {
+          $scope.answersData = {
+            choices: a,
+            is_right: b
+          }
+
+          QuestionService
+          .add_answers($scope.answersData, $scope.question_id)
+          .then(function(res) {
+            $scope.user = res;
+            swal({
+              title: "Success!",
+              text: "File has been added.",
+              type: "success"
+            })
+          }, function(err) {
+            swal("Oops!", "Fill all fields", "error");
+            console.log(err);
+          })
+        }
+      }
     }
   }
 

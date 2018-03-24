@@ -101,12 +101,68 @@
       return deferred.promise;
     }
 
+    const view_answers = function (data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/api/view_answer/' + data
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
+    const get_info_questions = function (data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/api/get_info_question/' + data
+      })
+      .then(function(res) {
+        // $window.location.href = '/#/question';
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+    }
+
+    const add_answers = function (data1, data2) {
+      let deferred = $q.defer();
+      
+      $http({
+        method: 'POST',
+        params: data1,
+        url: '/api/add_answer/' + data2,
+        headers: headers
+      })
+      .then(function(res) {
+        // $window.location.href = '/#/quiz';
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+    }
+
     let service = {};
     service.view_questions = view_questions;
     service.get_questions = get_questions;
     service.check_questions = check_questions;
     service.add_questions = add_questions;
     service.delete_questions = delete_questions;
+
+    service.view_answers = view_answers;
+    service.get_info_questions = get_info_questions;
+    service.add_answers = add_answers;
     return service;
   }
 

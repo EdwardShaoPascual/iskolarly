@@ -27,11 +27,14 @@ module.exports = (router) => {
   // GET
   router.get('/api/view_question/:questionnaire_id',                  question_controller.view_questions);
   router.get('/api/get_question/:questionnaire_id',                   question_controller.get_questions);
+  router.get('/api/view_answer/:question_id',                         question_controller.view_answers);  
+  router.get('/api/get_info_question/:question_id',                   question_controller.get_info_questions);
   
   // POST
   router.post('/api/check_question',                                  question_controller.check_questions);
   router.post('/api/add_question',                                    question_controller.add_questions);
   router.post('/api/delete_question/:question_id',                    question_controller.delete_questions);
+  router.post('/api/add_answer/:question_id',                         question_controller.add_answers);
   
   // -- QUIZ PAGE ROUTES --
   // GET

@@ -67,3 +67,38 @@ exports.delete_questions = (req, res, next) => {
     }
   });
 }
+
+exports.view_answers = (req, res, next) => {
+  let query_string = 'SELECT * FROM answers WHERE question_id = ?';
+  let request_data = [req.params.question_id]
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}
+
+exports.get_info_questions = (req, res, next) => {
+  let query_string = 'SELECT * FROM questions WHERE question_id = ?';
+  let request_data = [req.params.question_id]
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}
+
+exports.add_answers = (req, res, next) => {
+  let query_string = 'INSERT INTO answers (question_id, choices, is_right) VALUES (?, ?, ?)'
+  let request_data = [req.params.question_id, req.query.choices, req.query.is_right]
+
+  db.query(query_string, request_data, (err, result) => {
+    res.send(result);
+  });
+}

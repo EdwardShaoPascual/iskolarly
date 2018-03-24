@@ -3,7 +3,7 @@
 }
 
 .accord-edit {
-  border: 1px solid !important;
+  /* border: 1px solid !important; */
 }
 
 .quest-button {
@@ -18,4 +18,10 @@
   cursor:pointer;
   overflow: hidden;
   outline:none;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
 }
