@@ -69,6 +69,7 @@
         }
         $window.location.href = '#/home';
       }, function(err) {
+        console.log(err);
         $scope.loginData = {
           username: '',
           password: ''

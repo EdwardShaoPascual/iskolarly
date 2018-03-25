@@ -1,11 +1,10 @@
-DROP USER IF EXISTS 'CMSC190'@'localhost';
-CREATE USER 'CMSC190'@'localhost' IDENTIFIED BY 'specialprob';
-DROP DATABASE IF EXISTS iskolarly;
-CREATE DATABASE iskolarly;
-GRANT SUPER ON *.* TO 'CMSC190'@'localhost';
-GRANT ALL PRIVILEGES ON iskolarly.* TO 'CMSC190'@'localhost' WITH GRANT OPTION;
-
-USE iskolarly;
+-- DROP USER IF EXISTS 'CMSC190'@'localhost';
+-- CREATE USER 'CMSC190'@'localhost' IDENTIFIED BY 'specialprob';
+-- DROP DATABASE IF EXISTS iskolarly;
+-- CREATE DATABASE iskolarly;
+-- GRANT SUPER ON *.* TO 'sql12228730'@'sql12.freemysqlhosting.net';
+-- GRANT ALL PRIVILEGES ON iskolarly.* TO 'sql12228730'@'sql12.freemysqlhosting.net' WITH GRANT OPTION;
+-- USE iskolarly;
 
 DROP TABLE IF EXISTS user;
 CREATE TABLE user (
@@ -46,20 +45,6 @@ CREATE TABLE course_code (
 	PRIMARY KEY						(course_code),
 	CONSTRAINT						`fk_course_code_course`
 		FOREIGN KEY (course_id) REFERENCES course (course_id)
-		ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-DROP TABLE IF EXISTS course_user;
-CREATE TABLE course_user (
-	course_user_id					int NOT NULL AUTO_INCREMENT,
-	course_id						int NOT NULL,
-	user_id							int NOT NULL,
-	PRIMARY KEY						(course_user_id),
-	CONSTRAINT						`fk_course_user_course`
-		FOREIGN KEY (course_id) REFERENCES course (course_id)
-		ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT						`fk_course_user_user`
-		FOREIGN KEY (user_id) REFERENCES user (user_id)
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
 

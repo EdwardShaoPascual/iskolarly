@@ -61,6 +61,8 @@
           text: "File has been added.",
           type: "success"
         })
+        $('.modal').hide();
+        $('.modal').modal('hide');          
 			}, function(err) {
         swal("Oops!", "Fill all fields", "error");
 				console.log(err);
@@ -89,6 +91,8 @@
             type: "success"
           })
           $scope.user.splice(index, 1);
+          $('.modal').hide();
+          $('.modal').modal('hide');          
         }, function(err) {
           console.log(err);
         })
@@ -98,17 +102,12 @@
     $scope.answers_view = (data, index) => {
       $scope.answer = [];
       $scope.question_id = data;
-      console.log("data")
-      
-      console.log(data)
 
 			QuestionService
 			.view_answers($scope.question_id)
 			.then(function(res) {
         $scope.answer[index] = res;
-        console.log($scope.answer[index])
 			}, function(err) {
-				console.log(err);
 			})
 		}
 
@@ -121,7 +120,6 @@
         $scope.questionsInfo = res[0];
         $('#edit_quest_id').val($scope.questionsInfo.question_id);
 			}, function(err) {
-				console.log(err);
 			})
     }
 
@@ -147,9 +145,10 @@
               text: "File has been added.",
               type: "success"
             })
+            $('.modal').hide();
+            $('.modal').modal('hide');          
           }, function(err) {
             swal("Oops!", "Fill all fields", "error");
-            console.log(err);
           })
         }
       }

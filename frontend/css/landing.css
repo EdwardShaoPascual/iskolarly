@@ -8,7 +8,7 @@
 }
 
 .Landing_over {
-  background-color: rgba(0, 0, 0, 0.8) !important;
+  background-color: rgba(11, 12, 16, 0.8) !important;
   background-size: 100%;
   -o-background-size: 100%;
   -webkit-background-size: 100%;
@@ -37,12 +37,14 @@
 }
 
 .Landing_over_button {
-  background-color: #3dbea7;
+  border-color: rgba(102, 252, 241, 0.7);
+  border-width: 1.5px;
+  border-style: solid;
+  background-color: rgba(102, 252, 241, 0);
   fill-opacity: 1 !important;
   opacity: 1 !important;
   margin: 20px auto !important;
   border-radius: 500px;
-  border: none;
   display: block;
   width: 100%;
   outline: none !important;
@@ -51,11 +53,22 @@
   font-weight: bold;
   color: rgba(236,240,241,1);
   letter-spacing: 2px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
 }
 
 .Landing_over_button:hover {
   color: rgba(236,240,241,1);
+  background-color: rgba(102, 252, 241, 0.7);
   letter-spacing: 2px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
 }
 
 .Landing_over_button:after {
@@ -75,7 +88,7 @@
 
 .Landing_over_brand {
   font-family: 'Gloria Hallelujah', cursive;
-  color: hsla(0,0%,100%,.8)!important;
+  color: hsla(0,0%,100%,.85)!important;
   text-align: center !important;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -96,6 +109,11 @@
   padding-left: 0px !important;
 }
 
+small {
+  font-family: 'Open Sans', sans-serif;
+  color: rgba(255,255,255,0.65) !important;  
+}
+
 /* Predefined classes with modifications */
 
 .datepick {
@@ -105,6 +123,7 @@
 .modal {
   text-align: center;
   padding: 0!important;
+  font-family: 'Open Sans', sans-serif !important;  
 }
 
 .modal:before {
@@ -120,6 +139,22 @@
   text-align: left;
   vertical-align: middle;
 }
+
+.modal-content {
+  background-color: #1f2833 !important;  
+  color: #FFF;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #000 !important;
+  opacity: 0.25 !important; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #000 !important;}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #000 !important;}
 
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
@@ -147,7 +182,7 @@
 }
 
 .control-label {
-  color: #3dbea7 !important;
+  color: #fff !important;
   border-color: #3dbea7 !important;
 }
 
@@ -200,4 +235,27 @@
     font-size: 23px;
     padding-bottom: 10px;
   }
+}
+
+.btn-primary {
+  background-color: #3dbea7 !important;
+  border: #3dbea7 !important;
+  outline: none !important;
+}
+
+.cancel {
+  background-color: #cbc6c7 !important;
+  border: #cbc6c7 !important;
+  outline: none !important;
+}
+
+.cancel:hover {
+  background-color: #cbc6c7 !important;
+  border: #cbc6c7 !important;
+  color: #fff;
+  outline: none !important;
+}
+
+.modal-header {
+  text-align: center !important;
 }

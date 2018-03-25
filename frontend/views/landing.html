@@ -68,7 +68,7 @@
                 </div>
                 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your information with anyone else.</small>
               </div>
               <!-- Password -->
               <div class="form-group has-success has-feedback">
@@ -81,7 +81,7 @@
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
               </div>
               <button ng-click="login()" type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Sign in</button>
-              <button class="btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+              <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
             </form>
         </div>
       </div>
@@ -210,22 +210,22 @@
                 </div>
                 
                 <div class="middle">
+                  <div class="classifier">You're a</div>
                   <label ng-click="changeRoleToStd()">
                     <input type="radio" name="radio" ng-checked="roleRadio.std"/>
                     <div class="student box">
-                      <span>Student</span>
+                      <div>Student</div>
                     </div>
                   </label>
                   <label ng-click="changeRoleToIns()" ng-checked="roleRadio.ins">
                     <input type="radio" name="radio"/>
                     <div class="instructor box">
-                      <span>Instructor</span>
+                      <div>Instructor</div>
                     </div>
                   </label>
                 </div>
-
                 <button ng-click="register()" type="submit" class="btn btn-primary">Sign up</button>
-                <button class="btn" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
               </form>
           </div>
         </div>
