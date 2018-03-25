@@ -53,7 +53,7 @@
           </div>
 
           <button ng-click="questions_add()" type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn">Cancel</button>
+          <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
         </form>
       </div>
     </div>
@@ -84,7 +84,7 @@
                   <td><input type="text" id="answer_0" class="form-control" ng-model="answersData.choices_0"/></td>
                   <td>
                     <select id="right_0" class="form-control" ng-model="answersData.is_right_0">
-                      <option>Yes</option>
+                      <option selected>Yes</option>
                       <option>No</option>
                     </select>
                   </td>
@@ -95,7 +95,7 @@
           </div>
 
           <button ng-click="answers_add()" type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn">Cancel</button>
+          <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
         </form>
       </div>
     </div>
