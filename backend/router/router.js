@@ -39,7 +39,8 @@ module.exports = (router) => {
   // -- QUIZ PAGE ROUTES --
   // GET
   router.get('/api/get_quiz/:questionnaire_id',                        quiz_controller.get_quiz);
-
+  router.get('/api/get_answer/:question_id',                           quiz_controller.get_answers);
+  
   // -- COURSE PAGE ROUTES --
   // GET
   router.get('/api/check_auth',                                       courses_controller.check_auth);

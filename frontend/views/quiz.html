@@ -1,19 +1,21 @@
 <div class="container" ng-controller="quiz-controller" ng-init="quiz_get()">
-
+    
   <h1 class="text-sm-center">Quiz Title</h1>
   <div>
     <div>
       <div class="badge badge-info">
-        Question 1 of 10.
+        Question {{question_no}} of {{size}}.
       </div>
       <pre>{{quiz}}</pre>
       
       <div class="row text-left options">
         <div class="col-md-6">
           <div class="option">
-            <label class="">
-              a.
-            </label>  
+            <div class="container-fluid">
+              <div class="row">
+                <pre class="col-xs-6" ng-repeat="answers in answer">{{answers.choices}}</pre>
+              </div>
+            </div>
           </div>
         </div>
       </div>
