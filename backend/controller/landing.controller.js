@@ -5,12 +5,12 @@ const bcrypt      = require('bcrypt');
 const dateFormat  = require('dateformat');
 
 exports.login = function(req, res, next) {
-  let payload = req.query;
+  let payload = [req.query.username];
 
   let queryString = 'SELECT * FROM user WHERE username = ?';
   let saltRounds = 10;
 
-  db.query(queryString, [payload.username], (err, result, args, last_query) => {
+  db.query(queryString, payload, (err, result, args, last_query) => {
     if (err) {
       return res.status(500).send({message: "An error has encountered!"})
     } else if (result.length === 0) {

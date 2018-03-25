@@ -61,6 +61,7 @@
   position: fixed;
   bottom: 50px; 
   right: 50px;
+  cursor: pointer !important;
 }
 
 .circle-button:hover {
