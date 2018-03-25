@@ -10,7 +10,9 @@
 	function courses_controller($scope, $window, CoursesService) {
     
     $scope.courses = [];
-    $scope.course_code = '';
+    $scope.course_code = {
+      code: ''
+    };
 
     $scope.course_data = {
       course_title: '',
@@ -39,7 +41,21 @@
     }
 
     $scope.enroll_course = () => {
-      $('#enrollModal').modal('hide');      
+      if ($scope.course_code.code === '') {
+        toastr.error("Invalid course code!", 'Error');                         
+      } 
+      else {
+        CoursesService
+        .enroll_course($scope.course_code)
+        .then(function(res) {
+          toastr.success('Your enrollment is successful!', 'Success');
+          $scope.course_code = ""
+          $('.modal').hide();
+          $('.modal').modal('hide');          
+        }, function(err) {
+          toastr.error(err.message, 'Error');
+        })
+      }
     }
 
     $scope.create_course = () => {

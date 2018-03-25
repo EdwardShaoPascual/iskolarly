@@ -47,6 +47,7 @@ module.exports = (router) => {
   
   // POST
   router.post('/api/create_course',                                   courses_controller.create_course);
+  router.post('/api/enroll_course',                                   courses_controller.enroll_course);
 
 	router.all('*', (req, res, next) => {
 	  res.status(404).send({message: 'Unmatched route :('});

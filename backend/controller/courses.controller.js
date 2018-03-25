@@ -3,13 +3,40 @@
 const db = require(__dirname + '/../lib/mysql');
 
 exports.view_courses = (req, res, next) => {
-  let query_string = 'SELECT firstname, lastname, course_title, course_description FROM course natural join user';
-
-  db.query(query_string, [], (err, result) => {
+  let query_string = ""
+  if (req.session.user.role === 'Instructor') {
+    query_string = 'SELECT firstname, lastname, course_title, course_description FROM course NATURAL JOIN user where user_id = ?';
+  } else {
+    query_string = 'SELECT * FROM ((SELECT firstname, lastname, course_title, course_description, course_id from user NATURAL JOIN course) as course INNER JOIN course_user ON course.course_id = course_user.course_id) where user_id = ?';
+  }
+  db.query(query_string, [req.session.user.user_id], (err, result) => {
     if (err) {
       return res.status(500).send({message: "An error has encountered"});
     } else {
       res.send(result);
+    }
+  });
+}
+
+exports.enroll_course = (req, res, next) => {
+  let payload = [req.query.code, req.session.user.user_id];
+
+  let query_string = 'SELECT course_id FROM course_code where course_code = ?';
+
+  db.query(query_string, [req.query.code], (err, result) => {
+    if (err) {
+      return res.status(500).send({message: "An error has encountered beforehand"});
+    } else if (result.length === 1) {
+        let call_query_string = 'INSERT INTO course_user (course_id, user_id) VALUES (?,?)';
+        db.query(call_query_string, [result[0].course_id, req.session.user.user_id], (error, resu) => {
+          if (error) {
+            return res.status(500).send({message: "An error has encountered"});            
+          } else {
+            res.send(resu);
+          }
+        })
+    } else {
+      return res.status(500).send({message: "Invalid course code!"});                  
     }
   });
 }

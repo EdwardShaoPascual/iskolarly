@@ -11,7 +11,7 @@
           <div class="hvr-grow col-xs-10 col-sm-4 col-md-3">
             <div class="panel panel-default panel-card">
               <div class="panel-heading">
-                <small class="small-text">{{course.firstname + ' ' + course.lastname}}</small>
+                <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
                 <!-- <button class="btn btn-primary btn-sm" role="button">Follow</button> -->
               </div>
               <div class="panel-figure">
@@ -52,7 +52,7 @@
               <label class="control-label" for="inputGroupSuccess1">Class Code</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input ng-model="course_code" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class code">
+                <input ng-model="course_code.code" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class code">
               </div>
               <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
