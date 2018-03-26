@@ -1,4 +1,4 @@
-<div class="container" ng-controller="quiz-controller" ng-init="quiz_get()">
+<div class="container" ng-controller="quiz-controller as quiz" ng-init="quiz_get()">
     
   <h1 class="text-sm-center">Quiz Title</h1>
   <div>
@@ -7,6 +7,51 @@
         Question {{question_no}} of {{size}}.
       </div>
       <pre>{{quiz}}</pre>
+
+      <div class="row">
+        <div class="col-xs-8">
+          <h4>Progress:</h4>
+          <div class="btn-toolbar">
+            <button class="btn" ng-repeat="question in quiz.quizQuestions" ng-class="{'btn-info': question.selected !== null, 'btn-danger': question.selected === null}" ng-click="quiz.setActiveQuestion($index)">
+              <span class="glyphicon" ng-class="{'glyphicon-pencil': question.selected !== null, 'glyphicon-question-sign': question.selected === null}"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="alert alert-danger" ng-show="quiz.error">
+          Error! You have not answered all of the questions!
+          <button class="close" ng-click="quiz.error = false">&times</button>
+        </div>
+  
+        <h3>Question:</h3>
+        <div class="well well-sm" ng-hide="quiz.finalise">
+          <div class="row">
+            <div class="col-xs-12">
+              <h4>{{quiz.activeQuestion+1 + ". " + quiz.quizQuestions[quiz.activeQuestion].question_desc}}</h4>
+              
+                <div class="col-sm-6" ng-repeat="answer in quiz.quizQuestions[quiz.activeQuestion].set_of_choices">
+                  <h4 class="answer" ng-class="{'bg-info': $index === quiz.quizQuestions[quiz.activeQuestion].selected}" ng-click="quiz.selectAnswer($index)">
+                    {{answer.choices}}
+                  </h4>
+                </div>
+            
+            </div>
+          </div>
+          
+          <button class="btn btn-warning" ng-click="quiz.questionAnswered()">Continue</button>
+        </div>
+        
+        <div class="well well-sm" ng-show="quiz.finalise">
+          <div class="row">
+            <div class="col-xs-12">
+              <h3>Are you sure you want to submit your answers?</h3>
+              <button class="btn btn-success" ng-click="quiz.finaliseAnswers()">Yes</button>
+              <button class="btn btn-danger" ng-click="quiz.finalise = false">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div class="row text-left options">
         <div class="col-md-6">
@@ -21,19 +66,19 @@
       </div>
     </div>
     
-    <div class="center-div">
+    <!-- <div class="center-div">
       <button class="btn btn-primary btn-choices">First</button>
       <button class="btn btn-primary btn-choices" ng-click="quiz_prev()">Prev</button>
       <button class="btn btn-primary btn-choices" ng-click="quiz_next()">Next</button>
       <button class="btn btn-primary btn-choices">Last</button>
-    </div>
+    </div> -->
   </div>
 
-  <div>
+  <!-- <div>
     <div class="inner-div">
       <button class="btn btn-primary btn-choices">Review</button>
       <button class="btn btn-primary btn-choices">Submit Quiz</button>
     </div>
-  </div>
+  </div> -->
 
 </div>

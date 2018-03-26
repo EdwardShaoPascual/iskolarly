@@ -17,7 +17,7 @@ exports.get_quiz = (req, res, next) => {
 }
 
 exports.get_answers = (req, res, next) => {
-  let query_string = 'SELECT an.* FROM questions qn, answers an WHERE qn.question_id = ? AND an.question_id = ?';
+  let query_string = 'SELECT an.choices FROM questions qn, answers an WHERE qn.question_id = ? AND an.question_id = ?';
   let request_data = [req.params.question_id, req.params.question_id]
 
   db.query(query_string, request_data, (err, result) => {
