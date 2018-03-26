@@ -8,7 +8,6 @@
   quiz_controller.$inject = ['$routeParams', '$scope', '$window', 'QuizService'];
 
   function quiz_controller($routeParams, $scope, $window, QuizService) {
-    var vm = this;
     var numQuestionsAnswered = 0;
 
     let count = 0;
@@ -16,16 +15,11 @@
 
     $scope.size = 0;
     $scope.user = [];
-    var quizQuestions = new Array();
+    $scope.quizQuestions = new Array();
 
-    vm.quizQuestions = quizQuestions;  
-    vm.setActiveQuestion = setActiveQuestion;
-    vm.questionAnswered = questionAnswered;
-    vm.questionAnsweredPrev = questionAnsweredPrev;
-    vm.selectAnswer = selectAnswer;
-    vm.activeQuestion = 0;
-    vm.error = false;
-    vm.finalise = false;
+    $scope.activeQuestion = 0;
+    $scope.error = false;
+    $scope.finalize = false;
 
     $scope.quiz_get = () => {
 			QuizService
@@ -46,14 +40,14 @@
             .get_answers($scope.question_id)
             .then(function(rest) {
               $scope.users = rest;
+              
               var jsonArg = new Object();
               jsonArg.question_desc = $scope.user[math].question_desc;
               jsonArg.selected = null;
               jsonArg.correct = null;
               jsonArg.set_of_choices = $scope.users;
 
-              quizQuestions.push(jsonArg);
-              console.log(quizQuestions)
+              $scope.quizQuestions.push(jsonArg);
             }, function(errt) {
               console.log(errt);
             })
@@ -62,153 +56,87 @@
             i--;
           }
         }
-
-
-        // count = 0;
-        // $scope.quiz = $scope.user[numArray[count]].question_desc;
-        // $scope.question_no = count + 1;
-        // $scope.answer = [];
-        
-        // $scope.question_id = $scope.user[numArray[count]].question_id;
-        // QuizService
-        // .get_answers($scope.question_id)
-        // .then(function(rest) {
-        //   $scope.answer = rest;
-        // }, function(errt) {
-        //   console.log(errt);
-        // })
         
       }, function(err) {
 				console.log(err);
 			})
     }
-
     
-    
-    // $scope.quiz_next = () => {
-    //   if (count < $scope.size-1) {
-
-    //     console.log(pluginArrayArg)
-    //     $scope.answer = [];
-
-    //     $scope.quiz = $scope.user[numArray[++count]].question_desc;
-        
-    //     $scope.question_id = $scope.user[numArray[count]].question_id;
-    //     QuizService
-    //     .get_answers($scope.question_id)
-    //     .then(function(res) {
-    //       $scope.answer = res;
-    //     }, function(err) {
-    //       console.log(err);
-    //     })
-
-    //     $scope.question_no = count + 1;        
-
-    //   }
-    // }
-
-    // $scope.quiz_prev = () => {
-    //   if (count > 0) {
-    //     $scope.answer = [];
-
-    //     $scope.quiz = $scope.user[numArray[--count]].question_desc;
-        
-    //     $scope.question_id = $scope.user[numArray[count]].question_id;
-    //     QuizService
-    //     .get_answers($scope.question_id)
-    //     .then(function(res) {
-    //       $scope.answer = res;
-    //     }, function(err) {
-    //       console.log(err);
-    //     })
-
-    //     $scope.question_no = count + 1;
-        
-    //   }
-    // }
-
-    function setActiveQuestion(index) {
+    $scope.setActiveQuestion = (index) => {
       if(index === undefined) {
         var breakOut = false;
-        var quizLength = vm.quizQuestions.length - 1;
+        var quizLength = $scope.quizQuestions.length - 1;
 
         while(!breakOut) {
-          vm.activeQuestion = vm.activeQuestion < quizLength?++vm.activeQuestion:0;
+          $scope.activeQuestion = $scope.activeQuestion < quizLength?++$scope.activeQuestion:0;
 
-          if(vm.activeQuestion === 0) {
-            vm.error = true;
+          if($scope.activeQuestion === 0) {
+            $scope.error = true;
           }
           
-          if(quizQuestions[vm.activeQuestion].selected === null) {
+          if($scope.quizQuestions[$scope.activeQuestion].selected === null) {
             breakOut = true;
           }
         }
       } else {
-        vm.activeQuestion = index;
+        $scope.activeQuestion = index;
       }
     }
 
-    function questionAnswered() {
-      var quizLength = vm.quizQuestions.length - 1;
+    $scope.questionAnsweredNext = () => {
+      var quizLength = $scope.quizQuestions.length;
       numQuestionsAnswered = 0;
       
       for(var x = 0; x < quizLength; x++) {
-        if(vm.quizQuestions[vm.activeQuestion].selected !== null) {
+        if($scope.quizQuestions[$scope.activeQuestion].selected !== null) {
           numQuestionsAnswered++;
           
           if(numQuestionsAnswered >= quizLength) {
             for(var i = 0; i < quizLength; i++) {
-              if(vm.quizQuestions[i].selected === null) {
-                setActiveQuestion(i);
+              if($scope.quizQuestions[i].selected === null) {
+                $scope.setActiveQuestion(i);
                 return;
               }
             }
 
-            vm.error = false;
-            vm.finalise = true;
+            $scope.error = false;
+            $scope.finalize = true;
             return;
           }
         }
       }
 
-      vm.setActiveQuestion();
+      $scope.setActiveQuestion();
     }
 
-    function questionAnsweredPrev() {
-      var quizLength = vm.quizQuestions.length-1;
+    $scope.questionAnsweredPrev = () => {
+      var quizLength = $scope.quizQuestions.length-1;
       numQuestionsAnswered = 0;
 
-      console.log(quizLength)
-      console.log(numQuestionsAnswered)
-      
       for(var x = quizLength; x >= 0; x--) {
-        console.log(x)
-        
-        if(vm.quizQuestions[vm.activeQuestion].selected !== null) {
+        if($scope.quizQuestions[$scope.activeQuestion].selected !== null) {
           numQuestionsAnswered++;
-
-          console.log(x)
           
           if(numQuestionsAnswered >= quizLength) {
             for(var i = quizLength; i >= 0; i--) {
-              if(vm.quizQuestions[i].selected === null) {
-                setActiveQuestion(i);
+              if($scope.quizQuestions[i].selected === null) {
+                $scope.setActiveQuestion(i);
                 return;
               }
             }
 
-            vm.error = false;
-            vm.finalise = true;
+            $scope.error = false;
+            $scope.finalize = true;
             return;
           }
         }
       }
 
-      vm.setActiveQuestion();
+      $scope.setActiveQuestion();
     }
 
-    function selectAnswer(index) {
-      vm.quizQuestions[vm.activeQuestion].selected = index;
+    $scope.selectAnswer = (index) => {
+      $scope.quizQuestions[$scope.activeQuestion].selected = index;
     }
   }
   
