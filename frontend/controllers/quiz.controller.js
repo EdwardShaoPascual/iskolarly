@@ -21,6 +21,7 @@
     vm.quizQuestions = quizQuestions;  
     vm.setActiveQuestion = setActiveQuestion;
     vm.questionAnswered = questionAnswered;
+    vm.questionAnsweredPrev = questionAnsweredPrev;
     vm.selectAnswer = selectAnswer;
     vm.activeQuestion = 0;
     vm.error = false;
@@ -47,7 +48,7 @@
               $scope.users = rest;
               var jsonArg = new Object();
               jsonArg.question_desc = $scope.user[math].question_desc;
-              jsonArg.selected = $scope.user[math].selected;
+              jsonArg.selected = null;
               jsonArg.correct = null;
               jsonArg.set_of_choices = $scope.users;
 
@@ -157,6 +158,39 @@
           
           if(numQuestionsAnswered >= quizLength) {
             for(var i = 0; i < quizLength; i++) {
+              if(vm.quizQuestions[i].selected === null) {
+                setActiveQuestion(i);
+                return;
+              }
+            }
+
+            vm.error = false;
+            vm.finalise = true;
+            return;
+          }
+        }
+      }
+
+      vm.setActiveQuestion();
+    }
+
+    function questionAnsweredPrev() {
+      var quizLength = vm.quizQuestions.length-1;
+      numQuestionsAnswered = 0;
+
+      console.log(quizLength)
+      console.log(numQuestionsAnswered)
+      
+      for(var x = quizLength; x >= 0; x--) {
+        console.log(x)
+        
+        if(vm.quizQuestions[vm.activeQuestion].selected !== null) {
+          numQuestionsAnswered++;
+
+          console.log(x)
+          
+          if(numQuestionsAnswered >= quizLength) {
+            for(var i = quizLength; i >= 0; i--) {
               if(vm.quizQuestions[i].selected === null) {
                 setActiveQuestion(i);
                 return;
