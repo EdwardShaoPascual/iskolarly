@@ -1,4 +1,4 @@
-<div ng-controller="courses-controller" ng-init="courses_view();">
+<div ng-controller="courses-controller" ng-init="courses_view(); check_auth();">
   <section class="Course_cards">
     <div class="container">
         <form class="search-bar">
@@ -8,11 +8,10 @@
     <div class="container">
       <div class="row">
         <span ng-repeat="course in courses">
-          <div class="hvr-grow col-xs-10 col-sm-4 col-md-3">
+          <div class="hvr-grow col-xs-12 col-sm-4 col-md-3">
             <div class="panel panel-default panel-card">
               <div class="panel-heading">
                 <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
-                <!-- <button class="btn btn-primary btn-sm" role="button">Follow</button> -->
               </div>
               <div class="panel-figure">
                 <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
@@ -21,7 +20,10 @@
                 <h4 class="panel-header"><a href="javascript:void(0)">{{course.course_title}}</a></h4>
                 <small>{{course.course_description}}.</small>
               </div>
-            </div>   
+            </div>
+            <div class="Course_Code" ng-if="session.role === 'Instructor'">
+              <small>Course Code: <span class="Course_Code-bold">{{course.course_code}}</span></small>
+            </div>
           </div>
         </span>
       </div>

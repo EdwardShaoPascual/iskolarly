@@ -3,10 +3,48 @@
   padding-bottom: 80px;
   background-color: rgba(44,62,80,1) !important;    
   text-align: center;
-  height: 100vh;
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.Course_Code {
+  text-align: right !important;
+  width: 100%;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 4px;
+  background-color: black;
+  border-top-left-radius: 0px !important;  
+  border-top-right-radius: 0px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  margin-bottom: 30px;
+}
+
+.Course_Code-bold {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+.panel-body {
+  white-space: nowrap;
+  width: 100%;                   /* IE6 needs any width */
+  height: 100%;                   /* IE6 needs any width */
+  overflow: hidden;              /* "overflow" value must be different from  visible"*/ 
+  -o-text-overflow: ellipsis;    /* Opera < 11*/
+  text-overflow:    ellipsis;    /* IE, Safari (WebKit), Opera >= 11, FF > 6 */
 }
 
 /* PANEL CARDS */
+.panel {
+  margin-bottom: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom: 0px !important;
+}
+
 .panel-default {
   position: relative;
   border: 2px solid black;

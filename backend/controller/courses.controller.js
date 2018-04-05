@@ -5,7 +5,7 @@ const db = require(__dirname + '/../lib/mysql');
 exports.view_courses = (req, res, next) => {
   let query_string = ""
   if (req.session.user.role === 'Instructor') {
-    query_string = 'SELECT firstname, lastname, course_title, course_description FROM course NATURAL JOIN user where user_id = ?';
+    query_string = 'SELECT firstname, lastname, course_title, course_description, course_code FROM course NATURAL JOIN course_code NATURAL JOIN user where user_id = ?';
   } else {
     query_string = 'SELECT * FROM ((SELECT firstname, lastname, course_title, course_description, course_id from user NATURAL JOIN course) as course INNER JOIN course_user ON course.course_id = course_user.course_id) where user_id = ?';
   }
@@ -21,7 +21,7 @@ exports.view_courses = (req, res, next) => {
 exports.enroll_course = (req, res, next) => {
   let payload = [req.query.code, req.session.user.user_id];
 
-  let query_string = 'SELECT course_id FROM course_code where course_code = ?';
+  let query_string = 'SELECT course_id FROM course_code where course_code = ? AND NOW() BETWEEN time_start AND time_end';
 
   db.query(query_string, [req.query.code], (err, result) => {
     if (err) {
