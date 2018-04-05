@@ -3,6 +3,7 @@
 const db          = require(__dirname + '/../lib/mysql');
 const bcrypt      = require('bcrypt');
 const dateFormat  = require('dateformat');
+const moment      = require('moment');
 
 exports.login = function(req, res, next) {
   let payload = req.query;
@@ -12,15 +13,26 @@ exports.login = function(req, res, next) {
 
   db.query(queryString, [payload.username], (err, result, args, last_query) => {
     if (err) {
-      return res.status(500).send({message: "An error has encountered!"})
+      return res.status(500).send({message: "An error has encountered"})
     } else if (result.length === 0) {
       return res.status(500).send({message: "Invalid username or password!"})
     } else {
-      bcrypt.compare(payload.password, result[0].password, function(err, response) {
+      bcrypt.compare(payload.password, result[0].password, function(error, response) {
         if (response === true) {
           req.session.user = result[0];
           delete req.session.user.password;
-          return res.status(200).send(result[0]);
+          let ip_address = (req.headers["X-Forwarded-For"] ||
+            req.headers["x-forwarded-for"] ||
+            '').split(',')[0] ||
+           req.client.remoteAddress;
+          let queryStringCB = 'INSERT INTO activity_log (activity_info) VALUES (?)';
+          let activityDescription = 'activity=login user='+result[0].username+' user_id='+result[0].user_id +' time='+moment().format()+' ipv4='+ ip_address;
+          db.query(queryStringCB, [activityDescription], (err, rest, args, last_query) => {
+            if (err) {
+              return res.status(500).send({message: "An error has encountered"})
+            }
+            return res.status(200).send(rest);
+          })
         } else if (response === false) {
           return res.status(404).send({message: "Invalid username or password!"})
         }

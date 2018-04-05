@@ -137,6 +137,13 @@ CREATE TABLE answers (
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS activity_log;
+CREATE TABLE activity_log (
+	activity_id						int NOT NULL AUTO_INCREMENT,
+	activity_info					varchar(256) NOT NULL,
+	PRIMARY KEY						(activity_id)
+);
+
 delimiter |
 
 CREATE TRIGGER tr_course_course_code AFTER INSERT ON `course` 
