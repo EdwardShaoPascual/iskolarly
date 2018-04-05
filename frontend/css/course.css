@@ -1,7 +1,7 @@
 .Course_cards {
   padding-top: 80px;
   padding-bottom: 80px;
-  background-color: rgba(44,62,80,1) !important;    
+  background-color: #0b0c10 !important;  
   text-align: center;
   min-height: 100vh;
   max-height: 100%;
@@ -10,11 +10,11 @@
 .Course_Code {
   text-align: right !important;
   width: 100%;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-bottom: 1px solid #1f2833;
+  border-left: 1px solid #1f2833;
+  border-right: 1px solid #1f2833;
   border-radius: 4px;
-  background-color: black;
+  background-color: #1f2833;
   border-top-left-radius: 0px !important;  
   border-top-right-radius: 0px !important;
   padding-top: 10px;
@@ -47,17 +47,22 @@
 
 .panel-default {
   position: relative;
-  border: 2px solid black;
+  border: 2px solid #1f2833;
+  border-bottom: 2px solid #1f2833;
 }
 
 .panel {
   position: relative;
-  background-color: black;
+  background-color: #1f2833;
 }
 
 .panel-heading {
   padding: 10px 20px;
   padding-bottom: 30px;
+}
+
+.panel-header a {
+  color: rgba(102, 252, 241, 1);
 }
 
 .panel-default > .panel-heading {
@@ -78,7 +83,7 @@
   width: 75px;
   height: 75px;
   overflow: hidden;
-  border: 2px solid black;
+  border: 2px solid #1f2833;
 }
 
 .circle-img img {
@@ -89,7 +94,7 @@
 
 /* CIRCLE BUTTONS AND DIVS */
 .circle-button {
-  background: black;
+  background: #1f2833;
   border-radius: 200px;
   color: white;
   height: 55px;
@@ -100,10 +105,6 @@
   bottom: 50px; 
   right: 50px;
   cursor: pointer !important;
-}
-
-.circle-button:hover {
-  
 }
 
 .circle-button span {
@@ -127,7 +128,6 @@ input {
 input[type=search] {
   left: 0px;
 	-webkit-appearance: textfield;
-	-webkit-box-sizing: content-box;
 	font-family: inherit;
 	font-size: 100%;
 }

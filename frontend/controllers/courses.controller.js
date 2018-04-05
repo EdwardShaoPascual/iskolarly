@@ -20,6 +20,8 @@
     }
     $scope.session = {};
 
+    $scope.search_filter = '';
+
     $scope.check_auth = () => {
       CoursesService
       .check_auth()

@@ -2,12 +2,12 @@
   <section class="Course_cards">
     <div class="container">
         <form class="search-bar">
-            <input type="search" placeholder="Search">
+            <input type="search" placeholder="Search" ng-model="search_filter">
         </form>
     </div>
     <div class="container">
       <div class="row">
-        <span ng-repeat="course in courses">
+        <span ng-repeat="course in courses | filter: { course_title : search_filter }">
           <div class="hvr-grow col-xs-12 col-sm-4 col-md-3">
             <div class="panel panel-default panel-card">
               <div class="panel-heading">
@@ -24,6 +24,7 @@
             <div class="Course_Code" ng-if="session.role === 'Instructor'">
               <small>Course Code: <span class="Course_Code-bold">{{course.course_code}}</span></small>
             </div>
+            <div class="Course_Code" ng-if="session.role === 'Student'"></div>
           </div>
         </span>
       </div>
