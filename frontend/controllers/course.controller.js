@@ -8,8 +8,15 @@
   course_controller.$inject = ['$scope', '$window', 'CourseService'];
 
 	function course_controller($scope, $window, CourseService) {
-		$scope.user = new Array();
+    
+    $scope.user = new Array();
+    $scope.active = 1;
 
+    $scope.course_info = {
+      course_id: ''
+    }
+    $scope.course_intro = {}
+    
 		$scope.questionnairesData = {
       questionnaire_name: '',
       questionnaire_desc: '',
@@ -21,6 +28,29 @@
       questionnaire_name: '',
       questionnaire_desc: '',
       questionnaire_no: ''
+    }
+
+    $scope.change_active = (data) => {
+      $scope.active = data;
+      if (data == 1) {
+        $('.carousel').carousel('prev')    
+      } else {
+        $('.carousel').carousel('next')
+      }
+    }
+
+    $scope.retrieve_course = () => {
+      let url = window.location.href
+      let res = url.split("/");
+      $scope.course_info.course_id = res[res.length-1];
+      CourseService
+      .retrieve_course($scope.course_info)
+      .then(function(res) {
+        $scope.course_intro = res[0];
+        console.log(res[0])
+      }, function(err) {
+        toastr.error(err.message, 'Error');
+      })
     }
 
 		$scope.questionnaires_view = () => {

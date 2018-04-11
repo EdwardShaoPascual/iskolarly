@@ -2,6 +2,20 @@
 
 const db = require(__dirname + '/../lib/mysql');
 
+exports.retrieve_course = (req,res, next) => {
+  
+  let query_string = 'SELECT * FROM course NATURAL JOIN user where course_id = ?';
+
+  db.query(query_string, [req.query.course_id], (err, result) => {
+    if (err) {
+      return res.status(500).send({message: "An error has encountered"});
+    } else {
+      delete result[0].password;
+      res.send(result);
+    }
+  });
+}
+
 exports.view_questionnaires = (req, res, next) => {
   let query_string = 'SELECT * FROM questionnaires';
 

@@ -1,5 +1,21 @@
+.Course_Spec {
+  background-color: #0b0c10 !important;  
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Course_Description {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Course_Instructor {
+  font-size: 19px;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .Questionnaire {
   height: 100vh !important;
+  background-color: #0b0c10 !important;    
 }
 
 .custom-table {
@@ -32,7 +48,13 @@
   padding: 0px;
   margin: 0px;
 }
+
 .change-name {
   cursor: pointer !important;
   text-decoration-line: underline !important;
+}
+
+.slider-pic {
+  width: 100%;
+  height: 360px !important;
 }

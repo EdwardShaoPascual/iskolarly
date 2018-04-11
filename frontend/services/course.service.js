@@ -13,6 +13,24 @@
 
   function CourseService($http, $q, $window) {
 
+    function retrieve_course(data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        params: data,
+        url: '/api/retrieve_course',
+        headers: headers
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
     function view_questionnaires() {
       let deferred = $q.defer();
 
@@ -104,6 +122,7 @@
     }
 
     let service = {};
+    service.retrieve_course = retrieve_course;
     service.view_questionnaires = view_questionnaires;
     service.add_questionnaires = add_questionnaires;
     service.get_info_questionnaires = get_info_questionnaires;
