@@ -32,6 +32,10 @@
       })
     }
 
+    $scope.reroute = (id) => {
+      window.location.href = "/#/course/" + id;
+    }
+
     $scope.courses_view = () => {
       CoursesService
       .view_courses()

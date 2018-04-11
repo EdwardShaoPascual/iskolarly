@@ -3,11 +3,11 @@
 (() => {
 	angular
 	.module('app')
-	.controller('questionnaire-controller', questionnaire_controller);
+	.controller('course-controller', course_controller);
 
-  questionnaire_controller.$inject = ['$scope', '$window', 'QuestionnaireService'];
+  course_controller.$inject = ['$scope', '$window', 'CourseService'];
 
-	function questionnaire_controller($scope, $window, QuestionnaireService) {
+	function course_controller($scope, $window, CourseService) {
 		$scope.user = new Array();
 
 		$scope.questionnairesData = {
@@ -24,7 +24,7 @@
     }
 
 		$scope.questionnaires_view = () => {
-			QuestionnaireService
+			CourseService
 			.view_questionnaires()
 			.then(function(res) {
         for (let i=0; i < res.length; i++) {
@@ -43,7 +43,7 @@
         questionnaire_desc: '',
         questionnaire_no: ''
       }
-			QuestionnaireService
+			CourseService
 			.add_questionnaires($scope.questionnairesData)
 			.then(function(res) {
         data.questionnaire_id = res.insertId;
@@ -68,7 +68,7 @@
     $scope.questionnaires_get_info = (data) => {
       $scope.questionnaire_id = data;
 
-			QuestionnaireService
+			CourseService
 			.get_info_questionnaires($scope.questionnaire_id)
 			.then(function(res) {
         $scope.questionnairesInfo = res[0];
@@ -94,7 +94,7 @@
         questionnaire_no: questionnaire_no
       }
 
-      QuestionnaireService
+      CourseService
       .edit_questionnaires($scope.edit_questionnairesData)
       .then(function(res) {
         swal({
@@ -120,7 +120,7 @@
         closeOnConfirm: false
       },
       function(){
-        QuestionnaireService
+        CourseService
         .delete_questionnaires($scope.questionnaire_id)
         .then(function(res) {
           swal({

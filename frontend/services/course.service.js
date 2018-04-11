@@ -3,15 +3,15 @@
 (() => {
   angular
     .module('app')
-    .factory('QuestionnaireService', QuestionnaireService);
+    .factory('CourseService', CourseService);
 
-  QuestionnaireService.$inject = ['$http', '$q', '$window'];
+  CourseService.$inject = ['$http', '$q', '$window'];
 
   const headers = {
     'content-type': 'application/x-www-form-urlencoded'
   };
 
-  function QuestionnaireService($http, $q, $window) {
+  function CourseService($http, $q, $window) {
 
     function view_questionnaires() {
       let deferred = $q.defer();
