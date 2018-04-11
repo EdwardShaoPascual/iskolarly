@@ -1,117 +1,119 @@
 <div ng-controller="courses-controller" ng-init="courses_view(); check_auth();">
-  <p class="Course_Header">Courses</p>
-  <section class="Course_cards">
-    <div class="container">
-      <form class="search-bar">
-          <input type="search" placeholder="Search" ng-model="search_filter">
-      </form>
-    </div>
-    <div class="container">
-      <div class="row">
-        <span ng-repeat="course in courses | filter: { course_title : search_filter }">
-          <div id="Course_Card_{{course.course_id}}" class="hvr-grow col-xs-12 col-sm-4 col-md-3">
-            <div class="panel panel-default panel-card">
-              <div class="panel-heading">
-                <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
-              </div>
-              <div class="panel-figure">
-                <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
-              </div>
-              <div class="panel-body text-center">
-                <h4 class="panel-header"><a class="Course_Title" href="/#/course/{{course.course_id}}">{{course.course_title}}</a></h4>
-                <h5 class="Course_Section panel-header">{{course.course_section}}</h5>
-                <small>{{course.course_description}}.</small>
-              </div>
-            </div>
-            <div class="Course_Code" ng-if="session.role === 'Instructor'">
-              <small>Course Code: <span class="Course_Code-bold">{{course.course_code}}</span></small>
-            </div>
-            <div class="Course_Code" ng-if="session.role === 'Student'"></div>
-          </div>
-        </span>
+  <div class="Course">
+    <p class="Course_Header">Courses</p>
+    <section class="Course_cards">
+      <div class="container">
+        <form class="search-bar">
+            <input type="search" placeholder="Search" ng-model="search_filter">
+        </form>
       </div>
-    </div>
-  </section>
-</div>
-
-<span ng-controller="courses-controller" ng-init="check_auth();">
-  <div class="hvr-box-shadow-outset circle-button" data-toggle="modal" data-target=".bd-example-modal-enroll" ng-if="session.role === 'Student'">
-    <span class="glyphicon glyphicon-plus"></span>
+      <div class="container">
+        <div class="row">
+          <span ng-repeat="course in courses | filter: { course_title : search_filter }">
+            <div id="Course_Card_{{course.course_id}}" class="hvr-grow col-xs-12 col-sm-4 col-md-3">
+              <div class="panel panel-default panel-card">
+                <div class="panel-heading">
+                  <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
+                </div>
+                <div class="panel-figure">
+                  <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
+                </div>
+                <div class="panel-body text-center">
+                  <h4 class="panel-header"><a class="Course_Title" href="/#/course/{{course.course_id}}">{{course.course_title}}</a></h4>
+                  <h5 class="Course_Section panel-header">{{course.course_section}}</h5>
+                  <small>{{course.course_description}}.</small>
+                </div>
+              </div>
+              <div class="Course_Code" ng-if="session.role === 'Instructor'">
+                <small>Course Code: <span class="Course_Code-bold">{{course.course_code}}</span></small>
+              </div>
+              <div class="Course_Code" ng-if="session.role === 'Student'"></div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="hvr-box-shadow-outset circle-button" data-toggle="modal" data-target=".bd-example-modal-addclass" ng-if="session.role === 'Instructor'">
-    <span class="glyphicon glyphicon-plus"></span>
-  </div>
-</span>
+  <span ng-controller="courses-controller" ng-init="check_auth();">
+    <div class="hvr-box-shadow-outset circle-button" data-toggle="modal" data-target=".bd-example-modal-enroll" ng-if="session.role === 'Student'">
+      <span class="glyphicon glyphicon-plus"></span>
+    </div>
 
-<div ng-controller="courses-controller" class="modal fade bd-example-modal-enroll" id="enrollModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Enroll to a Class</h4>
-      </div>
-      <div class="modal-body">
-          <form>
-            <!-- Class Code -->
-            <div class="form-group has-success has-feedback">
-              <label class="control-label" for="inputGroupSuccess1">Class Code</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input ng-model="course_code.code" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class code">
+    <div class="hvr-box-shadow-outset circle-button" data-toggle="modal" data-target=".bd-example-modal-addclass" ng-if="session.role === 'Instructor'">
+      <span class="glyphicon glyphicon-plus"></span>
+    </div>
+  </span>
+
+  <div ng-controller="courses-controller" class="modal fade bd-example-modal-enroll" id="enrollModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Enroll to a Class</h4>
+        </div>
+        <div class="modal-body">
+            <form>
+              <!-- Class Code -->
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputGroupSuccess1">Class Code</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input ng-model="course_code.code" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class code">
+                </div>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
               </div>
-              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-              <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-            </div>
-            <button ng-click="enroll_course()" type="submit" class="btn btn-primary" aria-label="Close">Enroll</button>
-            <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
-          </form>
+              <button ng-click="enroll_course()" type="submit" class="btn btn-primary" aria-label="Close">Enroll</button>
+              <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div ng-controller="courses-controller" class="modal fade bd-example-modal-addclass" id="enrollModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Create a Class</h4>
-      </div>
-      <div class="modal-body">
-          <form>
-            <!-- Class Title -->
-            <div class="form-group has-success has-feedback">
-              <label class="control-label" for="inputGroupSuccess1">Class Title</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input ng-model="course_data.course_title" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class name">
+  <div ng-controller="courses-controller" class="modal fade bd-example-modal-addclass" id="enrollModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Create a Class</h4>
+        </div>
+        <div class="modal-body">
+            <form>
+              <!-- Class Title -->
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputGroupSuccess1">Class Title</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input ng-model="course_data.course_title" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class name">
+                </div>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
               </div>
-              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-              <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-            </div>
-            <!-- Class Title -->
-            <div class="form-group has-success has-feedback">
-              <label class="control-label" for="inputGroupSuccess1">Class Section</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input ng-model="course_data.course_section" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class section">
+              <!-- Class Title -->
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputGroupSuccess1">Class Section</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input ng-model="course_data.course_section" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class section">
+                </div>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
               </div>
-              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-              <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-            </div>
-            <!-- Class Description -->
-            <div class="form-group has-success has-feedback">
-              <label class="control-label" for="inputGroupSuccess1">Class Description</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <textarea ng-model="course_data.course_description" type="text" class="form-control" rows="3" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class description" />
+              <!-- Class Description -->
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputGroupSuccess1">Class Description</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <textarea ng-model="course_data.course_description" type="text" class="form-control" rows="3" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class description" />
+                </div>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                <small>Remaining Characters: {{256 - course_data.course_description.length}}</small>            
               </div>
-              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-              <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-              <small>Remaining Characters: {{256 - course_data.course_description.length}}</small>            
-            </div>
-            <button ng-click="create_course()" type="submit" class="btn btn-primary" aria-label="Close">Create</button>
-            <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
-          </form>
+              <button ng-click="create_course()" type="submit" class="btn btn-primary" aria-label="Close">Create</button>
+              <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </form>
+        </div>
       </div>
     </div>
   </div>

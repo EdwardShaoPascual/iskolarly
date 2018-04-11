@@ -1,9 +1,13 @@
+.Course {
+  height: 100vh;
+  background-color: #0b0c10 !important;  
+}
+
 .Course_cards {
   padding-top: 20px;
   padding-bottom: 80px;
   background-color: #0b0c10 !important;  
   text-align: center;
-  min-height: 100vh;
   max-height: 100%;
 }
 
