@@ -111,12 +111,12 @@
   border-radius: 200px;
   color: white;
   height: 55px;
-  font-weight: bold;
   width: 55px;
+  font-weight: bold;
   text-align: center;
   position: fixed;
-  bottom: 50px; 
-  right: 50px;
+  bottom: 40px; 
+  right: 40px;
   cursor: pointer !important;
 }
 
