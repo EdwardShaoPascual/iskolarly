@@ -10,6 +10,7 @@
   function landing_controller($scope, $window, $rootScope, $location, LandingService) {
     
     $scope.roleFlag = 0;
+    $scope.unloaded = true;
 
     $scope.roleRadio = {
       std: true,

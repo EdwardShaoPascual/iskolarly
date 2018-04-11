@@ -1,5 +1,5 @@
 .Course_cards {
-  padding-top: 80px;
+  padding-top: 20px;
   padding-bottom: 80px;
   background-color: #0b0c10 !important;  
   text-align: center;
@@ -32,11 +32,22 @@
   color: rgba(102, 252, 241, 0.4) !important;
 }
 
+.Course_Header {
+  background-color: #0b0c10 !important;
+  margin: 0 0 0 0 !important;
+  text-align: center;
+  padding-top: 50px;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-size: 3em;
+  font-weight: bolder;
+}
+
 .panel-body {
+  white-space: nowrap; 
+  overflow: hidden;
   text-overflow: ellipsis;
-    /* Required for text-overflow to do anything */
-  white-space: nowrap;
-  overflow: hidden;    /* IE, Safari (WebKit), Opera >= 11, FF > 6 */
+  color:#fff; 
 }
 
 /* PANEL CARDS */
@@ -181,4 +192,18 @@ input::-webkit-input-placeholder {
 
 .course-small {
   color: #444 !important;
+}
+
+.search-bar{
+  text-align: center;
+}
+
+.search-bar input {
+  width: 33% !important;
+}
+
+@media only screen and (max-width: 503px) {
+  .search-bar input {
+    width: 60% !important;
+  } 
 }

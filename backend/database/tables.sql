@@ -142,6 +142,7 @@ CREATE TABLE answers (
 DROP TABLE IF EXISTS activity_log;
 CREATE TABLE activity_log (
 	activity_id						int NOT NULL AUTO_INCREMENT,
+	activity_type					varchar(256) NOT NULL,
 	activity_info					varchar(256) NOT NULL,
 	PRIMARY KEY						(activity_id)
 );
