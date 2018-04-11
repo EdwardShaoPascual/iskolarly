@@ -16,6 +16,7 @@
 
     $scope.course_data = {
       course_title: '',
+      course_section: '',
       course_description: ''
     }
     $scope.session = {};
@@ -30,10 +31,6 @@
       }, function (err) {
         console.log(err);
       })
-    }
-
-    $scope.reroute = (id) => {
-      window.location.href = "/#/course/" + id;
     }
 
     $scope.courses_view = () => {
@@ -71,6 +68,9 @@
       } 
       else if ($scope.course_data.course_title.length < 5) {
         toastr.error("Course title must be in length of at least 5 characters!", 'Error');             
+      }
+      else if ($scope.course_data.course_section.length === 0) {
+        toastr.error("Course section must be in length of at least 1 character!", 'Error');             
       } 
       else {
         CoursesService

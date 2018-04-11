@@ -1,0 +1,184 @@
+.Course_cards {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #0b0c10 !important;  
+  text-align: center;
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.Course_Code {
+  text-align: right !important;
+  width: 100%;
+  border-bottom: 1px solid #1f2833;
+  border-left: 1px solid #1f2833;
+  border-right: 1px solid #1f2833;
+  border-radius: 4px;
+  background-color: #1f2833;
+  border-top-left-radius: 0px !important;  
+  border-top-right-radius: 0px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  margin-bottom: 30px;
+}
+
+.Course_Code-bold {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+.Course_Section {
+  color: rgba(102, 252, 241, 0.4) !important;
+}
+
+.panel-body {
+  text-overflow: ellipsis;
+    /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;    /* IE, Safari (WebKit), Opera >= 11, FF > 6 */
+}
+
+/* PANEL CARDS */
+.panel {
+  margin-bottom: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom: 0px !important;
+}
+
+.panel-default {
+  position: relative;
+  border: 2px solid #1f2833;
+  border-bottom: 2px solid #1f2833;
+}
+
+.panel {
+  position: relative;
+  background-color: #1f2833;
+}
+
+.panel-heading {
+  padding: 10px 20px;
+  padding-bottom: 30px;
+}
+
+.panel-header a {
+  color: rgba(102, 252, 241, 1);
+}
+
+.panel-default > .panel-heading {
+  background-color: white;
+}
+
+.panel-figure {
+  margin-top: -10%;
+}
+
+.small-text {
+  font-size: 13px;
+}
+
+/* CIRCLE IMAGES */
+.circle-img {
+  margin: 0 auto;
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  border: 2px solid #1f2833;
+}
+
+.circle-img img {
+  height: 100%;
+  transform: translateX(-50%);
+  margin-left: 50%;
+}
+
+/* CIRCLE BUTTONS AND DIVS */
+.circle-button {
+  background: #1f2833;
+  border-radius: 200px;
+  color: white;
+  height: 55px;
+  font-weight: bold;
+  width: 55px;
+  text-align: center;
+  position: fixed;
+  bottom: 50px; 
+  right: 50px;
+  cursor: pointer !important;
+}
+
+.circle-button span {
+  background: transparent;
+  border-color: transparent;
+  color: white;
+  margin-top: 20%;
+  margin-left: 5%;
+}
+
+.glyphicon {
+  font-size: 28px;
+}
+
+/* SEARCH BAR */
+input {
+  left: 0px;
+  outline: none;
+}
+
+input[type=search] {
+  left: 0px;
+	-webkit-appearance: textfield;
+	font-family: inherit;
+	font-size: 100%;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none; 
+}
+
+input[type=search] {
+	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+	border: solid 1px #ccc;
+	padding: 3px 10px 3px 32px;
+	width: 200px;
+  border: 2px solid black;
+  left: 0px;
+    
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+	
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	transition: all .3s;
+}
+
+input[type=search]:focus {
+	width: 200px;
+	background-color: #fff;
+	border-color: #66CC75;
+	
+	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
+input:-moz-placeholder {
+	color: #999;
+}
+
+input::-webkit-input-placeholder {
+	color: #999;
+}
+
+.search-bar {
+  text-align: left;
+  margin-bottom: 3%;
+}
+
+.course-small {
+  color: #444 !important;
+}

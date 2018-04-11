@@ -29,6 +29,7 @@ DROP TABLE IF EXISTS course;
 CREATE TABLE course (
 	course_id						int NOT NULL AUTO_INCREMENT,
 	course_title					varchar(256) NOT NULL,
+	course_section					varchar(256) NOT NULL,
 	course_description				varchar(256) NOT NULL,
 	user_id							int NOT NULL,
 	PRIMARY KEY						(course_id),

@@ -1,14 +1,14 @@
 <div ng-controller="courses-controller" ng-init="courses_view(); check_auth();">
   <section class="Course_cards">
     <div class="container">
-        <form class="search-bar">
-            <input type="search" placeholder="Search" ng-model="search_filter">
-        </form>
+      <form class="search-bar">
+          <input type="search" placeholder="Search" ng-model="search_filter">
+      </form>
     </div>
     <div class="container">
       <div class="row">
         <span ng-repeat="course in courses | filter: { course_title : search_filter }">
-          <div id="Course_Card_{{course.course_id}}" class="hvr-grow col-xs-12 col-sm-4 col-md-3" ng-click="reroute(course.course_id)">
+          <div id="Course_Card_{{course.course_id}}" class="hvr-grow col-xs-12 col-sm-4 col-md-3">
             <div class="panel panel-default panel-card">
               <div class="panel-heading">
                 <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
@@ -17,7 +17,8 @@
                 <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
               </div>
               <div class="panel-body text-center">
-                <h4 class="panel-header"><a href="/#/course/{{course.course_id}}">{{course.course_title}}</a></h4>
+                <h4 class="panel-header"><a class="Course_Title" href="/#/course/{{course.course_id}}">{{course.course_title}}</a></h4>
+                <h5 class="Course_Section panel-header">{{course.course_section}}</h5>
                 <small>{{course.course_description}}.</small>
               </div>
             </div>
@@ -82,6 +83,16 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <input ng-model="course_data.course_title" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class name">
+              </div>
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+            </div>
+            <!-- Class Title -->
+            <div class="form-group has-success has-feedback">
+              <label class="control-label" for="inputGroupSuccess1">Class Section</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input ng-model="course_data.course_section" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter class section">
               </div>
               <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>

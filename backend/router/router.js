@@ -13,7 +13,7 @@ module.exports = (router) => {
   router.post('/api/login',	 			                  landing_controller.login);
   router.post('/api/register',	 			              landing_controller.register);
   
-  // -- QUESTIONNAIRE PAGE ROUTES --
+  // -- COURSE PAGE ROUTES --
   // GET
   router.get('/api/view_questionnaire',                               questionnaire_controller.view_questionnaires);
   router.get('/api/get_info_questionnaire/:questionnaire_id',         questionnaire_controller.get_info_questionnaires);
@@ -41,7 +41,7 @@ module.exports = (router) => {
   router.get('/api/get_quiz/:questionnaire_id',                        quiz_controller.get_quiz);
   router.get('/api/get_answer/:question_id',                           quiz_controller.get_answers);
   
-  // -- COURSE PAGE ROUTES --
+  // -- COURSES PAGE ROUTES --
   // GET
   router.get('/api/check_auth',                                       courses_controller.check_auth);
   router.get('/api/view_courses',                                     courses_controller.view_courses);
