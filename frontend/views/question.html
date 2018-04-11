@@ -21,7 +21,8 @@
         <div id="collapseOne{{$index+1}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
             <pre>{{questions.question_desc}}
-              <button id="export-btn" class="btn btn-primary" id="Answer" data-toggle="modal" data-target=".bd-example-modal-lgs-2" ng-click="questions_get_info(questions.question_id)">Add Answers</button>
+              <button id="export-btn" class="btn btn-primary" id="Answer" data-toggle="modal" data-target=".bd-example-modal-lgs-2" ng-click="questions_get_info(questions.question_id)" ng-show="user[$index].has_answer == NULL">Add Answers</button>
+              <button id="export-btn" class="btn btn-primary" ng-show="user[$index].has_answer != NULL">Delete Answers</button>
             </pre>
             <div class="container-fluid">
               <div class="row" ng-init="answers_view(questions.question_id, $index)" >
