@@ -10,8 +10,13 @@ exports.retrieve_course = (req,res, next) => {
     if (err) {
       return res.status(500).send({message: "An error has encountered"});
     } else {
-      delete result[0].password;
-      res.send(result);
+      if (result.length === 0) {
+        res.send(result);
+      } else {
+        delete result[0].password;
+        res.send(result);
+      }
+
     }
   });
 }

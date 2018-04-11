@@ -9,7 +9,7 @@
 }
 
 .Course_Instructor {
-  font-size: 19px;
+  font-size: 18px;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -57,4 +57,11 @@
 .slider-pic {
   width: 100%;
   height: 360px !important;
+}
+
+.course_glyph {
+  background-color: #c5c6c7;
+  padding: 7px;
+  border-radius: 50px;
+  font-size: 18px !important;
 }

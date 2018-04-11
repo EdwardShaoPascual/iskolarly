@@ -46,8 +46,11 @@
       CourseService
       .retrieve_course($scope.course_info)
       .then(function(res) {
-        $scope.course_intro = res[0];
-        console.log(res[0])
+        if (res.length === 0) {
+          window.location = '#/error_404';
+        } else {
+          $scope.course_intro = res[0];
+        }
       }, function(err) {
         toastr.error(err.message, 'Error');
       })
