@@ -8,28 +8,28 @@
   padding-top: 35px;
 }
 
-.Course_Spec .panel-title {
+.Course_Spec_Dash .panel-title {
   font-family: 'Open Sans', sans-serif;
   color: #0b0c10;
   font-size: 14px;
 }
 
-.Course_Spec_Announcement {
+.Course_Spec_Dash_Announcement {
   font-family: 'Open Sans', sans-serif;
   color: #0b0c10;
 }
 
-.Course_Spec .panel-body {
+.Course_Spec_Dash .panel-body {
   font-family: 'Open Sans', sans-serif;
   color: #0b0c10 !important;
 }
 
-.Course_Spec .panel-title {
+.Course_Spec_Dash .panel-title {
   font-family: 'Open Sans', sans-serif;
   font-weight: bolder;
 }
 
-.Course_Spec label {
+.Course_Spec_Dash label {
   font-family: 'Open Sans', sans-serif;
   color: #0b0c10 !important;
 }
@@ -42,6 +42,12 @@
 .Course_Instructor {
   font-size: 18px;
   font-family: 'Open Sans', sans-serif;
+}
+
+.Course_Post {
+  margin-right: 7px;
+  max-width: 50%;
+  cursor: pointer;
 }
 
 .Questionnaire {
@@ -97,6 +103,49 @@
   font-size: 18px !important;
 }
 
+.glyph_spec {
+  font-size: 13px !important;
+  margin-left: 4px;
+}
+
 textarea {
   resize: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .Course_Header {
+    font-size: 30px !important;
+  }
+
+  .Course_Header-sub {
+    font-size: 30px !important;
+  }
+
+  .Course_Description {
+    font-size: 14px !important;
+  }
+  
+  .Course_Instructor {
+    margin-bottom: 35px !important;
+    font-size: 15px !important;
+  }
+
+}
+
+@media only screen and (max-width: 347px) {
+  .Course_Header {
+    font-size: 25px !important;
+  }
+
+  .Course_Header-sub {
+    font-size: 25px !important;
+  }
+
+  .Course_Description {
+    font-size: 13px !important;
+  }
+
+  .Course_Instructor {
+    margin-bottom: 40px !important;
+  }
 }
