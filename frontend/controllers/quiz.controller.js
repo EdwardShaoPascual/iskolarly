@@ -5,9 +5,9 @@
   .module('app')
   .controller('quiz-controller', quiz_controller);
 
-  quiz_controller.$inject = ['$routeParams', '$scope', '$window', 'QuizService'];
+  quiz_controller.$inject = ['$routeParams', '$rootScope', '$scope', '$window', 'QuizService'];
 
-  function quiz_controller($routeParams, $scope, $window, QuizService) {
+  function quiz_controller($routeParams, $rootScope, $scope, $window, QuizService) {
     var numQuestionsAnswered = 0;
 
     let count = 0;
@@ -25,8 +25,7 @@
     $scope.resultsActive = false;
     $scope.correctAnswers = new Array();
     $scope.numCorrect = 0;
-
-    $scope.resActiveQuestion = 0;
+    $rootScope.questionnaire_name;
 
     $scope.quiz_get = () => {
 			QuizService
@@ -34,6 +33,7 @@
 			.then(function(res) {
         $scope.user = res;
         $scope.size = $scope.user.length;
+        $rootScope.questionnaire_name = $scope.user[0].questionnaire_name;
         
         for (let i = 0; i < $scope.size; i++) {
           $scope.users = [];
@@ -177,7 +177,7 @@
     }
 
     $scope.setResActiveQuestion = (index) => {
-      $scope.resActiveQuestion = index;
+      $scope.activeQuestion = index;
     }
 
     $scope.markQuiz = () => {
@@ -196,10 +196,10 @@
     }
 
     $scope.getAnswerClass = (index) => {
-      if (index === $scope.correctAnswers[$scope.resActiveQuestion]) {
+      if (index === $scope.correctAnswers[$scope.activeQuestion]) {
         return "bg-success";
-      } else if (index === $scope.quizQuestions[$scope.resActiveQuestion].selected){
-        return "bg-danger";
+      } else if (index === $scope.quizQuestions[$scope.activeQuestion].selected){
+        return "p-3 mb-2 bg-danger";
       }
     }
 

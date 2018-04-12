@@ -1,145 +1,183 @@
-<div class="container" ng-controller="quiz-controller" ng-init="quiz_get()">
-    
-  <h1 class="text-sm-center">Quiz Title</h1>
-  <div class="badge badge-info">
-    Question {{question_no}} of {{size}}.
-  </div>
-  <pre>{{quiz}}</pre>
-
-  <div ng-show="quizActive">
-    <div class="row">
-      <div class="col-xs-8">
-        <h4>Progress:</h4>
-        <div class="btn-toolbar">
-          <button class="btn" ng-repeat="question in quizQuestions" ng-class="{'btn-info': question.selected !== null, 'btn-danger': question.selected === null}" ng-click="setActiveQuestion($index)">
-            <span class="glyphicon" ng-class="{'glyphicon-pencil': question.selected !== null, 'glyphicon-question-sign': question.selected === null}"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="alert alert-danger" ng-show="error">
-        Error! You have not answered all of the questions!
-        <button class="close" ng-click="error = false">&times</button>
-      </div>
-
-      <h3>Question:</h3>
-      <div class="well well-sm" ng-hide="finalize">
-        <div class="row">
-          <div class="col-xs-12">
-            <h4>{{activeQuestion+1 + ". " + quizQuestions[activeQuestion].question_desc}}</h4>
-            
-            <div class="row" ng-if="quizQuestions[activeQuestion].type === 'Text'">
-              <div class="col-sm-6" ng-repeat="answer in quizQuestions[activeQuestion].set_of_choices">
-                <h4 class="answer" ng-class="{'bg-info': $index === quizQuestions[activeQuestion].selected}" ng-click="selectAnswer($index)">
-                  {{answer.choices}}
-                </h4>
-              </div>
-            </div>
-
-
-            <div class="row" ng-if="quizQuestions[activeQuestion].type === 'Image'">
-              <div class="col-sm-6" ng-repeat="answer in quizQuestions[activeQuestion].set_of_choices">
-                <h4 class="image-answer" ng-class="{'image-selected': $index === quizQuestions[activeQuestion].selected}" ng-click="selectAnswer($index)">
-                  <img ng-src="{{answer.choices}}">
-                </h4>
-              </div>
-            </div>
-          
+<div class="Course_Spec" ng-controller="course-controller" ng-init="retrieve_course()">
+  <!-- Carousel for Course Info -->
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" class="active" ng-click="change_active(1)"></li>
+      <li data-target="#myCarousel" class="" ng-click="change_active(2)"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img class="second-slide slider-pic" src="./../assets/default.jpg" alt="Second slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <span class="Course_Header">{{course_intro.course_title}} </span><span class="Course_Header-sub">{{course_intro.course_section}}</span><br/><br/>
+            <p class="Course_Instructor"><i class="glyphicon glyphicon-user course_glyph"></i> &nbsp;{{course_intro.firstname + " " + course_intro.lastname}}</p><br/><br/>
           </div>
         </div>
-
-        <button class="btn btn-warning" ng-click="questionAnsweredPrev()">Prev</button>          
-        <button class="btn btn-warning" ng-click="questionAnsweredNext()">Next</button>
       </div>
-      
-      <div class="well well-sm" ng-show="finalize">
-        <div class="row">
-          <div class="col-xs-12">
-            <h3>Are you sure you want to submit your answers?</h3>
-            <button class="btn btn-success" ng-click="finalAnswers()">Yes</button>
-            <button class="btn btn-danger" ng-click="finalize = false">No</button>
+      <div class="item">
+        <img class="third-slide slider-pic" src="./../assets/default.jpg" alt="Third slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <span class="Course_Header">About the course </span><br/><br/>
+            <p class="Course_Description">{{course_intro.course_description}}.</p><br/><br/>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-
-  <div ng-show="resultsActive">
-    <div class="row">
-      <div class="col-xs-8">
-        <h4>Results:</h4>  
-        <div class="btn-toolbar">
-          <button class="btn" ng-repeat="question in quizQuestions" ng-class="{'btn-success': question.correct, 'btn-danger': !question.correct}" ng-click="setResActiveQuestion($index)">
-            <span class="glyphicon" ng-class="{'glyphicon-ok': question.correct, 'glyphicon-remove': !question.correct}"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-12 top-buffer">
-        <h4>Score: {{numCorrect}} / {{quizQuestions.length}} ({{calculatePerc() | number:2}}%)</h4>
-      </div>
-    </div>
-
-    <div class="row">
-      <h3>Questions:</h3>
-      <div class="well well-sm">
-        <div class="row">
-          <div class="col-xs-12">
-            <h4>{{resActiveQuestion+1 +". "+quizQuestions[resActiveQuestion].question_desc}}</h4>
-
-            <div class="row" ng-if="quizQuestions[activeQuestion].type === 'Text'">
-              <div class="col-sm-6" ng-repeat="answer in quizQuestions[resActiveQuestion].set_of_choices">
-                <h4 class="answer" ng-class="getAnswerClass($index)">
-                  {{answer.choices}}
-                  <p class="pull-right" ng-show="$index !== correctAnswers[resActiveQuestion] && $index === quizQuestions[resActiveQuestion].selected">Your Answer</p>
-                  <p class="pull-right" ng-show="$index === correctAnswers[resActiveQuestion]">Correct Answer</p>
-                </h4>
-              </div>
-            </div>
-
-            <div class="row" ng-if="quizQuestions[activeQuestion].type === 'Image'">
-              <div class="col-sm-6" ng-repeat="answer in quizQuestions[resActiveQuestion].set_of_choices">
-                <div class="image-answer" ng-class="getAnswerClass($index)">
-                  <img ng-src="{{answer.choices}}">
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-lg" ng-click="reset()">Go Back</button>
-    </div>
+    <a class="left carousel-control" href="javascript:void(0)" role="button" data-slide="prev" ng-if="active === 2" ng-click="change_active(1)">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="javascript:void(0)" role="button" data-slide="next" ng-if="active === 1" ng-click="change_active(2)">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
   
-  <div class="row text-left options">
-    <div class="col-md-6">
-      <div class="option">
-        <div class="container-fluid">
+  <div class="container" ng-controller="quiz-controller" ng-init="quiz_get()">
+      
+    <h1 class="text-sm-center">{{questionnaire_name}}</h1>
+    <!-- <div class="badge badge-info">
+      Question {{question_no}} of {{size}}.
+    </div>
+    <pre>{{quiz}}</pre> -->
+
+    <div ng-show="quizActive">
+      <div class="row">
+        <div class="col-xs-8">
+          <h4>Progress:</h4>
+          <div class="btn-toolbar">
+            <button class="btn" ng-repeat="question in quizQuestions" ng-class="{'btn-info': question.selected !== null, 'btn-danger': question.selected === null}" ng-click="setActiveQuestion($index)">
+              <span class="glyphicon" ng-class="{'glyphicon-pencil': question.selected !== null, 'glyphicon-question-sign': question.selected === null}"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="alert alert-danger" ng-show="error">
+          Error! You have not answered all of the questions!
+          <button class="close" ng-click="error = false">&times</button>
+        </div>
+
+        <h3>Question:</h3>
+        <div class="well well-sm" ng-hide="finalize">
           <div class="row">
-            <pre class="col-xs-6" ng-repeat="answers in answer">{{answers.choices}}</pre>
+            <div class="col-xs-12">
+              <h4>{{activeQuestion+1 + ". " + quizQuestions[activeQuestion].question_desc}}</h4>
+              
+              <div class="row" ng-if="quizQuestions[activeQuestion].type === 'Text'">
+                <div class="col-sm-6" ng-repeat="answer in quizQuestions[activeQuestion].set_of_choices">
+                  <h4 class="answer colpad" ng-class="{'bg-info': $index === quizQuestions[activeQuestion].selected}" ng-click="selectAnswer($index)">
+                    {{answer.choices}}
+                  </h4>
+                </div>
+              </div>
+
+              <div class="row" ng-if="quizQuestions[activeQuestion].type === 'Image'">
+                <div class="col-sm-6" ng-repeat="answer in quizQuestions[activeQuestion].set_of_choices">
+                  <h4 class="image-answer" ng-class="{'image-selected': $index === quizQuestions[activeQuestion].selected}" ng-click="selectAnswer($index)">
+                    <img ng-src="{{answer.choices}}">
+                  </h4>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+
+          <button class="btn btn-warning" ng-click="questionAnsweredPrev()">Prev</button>          
+          <button class="btn btn-warning" ng-click="questionAnsweredNext()">Next</button>
+        </div>
+        
+        <div class="well well-sm" ng-show="finalize">
+          <div class="row">
+            <div class="col-xs-12">
+              <h3>Are you sure you want to submit your answers?</h3>
+              <button class="btn btn-success" ng-click="finalAnswers()">Yes</button>
+              <button class="btn btn-danger" ng-click="finalize = false">No</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+
+    <div ng-show="resultsActive">
+      <div class="row">
+        <div class="col-xs-8">
+          <h4>Results:</h4>  
+          <div class="btn-toolbar">
+            <button class="btn" ng-repeat="question in quizQuestions" ng-class="{'btn-success': question.correct, 'btn-danger': !question.correct}" ng-click="setResActiveQuestion($index)">
+              <span class="glyphicon" ng-class="{'glyphicon-ok': question.correct, 'glyphicon-remove': !question.correct}"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 top-buffer">
+          <h4>Score: {{numCorrect}} / {{quizQuestions.length}} ({{calculatePerc() | number:2}}%)</h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <h3>Questions:</h3>
+        <div class="well well-sm">
+          <div class="row">
+            <div class="col-xs-12">
+              <h4>{{activeQuestion+1 +". "+quizQuestions[activeQuestion].question_desc}}</h4>
+
+              <div class="row" ng-if="quizQuestions[activeQuestion].type === 'Text'">
+                <div class="col-sm-6" ng-repeat="answer in quizQuestions[activeQuestion].set_of_choices">
+                  <h4 class="answer colpad" ng-class="getAnswerClass($index)">
+                    {{answer.choices}}
+                    <p class="pull-right" ng-show="$index !== correctAnswers[activeQuestion] && $index === quizQuestions[activeQuestion].selected"></p>
+                    <p class="pull-right" ng-show="$index === correctAnswers[activeQuestion]"></p>
+                  </h4>
+                </div>
+              </div>
+
+              <div class="row" ng-if="quizQuestions[activeQuestion].type === 'Image'">
+                <div class="col-sm-6" ng-repeat="answer in quizQuestions[activeQuestion].set_of_choices">
+                  <div class="image-answer" ng-class="getAnswerClass($index)">
+                    <img ng-src="{{answer.choices}}">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg" ng-click="reset()">Go Back</button>
+      </div>
+    </div>
     
-    <!-- <div class="center-div">
-      <button class="btn btn-primary btn-choices">First</button>
-      <button class="btn btn-primary btn-choices" ng-click="quiz_prev()">Prev</button>
-      <button class="btn btn-primary btn-choices" ng-click="quiz_next()">Next</button>
-      <button class="btn btn-primary btn-choices">Last</button>
+    <div class="row text-left options">
+      <div class="col-md-6">
+        <div class="option">
+          <div class="container-fluid">
+            <div class="row">
+              <pre class="col-xs-6" ng-repeat="answers in answer">{{answers.choices}}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+      <!-- <div class="center-div">
+        <button class="btn btn-primary btn-choices">First</button>
+        <button class="btn btn-primary btn-choices" ng-click="quiz_prev()">Prev</button>
+        <button class="btn btn-primary btn-choices" ng-click="quiz_next()">Next</button>
+        <button class="btn btn-primary btn-choices">Last</button>
+      </div> -->
+
+    <!-- <div>
+      <div class="inner-div">
+        <button class="btn btn-primary btn-choices">Review</button>
+        <button class="btn btn-primary btn-choices">Submit Quiz</button>
+      </div>
     </div> -->
 
-  <!-- <div>
-    <div class="inner-div">
-      <button class="btn btn-primary btn-choices">Review</button>
-      <button class="btn btn-primary btn-choices">Submit Quiz</button>
-    </div>
-  </div> -->
-
+  </div>
 </div>
