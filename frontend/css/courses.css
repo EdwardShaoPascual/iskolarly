@@ -63,38 +63,36 @@
 }
 
 /* PANEL CARDS */
-.panel {
+.Course .panel {
   margin-bottom: 0px !important;
   border-bottom-left-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
   border-bottom: 0px !important;
+  position: relative;
+  background-color: #1f2833;
 }
 
-.panel-default {
+.Course .panel-default {
   position: relative;
   border: 2px solid #1f2833;
   border-bottom: 2px solid #1f2833;
 }
 
-.panel {
-  position: relative;
-  background-color: #1f2833;
-}
-
-.panel-heading {
+.Course .panel-heading {
   padding: 10px 20px;
   padding-bottom: 30px;
+  text-align: center;
 }
 
-.panel-header a {
+.Course .panel-header a {
   color: rgba(102, 252, 241, 1);
 }
 
-.panel-default > .panel-heading {
+.Course .panel-default > .panel-heading {
   background-color: white;
 }
 
-.panel-figure {
+.Course .panel-figure {
   margin-top: -10%;
 }
 

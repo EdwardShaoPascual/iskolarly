@@ -1,6 +1,7 @@
 .Home {
   background-color: rgba(44,62,80,1) !important; 
   height: 100%;
+  overflow: hidden;
 }
 
 .Home_info {

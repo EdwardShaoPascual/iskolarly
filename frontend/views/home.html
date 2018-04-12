@@ -23,6 +23,7 @@
         <div class="Home_ann_header col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <h2>Announcements</h2>
         </div>
+        <div class="Home_ann_padding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <div class="Home_ann_announcement card col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="Home_ann_announcement_cont card-block">
@@ -42,7 +43,11 @@
       <!-- <hr class="col-md-9 col-lg-9 col-xl-9" /> -->
       <div ng-controller="courses-controller" ng-init="courses_view(); check_auth();">
         <!-- <div class="Course"> -->
-
+          <div class="Home_ann_padding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+          <div class="Home_ann_header col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h2>Courses</h2>
+          </div>
+          <div class="Home_ann_padding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
           <div class="container">
             <div class="row">
               <span ng-repeat="course in courses | filter: { course_title : search_filter }">
