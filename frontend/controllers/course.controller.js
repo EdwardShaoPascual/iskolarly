@@ -3,13 +3,20 @@
 (() => {
 	angular
 	.module('app')
-	.controller('questionnaire-controller', questionnaire_controller);
+	.controller('course-controller', course_controller);
 
-  questionnaire_controller.$inject = ['$scope', '$window', 'QuestionnaireService'];
+  course_controller.$inject = ['$scope', '$window', 'CourseService'];
 
-	function questionnaire_controller($scope, $window, QuestionnaireService) {
-		$scope.user = new Array();
+	function course_controller($scope, $window, CourseService) {
+    
+    $scope.user = new Array();
+    $scope.active = 1;
 
+    $scope.course_info = {
+      course_id: ''
+    }
+    $scope.course_intro = {}
+    
 		$scope.questionnairesData = {
       questionnaire_name: '',
       questionnaire_desc: '',
@@ -23,8 +30,34 @@
       questionnaire_no: ''
     }
 
+    $scope.change_active = (data) => {
+      $scope.active = data;
+      if (data == 1) {
+        $('.carousel').carousel('prev')    
+      } else {
+        $('.carousel').carousel('next')
+      }
+    }
+
+    $scope.retrieve_course = () => {
+      let url = window.location.href
+      let res = url.split("/");
+      $scope.course_info.course_id = res[res.length-1];
+      CourseService
+      .retrieve_course($scope.course_info)
+      .then(function(res) {
+        if (res.length === 0) {
+          window.location = '#/error_404';
+        } else {
+          $scope.course_intro = res[0];
+        }
+      }, function(err) {
+        toastr.error(err.message, 'Error');
+      })
+    }
+
 		$scope.questionnaires_view = () => {
-			QuestionnaireService
+			CourseService
 			.view_questionnaires()
 			.then(function(res) {
         for (let i=0; i < res.length; i++) {
@@ -43,7 +76,7 @@
         questionnaire_desc: '',
         questionnaire_no: ''
       }
-			QuestionnaireService
+			CourseService
 			.add_questionnaires($scope.questionnairesData)
 			.then(function(res) {
         data.questionnaire_id = res.insertId;
@@ -68,7 +101,7 @@
     $scope.questionnaires_get_info = (data) => {
       $scope.questionnaire_id = data;
 
-			QuestionnaireService
+			CourseService
 			.get_info_questionnaires($scope.questionnaire_id)
 			.then(function(res) {
         $scope.questionnairesInfo = res[0];
@@ -94,7 +127,7 @@
         questionnaire_no: questionnaire_no
       }
 
-      QuestionnaireService
+      CourseService
       .edit_questionnaires($scope.edit_questionnairesData)
       .then(function(res) {
         swal({
@@ -120,7 +153,7 @@
         closeOnConfirm: false
       },
       function(){
-        QuestionnaireService
+        CourseService
         .delete_questionnaires($scope.questionnaire_id)
         .then(function(res) {
           swal({

@@ -16,6 +16,7 @@
 
     $scope.course_data = {
       course_title: '',
+      course_section: '',
       course_description: ''
     }
     $scope.session = {};
@@ -67,6 +68,12 @@
       } 
       else if ($scope.course_data.course_title.length < 5) {
         toastr.error("Course title must be in length of at least 5 characters!", 'Error');             
+      }
+      else if ($scope.course_data.course_section.length === 0) {
+        toastr.error("Course section must be in length of at least 1 character!", 'Error');             
+      } 
+      else if ($scope.course_data.course_description.length > 256) {
+        toastr.error("Course description must be in length of at most 256 characters!", 'Error');             
       } 
       else {
         CoursesService

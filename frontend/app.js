@@ -12,22 +12,22 @@ mainApp.config(function($routeProvider, $locationProvider) {
       templateUrl: 'views/home.html',
     })
     .when('/courses', {
-      templateUrl: 'views/course.html'
+      templateUrl: 'views/courses.html'
     })
-    .when('/error_404', {
-      templateUrl: 'views/error_404.html'
+    .when('/course/:course_id', {
+      templateUrl: 'views/course.html',
+      controller: 'course-controller'
     })
     .when('/quiz/:questionnaire_id', {
       templateUrl: 'views/quiz.html',
       controller: 'quiz-controller'
     })
-    .when('/questionnaire', {
-      templateUrl: 'views/questionnaire.html',
-      controller: 'questionnaire-controller'
-    })
     .when('/question/:questionnaire_id', {
       templateUrl: 'views/question.html',
       controller: 'question-controller'
+    })
+    .when('/error_404', {
+      templateUrl: 'views/error_404.html'
     })
     .otherwise({
       redirectTo: '/error_404'

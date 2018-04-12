@@ -1,3 +1,8 @@
+html {
+  overflow-x: hidden;
+  background-color: #0b0c10 !important;  
+}
+
 .Landing {
   background: url('./../assets/landing.jpg') no-repeat center center fixed;
   background-size: cover;
