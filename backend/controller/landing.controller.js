@@ -25,10 +25,12 @@ exports.login = function(req, res, next) {
             req.headers["x-forwarded-for"] ||
             '').split(',')[0] ||
            req.client.remoteAddress;
-          let queryStringCB = 'INSERT INTO activity_log (activity_info) VALUES (?)';
-          let activityDescription = 'activity=login user='+result[0].username+' user_id='+result[0].user_id +' time='+moment().format()+' ipv4='+ ip_address;
-          db.query(queryStringCB, [activityDescription], (err, rest, args, last_query) => {
+          let queryStringCB = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
+          let activityDescription = 'user='+result[0].username+' user_id='+result[0].user_id +' time='+moment().format()+' ipv4='+ ip_address;
+          let activity = "Login";
+          db.query(queryStringCB, [activity,activityDescription], (err, rest, args, last_query) => {
             if (err) {
+              console.log(err);
               return res.status(500).send({message: "An error has encountered"})
             }
             return res.status(200).send(rest);

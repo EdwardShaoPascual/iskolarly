@@ -148,6 +148,15 @@ CREATE TABLE activity_log (
 	PRIMARY KEY						(activity_id)
 );
 
+DROP TABLE IF EXISTS announcement;
+CREATE TABLE announcement (
+	announcement_id					int NOT NULL AUTO_INCREMENT,
+	course_id						int NOT NULL,
+	course_title					varchar(256) NOT NULL,
+	post							varchar(1000) NOT NULL,
+	PRIMARY KEY						(announcement_id)
+);
+
 delimiter |
 
 CREATE TRIGGER tr_course_course_code AFTER INSERT ON `course` 

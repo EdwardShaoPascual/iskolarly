@@ -6,9 +6,26 @@
   /* border: 1px solid !important; */
 }
 
+.toggle {
+  margin-top: 5px;
+  display: block;
+  background: white(0,0,0,0.78);
+  color: #fefefe;
+  padding: 1px;
+  border-radius: 0.4em;
+  transition: background .3s ease;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
 .quest-button {
   width: 93% !important;
   text-align: left !important;
+}
+
+.quest-button:focus, .quest-button:focus:active {
+  outline: none;
 }
 
 .quest-remove {
@@ -27,12 +44,17 @@ pre {
   text-align: justify;
 }
 
+.pre-height {
+  height: 75px !important;
+}
+
 .gly-custom {
   margin-left: 0px !important;
   float: right;
 }
 
 .ans-custom {
+  word-wrap: break-word;
   float: left;
   width: 80% !important;
 }
