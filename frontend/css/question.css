@@ -9,19 +9,21 @@
 .toggle {
   margin-top: 5px;
   display: block;
-  background: white(0,0,0,0.78);
+  background: rgba(126, 116, 116, 0.78);
   color: #fefefe;
   padding: 1px;
   border-radius: 0.4em;
   transition: background .3s ease;
   border-style: solid;
   border-width: 1px;
-  border-color: black;
+  border-color: white;
+  font-weight: 1500;
 }
 
 .quest-button {
   width: 93% !important;
   text-align: left !important;
+  color: black !important;
 }
 
 .quest-button:focus, .quest-button:focus:active {
