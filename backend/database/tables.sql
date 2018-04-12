@@ -119,6 +119,7 @@ CREATE TABLE questions (
 	question_id						int NOT NULL AUTO_INCREMENT,
 	questionnaire_id				int NOT NULL,
 	question_desc					varchar(256) NOT NULL,
+	type							enum("Text", "Image") NOT NULL,
 	has_answer						int,
 	PRIMARY KEY						(question_id),
 	CONSTRAINT						`fk_questions_questionnaires`
@@ -130,7 +131,7 @@ DROP TABLE IF EXISTS answers;
 CREATE TABLE answers (
 	answer_id						int NOT NULL AUTO_INCREMENT,
 	question_id						int NOT NULL,
-	choices							varchar(256) NOT NULL,
+	choices							varchar(15000) NOT NULL,
 	is_right						enum("Yes", "No") NOT NULL,
 	PRIMARY KEY						(answer_id),
 	CONSTRAINT						`fk_answers_questions`

@@ -18,10 +18,35 @@
   cursor:pointer;
   overflow: hidden;
   outline:none;
+  float: right;
 }
 
 pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   text-align: justify;
+}
+
+.gly-custom {
+  margin-left: 0px !important;
+  float: right;
+}
+
+.ans-custom {
+  float: left;
+  width: 80% !important;
+}
+
+.image-answer{
+  cursor: pointer;
+  height: 350px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.image-answer img{
+  width: 100%;
+  height: auto;
 }

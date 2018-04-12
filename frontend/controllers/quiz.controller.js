@@ -49,6 +49,7 @@
               $scope.users = rest;
               
               var jsonArg = new Object();
+              jsonArg.type = $scope.user[math].type;
               jsonArg.question_desc = $scope.user[math].question_desc;
               jsonArg.selected = null;
               jsonArg.correct = null;
@@ -63,6 +64,7 @@
 
               jsonArg.set_of_choices = $scope.choice;
               $scope.quizQuestions.push(jsonArg);
+              console.log($scope.quizQuestions)
             }, function(errt) {
               console.log(errt);
             })
@@ -194,9 +196,9 @@
     }
 
     $scope.getAnswerClass = (index) => {
-      if (index === $scope.correctAnswers[resActiveQuestion]) {
+      if (index === $scope.correctAnswers[$scope.resActiveQuestion]) {
         return "bg-success";
-      } else if (index === quizQuestions[resActiveQuestion].selected){
+      } else if (index === $scope.quizQuestions[$scope.resActiveQuestion].selected){
         return "bg-danger";
       }
     }
