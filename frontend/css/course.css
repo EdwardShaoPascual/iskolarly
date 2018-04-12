@@ -3,6 +3,37 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+.Course_Spec_Dash {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 35px;
+}
+
+.Course_Spec .panel-title {
+  font-family: 'Open Sans', sans-serif;
+  color: #0b0c10;
+  font-size: 14px;
+}
+
+.Course_Spec_Announcement {
+  font-family: 'Open Sans', sans-serif;
+  color: #0b0c10;
+}
+
+.Course_Spec .panel-body {
+  font-family: 'Open Sans', sans-serif;
+  color: #0b0c10 !important;
+}
+
+.Course_Spec .panel-title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
+}
+
+.Course_Spec label {
+  font-family: 'Open Sans', sans-serif;
+  color: #0b0c10 !important;
+}
+
 .Course_Description {
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
@@ -64,4 +95,8 @@
   padding: 7px;
   border-radius: 50px;
   font-size: 18px !important;
+}
+
+textarea {
+  resize: none;
 }

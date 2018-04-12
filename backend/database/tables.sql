@@ -132,7 +132,7 @@ DROP TABLE IF EXISTS answers;
 CREATE TABLE answers (
 	answer_id						int NOT NULL AUTO_INCREMENT,
 	question_id						int NOT NULL,
-	choices							varchar(15000) NOT NULL,
+	choices							text NOT NULL,
 	is_right						enum("Yes", "No") NOT NULL,
 	PRIMARY KEY						(answer_id),
 	CONSTRAINT						`fk_answers_questions`
@@ -152,8 +152,7 @@ DROP TABLE IF EXISTS announcement;
 CREATE TABLE announcement (
 	announcement_id					int NOT NULL AUTO_INCREMENT,
 	course_id						int NOT NULL,
-	course_title					varchar(256) NOT NULL,
-	post							varchar(1000) NOT NULL,
+	post							text NOT NULL,
 	PRIMARY KEY						(announcement_id)
 );
 
