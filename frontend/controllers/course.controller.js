@@ -11,11 +11,20 @@
     
     $scope.user = new Array();
     $scope.active = 1;
+    $scope.active_option = 1;
 
     $scope.course_info = {
       course_id: ''
     }
     $scope.course_intro = {}
+
+    $scope.note_info = {
+      course_id: '',
+      user_id: '',
+      post: ''
+    }
+
+    $scope.announcements = {}
     
 		$scope.questionnairesData = {
       questionnaire_name: '',
@@ -39,6 +48,11 @@
       }
     }
 
+    $scope.change_option = (data) => {
+      console.log(data);
+      $scope.active_option = data;
+    }
+
     $scope.retrieve_course = () => {
       let url = window.location.href
       let res = url.split("/");
@@ -54,6 +68,38 @@
       }, function(err) {
         toastr.error(err.message, 'Error');
       })
+    }
+
+    $scope.retrieve_announcement = () => {
+      let url = window.location.href
+      let res = url.split("/");
+      $scope.course_info.course_id = res[res.length-1];
+      CourseService
+      .retrieve_announcement($scope.course_info)
+      .then(function(res) {
+        console.log(res);
+        $scope.announcements = res;
+      }, function(err) {
+        toastr.error(err.message, 'Error');
+      })
+    }
+
+    $scope.create_note = (data) => {
+      let url = window.location.href
+      let res = url.split("/");
+      $scope.note_info.course_id = res[res.length-1];
+      $scope.note_info.user_id = data;
+      if ($scope.note_info.post.length === 0) {
+        toastr.error("Please fill the note field", 'Error');        
+      } else {
+        CourseService
+        .create_note($scope.note_info)
+        .then(function(res) {
+          toastr.success("Note successfully added!", 'Success');
+        }, function(err) {
+          toastr.error(err.message, 'Error');
+        })
+      }
     }
 
 		$scope.questionnaires_view = () => {

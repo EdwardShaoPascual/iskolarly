@@ -152,8 +152,16 @@ DROP TABLE IF EXISTS announcement;
 CREATE TABLE announcement (
 	announcement_id					int NOT NULL AUTO_INCREMENT,
 	course_id						int NOT NULL,
+	user_id							int NOT NULL,
+	questionnaire_id				int DEFAULT NULL,
 	post							text NOT NULL,
-	PRIMARY KEY						(announcement_id)
+	PRIMARY KEY						(announcement_id),
+	CONSTRAINT						`fk_announcement_course`
+		FOREIGN KEY (course_id) REFERENCES course (course_id)
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT						`fk_announcement_user`
+		FOREIGN KEY (user_id) REFERENCES user (user_id)
+		ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 delimiter |

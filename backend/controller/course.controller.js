@@ -13,10 +13,51 @@ exports.retrieve_course = (req,res, next) => {
       if (result.length === 0) {
         res.send(result);
       } else {
-        delete result[0].password;
+        for (let i = 0; i<result.length; i++)
+          delete result[i].password;
         res.send(result);
       }
 
+    }
+  });
+}
+
+exports.retrieve_announcement = (req,res, next) => {
+  
+  let query_string = 'SELECT * FROM announcement NATURAL JOIN user NATURAL JOIN course where course_id = ?';
+
+  db.query(query_string, [req.query.course_id], (err, result) => {
+    if (err) {
+      return res.status(500).send({message: "An error has encountered"});
+    } else {
+      if (result.length === 0) {
+        res.send(result);
+      } else {
+        for (let i = 0; i<result.length; i++) {
+          delete result[i].password;
+          delete result[i].username;
+          delete result[i].birthday;
+          delete result[i].role;
+          delete result[i].college;
+        }
+        res.send(result);
+      }
+
+    }
+  });
+}
+
+exports.post_note = (req,res, next) => {
+  
+  let payload = [req.query.course_id,req.query.user_id,req.query.post];
+
+  let query_string = 'INSERT INTO announcement (course_id, user_id, post) VALUES (?,?,?)';
+
+  db.query(query_string, payload, (err, result) => {
+    if (err) {
+      return res.status(500).send({message: "An error has encountered"});
+    } else {
+      res.send(result);
     }
   });
 }
@@ -68,10 +109,8 @@ exports.edit_questionnaires = (req, res, next) => {
       let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.questionnaire_id]
   
       if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
-        console.log("Fill all the fields");
         return res.status(400).send("Fill all the fields");
       } else if (req.query.questionnaire_no < results[0].size) {
-        console.log("Wrong input items");
         return res.status(400).send("Wrong input items");
       }
 

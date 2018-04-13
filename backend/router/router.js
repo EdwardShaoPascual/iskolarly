@@ -16,10 +16,12 @@ module.exports = (router) => {
   // -- COURSE PAGE ROUTES --
   // GET
   router.get('/api/retrieve_course',                                  course_controller.retrieve_course);  
+  router.get('/api/retrieve_announcement',                            course_controller.retrieve_announcement);  
   router.get('/api/view_questionnaire',                               course_controller.view_questionnaires);
   router.get('/api/get_info_questionnaire/:questionnaire_id',         course_controller.get_info_questionnaires);
 
   // POST
+  router.post('/api/post_note',                                       course_controller.post_note);
   router.post('/api/add_questionnaire',                               course_controller.add_questionnaires);
   router.post('/api/edit_questionnaire',                              course_controller.edit_questionnaires);
   router.post('/api/delete_questionnaire/:questionnaire_id',          course_controller.delete_questionnaires);

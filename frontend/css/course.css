@@ -48,6 +48,29 @@
   margin-right: 7px;
   max-width: 50%;
   cursor: pointer;
+  color: #595E69 !important;
+}
+
+.Course_Post-active {
+  margin-right: 7px;
+  max-width: 50%;
+  cursor: pointer;
+  color: #0b0c10 !important;
+  font-weight: bolder;
+}
+
+.Course_Post-active:hover {
+  cursor: default;
+  text-decoration: none !important;
+}
+
+.Course_Option {
+  padding-top: 7px !important;
+}
+
+.Course_Opt {
+  float: right;
+  width: 100% !important;
 }
 
 .Questionnaire {
@@ -112,6 +135,18 @@ textarea {
   resize: none;
 }
 
+.centralized {
+  text-align: center;
+}
+
+@media only screen and (max-width: 991px) {
+  .Course_Option {
+    padding-top: 0px !important;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .Course_Header {
     font-size: 30px !important;
@@ -129,7 +164,6 @@ textarea {
     margin-bottom: 35px !important;
     font-size: 15px !important;
   }
-
 }
 
 @media only screen and (max-width: 347px) {
@@ -148,4 +182,5 @@ textarea {
   .Course_Instructor {
     margin-bottom: 40px !important;
   }
+
 }
