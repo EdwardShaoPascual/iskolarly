@@ -106,9 +106,21 @@
   font-weight: normal;
 }
 
+.Announcement_Quiz {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .Questionnaire {
   height: 100vh !important;
   background-color: #0b0c10 !important;    
+}
+
+.Thumb_Panel {
+  margin: 15px !important;
+  display: flex !important;
+  display: -ms-flex; 
+  display: -webkit-flex;
 }
 
 .custom-table {
@@ -116,7 +128,7 @@
 }
 
 .custom {
-  width: 30px !important;
+  width: 25px !important;
   height: 25px !important;
   padding: 0px;
   margin: 0px;
@@ -179,6 +191,11 @@ textarea {
 
 .centralized {
   text-align: center;
+}
+
+.thumbnail {
+  margin-bottom: 0px !important;
+  flex:1;
 }
 
 @media only screen and (max-width: 991px) {

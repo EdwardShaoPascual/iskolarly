@@ -24,7 +24,7 @@ exports.retrieve_course = (req,res, next) => {
 }
 
 exports.retrieve_announcement = (req,res, next) => {
-  let query_string = 'SELECT * FROM announcement NATURAL JOIN user NATURAL JOIN (SELECT course_id, course_title, course_section, course_description FROM course) as course where course_id = ? ORDER BY time_posted DESC';
+  let query_string = 'SELECT * FROM announcement LEFT JOIN questionnaires ON announcement.questionnaire_id = questionnaires.questionnaire_id NATURAL JOIN user NATURAL JOIN (SELECT course_id, course_title, course_section, course_description FROM course) as course where course_id = ? ORDER BY time_posted DESC';
 
   db.query(query_string, [req.query.course_id], (err, result) => {
     if (err) {
@@ -84,7 +84,20 @@ exports.add_questionnaires = (req, res, next) => {
   }
 
   db.query(query_string, request_data, (err, result) => {
-      res.send(result);
+    if (err) {
+      console.log(err);
+      return res.status(500).send({message: "An error has encountered"});
+    } else {
+      let new_query_string = 'INSERT INTO announcement (course_id, user_id, questionnaire_id, post, time_posted) VALUES (?,?,?,?,NOW())';
+      db.query(new_query_string, [req.query.course_id, req.session.user.user_id, result.insertId, req.query.post], (error, rest) => {
+        if (error) {
+          console.log(error);
+          return res.status(500).send({message: "An error has encountered"});
+        } else {
+          return res.send(rest);
+        }
+      })
+    }
   });
 }
 

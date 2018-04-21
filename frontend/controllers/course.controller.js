@@ -40,6 +40,10 @@
       questionnaire_no: ''
     }
 
+    $scope.emptyPrompt = () => {
+      toastr.error('Please fill the note field', 'Error');
+    }
+
     $scope.change_active = (data) => {
       $scope.active = data;
       if (data == 1) {
@@ -136,16 +140,18 @@
 		}
 
 		$scope.questionnaires_add = () => {
-      $scope.questionnaires_view();
-      let data = {
-        questionnaire_id: '',
-        questionnaire_name: '',
-        questionnaire_desc: '',
-        questionnaire_no: ''
-      }
-			CourseService
+      $scope.questionnairesData.course_id = window.location.href.split("/")[5];
+      $scope.questionnairesData.post = $scope.note_info.post;
+      console.log($scope.questionnairesData);
+      CourseService
 			.add_questionnaires($scope.questionnairesData)
 			.then(function(res) {
+        let data = {
+          questionnaire_id: '',
+          questionnaire_name: '',
+          questionnaire_desc: '',
+          questionnaire_no: ''
+        }
         data.questionnaire_id = res.insertId;
         data.questionnaire_name = $scope.questionnairesData.questionnaire_name;
         data.questionnaire_desc = $scope.questionnairesData.questionnaire_desc;
