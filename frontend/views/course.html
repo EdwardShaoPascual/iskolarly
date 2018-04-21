@@ -159,11 +159,11 @@
                     <div class="thumbnail hidden-xs hidden-sm hidden-md col-lg-2"/>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
                       <div class="row">
-                        <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
-                          <a class="Announcement_Quiz" ng-if="session.role === 'Instructor'" href="/#/question/{{announcement.questionnaire_id}}">{{announcement.questionnaire_name}}</a>
-                          <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/quiz/{{announcement.questionnaire_id}}">{{announcement.questionnaire_name}}</a>
+                        <div class="Quiz col-xs-9 col-sm-10 col-md-11 col-lg-11">
+                          <a class="Announcement_Quiz" ng-if="session.role === 'Instructor'" href="/#/question/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
+                          <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/quiz/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
                         </div>
-                        <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <div class="Announcement_Quiz_Edit col-xs-3 col-sm-2 col-md-1 col-lg-1">
                           <button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded custom" ng-click="questionnaires_get_info(announcement.questionnaire_id)">
                             <span class="float-right glyphicon glyphicon-pencil quiz_edit_glyph"></span>
                           </button>
@@ -199,36 +199,6 @@
 
     </div>
 
-  </div>
-
-  <div ng-controller="course-controller" ng-init="questionnaires_view()" class="Questionnaire container">
-    <!-- Editable table -->
-    <div id="table" class="table-editable">
-      <!-- <p id="export"></p> -->
-      <table class="table table-bordered table-responsive table-striped">
-        <tr>
-          <th>No.</th>
-          <th>Name of Questionnaire</th>
-          <th class="text-center">Items</th>
-          <th class="custom-table text-center">Actions</th>
-          <!-- <th class="text-center">Remove</th> -->
-        </tr>
-        <tr ng-repeat="questionnaires in user">
-          <td>{{$index+1}}</td>
-          <td><a class="change-name" ng-click="page_view(questionnaires.questionnaire_id)">{{questionnaires.questionnaire_name}}</a></td>
-          <td class="custom-table text-center">{{questionnaires.questionnaire_no}}</td>
-          <td class="text-center">
-            <!-- <span class="table-remove"> -->
-              <button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded custom" ng-click="questionnaires_get_info(questionnaires.questionnaire_id)">
-                <span class="glyphicon glyphicon-pencil"></span>
-              </button>
-              <button type="button" class="btn btn-danger btn-rounded custom" ng-click="questionnaires_delete(questionnaires.questionnaire_id, $index)">
-                <span class="glyphicon glyphicon-remove"></span>       
-              </button>
-          </td>
-        </tr>
-      </table>
-    </div>
   </div>
 
   <!-- Add Modal -->

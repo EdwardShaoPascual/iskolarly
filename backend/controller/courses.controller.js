@@ -16,7 +16,7 @@ exports.view_courses = (req, res, next) => {
     if (err) {
       return res.status(500).send({message: "An error has encountered"});
     } else {
-      res.send(result);
+      res.send(result.reverse());
     }
   });
 }
