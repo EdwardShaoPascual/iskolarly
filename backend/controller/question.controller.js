@@ -95,8 +95,8 @@ exports.view_answers = (req, res, next) => {
 }
 
 exports.add_answers = (req, res, next) => {
-  let query_string = 'INSERT INTO answers (question_id, choices, is_right) VALUES (?, ?, ?)'
-  let request_data = [req.params.question_id, req.query.choices, req.query.is_right]
+  let query_string = 'INSERT INTO answers (question_id, choices, is_right) VALUES ((SELECT question_id FROM questions ORDER BY question_id DESC LIMIT 1), ?, ?)'
+  let request_data = [req.query.choices, req.query.is_right]
 
   db.query(query_string, request_data, (err, result) => {
     res.send(result);

@@ -134,13 +134,13 @@
       return deferred.promise;
     }
 
-    const add_answers = function (data1, data2) {
+    const add_answers = function (data) {
       let deferred = $q.defer();
       
       $http({
         method: 'POST',
-        params: data1,
-        url: '/api/add_answer/' + data2,
+        params: data,
+        url: '/api/add_answer',
         headers: headers
       })
       .then(function(res) {

@@ -21,9 +21,7 @@
       
           <div id="collapseOne{{$index+1}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
-              <pre>{{questions.question_desc}}
-                <button id="export-btn" class="btn btn-primary" id="Answer" data-toggle="modal" data-target=".bd-example-modal-lgs-2" ng-click="questions_get_info(questions.question_id)" ng-show="user[$index].has_answer == NULL">Add Answers</button>
-              </pre>
+              <pre>{{questions.question_desc}}</pre>
               <div class="container-fluid">
                 <div class="row" ng-init="answers_view(questions.question_id, $index)" >
                   <pre class="col-xs-6 pre-height" ng-repeat="answers in answer[$index]"><span class="ans-custom">{{answers.choices}}</span><span class="glyphicon glyphicon-remove gly-custom" ng-click="answers_delete(answers.answer_id)"></span></pre>
@@ -61,83 +59,69 @@
             </div>
           </div>
 
-          <button ng-click="questions_add()" type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div ng-controller="question-controller" class="modal fade bd-example-modal-lgs-2" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span ng-model="questionsInfo.question_id" id="edit_quest_id"></span>
-        <!-- <span ng-model="questionsInfo.type" id="edit_type"></span> -->
-        <h4 class="modal-title">Answers</h4>
-      </div>
-      <div class="modal-body" ng-show="typeText" ng-hide="!typeText">
-        <form>
-          <div class="form-group">
-            <table class="table table-bordered table-hover table-responsive" id="tableAddRow">
-              <thead>
-                <tr>
-                  <th>Answers</th>
-                  <th>Right</th>
-                  <th><span class="glyphicon glyphicon-plus addBtn" id="addBtn_0"></span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr id="tr_0">
-                  <td><input type="text" id="answer_0" class="form-control" ng-model="answersData.choices_0"/></td>
-                  <td>
-                    <select id="right_0" class="form-control" ng-model="answersData.is_right_0">
-                      <option selected>Yes</option>
-                      <option>No</option>
-                    </select>
-                  </td>
-                  <td><span class="glyphicon glyphicon-minus removeBtn" id="removeBtn_0"></span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="modal-body" ng-show="questionsData.type == 'Text'" ng-hide="questionsData.type != 'Text'">
+            <form>
+              <div class="form-group">
+                <table class="table table-bordered table-hover table-responsive" id="tableAddRow">
+                  <thead>
+                    <tr>
+                      <th>Answers</th>
+                      <th>Right</th>
+                      <th><span class="glyphicon glyphicon-plus addBtn" id="addBtn_0"></span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="tr_0">
+                      <td><input type="text" id="answer_0" class="form-control" ng-model="answersData.choices_0"/></td>
+                      <td>
+                        <select id="right_0" class="form-control" ng-model="answersData.is_right_0">
+                          <option selected>Yes</option>
+                          <option>No</option>
+                        </select>
+                      </td>
+                      <td><span class="glyphicon glyphicon-minus removeBtn" id="removeBtn_0"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+    
+              <button ng-click="questions_add(); answers_add(0)" type="submit" class="btn btn-primary">Submit</button>
+              <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </form>
           </div>
+    
+          <div class="modal-body" ng-show="questionsData.type == 'Image'" ng-hide="questionsData.type != 'Image'">
+            <form>
+              <div class="form-group">
+                <table class="table table-bordered table-hover table-responsive" id="tableAddRows">
+                  <thead>
+                    <tr>
+                      <th>Image Url</th>
+                      <th>Right</th>
+                      <th><span class="glyphicon glyphicon-plus addBtns" id="addBtns_0"></span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="tr_0">
+                      <td><input type="url" id="answers_0" class="form-control" ng-model="answersData.choices_0"/></td>
+                      <td>
+                        <select id="rights_0" class="form-control" ng-model="answersData.is_right_0">
+                          <option selected>Yes</option>
+                          <option>No</option>
+                        </select>
+                      </td>
+                      <td><span class="glyphicon glyphicon-minus removeBtns" id="removeBtns_0"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-          <button ng-click="answers_add(0)" type="submit" class="btn btn-primary">Submit</button>
-          <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
+              <button ng-click="questions_add(); answers_add(1)" type="submit" class="btn btn-primary">Submit</button>
+              <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </form>
+          </div>
         </form>
       </div>
-
-      <div class="modal-body" ng-show="!typeText" ng-hide="typeText">
-          <form>
-            <div class="form-group">
-              <table class="table table-bordered table-hover table-responsive" id="tableAddRows">
-                <thead>
-                  <tr>
-                    <th>Image Url</th>
-                    <th>Right</th>
-                    <th><span class="glyphicon glyphicon-plus addBtns" id="addBtns_0"></span></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr id="tr_0">
-                    <td><input type="url" id="answers_0" class="form-control" ng-model="answersData.choices_0"/></td>
-                    <td>
-                      <select id="rights_0" class="form-control" ng-model="answersData.is_right_0">
-                        <option selected>Yes</option>
-                        <option>No</option>
-                      </select>
-                    </td>
-                    <td><span class="glyphicon glyphicon-minus removeBtns" id="removeBtns_0"></span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-  
-            <button ng-click="answers_add(1)" type="submit" class="btn btn-primary">Submit</button>
-            <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
-          </form>
-        </div>
     </div>
   </div>
 </div>
@@ -182,7 +166,7 @@
 
     var i = 1;
     function addTableRow() {
-      var tempTr = $('<tr><td><input type="text" id="answers_' + i + 
+      var tempTr = $('<tr><td><input type="url" id="answers_' + i + 
                      '" class="form-control" /></td><td><select id="rights_' + i + 
                      '" class="form-control"><option>Yes</option><option>No</option></select></td><td><span class="glyphicon glyphicon-minus removeBtn" id="removes_' + i + 
                      '"></span></td></tr>').on('click', function () {

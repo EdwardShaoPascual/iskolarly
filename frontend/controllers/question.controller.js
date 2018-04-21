@@ -129,9 +129,12 @@
       })
     }
 
-    $scope.answers_add = (data) => {
-      $scope.question_id = $('#edit_quest_id').val();     
-      let id = $("input[type=text]:last").attr("id")
+    $scope.answers_add = (data) => {    
+      let id;
+      if (data == 0) id = $("input[type=text]:last").attr("id");
+      else id = $("input[type=url]:last").attr("id");
+
+      console.log(id);
 
       for(let i=0; i<=parseInt(id.substr(id.length -1)); i++) {
         let a, b;
@@ -150,7 +153,7 @@
           }
 
           QuestionService
-          .add_answers($scope.answersData, $scope.question_id)
+          .add_answers($scope.answersData)
           .then(function(res) {
             $scope.user = res;
             swal({

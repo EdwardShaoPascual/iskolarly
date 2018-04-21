@@ -121,7 +121,6 @@ CREATE TABLE questions (
 	questionnaire_id				int NOT NULL,
 	question_desc					varchar(256) NOT NULL,
 	type							enum("Text", "Image") NOT NULL,
-	has_answer						int,
 	PRIMARY KEY						(question_id),
 	CONSTRAINT						`fk_questions_questionnaires`
 		FOREIGN KEY (questionnaire_id) REFERENCES questionnaires (questionnaire_id)
@@ -174,20 +173,20 @@ CREATE TRIGGER tr_course_course_code AFTER INSERT ON `course`
 	END;|  
 delimiter ;
 
-delimiter |
+-- delimiter |
 
-CREATE TRIGGER in_occupy_trig AFTER INSERT ON `answers` 
-	FOR EACH ROW
-	BEGIN
-		UPDATE questions SET has_answer = '1' WHERE question_id = NEW.question_id;
-	END;|
-delimiter ;
+-- CREATE TRIGGER in_occupy_trig AFTER INSERT ON `answers` 
+-- 	FOR EACH ROW
+-- 	BEGIN
+-- 		UPDATE questions SET has_answer = '1' WHERE question_id = NEW.question_id;
+-- 	END;|
+-- delimiter ;
 
-delimiter |
+-- delimiter |
 
-CREATE TRIGGER del_occupy_trig AFTER DELETE ON `answers` 
-	FOR EACH ROW
-	BEGIN
-		UPDATE questions SET has_answer = NULL WHERE question_id = OLD.question_id;
-	END;|
-delimiter ;
+-- CREATE TRIGGER del_occupy_trig AFTER DELETE ON `answers` 
+-- 	FOR EACH ROW
+-- 	BEGIN
+-- 		UPDATE questions SET has_answer = NULL WHERE question_id = OLD.question_id;
+-- 	END;|
+-- delimiter ;
