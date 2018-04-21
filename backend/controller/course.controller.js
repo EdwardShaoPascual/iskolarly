@@ -63,6 +63,19 @@ exports.post_note = (req,res, next) => {
   });
 }
 
+exports.view_announcements  = (req, res, next) => {
+  let query_string = 'SELECT * FROM announcement LEFT JOIN questionnaires ON announcement.questionnaire_id = questionnaires.questionnaire_id NATURAL JOIN user NATURAL JOIN (SELECT course_id, course_title, course_section, course_description FROM course) as course ORDER BY time_posted DESC';
+  let request_data = []
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}
+
 exports.view_questionnaires = (req, res, next) => {
   let query_string = 'SELECT * FROM questionnaires';
 

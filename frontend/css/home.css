@@ -108,6 +108,54 @@
   margin-top: -10%;
 }
 
+.Home-Posted {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.Home-Posted .panel-body {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  background-color: #1f2833;
+}
+
+.Home-Posted .panel-heading {
+  background-color: #fff !important;
+}
+
+.Home-Posted .panel-title {
+  white-space: normal;
+  font-size: 13px;
+  font-weight: bold;
+  color: #000;
+  background-color: #fff;
+}
+
+.Home pre{
+  word-break: keep-all;
+  border: 0px;
+  background-color: inherit;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff !important;
+}
+
+.custom-announce {
+  margin-bottom: 10px;
+}
+
+.Thumb_Panel {
+  margin: 15px !important;
+  display: flex !important;
+  display: -ms-flex; 
+  display: -webkit-flex;
+}
+
+.Thumb_Panel .home {
+  color: #000 !important;
+}
+
 hr {
   width: 96% !important;
   border: 1px solid white !important;

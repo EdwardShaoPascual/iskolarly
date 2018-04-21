@@ -10,6 +10,7 @@
 	function course_controller($scope, $window, $sce, $timeout, CourseService) {
     
     $scope.user = new Array();
+    $scope.announce = new Array();
     $scope.active = 1;
     $scope.active_option = 1;
     $scope.trust = $sce.trustAsHtml;
@@ -125,6 +126,18 @@
           toastr.error(err.message, 'Error');
         })
       }
+    }
+
+    $scope.announcements_view = () => {
+			CourseService
+			.view_announcements()
+			.then(function(res) {
+        for (let i=0; i < res.length; i++) {
+          $scope.announce.push(res[i]);
+        }
+			}, function(err) {
+        toastr.error(err.message, 'Error');
+      })
     }
 
 		$scope.questionnaires_view = () => {

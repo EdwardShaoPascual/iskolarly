@@ -15,6 +15,7 @@ module.exports = (router) => {
   
   // -- COURSE PAGE ROUTES --
   // GET
+  router.get('/api/view_announcement',                                course_controller.view_announcements);
   router.get('/api/retrieve_course',                                  course_controller.retrieve_course);  
   router.get('/api/retrieve_announcement',                            course_controller.retrieve_announcement);  
   router.get('/api/view_questionnaire',                               course_controller.view_questionnaires);

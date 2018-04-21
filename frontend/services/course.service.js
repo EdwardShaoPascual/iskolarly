@@ -67,7 +67,23 @@
       return deferred.promise;
     }
 
-    function view_questionnaires() {
+    const view_announcements = function () {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/api/view_announcement'
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
+    const view_questionnaires = function () {
       let deferred = $q.defer();
 
       $http({
@@ -161,6 +177,7 @@
     service.retrieve_course = retrieve_course;
     service.retrieve_announcement = retrieve_announcement;
     service.create_note = create_note;
+    service.view_announcements = view_announcements;
     service.view_questionnaires = view_questionnaires;
     service.add_questionnaires = add_questionnaires;
     service.get_info_questionnaires = get_info_questionnaires;
