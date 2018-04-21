@@ -201,36 +201,6 @@
 
   </div>
 
-  <div ng-controller="course-controller" ng-init="questionnaires_view()" class="Questionnaire container">
-    <!-- Editable table -->
-    <div id="table" class="table-editable">
-      <!-- <p id="export"></p> -->
-      <table class="table table-bordered table-responsive table-striped">
-        <tr>
-          <th>No.</th>
-          <th>Name of Questionnaire</th>
-          <th class="text-center">Items</th>
-          <th class="custom-table text-center">Actions</th>
-          <!-- <th class="text-center">Remove</th> -->
-        </tr>
-        <tr ng-repeat="questionnaires in user">
-          <td>{{$index+1}}</td>
-          <td><a class="change-name" ng-click="page_view(questionnaires.questionnaire_id)">{{questionnaires.questionnaire_name}}</a></td>
-          <td class="custom-table text-center">{{questionnaires.questionnaire_no}}</td>
-          <td class="text-center">
-            <!-- <span class="table-remove"> -->
-              <button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded custom" ng-click="questionnaires_get_info(questionnaires.questionnaire_id)">
-                <span class="glyphicon glyphicon-pencil"></span>
-              </button>
-              <button type="button" class="btn btn-danger btn-rounded custom" ng-click="questionnaires_delete(questionnaires.questionnaire_id, $index)">
-                <span class="glyphicon glyphicon-remove"></span>       
-              </button>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
   <!-- Add Modal -->
   <div class="modal fade bd-example-modal-lgs" id="addQuestionnaire" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
