@@ -1,6 +1,7 @@
 'use strict';
 
 const db = require(__dirname + '/../lib/mysql');
+const moment = require('moment');
 
 exports.retrieve_course = (req,res, next) => {
   
@@ -23,8 +24,7 @@ exports.retrieve_course = (req,res, next) => {
 }
 
 exports.retrieve_announcement = (req,res, next) => {
-  
-  let query_string = 'SELECT * FROM announcement NATURAL JOIN user NATURAL JOIN course where course_id = ?';
+  let query_string = 'SELECT * FROM announcement NATURAL JOIN user NATURAL JOIN course where course_id = ? ORDER BY time_posted DESC';
 
   db.query(query_string, [req.query.course_id], (err, result) => {
     if (err) {
@@ -39,6 +39,7 @@ exports.retrieve_announcement = (req,res, next) => {
           delete result[i].birthday;
           delete result[i].role;
           delete result[i].college;
+          result[i].time_posted = moment(result[i].time_posted).format('ll').split(',')[0];
         }
         res.send(result);
       }
@@ -51,7 +52,7 @@ exports.post_note = (req,res, next) => {
   
   let payload = [req.query.course_id,req.query.user_id,req.query.post];
 
-  let query_string = 'INSERT INTO announcement (course_id, user_id, post) VALUES (?,?,?)';
+  let query_string = 'INSERT INTO announcement (course_id, user_id, post, time_posted) VALUES (?,?,?,NOW())';
 
   db.query(query_string, payload, (err, result) => {
     if (err) {

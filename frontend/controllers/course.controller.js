@@ -3,15 +3,16 @@
 (() => {
 	angular
 	.module('app')
-	.controller('course-controller', course_controller);
+  .controller('course-controller', course_controller);
 
-  course_controller.$inject = ['$scope', '$window', 'CourseService'];
+  course_controller.$inject = ['$scope', '$window', '$sce', '$timeout', 'CourseService'];
 
-	function course_controller($scope, $window, CourseService) {
+	function course_controller($scope, $window, $sce, $timeout, CourseService) {
     
     $scope.user = new Array();
     $scope.active = 1;
     $scope.active_option = 1;
+    $scope.trust = $sce.trustAsHtml;
 
     $scope.course_info = {
       course_id: ''
@@ -49,7 +50,6 @@
     }
 
     $scope.change_option = (data) => {
-      console.log(data);
       $scope.active_option = data;
     }
 
@@ -77,7 +77,12 @@
       CourseService
       .retrieve_announcement($scope.course_info)
       .then(function(res) {
-        console.log(res);
+        let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+        for (let i=0; i<res.length; i++) {
+          if (res[i].post.match(urls)) {
+            res[i].post = res[i].post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
+          }
+        }
         $scope.announcements = res;
       }, function(err) {
         toastr.error(err.message, 'Error');
@@ -88,7 +93,7 @@
       let url = window.location.href
       let res = url.split("/");
       $scope.note_info.course_id = res[res.length-1];
-      $scope.note_info.user_id = data;
+      $scope.note_info.user_id = data.user_id;
       if ($scope.note_info.post.length === 0) {
         toastr.error("Please fill the note field", 'Error');        
       } else {
@@ -96,6 +101,23 @@
         .create_note($scope.note_info)
         .then(function(res) {
           toastr.success("Note successfully added!", 'Success');
+          $timeout(() => {
+            // Push announcement here
+            let time = moment().format('ll').split(',')[0];
+            let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+            if ($scope.note_info.post.match(urls)) {
+              $scope.note_info.post = $scope.note_info.post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
+            }
+            let datum = {
+              post: $scope.note_info.post,
+              firstname: data.firstname,
+              lastname: data.lastname,
+              time_posted: time
+            }
+            $scope.announcements.unshift(datum);
+            $scope.$apply();
+            $scope.note_info.post = '';                   
+          }, 100);
         }, function(err) {
           toastr.error(err.message, 'Error');
         })

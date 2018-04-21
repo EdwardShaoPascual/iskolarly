@@ -155,6 +155,7 @@ CREATE TABLE announcement (
 	user_id							int NOT NULL,
 	questionnaire_id				int DEFAULT NULL,
 	post							text NOT NULL,
+	time_posted						datetime NOT NULL,
 	PRIMARY KEY						(announcement_id),
 	CONSTRAINT						`fk_announcement_course`
 		FOREIGN KEY (course_id) REFERENCES course (course_id)

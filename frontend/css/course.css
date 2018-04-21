@@ -95,6 +95,17 @@
   width: 100% !important;
 }
 
+.Announcement_Detail {
+  float: left !important;
+  padding-top: 5px;
+  padding-right: 5px;
+}
+
+.Announcement_Detail_Time {
+  margin: 0px 0px 0px !important;
+  font-weight: normal;
+}
+
 .Questionnaire {
   height: 100vh !important;
   background-color: #0b0c10 !important;    
