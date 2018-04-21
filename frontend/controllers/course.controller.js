@@ -129,18 +129,11 @@
         data.questionnaire_name = $scope.questionnairesData.questionnaire_name;
         data.questionnaire_desc = $scope.questionnairesData.questionnaire_desc;
         data.questionnaire_no = $scope.questionnairesData.questionnaire_no;
-        swal({
-          title: "Success!",
-          text: "File has been added.",
-          type: "success"
-        }, () => {
-          location.reload();          
-        })
+        toastr.success("The quiz has been added", 'Success');
         $('#addQuestionnaire').modal('hide');
         $scope.user.push(data);
 			}, function(err) {
-				console.log(err);
-        swal("Oops!", err.data, "error");
+        toastr.error(err.data, 'Error');
 			})
     }
     

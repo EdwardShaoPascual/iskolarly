@@ -68,6 +68,28 @@
   padding-top: 7px !important;
 }
 
+.Course_Posted {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.Course_Posted .panel-body {
+  white-space: normal;
+}
+
+.Course_Posted .panel-title {
+  white-space: normal;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.Course_Posted pre{
+  word-break: keep-all;
+  border: 0px;
+  background-color: inherit;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .Course_Opt {
   float: right;
   width: 100% !important;
@@ -124,6 +146,15 @@
   padding: 7px;
   border-radius: 50px;
   font-size: 18px !important;
+}
+
+.post_glyph {
+  background-color: #c5c6c7;
+  padding: 5px;
+  border-radius: 50px;
+  font-size: 14px !important;
+  color: white;
+  margin-right: 5px;
 }
 
 .glyph_spec {
