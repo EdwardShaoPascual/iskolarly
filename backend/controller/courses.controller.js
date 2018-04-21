@@ -10,7 +10,7 @@ exports.view_courses = (req, res, next) => {
   else if (req.session.user.role === 'Instructor') {
     query_string = 'SELECT firstname, lastname, course_id, course_title, course_section, course_description, course_code FROM course NATURAL JOIN course_code NATURAL JOIN user where user_id = ?';
   } else {
-    query_string = 'SELECT * FROM ((SELECT firstname, lastname, course_title, course_description, course_id from user NATURAL JOIN course) as course INNER JOIN course_user ON course.course_id = course_user.course_id) where user_id = ?';
+    query_string = 'SELECT * FROM ((SELECT firstname, lastname, course_title, course_description, course_id, course_section from user NATURAL JOIN course) as course INNER JOIN course_user ON course.course_id = course_user.course_id) where user_id = ?';
   }
   db.query(query_string, [req.session.user.user_id], (err, result) => {
     if (err) {
@@ -30,12 +30,21 @@ exports.enroll_course = (req, res, next) => {
     if (err) {
       return res.status(500).send({message: "An error has encountered beforehand"});
     } else if (result.length === 1) {
-        let call_query_string = 'INSERT INTO course_user (course_id, user_id) VALUES (?,?)';
-        db.query(call_query_string, [result[0].course_id, req.session.user.user_id], (error, resu) => {
+        let call_query_string = 'SELECT * FROM course_user WHERE course_id = ? AND user_id = ?';
+        db.query(call_query_string, [result[0].course_id, req.session.user.user_id], (error, rest) => {
           if (error) {
-            return res.status(500).send({message: "An error has encountered"});            
+            return res.status(500).send({message: "An error has encountered beforehand"});            
+          } else if (rest.length !== 0) {            
+            return res.status(500).send({message: "You've already enrolled in this class"});            
           } else {
-            res.send(resu);
+            let call_query_string = 'INSERT INTO course_user (course_id, user_id) VALUES (?,?)';
+            db.query(call_query_string, [result[0].course_id, req.session.user.user_id], (errors, resu) => {
+              if (errors) {
+              return res.status(500).send({message: "An error has encountered"});            
+              } else {
+              res.send(resu);
+              }
+            })
           }
         })
     } else {
@@ -54,7 +63,15 @@ exports.create_course = (req, res, next) => {
       console.log(err);
       return res.status(500).send({message: "An error has encountered"});
     } else {
-      res.send(result);
+      let new_query_string = "SELECT * FROM course_code WHERE course_id = ?"
+      db.query(new_query_string, [result.insertId], (error, rest) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send({message: "An error has encountered"});
+        } else {
+          res.send(rest);
+        }
+      });
     }
   });
 }

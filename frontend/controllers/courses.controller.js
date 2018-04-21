@@ -5,9 +5,9 @@
 	.module('app')
 	.controller('courses-controller', courses_controller);
 
-  courses_controller.$inject = ['$scope', '$window', 'CoursesService'];
+  courses_controller.$inject = ['$scope', '$window', '$timeout', 'CoursesService'];
 
-	function courses_controller($scope, $window, CoursesService) {
+	function courses_controller($scope, $window, $timeout, CoursesService) {
     
     $scope.courses = [];
     $scope.course_code = {
@@ -52,16 +52,16 @@
         .enroll_course($scope.course_code)
         .then(function(res) {
           toastr.success('Your enrollment is successful!', 'Success');
-          $scope.course_code = ""
           $('.modal').hide();
-          $('.modal').modal('hide');          
+          $('.modal').modal('hide');
+          $scope.course_code = ""
         }, function(err) {
           toastr.error(err.message, 'Error');
         })
       }
     }
 
-    $scope.create_course = () => {
+    $scope.create_course = (data) => {
       if ($scope.course_data.course_title === '' ||
           $scope.course_data.course_description === '') {
         toastr.error("Please fill all the missing fields!", 'Error');                         
@@ -80,10 +80,21 @@
         .create_course($scope.course_data)
         .then(function(res) {
           toastr.success('Creation of the class is successful!', 'Success');
-          $scope.course_data = {
-            course_title: '',
-            course_description: ''
-          }
+          $timeout(() => {
+            let datum = $scope.course_data;
+            datum.firstname = data.firstname;
+            datum.lastname = data.lastname;
+            datum.course_code = res[0].course_code;
+            datum.course_id = res[0].course_id;
+            $scope.courses.unshift(datum);
+            console.log($scope.courses);
+            $scope.$apply();
+            $scope.course_data = {
+              course_title: '',
+              course_section: '',
+              course_description: ''
+            }
+          }, 100);
           $('.modal').hide();
           $('.modal').modal('hide');          
         }, function(err) {

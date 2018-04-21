@@ -1,4 +1,4 @@
-<div ng-controller="courses-controller" ng-init="courses_view(); check_auth();">
+<div class="row" ng-controller="courses-controller" ng-init="courses_view(); check_auth();">
   <div class="Course">
     <p class="Course_Header">Courses</p>
     <section class="Course_cards">
@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <div ng-controller="courses-controller" class="modal fade bd-example-modal-addclass" id="enrollModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal fade bd-example-modal-addclass" id="enrollModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
@@ -110,7 +110,7 @@
                 <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                 <small>Remaining Characters: {{256 - course_data.course_description.length}}</small>            
               </div>
-              <button ng-click="create_course()" type="submit" class="btn btn-primary" aria-label="Close">Create</button>
+              <button ng-click="create_course(session)" type="submit" class="btn btn-primary" aria-label="Close">Create</button>
               <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
             </form>
         </div>

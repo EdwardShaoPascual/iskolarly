@@ -24,7 +24,7 @@ exports.retrieve_course = (req,res, next) => {
 }
 
 exports.retrieve_announcement = (req,res, next) => {
-  let query_string = 'SELECT * FROM announcement NATURAL JOIN user NATURAL JOIN course where course_id = ? ORDER BY time_posted DESC';
+  let query_string = 'SELECT * FROM announcement NATURAL JOIN user NATURAL JOIN (SELECT course_id, course_title, course_section, course_description FROM course) as course where course_id = ? ORDER BY time_posted DESC';
 
   db.query(query_string, [req.query.course_id], (err, result) => {
     if (err) {

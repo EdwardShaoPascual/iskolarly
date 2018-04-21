@@ -21,7 +21,7 @@
         <div class="container">
           <div class="carousel-caption">
             <span class="Course_Header">About the course </span><br/><br/>
-            <p class="Course_Description">{{course_intro.course_description}}.</p><br/><br/>
+            <p class="Course_Description">{{course_intro.course_description}}</p><br/><br/>
           </div>
         </div>
       </div>
@@ -59,9 +59,9 @@
             <div class="col-lg-12">
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputGroupSuccess1" ng-if="active_option === 1">Enter Note</label>
-                <label class="control-label" for="inputGroupSuccess1" ng-if="active_option === 2">Enter Assignment Note</label>
-                <label class="control-label" for="inputGroupSuccess1" ng-if="active_option === 3">Enter Quiz Note</label>
-                <label class="control-label" for="inputGroupSuccess1" ng-if="active_option === 4">Enter Attachment Note</label>
+                <label class="control-label" for="inputGroupSuccess1" ng-if="active_option === 2 && session.role === 'Instructor'">Enter Assignment Note</label>
+                <label class="control-label" for="inputGroupSuccess1" ng-if="active_option === 3 && session.role === 'Instructor'">Enter Quiz Note</label>
+                <label class="control-label" for="inputGroupSuccess1" ng-if="active_option === 4 && session.role === 'Instructor'">Enter Attachment Note</label>
                 <div class="input-group">
                   <span class="input-group-addon"></span>
                   <textarea ng-model="note_info.post" type="text" class="form-control" rows="3" id="inputGroupSuccess1 note" aria-describedby="inputGroupSuccess1Status" placeholder="Enter your note here" />
@@ -72,25 +72,25 @@
             </div>
             <div class="col-lg-12">
               <div class="Course_Option col-xs-12 col-md-10 col-lg-10" ng-if="active_option === 1 || active_option === 3">
-                <span ng-if="active_option === 1">
+                <span ng-if="active_option === 1 && session.role === 'Instructor'">
                   <a ng-click="change_option(1)" class="Course_Post-active"><i class="glyphicon glyphicon-modal-window glyph_spec"></i><span class="glyph_spec hidden-xs">Note</span></a>
                   <a ng-click="change_option(2)" class="Course_Post"><i class="glyphicon glyphicon-list-alt glyph_spec"></i><span class="glyph_spec hidden-xs">Assignment</span></a>
                   <a ng-click="change_option(3)" class="Course_Post"><i class="glyphicon glyphicon-equalizer glyph_spec"></i><span class="glyph_spec hidden-xs">Quiz</span></a>
                   <a ng-click="change_option(4)" class="Course_Post"><i class="glyphicon glyphicon-file glyph_spec"></i><span class="glyph_spec hidden-xs">Attachment</span></a>
                 </span>
-                <span ng-if="active_option === 2">
+                <span ng-if="active_option === 2 && session.role === 'Instructor'">
                   <a ng-click="change_option(1)" class="Course_Post"><i class="glyphicon glyphicon-modal-window glyph_spec"></i><span class="glyph_spec hidden-xs">Note</span></a>
                   <a ng-click="change_option(2)" class="Course_Post-active"><i class="glyphicon glyphicon-list-alt glyph_spec"></i><span class="glyph_spec hidden-xs">Assignment</span></a>
                   <a ng-click="change_option(3)" class="Course_Post"><i class="glyphicon glyphicon-equalizer glyph_spec"></i><span class="glyph_spec hidden-xs">Quiz</span></a>
                   <a ng-click="change_option(4)" class="Course_Post"><i class="glyphicon glyphicon-file glyph_spec"></i><span class="glyph_spec hidden-xs">Attachment</span></a>
                 </span>
-                <span ng-if="active_option === 3">
+                <span ng-if="active_option === 3 && session.role === 'Instructor'">
                   <a ng-click="change_option(1)" class="Course_Post"><i class="glyphicon glyphicon-modal-window glyph_spec"></i><span class="glyph_spec hidden-xs">Note</span></a>
                   <a ng-click="change_option(2)" class="Course_Post"><i class="glyphicon glyphicon-list-alt glyph_spec"></i><span class="glyph_spec hidden-xs">Assignment</span></a>
                   <a ng-click="change_option(3)" class="Course_Post-active"><i class="glyphicon glyphicon-equalizer glyph_spec"></i><span class="glyph_spec hidden-xs">Quiz</span></a>
                   <a ng-click="change_option(4)" class="Course_Post"><i class="glyphicon glyphicon-file glyph_spec"></i><span class="glyph_spec hidden-xs">Attachment</span></a>
                 </span>
-                <span ng-if="active_option === 4">
+                <span ng-if="active_option === 4 && session.role === 'Instructor'">
                   <a ng-click="change_option(1)" class="Course_Post"><i class="glyphicon glyphicon-modal-window glyph_spec"></i><span class="glyph_spec hidden-xs">Note</span></a>
                   <a ng-click="change_option(2)" class="Course_Post"><i class="glyphicon glyphicon-list-alt glyph_spec"></i><span class="glyph_spec hidden-xs">Assignment</span></a>
                   <a ng-click="change_option(3)" class="Course_Post"><i class="glyphicon glyphicon-equalizer glyph_spec"></i><span class="glyph_spec hidden-xs">Quiz</span></a>
@@ -98,25 +98,25 @@
                 </span>
               </div>
               <div class="Course_Option col-xs-12 col-md-9 col-lg-9" ng-if="active_option === 2 || active_option === 4">
-                <span ng-if="active_option === 1">
+                <span ng-if="active_option === 1 && session.role === 'Instructor'">
                   <a ng-click="change_option(1)" class="Course_Post-active"><i class="glyphicon glyphicon-modal-window glyph_spec"></i><span class="glyph_spec hidden-xs">Note</span></a>
                   <a ng-click="change_option(2)" class="Course_Post"><i class="glyphicon glyphicon-list-alt glyph_spec"></i><span class="glyph_spec hidden-xs">Assignment</span></a>
                   <a ng-click="change_option(3)" class="Course_Post"><i class="glyphicon glyphicon-equalizer glyph_spec"></i><span class="glyph_spec hidden-xs">Quiz</span></a>
                   <a ng-click="change_option(4)" class="Course_Post"><i class="glyphicon glyphicon-file glyph_spec"></i><span class="glyph_spec hidden-xs">Attachment</span></a>
                 </span>
-                <span ng-if="active_option === 2">
+                <span ng-if="active_option === 2 && session.role === 'Instructor'">
                   <a ng-click="change_option(1)" class="Course_Post"><i class="glyphicon glyphicon-modal-window glyph_spec"></i><span class="glyph_spec hidden-xs">Note</span></a>
                   <a ng-click="change_option(2)" class="Course_Post-active"><i class="glyphicon glyphicon-list-alt glyph_spec"></i><span class="glyph_spec hidden-xs">Assignment</span></a>
                   <a ng-click="change_option(3)" class="Course_Post"><i class="glyphicon glyphicon-equalizer glyph_spec"></i><span class="glyph_spec hidden-xs">Quiz</span></a>
                   <a ng-click="change_option(4)" class="Course_Post"><i class="glyphicon glyphicon-file glyph_spec"></i><span class="glyph_spec hidden-xs">Attachment</span></a>
                 </span>
-                <span ng-if="active_option === 3">
+                <span ng-if="active_option === 3 && session.role === 'Instructor'">
                   <a ng-click="change_option(1)" class="Course_Post"><i class="glyphicon glyphicon-modal-window glyph_spec"></i><span class="glyph_spec hidden-xs">Note</span></a>
                   <a ng-click="change_option(2)" class="Course_Post"><i class="glyphicon glyphicon-list-alt glyph_spec"></i><span class="glyph_spec hidden-xs">Assignment</span></a>
                   <a ng-click="change_option(3)" class="Course_Post-active"><i class="glyphicon glyphicon-equalizer glyph_spec"></i><span class="glyph_spec hidden-xs">Quiz</span></a>
                   <a ng-click="change_option(4)" class="Course_Post"><i class="glyphicon glyphicon-file glyph_spec"></i><span class="glyph_spec hidden-xs">Attachment</span></a>
                 </span>
-                <span ng-if="active_option === 4">
+                <span ng-if="active_option === 4 && session.role === 'Instructor'">
                   <a ng-click="change_option(1)" class="Course_Post"><i class="glyphicon glyphicon-modal-window glyph_spec"></i><span class="glyph_spec hidden-xs">Note</span></a>
                   <a ng-click="change_option(2)" class="Course_Post"><i class="glyphicon glyphicon-list-alt glyph_spec"></i><span class="glyph_spec hidden-xs">Assignment</span></a>
                   <a ng-click="change_option(3)" class="Course_Post"><i class="glyphicon glyphicon-equalizer glyph_spec"></i><span class="glyph_spec hidden-xs">Quiz</span></a>
@@ -164,7 +164,7 @@
         <div class="col-xs-1 col-sm-1 hidden-md hidden-lg"/>
         <div class="Course_Posted col-xs-10 col-sm-10 col-md-11 col-lg-11">
           <div class="panel panel-default">
-            <div class="panel-body"><pre class="Announcement_Detail_Time">There are no announcement for this course yet!</pre></div>
+            <div class="panel-body"><pre class="Announcement_Detail_Time">There are no announcements for this course yet!</pre></div>
           </div>
         </div>
         <div class="col-xs-1 col-sm-1 hidden-md hidden-lg"/>

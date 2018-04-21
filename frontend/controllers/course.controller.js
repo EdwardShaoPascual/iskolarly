@@ -102,7 +102,6 @@
         .then(function(res) {
           toastr.success("Note successfully added!", 'Success');
           $timeout(() => {
-            // Push announcement here
             let time = moment().format('ll').split(',')[0];
             let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
             if ($scope.note_info.post.match(urls)) {
