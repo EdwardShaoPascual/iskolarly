@@ -159,11 +159,11 @@
                     <div class="thumbnail hidden-xs hidden-sm hidden-md col-lg-2"/>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
                       <div class="row">
-                        <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
-                          <a class="Announcement_Quiz" ng-if="session.role === 'Instructor'" href="/#/question/{{announcement.questionnaire_id}}">{{announcement.questionnaire_name}}</a>
-                          <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/quiz/{{announcement.questionnaire_id}}">{{announcement.questionnaire_name}}</a>
+                        <div class="Quiz col-xs-9 col-sm-10 col-md-11 col-lg-11">
+                          <a class="Announcement_Quiz" ng-if="session.role === 'Instructor'" href="/#/question/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
+                          <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/quiz/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
                         </div>
-                        <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                        <div class="Announcement_Quiz_Edit col-xs-3 col-sm-2 col-md-1 col-lg-1">
                           <button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded custom" ng-click="questionnaires_get_info(announcement.questionnaire_id)">
                             <span class="float-right glyphicon glyphicon-pencil quiz_edit_glyph"></span>
                           </button>

@@ -86,6 +86,7 @@
 .Course_Posted pre{
   word-break: keep-all;
   border: 0px;
+  font-size: 14px;
   background-color: inherit;
   font-family: 'Open Sans', sans-serif;
 }
@@ -106,9 +107,23 @@
   font-weight: normal;
 }
 
+.Quiz {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 2.5em;
+}
+
 .Announcement_Quiz {
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Open Sans', sans-serif;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Announcement_Quiz_Edit {
+  text-align: right !important;
 }
 
 .Questionnaire {
