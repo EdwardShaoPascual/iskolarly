@@ -58,7 +58,7 @@
     }
 
     $scope.login = () => {
-      var url = "https://cdnjs.cloudflare.com/ajax/libs/vquery/5.0.1/v.min.js";
+      var url = "//freegeoip.net/json/";
       $http
       .get(url)
       .then(function(response) {
