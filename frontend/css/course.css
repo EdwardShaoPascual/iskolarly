@@ -315,3 +315,7 @@ textarea {
   }
 
 }
+
+.bootstrap-datetimepicker-widget {
+  color: black !important;
+}

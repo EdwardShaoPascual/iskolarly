@@ -31,7 +31,10 @@
 		$scope.questionnairesData = {
       questionnaire_name: '',
       questionnaire_desc: '',
-      questionnaire_no: ''
+      questionnaire_no: '',
+      items: '',
+      datetime_start: '',
+      datetime_end: ''
     }
 
     $scope.questionnairesInfo = {
@@ -160,34 +163,41 @@
 		$scope.questionnaires_add = (data) => {
       $scope.questionnairesData.course_id = window.location.href.split("/")[5];
       $scope.questionnairesData.post = $scope.note_info.post;
-      CourseService
-			.add_questionnaires($scope.questionnairesData)
-			.then(function(res) {
-        toastr.success("The quiz has been added", 'Success');
-        $timeout(() => {
-          let time = moment().format('ll').split(',')[0];
-          let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
-          if ($scope.note_info.post.match(urls)) {
-            $scope.note_info.post = $scope.note_info.post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
-          }
-          let datum = {
-            post: $scope.note_info.post,
-            firstname: data.firstname,
-            lastname: data.lastname,
-            time_posted: time,
-            questionnaire_id: res.insertId,
-            questionnaire_name: $scope.questionnairesData.questionnaire_name,
-            questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
-            questionnaire_no: $scope.questionnairesData.questionnaire_no
-          }
-          $scope.announcements.unshift(datum);
-          $scope.$apply();
-          $('.modal').modal('hide');          
-          $scope.note_info.post = '';                   
-        }, 100);
-			}, function(err) {
-        toastr.error(err.data, 'Error');
-			})
+      $scope.questionnairesData.datetime_start = $('#datetime_start').val();
+      $scope.questionnairesData.datetime_end = $('#datetime_start').val();
+
+      if ($scope.questionnairesData.items < $scope.questionnairesData.questionnaire_no) {
+        toastr.error('Questionnaire no should be less than or equal to items.', 'Error');
+      } else {
+        CourseService
+        .add_questionnaires($scope.questionnairesData)
+        .then(function(res) {
+          toastr.success("The quiz has been added", 'Success');
+          $timeout(() => {
+            let time = moment().format('ll').split(',')[0];
+            let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+            if ($scope.note_info.post.match(urls)) {
+              $scope.note_info.post = $scope.note_info.post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
+            }
+            let datum = {
+              post: $scope.note_info.post,
+              firstname: data.firstname,
+              lastname: data.lastname,
+              time_posted: time,
+              questionnaire_id: res.insertId,
+              questionnaire_name: $scope.questionnairesData.questionnaire_name,
+              questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
+              questionnaire_no: $scope.questionnairesData.questionnaire_no
+            }
+            $scope.announcements.unshift(datum);
+            $scope.$apply();
+            $('.modal').modal('hide');          
+            $scope.note_info.post = '';                   
+          }, 100);
+        }, function(err) {
+          toastr.error(err.data, 'Error');
+        })
+      }
     }
     
     $scope.questionnaires_get_info = (data) => {
