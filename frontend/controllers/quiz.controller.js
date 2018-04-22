@@ -64,9 +64,7 @@
 
               jsonArg.set_of_choices = $scope.choice;
               $scope.quizQuestions.push(jsonArg);
-              console.log($scope.quizQuestions)
             }, function(errt) {
-              console.log(errt);
             })
             
           } else {
@@ -75,7 +73,6 @@
         }
         
       }, function(err) {
-				console.log(err);
 			})
     }
     

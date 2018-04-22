@@ -24,7 +24,6 @@
 			.then(function(res) {
         $scope.user = res;
 			}, function(err) {
-				console.log(err);
 			})
 		}
 
@@ -36,7 +35,6 @@
         $('#val_name').text($scope.user[0].questionnaire_name);
         $('#items').text($scope.user[0].questionnaire_no + " items");
 			}, function(err) {
-				console.log(err);
 			})
     }
 
@@ -66,13 +64,11 @@
         $('.modal').modal('hide');          
 			}, function(err) {
         swal("Oops!", "Fill all fields", "error");
-				console.log(err);
 			})
     }
 
     $scope.questions_delete = (data, index) => {
       $scope.question_id = data;
-      console.log($scope.question_id);
       swal({
         title: "Are you sure?",
         text: "You will not be able to recover this file!",
@@ -95,7 +91,6 @@
           $('.modal').hide();
           $('.modal').modal('hide');          
         }, function(err) {
-          console.log(err);
         })
       });
     }
@@ -134,7 +129,6 @@
       if (data == 0) id = $("input[type=text]:last").attr("id");
       else id = $("input[type=url]:last").attr("id");
 
-      console.log(id);
 
       for(let i=0; i<=parseInt(id.substr(id.length -1)); i++) {
         let a, b;
@@ -172,7 +166,6 @@
 
     $scope.answers_delete = (data) => {
       $scope.answer_id = data;
-      // console.log(index);
       swal({
         title: "Are you sure?",
         text: "You will not be able to recover this!",
@@ -195,7 +188,6 @@
           // $('.modal').hide();
           // $('.modal').modal('hide');          
         }, function(err) {
-          console.log(err);
         })
       });
     }

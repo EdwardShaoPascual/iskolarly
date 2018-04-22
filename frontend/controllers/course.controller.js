@@ -148,14 +148,12 @@
           $scope.user.push(res[i]);
         }
 			}, function(err) {
-				console.log(err);
       })
 		}
 
 		$scope.questionnaires_add = () => {
       $scope.questionnairesData.course_id = window.location.href.split("/")[5];
       $scope.questionnairesData.post = $scope.note_info.post;
-      console.log($scope.questionnairesData);
       CourseService
 			.add_questionnaires($scope.questionnairesData)
 			.then(function(res) {
@@ -189,7 +187,7 @@
         $('#edit_quest_desc').val($scope.questionnairesInfo.questionnaire_desc);
         $('#edit_quest_no').val($scope.questionnairesInfo.questionnaire_no);
 			}, function(err) {
-				console.log(err);
+        toastr.error("An error has been encountered", "Error");
 			})
     }
     
@@ -216,7 +214,6 @@
         })
       }, function(err) {
         swal("Oops!", "Check all the fields!", "error");
-        console.log(err);
       })
     }
 
@@ -242,7 +239,6 @@
           })
           $scope.user.splice(index, 1);
         }, function(err) {
-          console.log(err);
         })
       });
     }

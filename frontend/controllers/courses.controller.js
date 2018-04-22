@@ -29,7 +29,6 @@
       .then(function(res) {
         $scope.session = res;
       }, function (err) {
-        console.log(err);
       })
     }
 
@@ -87,7 +86,6 @@
             datum.course_code = res[0].course_code;
             datum.course_id = res[0].course_id;
             $scope.courses.unshift(datum);
-            console.log($scope.courses);
             $scope.$apply();
             $scope.course_data = {
               course_title: '',
