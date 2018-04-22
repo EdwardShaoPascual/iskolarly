@@ -112,6 +112,9 @@ CREATE TABLE questionnaires (
 	questionnaire_name				varchar(256) NOT NULL,
 	questionnaire_desc				varchar(256) NOT NULL,
 	questionnaire_no				int NOT NULL,
+	items							int NOT NULL,
+	datetime_start					datetime NOT NULL,
+	datetime_end					datetime NOT NULL,
 	PRIMARY KEY						(questionnaire_id)
 );
 

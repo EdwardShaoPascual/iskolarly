@@ -224,12 +224,45 @@
                   </div>
                 </div>
 
+                <!-- Items -->
+                <div class="form-group">
+                  <label class="control-label" for="inputGroupSuccess1">No. of items</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input ng-model="questionnairesData.items" type="number" min="1" class="form-control" aria-describedby="inputGroupSuccess1Status">
+                  </div>
+                </div>
+
                 <!-- Question number -->
                 <div class="form-group">
                   <label class="control-label" for="inputGroupSuccess1">Set no. of questions</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
                     <input ng-model="questionnairesData.questionnaire_no" type="number" min="1" class="form-control" aria-describedby="inputGroupSuccess1Status">
+                  </div>
+                </div>
+
+                <!-- Start time -->
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label" for="inputGroupSuccess1">Start datetime</label>
+                      <div class="input-group date" id="datetimepicker6">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <input id="datetime_start" type="text" class="form-control" aria-describedby="inputGroupSuccess1Status" />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label" for="inputGroupSuccess1">End datetime</label>
+                      <div class="input-group date" id="datetimepicker7">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <input id="datetime_end" type="text" class="form-control" aria-describedby="inputGroupSuccess1Status" />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -294,5 +327,23 @@
 <script type="application/javascript">
   $('.carousel').carousel({
     interval: false
+  })
+</script>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker6').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss'});
+    $('#datetimepicker7').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm:ss',
+      useCurrent: false
+    });
+
+    $('#datetimepicker6').on('dp.change', function (e) {
+      $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    })
+
+    $('#datetimepicker7').on('dp.change', function (e) {
+      $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    })
   })
 </script>

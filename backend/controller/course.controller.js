@@ -89,8 +89,8 @@ exports.view_questionnaires = (req, res, next) => {
 }
 
 exports.add_questionnaires = (req, res, next) => {
-  let query_string = 'INSERT INTO questionnaires (questionnaire_name, questionnaire_desc, questionnaire_no) VALUES (?, ?, ?)'
-  let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no]
+  let query_string = 'INSERT INTO questionnaires (questionnaire_name, questionnaire_desc, questionnaire_no, items, datetime_start, datetime_end) VALUES (?,?,?,?,?,?)'
+  let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.items, req.query.datetime_start, req.query.datetime_end]
 
   if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
     return res.status(400).send("Please fill all the missing fields!");
