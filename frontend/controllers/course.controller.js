@@ -233,15 +233,10 @@
       CourseService
       .edit_questionnaires($scope.edit_questionnairesData)
       .then(function(res) {
-        swal({
-          title: "Success!",
-          text: "File has been edited.",
-          type: "success"
-        })
         $('.modal').modal('hide');
+        toastr.success('The quiz information has been updated', 'Success');
       }, function(err) {
-        console.log(err);
-        swal("Oops!", "Check all the fields!", "error");
+        toastr.error(err.data, 'Error');
       })
     }
 

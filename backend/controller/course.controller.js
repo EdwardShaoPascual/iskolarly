@@ -142,8 +142,8 @@ exports.edit_questionnaires = (req, res, next) => {
       let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.questionnaire_item, req.query.questionnaire_id]
       if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
         return res.status(400).send("Fill all the fields");
-      } else if (req.query.questionnaire_no < results[0].size) {
-        return res.status(400).send("Wrong input items");
+      } else if (req.query.questionnaire_no < req.query.questionnaire_item) {
+        return res.status(400).send("Questionnaire no should be less than or equal to items");
       }
 
       db.query(query_string, request_data, (errs, result) => {
