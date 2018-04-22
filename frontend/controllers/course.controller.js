@@ -202,7 +202,6 @@
     
     $scope.questionnaires_get_info = (data) => {
       $scope.questionnaire_id = data;
-
 			CourseService
 			.get_info_questionnaires($scope.questionnaire_id)
 			.then(function(res) {
@@ -211,6 +210,7 @@
         $('#edit_quest_name').val($scope.questionnairesInfo.questionnaire_name);
         $('#edit_quest_desc').val($scope.questionnairesInfo.questionnaire_desc);
         $('#edit_quest_no').val($scope.questionnairesInfo.questionnaire_no);
+        $('#edit_quest_item').val($scope.questionnairesInfo.items);
 			}, function(err) {
         toastr.error("An error has been encountered", "Error");
 			})
@@ -221,14 +221,15 @@
       let questionnaire_name = $('#edit_quest_name').val();
       let questionnaire_desc = $('#edit_quest_desc'). val();
       let questionnaire_no = $('#edit_quest_no').val();
+      let questionnaire_item = $('#edit_quest_item').val();
 
       $scope.edit_questionnairesData = {
         questionnaire_id: questionnaire_id,
         questionnaire_name: questionnaire_name,
         questionnaire_desc: questionnaire_desc,
-        questionnaire_no: questionnaire_no
+        questionnaire_no: questionnaire_no,
+        questionnaire_item: questionnaire_item
       }
-
       CourseService
       .edit_questionnaires($scope.edit_questionnairesData)
       .then(function(res) {
@@ -237,7 +238,9 @@
           text: "File has been edited.",
           type: "success"
         })
+        $('.modal').modal('hide');
       }, function(err) {
+        console.log(err);
         swal("Oops!", "Check all the fields!", "error");
       })
     }
