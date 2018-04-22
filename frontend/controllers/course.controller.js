@@ -134,7 +134,7 @@
 			.view_announcements()
 			.then(function(res) {
         for (let i=0; i < res.length; i++) {
-          res[i].time_posted = 
+          res[i].time_posted = moment(res[i].time_posted).format('ll').split(',')[0];
           $scope.announce.push(res[i]);
         }
 			}, function(err) {
@@ -147,7 +147,6 @@
 			.view_questionnaires()
 			.then(function(res) {
         for (let i=0; i < res.length; i++) {
-          res[i].time_posted = moment(res[i].time_posted).format('ll').split(',')[0];
           $scope.user.push(res[i]);
         }
 			}, function(err) {
