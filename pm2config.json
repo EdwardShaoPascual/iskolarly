@@ -1,0 +1,9 @@
+{
+  "apps": [{
+    "script" : "./backend/index.js",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "8000"
+    }
+  }]
+}
