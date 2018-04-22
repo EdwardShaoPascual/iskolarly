@@ -243,6 +243,30 @@
                     <input ng-model="questionnairesData.questionnaire_no" type="number" min="1" class="form-control" aria-describedby="inputGroupSuccess1Status">
                   </div>
                 </div>
+                
+                <!-- Start time -->
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label" for="inputGroupSuccess1">Start datetime</label>
+                      <div class="input-group date" id="datetimepicker6">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <input id="datetime_start" type="text" class="form-control" aria-describedby="inputGroupSuccess1Status" />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label" for="inputGroupSuccess1">End datetime</label>
+                      <div class="input-group date" id="datetimepicker7">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <input id="datetime_end" type="text" class="form-control" aria-describedby="inputGroupSuccess1Status" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <button ng-click="questionnaires_add(session)" type="submit" class="btn btn-primary">Submit</button>
                 <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
@@ -305,5 +329,22 @@
 <script type="application/javascript">
   $('.carousel').carousel({
     interval: false
+  })
+</script>
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker6').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss'});
+    $('#datetimepicker7').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm:ss',
+      useCurrent: false
+    });
+
+    $('#datetimepicker6').on('dp.change', function (e) {
+      $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    })
+
+    $('#datetimepicker7').on('dp.change', function (e) {
+      $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    })
   })
 </script>
