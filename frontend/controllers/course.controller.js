@@ -134,6 +134,10 @@
 			.view_announcements()
 			.then(function(res) {
         for (let i=0; i < res.length; i++) {
+          let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+          if (res[i].post.match(urls)) {
+            res[i].post = res[i].post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
+          }
           res[i].time_posted = moment(res[i].time_posted).format('ll').split(',')[0];
           $scope.announce.push(res[i]);
         }
