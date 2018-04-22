@@ -116,7 +116,8 @@
               post: $scope.note_info.post,
               firstname: data.firstname,
               lastname: data.lastname,
-              time_posted: time
+              time_posted: time,
+              questionnaire_id: null
             }
             $scope.announcements.unshift(datum);
             $scope.$apply();
