@@ -26,6 +26,7 @@ module.exports = (router) => {
   router.post('/api/add_questionnaire',                               course_controller.add_questionnaires);
   router.post('/api/edit_questionnaire',                              course_controller.edit_questionnaires);
   router.post('/api/delete_questionnaire/:questionnaire_id',          course_controller.delete_questionnaires);
+  router.post('/api/upload_attachment',                               course_controller.upload_attachment);
 
   // -- QUESTION PAGE ROUTES --
   // GET

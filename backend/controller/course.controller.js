@@ -2,6 +2,12 @@
 
 const db = require(__dirname + '/../lib/mysql');
 const moment = require('moment');
+const Storage = require('@google-cloud/storage');
+
+const projectId = 'iskolarly-node';
+const storage = new Storage({
+  keyFilename: __dirname + './../lib/iskolarly-node-1e221114c332.json'
+});
 
 exports.retrieve_course = (req,res, next) => {
   
@@ -158,4 +164,55 @@ exports.delete_questionnaires = (req, res, next) => {
       res.send(result);
     }
   });
+}
+
+exports.upload_attachment = (req, res, next) => {
+  
+  let bucketName = 'iskolarly-storage';
+  let filename = '/home/eddie/Downloads/The_little_prince-2(1).pdf';
+  let flag = 0;  
+  let fileUpload = filename.split('/');
+  fileUpload = fileUpload[fileUpload.length - 1];
+
+  storage
+  .bucket(bucketName)
+  .getFiles()
+  .then(results => {
+    const files = results[0];
+    files.forEach(file => {
+      if (fileUpload == file.name) {
+        flag = 1;
+      }
+    });
+    if (flag === 0) {
+      storage
+      .bucket(bucketName)
+      .upload(filename)
+      .then((response) => {
+        filename = response[0].name;
+        downloadLink = response[0].metadata.mediaLink;
+        storage
+        .bucket(bucketName)
+        .file(filename)
+        .makePublic()
+        .then((resp) => {
+          return res.send('Uploaded and publicized');
+        })
+        .catch(err => {
+          console.log(err);
+          return res.send('ERROR:', err);
+        });
+      })
+      .catch(err => {
+        return res.send('ERROR:', err);
+          console.log(err);
+      });
+    } else {
+      return res.status(500).send({message: 'File name already exists, please rename your file'});
+    }
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
 }

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/EddieVallejos/iskolarly#readme",
   "dependencies": {
+    "@google-cloud/storage": "^1.6.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",

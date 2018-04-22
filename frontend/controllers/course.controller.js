@@ -260,8 +260,11 @@
 
     $scope.page_view = (data) => {
       $scope.questionnaire_id = data;
-
       window.location.href = '#/question/' + $scope.questionnaire_id;
+    }
+
+    $scope.upload_attachment = () => {
+      $scope.uploader = new FileUploader();
     }
   }
 

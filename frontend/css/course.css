@@ -138,6 +138,17 @@
   display: -webkit-flex;
 }
 
+.Browse {
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+}
+
+.custom-file input {
+  border: none !important;
+  outline: none !important;
+}
+
+
 .custom-table {
   width: 175px;
 }
@@ -200,6 +211,48 @@
   margin-left: 4px;
 }
 
+.quiz_edit_glyph {
+  outline: none;
+  background-color: #3dbea7 !important; 
+  border-color: #3dbea7 !important; 
+}
+
+.quiz_edit_glyph:hover {
+  outline: none;
+  background-color: #24a18a !important; 
+  border-color: #24a18a !important; 
+}
+
+.quiz_edit_glyph:active {
+  outline: none;
+  background-color: #24a18a !important; 
+  border-color: #24a18a !important; 
+}
+
+.quiz_edit_glyph:visited {
+  outline: none;
+  background-color: #24a18a !important; 
+  border-color: #24a18a !important; 
+}
+
+.quiz_edit_glyph:link {
+  outline: none;
+  background-color: #24a18a !important; 
+  border-color: #24a18a !important; 
+}
+
+.quiz_edit_glyph::after {
+  outline: none;
+  background-color: #24a18a !important; 
+  border-color: #24a18a !important; 
+}
+
+.quiz_edit_glyph::before {
+  outline: none;
+  background-color: #24a18a !important; 
+  border-color: #24a18a !important; 
+}
+
 textarea {
   resize: none;
 }
@@ -218,6 +271,10 @@ textarea {
     padding-top: 0px !important;
     text-align: center;
     padding-bottom: 10px;
+  }
+
+  .centralized {
+    text-align: center;
   }
 }
 
