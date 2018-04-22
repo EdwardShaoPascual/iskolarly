@@ -1,4 +1,4 @@
-<div class="Course_Spec row" ng-controller="course-controller" ng-init="retrieve_course()">
+<div class="Course_Spec row" ng-controller="course-controller" ng-init="retrieve_course(); check_auth()">
   <!-- Carousel for Course Info -->
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -36,7 +36,7 @@
     </a>
   </div>
   <!--  -->
-  <div ng-controller="courses-controller" class="Course_Spec_Dash row" ng-init="check_auth();">
+  <div class="Course_Spec_Dash row">
     <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
       <div class="col-xs-1 col-md-2 col-lg-3"/>
       <div class="col-xs-10 col-sm-12 col-md-10 col-lg-9">
@@ -197,52 +197,52 @@
         </div>
       </span>
 
-    </div>
-
-  </div>
-
-  <!-- Add Modal -->
-  <div class="modal fade bd-example-modal-lgs" id="addQuestionnaire" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Quiz</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <!-- Question name -->
-            <div class="form-group">
-              <label class="control-label" for="inputGroupSuccess1">Quiz name</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
-                <input ng-model="questionnairesData.questionnaire_name" type="text" class="form-control" aria-describedby="inputGroupSuccess1Status" placeholder="Enter quiz name">
-              </div>
+      <!-- Add Modal -->
+      <div class="modal fade bd-example-modal-lgs" id="addQuestionnaire" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Quiz</h4>
             </div>
+            <div class="modal-body">
+              <form>
+                <!-- Question name -->
+                <div class="form-group">
+                  <label class="control-label" for="inputGroupSuccess1">Quiz name</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input ng-model="questionnairesData.questionnaire_name" type="text" class="form-control" aria-describedby="inputGroupSuccess1Status" placeholder="Enter quiz name">
+                  </div>
+                </div>
 
-            <!-- Question description -->
-            <div class="form-group">
-              <label class="control-label" for="inputGroupSuccess1">Add description</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                <textarea ng-model="questionnairesData.questionnaire_desc" type="text" rows="5" class="form-control" aria-describedby="inputGroupSuccess1Status" placeholder="Add description here"></textarea>
-              </div>
+                <!-- Question description -->
+                <div class="form-group">
+                  <label class="control-label" for="inputGroupSuccess1">Add description</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    <textarea ng-model="questionnairesData.questionnaire_desc" type="text" rows="5" class="form-control" aria-describedby="inputGroupSuccess1Status" placeholder="Add description here"></textarea>
+                  </div>
+                </div>
+
+                <!-- Question number -->
+                <div class="form-group">
+                  <label class="control-label" for="inputGroupSuccess1">Set no. of questions</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
+                    <input ng-model="questionnairesData.questionnaire_no" type="number" min="1" class="form-control" aria-describedby="inputGroupSuccess1Status">
+                  </div>
+                </div>
+
+                <button ng-click="questionnaires_add(session)" type="submit" class="btn btn-primary">Submit</button>
+                <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
+              </form>
             </div>
-
-            <!-- Question number -->
-            <div class="form-group">
-              <label class="control-label" for="inputGroupSuccess1">Set no. of questions</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
-                <input ng-model="questionnairesData.questionnaire_no" type="number" min="1" class="form-control" aria-describedby="inputGroupSuccess1Status">
-              </div>
-            </div>
-
-            <button ng-click="questionnaires_add()" type="submit" class="btn btn-primary">Submit</button>
-            <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
-          </form>
+          </div>
         </div>
       </div>
+
     </div>
+
   </div>
 
   <!-- Edit Modal -->
