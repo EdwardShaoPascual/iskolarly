@@ -21,12 +21,8 @@ exports.login = function(req, res, next) {
         if (response === true) {
           req.session.user = result[0];
           delete req.session.user.password;
-          let ip_address = (req.headers["X-Forwarded-For"] ||
-            req.headers["x-forwarded-for"] ||
-            '').split(',')[0] ||
-           req.client.remoteAddress;
           let queryStringCB = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-          let activityDescription = 'user='+result[0].username+' user_id='+result[0].user_id +' time='+moment().format()+' ipv4='+ ip_address;
+          let activityDescription = 'user='+result[0].username+' user_id='+result[0].user_id +' time='+moment().format()+' ipv4='+ req.query.ip;
           let activity = "Login";
           db.query(queryStringCB, [activity,activityDescription], (err, rest, args, last_query) => {
             if (err) {

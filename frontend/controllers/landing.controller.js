@@ -5,9 +5,9 @@
   .module('app')
   .controller('landing-controller', landing_controller)
 
-  landing_controller.$inject = ['$scope', '$window', '$rootScope','$location', 'LandingService'];
+  landing_controller.$inject = ['$scope', '$window', '$rootScope','$location', '$http', 'LandingService'];
 
-  function landing_controller($scope, $window, $rootScope, $location, LandingService) {
+  function landing_controller($scope, $window, $rootScope, $location, $http, LandingService) {
     
     $scope.roleFlag = 0;
     $scope.unloaded = true;
@@ -58,23 +58,31 @@
     }
 
     $scope.login = () => {
-      LandingService
-      .user_login($scope.loginData)
-      .then(function(res) {
-        $('#loginModal').modal('hide');
-        $('.modal').modal('hide');
-        toastr.success("Your signing in is successful!", "Success")
-        $scope.loginData = {
-          username: '',
-          password: ''
-        }
-        $window.location.href = '#/home';
-      }, function(err) {
-        $scope.loginData = {
-          username: '',
-          password: ''
-        }
-        toastr.error(err.data.message, 'Error');
+      var url = "//freegeoip.net/json/";
+      $http
+      .get(url)
+      .then(function(response) {
+        $scope.loginData.ip = response.data.ip;
+      })
+      .then(function(response) {
+        LandingService
+        .user_login($scope.loginData)
+        .then(function(res) {
+          $('#loginModal').modal('hide');
+          $('.modal').modal('hide');
+          toastr.success("Your signing in is successful!", "Success")
+          $scope.loginData = {
+            username: '',
+            password: ''
+          }
+          $window.location.href = '#/home';
+        }, function(err) {
+          $scope.loginData = {
+            username: '',
+            password: ''
+          }
+          toastr.error(err.data.message, 'Error');
+        })
       })
     }
 
