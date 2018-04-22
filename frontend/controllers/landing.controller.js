@@ -58,7 +58,7 @@
     }
 
     $scope.login = () => {
-      var url = "//freegeoip.net/json/";
+      var url = "//geoip.nekudo.com/api/";
       $http
       .get(url)
       .then(function(response) {
