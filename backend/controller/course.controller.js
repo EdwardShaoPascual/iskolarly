@@ -151,17 +151,20 @@ exports.edit_questionnaires = (req, res, next) => {
   let request_data2 = [req.query.questionnaire_id, req.query.questionnaire_id]
 
   db.query(query_string2, request_data2, (errs, results) => {
-      let query_string = 'UPDATE questionnaires SET questionnaire_name = ?, questionnaire_desc = ?, questionnaire_no = ? WHERE questionnaire_id = ?'
-      let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.questionnaire_id]
-  
+      let query_string = 'UPDATE questionnaires SET questionnaire_name = ?, questionnaire_desc = ?, questionnaire_no = ?, items = ? WHERE questionnaire_id = ?'
+      let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.questionnaire_item, req.query.questionnaire_id]
       if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
         return res.status(400).send("Fill all the fields");
-      } else if (req.query.questionnaire_no < results[0].size) {
-        return res.status(400).send("Wrong input items");
+      } else if (req.query.questionnaire_no < req.query.questionnaire_item) {
+        return res.status(400).send("Questionnaire no should be less than or equal to items");
       }
 
       db.query(query_string, request_data, (errs, result) => {
-        res.send(result);
+        if (errs) {
+          return res.status(400).send("An error has been encountered");
+        } else {
+          return res.send(result);
+        }
       });
   });
 }

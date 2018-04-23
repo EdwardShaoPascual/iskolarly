@@ -145,11 +145,14 @@
   margin-top: 0px !important;
 }
 
+.Head .control-label {
+  color: #0b0c10 !important;
+}
+
 .custom-file input {
   border: none !important;
   outline: none !important;
 }
-
 
 .custom-table {
   width: 175px;
