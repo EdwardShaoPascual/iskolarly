@@ -22,8 +22,8 @@ exports.login = function(req, res, next) {
           req.session.user = result[0];
           delete req.session.user.password;
           let queryStringCB = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-          let activityDescription = 'user='+result[0].username+' user_id='+result[0].user_id +' time='+moment().format()+' ipv4='+ req.query.ip;
-          let activity = "Login";
+          let activityDescription = '[' + moment().format() + '] user='+result[0].username+' user_id='+result[0].user_id + ' ipv4='+ req.query.ip;
+          let activity = "Login Account";
           db.query(queryStringCB, [activity,activityDescription], (err, rest, args, last_query) => {
             if (err) {
               console.log(err);
@@ -79,10 +79,22 @@ exports.register = function(req, res, next) {
           dateFormat(payload.birthday,"dd-mm-yyyy"), payload.college, payload.role], 
           (err,result,args,last_query) => {
             if (!err) {
+              // let queryStringCB = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
+              // let activityDescription = '[' + moment().format() + '] user='+result[0].username+' user_id='+result[0].user_id + ' ipv4='+ req.query.ip;
+              // let activity = "Register Account";
+              // db.query(queryStringCB, [activity,activityDescription], (err, rest, args, last_query) => {
+              //   if (err) {
+              //     console.log(err);
+              //     return res.status(500).send({message: "An error has encountered"})
+              //   }
+              //     return res.send(result);
+              // });
+              console.log(result);
               return res.send(result);
             } else if (err.code == "ER_DUP_ENTRY") {
               return res.status(500).send({message: "The username or email address is already taken"})
             }
+            console.log(err);
             return res.status(500).send({message: "An error has encountered"})
           })
       })

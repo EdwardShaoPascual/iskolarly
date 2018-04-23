@@ -87,7 +87,8 @@
     }
 
     $scope.register = () => {
-      if ($scope.roleFlag === 1) {
+      console.log($scope.registerData.role);
+      if ($scope.registerData.role == 'Instructor') {
         $scope.registerData.course = "N/A";
         $scope.registerData.college = "N/A";
       }
