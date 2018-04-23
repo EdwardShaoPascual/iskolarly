@@ -79,17 +79,16 @@ exports.register = function(req, res, next) {
           dateFormat(payload.birthday,"dd-mm-yyyy"), payload.college, payload.role], 
           (err,result,args,last_query) => {
             if (!err) {
-              // let queryStringCB = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-              // let activityDescription = '[' + moment().format() + '] user='+result[0].username+' user_id='+result[0].user_id + ' ipv4='+ req.query.ip;
-              // let activity = "Register Account";
-              // db.query(queryStringCB, [activity,activityDescription], (err, rest, args, last_query) => {
-              //   if (err) {
-              //     console.log(err);
-              //     return res.status(500).send({message: "An error has encountered"})
-              //   }
-              //     return res.send(result);
-              // });
-              console.log(result);
+              let queryStringCB = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
+              let activityDescription = '[' + moment().format() + '] user=' + payload.username +' user_id='+result.insertId + ' ipv4='+ req.query.ip;
+              let activity = "Register Account";
+              db.query(queryStringCB, [activity,activityDescription], (err, rest, args, last_query) => {
+                if (err) {
+                  console.log(err);
+                  return res.status(500).send({message: "An error has encountered"})
+                }
+                  return res.send(result);
+              });
               return res.send(result);
             } else if (err.code == "ER_DUP_ENTRY") {
               return res.status(500).send({message: "The username or email address is already taken"})
@@ -108,6 +107,16 @@ exports.register = function(req, res, next) {
           dateFormat(payload.birthday,"dd-mm-yyyy"), payload.role], 
           (err,result,args,last_query) => {
             if (!err) {
+              let queryStringCB = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
+              let activityDescription = '[' + moment().format() + '] user=' + payload.username +' user_id='+result.insertId + ' ipv4='+ req.query.ip;
+              let activity = "Register Account";
+              db.query(queryStringCB, [activity,activityDescription], (err, rest, args, last_query) => {
+                if (err) {
+                  console.log(err);
+                  return res.status(500).send({message: "An error has encountered"})
+                }
+                  return res.send(result);
+              });
               return res.send(result);
             } else if (err.code == "ER_DUP_ENTRY") {
               return res.status(500).send({message: "The username or email address is already taken"})

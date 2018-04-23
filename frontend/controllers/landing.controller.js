@@ -87,7 +87,6 @@
     }
 
     $scope.register = () => {
-      console.log($scope.registerData.role);
       if ($scope.registerData.role == 'Instructor') {
         $scope.registerData.course = "N/A";
         $scope.registerData.college = "N/A";
@@ -116,29 +115,37 @@
         toastr.error("Password must be in length of at least 8 characters!", 'Error');     
       } 
       else {
-        LandingService
-        .sign_up($scope.registerData)
-        .then(function(res) {
-          $('.modal').modal('hide');          
-          toastr.success('Your signing up is successful!', 'Success')
-          $scope.registerData = {
-            firstname: '',
-            middlename: '',
-            lastname: '',
-            email: '',
-            username: '',
-            password: '',
-            course: '',
-            birthday: '',
-            college: '',
-            role: 'Student'
-          }
-          $scope.roleRadio = {
-            std: true,
-            ins: false
-          }
-        }, function(err) {
-          toastr.error(err.data.message, 'Error');
+        var url = "//geoip.nekudo.com/api/";
+        $http
+        .get(url)
+        .then(function(response) {
+          $scope.registerData.ip = response.data.ip;
+        })
+        .then(function(response) {
+          LandingService
+          .sign_up($scope.registerData)
+          .then(function(res) {
+            $('.modal').modal('hide');          
+            toastr.success('Your signing up is successful!', 'Success')
+            $scope.registerData = {
+              firstname: '',
+              middlename: '',
+              lastname: '',
+              email: '',
+              username: '',
+              password: '',
+              course: '',
+              birthday: '',
+              college: '',
+              role: 'Student'
+            }
+            $scope.roleRadio = {
+              std: true,
+              ins: false
+            }
+          }, function(err) {
+            toastr.error(err.data.message, 'Error');
+          })
         })
       }
     }
