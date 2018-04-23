@@ -161,3 +161,12 @@ hr {
   border: 1px solid white !important;
 }
 
+.Home_scroll_announce {
+  height: 450px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.Home_margin {
+  width: 100% !important;
+}

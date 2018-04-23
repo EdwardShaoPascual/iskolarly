@@ -1,32 +1,13 @@
 <div class="Home col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
   <div class="row show-grid">
-    <div class="Home_info col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-      <div class="Home_info_padding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      </div>
-      <div class="Home_info_pic col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <img class="Home_info_pic_holder" src="./../assets/landing.jpg">
-          </div>
-        </div>
-      </div>
-      <div class="Home_info_name col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        User Name
-      </div>
-      <div class="Home_info_studno col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        2014-12701
-      </div>
-    </div>
-    <div ng-controller="courses-controller" ng-init="check_auth()" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+    <div ng-controller="courses-controller" ng-init="check_auth()" class="Home_margin col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
       <div class="row">
-        <div class="Home_ann_padding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
         <div class="Home_ann_header col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           <h2>Announcements</h2>
         </div>
-        <div class="Home_ann_padding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+        
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-
-          <div ng-if="session.role === 'Student'" ng-controller="course-controller" ng-init="announcements_view_stud()" class="Home_ann_announcement card col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div ng-if="session.role === 'Student'" ng-controller="course-controller" ng-init="announcements_view_stud()" class="Home_ann_announcement card Home_scroll_announce col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
               <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
               <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
@@ -49,7 +30,7 @@
             </div>
           </div>
 
-          <div ng-if="session.role === 'Instructor'" ng-controller="course-controller" ng-init="announcements_view_inst()" class="Home_ann_announcement card col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div ng-if="session.role === 'Instructor'" ng-controller="course-controller" ng-init="announcements_view_inst()" class="Home_ann_announcement card Home_scroll_announce col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
               <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
               <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
