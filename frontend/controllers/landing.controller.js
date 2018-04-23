@@ -65,16 +65,18 @@
         $scope.loginData.ip = response.data.ip;
       })
       .then(function(response) {
+        $('#loginModal').modal('hide');
+        $('.modal').modal('hide');
         LandingService
         .user_login($scope.loginData)
         .then(function(res) {
+          $('#loginModal').modal('hide');
+          $('.modal').modal('hide');
           toastr.success("Your signing in is successful!", "Success");
           $scope.loginData = {
             username: '',
             password: ''
           }
-          $('#loginModal').modal('hide');
-          $('.modal').modal('hide');
           $window.location.href = '#/home';
         }, function(err) {
           $scope.loginData = {
