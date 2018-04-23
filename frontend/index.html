@@ -36,53 +36,10 @@
   
   <body>  
       <div ng-app="app">
-        <div ng-controller="nav-controller" ng-show="checkURL()" ng-hide="!checkURL()">
-          <nav class="navbar navbar-default no-margin">
-            <div class="navbar-header fixed-brand">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  id="menu-toggle">
-                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-              </button>
-              <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-4"></i> ISKOLARLY</a>
-            </div>
-            
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li class="active" ><button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"> <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span></button></li>
-              </ul>
-            </div>
-          </nav>
-          
-          <div id="wrapper" class="Nav-wrapper">
-            <!-- Side Navbar -->
-            <div id="sidebar-wrapper" class="Nav-sidenav">
-              <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-                <li class="active">
-                  <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>Home</a>
-                </li>
-                
-                <li>
-                  <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>Courses</a>
-                  <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                    <li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>CMSC 128</a></li>
-                    <li><a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>CMSC 127</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            
-            <div id="page-content-wrapper" class="Nav-homenav">
-              <div class="container-fluid xyz">
-                <div class="row">
-                  <div ng-view></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div ng-controller="nav-controller" ng-show="!checkURL()" ng-hide="checkURL()">
+        <div ng-controller="nav-controller">
           <div ng-view></div>
         </div>
+
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
         <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>

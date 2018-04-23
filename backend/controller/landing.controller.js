@@ -87,13 +87,11 @@ exports.register = function(req, res, next) {
                   console.log(err);
                   return res.status(500).send({message: "An error has encountered"})
                 }
-                  return res.send(result);
               });
-              return res.send(result);
+              return res.status(200).send(result);
             } else if (err.code == "ER_DUP_ENTRY") {
               return res.status(500).send({message: "The username or email address is already taken"})
             }
-            console.log(err);
             return res.status(500).send({message: "An error has encountered"})
           })
       })
@@ -115,9 +113,8 @@ exports.register = function(req, res, next) {
                   console.log(err);
                   return res.status(500).send({message: "An error has encountered"})
                 }
-                  return res.send(result);
               });
-              return res.send(result);
+              return res.status(200).send(result);
             } else if (err.code == "ER_DUP_ENTRY") {
               return res.status(500).send({message: "The username or email address is already taken"})
             }
