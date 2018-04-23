@@ -321,3 +321,7 @@ textarea {
 .bootstrap-datetimepicker-widget {
   color: black !important;
 }
+
+.hr_black {
+  border-color: black !important;
+}

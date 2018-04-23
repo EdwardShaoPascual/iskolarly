@@ -132,9 +132,26 @@
       }
     }
 
-    $scope.announcements_view = () => {
+    $scope.announcements_view_stud = () => {
 			CourseService
-			.view_announcements()
+			.stud_view_announcements()
+			.then(function(res) {
+        for (let i=0; i < res.length; i++) {
+          let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+          if (res[i].post.match(urls)) {
+            res[i].post = res[i].post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
+          }
+          res[i].time_posted = moment(res[i].time_posted).format('ll').split(',')[0];
+          $scope.announce.push(res[i]);
+        }
+			}, function(err) {
+        toastr.error(err.message, 'Error');
+      })
+    }
+
+    $scope.announcements_view_inst = () => {
+			CourseService
+			.inst_view_announcements()
 			.then(function(res) {
         for (let i=0; i < res.length; i++) {
           let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;

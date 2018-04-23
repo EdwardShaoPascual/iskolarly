@@ -69,9 +69,22 @@ exports.post_note = (req,res, next) => {
   });
 }
 
-exports.view_announcements  = (req, res, next) => {
-  let query_string = 'SELECT * FROM announcement LEFT JOIN questionnaires ON announcement.questionnaire_id = questionnaires.questionnaire_id NATURAL JOIN user NATURAL JOIN (SELECT course_id, course_title, course_section, course_description FROM course) as course ORDER BY time_posted DESC';
-  let request_data = []
+exports.stud_view_announcements  = (req, res, next) => {
+  let query_string = 'SELECT * FROM announcement LEFT JOIN questionnaires ON announcement.questionnaire_id = questionnaires.questionnaire_id LEFT JOIN course_user ON announcement.course_id = course_user.course_id LEFT JOIN course ON course_user.course_id = course.course_id WHERE course_user.user_id = ? ORDER BY announcement.time_posted DESC';
+  let request_data = [req.session.user.user_id]
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}
+
+exports.inst_view_announcements  = (req, res, next) => {
+  let query_string = 'SELECT * FROM announcement LEFT JOIN questionnaires ON announcement.questionnaire_id = questionnaires.questionnaire_id LEFT JOIN course ON announcement.course_id = course.course_id WHERE announcement.user_id = ? ORDER BY announcement.time_posted DESC';
+  let request_data = [req.session.user.user_id]
 
   db.query(query_string, request_data, (err, result) => {
     if (err) {

@@ -67,12 +67,28 @@
       return deferred.promise;
     }
 
-    const view_announcements = function () {
+    const stud_view_announcements = function () {
       let deferred = $q.defer();
 
       $http({
         method: 'GET',
-        url: '/api/view_announcement'
+        url: '/api/stud_view_announcement'
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
+    const inst_view_announcements = function () {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/api/inst_view_announcement'
       })
       .then(function(res) {
         deferred.resolve(res.data);
@@ -177,7 +193,8 @@
     service.retrieve_course = retrieve_course;
     service.retrieve_announcement = retrieve_announcement;
     service.create_note = create_note;
-    service.view_announcements = view_announcements;
+    service.stud_view_announcements = stud_view_announcements;
+    service.inst_view_announcements = inst_view_announcements;
     service.view_questionnaires = view_questionnaires;
     service.add_questionnaires = add_questionnaires;
     service.get_info_questionnaires = get_info_questionnaires;
