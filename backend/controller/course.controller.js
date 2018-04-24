@@ -170,6 +170,7 @@ exports.edit_questionnaires = (req, res, next) => {
 }
 
 exports.delete_questionnaires = (req, res, next) => {
+  
   let query_string = 'DELETE FROM questionnaires WHERE questionnaire_id = ?';
   let request_data = [req.params.questionnaire_id]
 
@@ -183,52 +184,51 @@ exports.delete_questionnaires = (req, res, next) => {
 }
 
 exports.upload_attachment = (req, res, next) => {
-  
-  let bucketName = 'iskolarly-storage';
-  let filename = '/home/eddie/Downloads/The_little_prince-2(1).pdf';
-  let flag = 0;  
-  let fileUpload = filename.split('/');
-  fileUpload = fileUpload[fileUpload.length - 1];
 
-  storage
-  .bucket(bucketName)
-  .getFiles()
-  .then(results => {
-    const files = results[0];
-    files.forEach(file => {
-      if (fileUpload == file.name) {
-        flag = 1;
-      }
-    });
-    if (flag === 0) {
-      storage
-      .bucket(bucketName)
-      .upload(filename)
-      .then((response) => {
-        filename = response[0].name;
-        downloadLink = response[0].metadata.mediaLink;
-        storage
-        .bucket(bucketName)
-        .file(filename)
-        .makePublic()
-        .then((resp) => {
-          return res.send('Uploaded and publicized');
-        })
-        .catch(err => {
-          console.log(err);
-          return res.send('ERROR:', err);
-        });
-      })
-      .catch(err => {
-        return res.send('ERROR:', err);
-          console.log(err);
-      });
-    } else {
-      return res.status(500).send({message: 'File name already exists, please rename your file'});
-    }
-  })
-  .catch(error => {
-    console.log(error);
-  });
+  let bucketName = 'iskolarly-storage';
+  let file = req.body;
+  let flag = 0
+  let fileUpload = req.query.filename
+
+  // storage
+  // .bucket(bucketName)
+  // .getFiles()
+  // .then(results => {
+  //   const files = results[0];
+  //   files.forEach(file => {
+  //     if (fileUpload == file.name) {
+  //       flag = 1;
+  //     }
+  //   });
+  //   if (flag === 0) {
+  //     storage
+  //     .bucket(bucketName)
+  //     .upload(file)
+  //     .then((response) => {
+  //       file = response[0].name;
+  //       downloadLink = response[0].metadata.mediaLink;
+  //       storage
+  //       .bucket(bucketName)
+  //       .file(file)
+  //       .makePublic()
+  //       .then((resp) => {
+  //         return res.send('Uploaded and publicized');
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //         return res.send('ERROR:', err);
+  //       });
+  //     })
+  //     .catch(err => {
+  //       return res.send('ERROR:', err);
+  //         console.log(err);
+  //     });
+  //   } else {
+  //     return res.status(500).send({message: 'File name already exists, please rename your file'});
+  //   }
+  // })
+  // .catch(error => {
+  //   console.log(error);
+  // });
 
 }

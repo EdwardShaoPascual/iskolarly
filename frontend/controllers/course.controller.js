@@ -14,6 +14,7 @@
     $scope.active = 1;
     $scope.active_option = 1;
     $scope.trust = $sce.trustAsHtml;
+    $scope.filename = '';
 
     $scope.course_info = {
       course_id: ''
@@ -289,7 +290,33 @@
     }
 
     $scope.upload_attachment = () => {
-      $scope.uploader = new FileUploader();
+      // define reader
+      let filedata = new FormData();
+      let reader = new FileReader();
+      // A handler for the load event (just defining it, not executing it right now)
+      reader.onload = function(e) {
+          $scope.$apply(function() {
+              $scope.csvFile = reader.result;
+              CourseService
+              .upload_attachment($scope.csvFile, $scope.filename)
+              .then(function(res) {
+                swal({
+                  title: "Success!",
+                  text: "File has been added.",
+                  type: "success"
+                })
+              }, function(err) {
+              })
+          });
+      };
+      // get <input> element and the selected file 
+      let csvFileInput = document.getElementById('fileupload');    
+      let csvFile = csvFileInput.files[0];
+      $scope.filename = csvFile.name;
+      // use reader to read the selected file
+      // when read operation is successfully finished the load event is triggered
+      // and handled by our reader.onload function
+      reader.readAsText(csvFile);
     }
   }
 

@@ -189,6 +189,29 @@
       return deferred.promise;
     }
 
+    const upload_attachment = function (data, filename) {
+
+      let para = {
+        filename: filename
+      }
+      let deferred = $q.defer();
+      $http({
+        method: 'POST',
+        data: data,
+        params: para,
+        url: '/api/upload_attachment/',
+        headers: headers
+      })
+      .then(function(res) {
+        // $window.location.href = '/#/questionnaire';
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+    }
+
     let service = {};
     service.retrieve_course = retrieve_course;
     service.retrieve_announcement = retrieve_announcement;
@@ -200,6 +223,7 @@
     service.get_info_questionnaires = get_info_questionnaires;
     service.edit_questionnaires = edit_questionnaires;
     service.delete_questionnaires = delete_questionnaires;
+    service.upload_attachment = upload_attachment;
     return service;
   }
 
