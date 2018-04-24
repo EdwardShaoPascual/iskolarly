@@ -296,27 +296,35 @@
       // A handler for the load event (just defining it, not executing it right now)
       reader.onload = function(e) {
           $scope.$apply(function() {
-              $scope.csvFile = reader.result;
-              CourseService
-              .upload_attachment($scope.csvFile, $scope.filename)
-              .then(function(res) {
-                swal({
-                  title: "Success!",
-                  text: "File has been added.",
-                  type: "success"
-                })
-              }, function(err) {
-              })
+              let a = document.createElement("a");
+              document.body.appendChild(a);
+              a.style = "display: none";
+
+              $scope.csvFile = reader.result
+              let oMyBlob = new Blob([$scope.csvFile], {type : 'application/pdf'});
+              let url = URL.createObjectURL(oMyBlob);
+              a.href = url;
+              a.download = $scope.filename;
+              a.click();
+              window.URL.revokeObjectURL(url);
+
+              // CourseService
+              // .upload_attachment(a,url)
+              // .then(function(res) {
+              //   swal({
+              //     title: "Success!",
+              //     text: "File has been added.",
+              //     type: "success"
+              //   })
+              // }, function(err) {
+              // })
+              
           });
       };
-      // get <input> element and the selected file 
       let csvFileInput = document.getElementById('fileupload');    
       let csvFile = csvFileInput.files[0];
       $scope.filename = csvFile.name;
-      // use reader to read the selected file
-      // when read operation is successfully finished the load event is triggered
-      // and handled by our reader.onload function
-      reader.readAsText(csvFile);
+      reader.readAsArrayBuffer(csvFile);
     }
   }
 

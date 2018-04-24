@@ -189,16 +189,12 @@
       return deferred.promise;
     }
 
-    const upload_attachment = function (data, filename) {
+    const upload_attachment = function (data) {
 
-      let para = {
-        filename: filename
-      }
       let deferred = $q.defer();
       $http({
         method: 'POST',
         data: data,
-        params: para,
         url: '/api/upload_attachment/',
         headers: headers
       })
