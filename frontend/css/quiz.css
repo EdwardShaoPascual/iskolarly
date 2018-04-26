@@ -9,7 +9,7 @@
   width: 250px; 
 }
 
-.btn-choices {
+.buttn-choices {
   width: 120px;
 }
 
@@ -66,3 +66,17 @@
 .colpad {
   height: 75px !important;
 }
+/* 
+.buttn:focus {
+  outline: none !important;
+} */
+/* 
+.buttn:active:focus {
+  outline: none;
+}
+
+.buttn-default, .buttn-default:hover, .buttn-default:active, .buttn-default:active:focus, .buttn-default:visited, .buttn-default:focus {
+  color: #dcdcdc;
+  background-color: #232323;
+  outline: none;
+} */

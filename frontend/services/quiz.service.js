@@ -13,12 +13,13 @@
 
   function QuizService($http, $q, $window) {
 
-    const get_quiz = function (data) {
+    const get_quiz = function (id, data) {
       let deferred = $q.defer();
 
       $http({
         method: 'GET',
-        url: '/api/get_quiz/' + data
+        params: data,
+        url: '/api/get_quiz/' + id
       })
       .then(function(res) {
         deferred.resolve(res.data);
@@ -45,9 +46,45 @@
       return deferred.promise;
     }
 
+    const insert_quizlog = function(data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'POST',
+        params: data,
+        url: '/api/insert_quizlog'
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
+    const insert_questionlog = function(data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'POST',
+        params: data,
+        url: '/api/insert_questionlog'
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
     let service = {};
     service.get_quiz = get_quiz;
     service.get_answers = get_answers;
+    service.insert_quizlog = insert_quizlog;
+    service.insert_questionlog = insert_questionlog;
     return service;
   }
 
