@@ -334,6 +334,7 @@
           text: file_info.filename + " has been added to DB.",
           type: "success"
         })
+        document.getElementById("fileupload").value = null;
       }, function(err) {
       })
     }
