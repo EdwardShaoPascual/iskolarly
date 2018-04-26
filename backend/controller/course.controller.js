@@ -178,7 +178,6 @@ exports.delete_questionnaires = (req, res, next) => {
 }
 
 exports.upload_attachment = (req, res, next) => {
-  console.log(req.query);
   let query_string = 'INSERT INTO attachment (attachment_name, url, type) VALUES (?,?,?)';
   let request_data = [req.query.filename, req.query.url, 'Handout'];
 
