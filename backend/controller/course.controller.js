@@ -2,12 +2,6 @@
 
 const db = require(__dirname + '/../lib/mysql');
 const moment = require('moment');
-const Storage = require('@google-cloud/storage');
-
-const projectId = 'iskolarly-node';
-const storage = new Storage({
-  keyFilename: __dirname + './../lib/iskolarly-node-1e221114c332.json'
-});
 
 exports.retrieve_course = (req,res, next) => {
   
@@ -184,51 +178,15 @@ exports.delete_questionnaires = (req, res, next) => {
 }
 
 exports.upload_attachment = (req, res, next) => {
-  
-  let bucketName = 'iskolarly-storage';
-  let file = req.body;
-  let flag = 0
-  let fileUpload = req.query.filename
+  console.log(req.query);
+  let query_string = 'INSERT INTO attachment (attachment_name, url, type) VALUES (?,?,?)';
+  let request_data = [req.query.filename, req.query.url, 'Handout'];
 
-  // storage
-  // .bucket(bucketName)
-  // .getFiles()
-  // .then(results => {
-  //   const files = results[0];
-  //   files.forEach(file => {
-  //     if (fileUpload == file.name) {
-  //       flag = 1;
-  //     }
-  //   });
-  //   if (flag === 0) {
-  //     storage
-  //     .bucket(bucketName)
-  //     .upload(file)
-  //     .then((response) => {
-  //       file = response[0].name;
-  //       downloadLink = response[0].metadata.mediaLink;
-  //       storage
-  //       .bucket(bucketName)
-  //       .file(file)
-  //       .makePublic()
-  //       .then((resp) => {
-  //         return res.send('Uploaded and publicized');
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //         return res.send('ERROR:', err);
-  //       });
-  //     })
-  //     .catch(err => {
-  //       return res.send('ERROR:', err);
-  //         console.log(err);
-  //     });
-  //   } else {
-  //     return res.status(500).send({message: 'File name already exists, please rename your file'});
-  //   }
-  // })
-  // .catch(error => {
-  //   console.log(error);
-  // });
-
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
 }

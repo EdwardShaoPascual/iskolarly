@@ -83,13 +83,10 @@ CREATE TABLE activity (
 DROP TABLE IF EXISTS attachment;
 CREATE TABLE attachment (
 	attachment_id					int NOT NULL AUTO_INCREMENT,
-	file_format						varchar(256),
+	attachment_name					varchar(256) NOT NULL,
+	url								text NOT NULL,								
 	type							enum('Handout','Task','Sample','Exercise') NOT NULL,
-	activity_id						int NOT NULL,
-	PRIMARY KEY						(attachment_id),
-	CONSTRAINT						`fk_attachment_activity`
-		FOREIGN KEY (activity_id) REFERENCES activity (activity_id)
-		ON UPDATE CASCADE ON DELETE CASCADE
+	PRIMARY KEY						(attachment_id)
 );
 
 DROP TABLE IF EXISTS record;
