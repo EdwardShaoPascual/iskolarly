@@ -185,7 +185,18 @@ exports.upload_attachment = (req, res, next) => {
     if (err) {
       return res.status(500).send(err);
     } else {
-      res.send(result);
+      let new_query_string = 'INSERT INTO announcement (course_id, user_id, attachment_id, post, time_posted) VALUES (?,?,?,?,NOW())';
+      let new_request_data = [req.query.course_id, req.query.user_id, result.insertId, req.query.post];
+      
+      db.query(new_query_string, new_request_data, (error, rest) => {
+        if (error) {
+          console.log(error);
+          return res.status(500).send(err);
+        } else {
+          console.log(rest);
+          return res.send(rest);
+        }
+      })
     }
   });
 }

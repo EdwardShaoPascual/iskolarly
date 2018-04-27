@@ -211,8 +211,11 @@
       return deferred.promise;      
     }
 
-    const insert_uploaded = function (data) {
+    const insert_uploaded = function (data, note) {
       let deferred = $q.defer();
+      data.course_id = note.course_id;
+      data.post = note.post;
+      data.user_id = note.user_id;
       $http({
         method: 'POST',
         params: data,

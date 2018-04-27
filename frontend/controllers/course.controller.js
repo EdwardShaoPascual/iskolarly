@@ -311,27 +311,30 @@
       reader.readAsArrayBuffer(csvFile);
     }
 
-    $scope.continue_upload = () => {
-      CourseService
-      .upload_attachment($scope.file,$scope.filename)
-      .then(function(res) {
-        swal({
-          title: "Success!",
-          text: res.filename + " has been added.",
-          type: "success"
+    $scope.continue_upload = (user) => {
+      $scope.note_info.user_id = user.user_id
+      if($scope.note_info.post.length !== 0) {
+        CourseService
+        .upload_attachment($scope.file,$scope.filename)
+        .then(function(res) {
+          $scope.insert_uploaded(res);
+        }, function(err) {
         })
-        $scope.insert_uploaded(res);
-      }, function(err) {
-      })
+      } else {
+        toastr.error('Please fill the note field', 'Error');
+      }
     }
 
     $scope.insert_uploaded = (file_info) => {
+      let url = window.location.href
+      let res = url.split("/");
+      $scope.note_info.course_id = res[res.length-1];
       CourseService
-      .insert_uploaded(file_info)
+      .insert_uploaded(file_info, $scope.note_info)
       .then(function(res) {
         swal({
           title: "Success!",
-          text: file_info.filename + " has been added to DB.",
+          text: file_info.filename + " has been added.",
           type: "success"
         })
         document.getElementById("fileupload").value = null;
