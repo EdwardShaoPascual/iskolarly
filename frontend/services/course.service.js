@@ -189,17 +189,40 @@
       return deferred.promise;
     }
 
-    const upload_attachment = function (data) {
-
+    const upload_attachment = function (data, filename) {
       let deferred = $q.defer();
+      const client = filestack.init('AfRyXmtm3T9a3AspPfDlwz');
+      client.upload(data, {
+        retry: 10
+      }, {
+        filename: filename,
+        access: 'public'
+      })
+      .then((res) => {
+        let file_data = {
+          filename: res.filename,
+          url: res.url
+        };
+        deferred.resolve(file_data);
+      }, (err) => {
+        deferred.reject(err);        
+      })
+
+      return deferred.promise;      
+    }
+
+    const insert_uploaded = function (data, note) {
+      let deferred = $q.defer();
+      data.course_id = note.course_id;
+      data.post = note.post;
+      data.user_id = note.user_id;
       $http({
         method: 'POST',
-        data: data,
+        params: data,
         url: '/api/upload_attachment/',
         headers: headers
       })
       .then(function(res) {
-        // $window.location.href = '/#/questionnaire';
         deferred.resolve(res.data);
       }, function(err) {
         deferred.reject(err);
@@ -220,6 +243,7 @@
     service.edit_questionnaires = edit_questionnaires;
     service.delete_questionnaires = delete_questionnaires;
     service.upload_attachment = upload_attachment;
+    service.insert_uploaded = insert_uploaded;
     return service;
   }
 

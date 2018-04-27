@@ -5,9 +5,9 @@
 	.module('app')
   .controller('course-controller', course_controller);
 
-  course_controller.$inject = ['$scope', '$window', '$sce', '$timeout', 'CourseService'];
+  course_controller.$inject = ['$scope', '$window', '$sce', '$timeout', '$http', 'CourseService'];
 
-	function course_controller($scope, $window, $sce, $timeout, CourseService) {
+	function course_controller($scope, $window, $sce, $timeout, $http, CourseService) {
     
     $scope.user = new Array();
     $scope.announce = new Array();
@@ -15,6 +15,7 @@
     $scope.active_option = 1;
     $scope.trust = $sce.trustAsHtml;
     $scope.filename = '';
+    $scope.file = '';
 
     $scope.course_info = {
       course_id: ''
@@ -293,7 +294,7 @@
       // define reader
       let filedata = new FormData();
       let reader = new FileReader();
-      // A handler for the load event (just defining it, not executing it right now)
+
       reader.onload = function(e) {
           $scope.$apply(function() {
               let a = document.createElement("a");
@@ -301,30 +302,44 @@
               a.style = "display: none";
 
               $scope.csvFile = reader.result
-              let oMyBlob = new Blob([$scope.csvFile], {type : 'application/pdf'});
-              let url = URL.createObjectURL(oMyBlob);
-              a.href = url;
-              a.download = $scope.filename;
-              a.click();
-              window.URL.revokeObjectURL(url);
-
-              // CourseService
-              // .upload_attachment(a,url)
-              // .then(function(res) {
-              //   swal({
-              //     title: "Success!",
-              //     text: "File has been added.",
-              //     type: "success"
-              //   })
-              // }, function(err) {
-              // })
-              
+              $scope.file = new Blob([$scope.csvFile], {type : 'application/pdf'});              
           });
       };
       let csvFileInput = document.getElementById('fileupload');    
       let csvFile = csvFileInput.files[0];
       $scope.filename = csvFile.name;
       reader.readAsArrayBuffer(csvFile);
+    }
+
+    $scope.continue_upload = (user) => {
+      $scope.note_info.user_id = user.user_id
+      if($scope.note_info.post.length !== 0) {
+        CourseService
+        .upload_attachment($scope.file,$scope.filename)
+        .then(function(res) {
+          $scope.insert_uploaded(res);
+        }, function(err) {
+        })
+      } else {
+        toastr.error('Please fill the note field', 'Error');
+      }
+    }
+
+    $scope.insert_uploaded = (file_info) => {
+      let url = window.location.href
+      let res = url.split("/");
+      $scope.note_info.course_id = res[res.length-1];
+      CourseService
+      .insert_uploaded(file_info, $scope.note_info)
+      .then(function(res) {
+        swal({
+          title: "Success!",
+          text: file_info.filename + " has been added.",
+          type: "success"
+        })
+        document.getElementById("fileupload").value = null;
+      }, function(err) {
+      })
     }
   }
 
