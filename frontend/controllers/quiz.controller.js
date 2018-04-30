@@ -130,7 +130,7 @@
       } else {
         $scope.activeQuestion = index;
       }
-      
+      numQuestion = index+1;
       var url = "//geoip.nekudo.com/api/";
       $http
       .get(url)
@@ -151,8 +151,8 @@
     }
 
     $scope.questionAnsweredNext = () => {
-      if (numQuestion < quizLength) {
-        $scope.setActiveQuestion(numQuestion);
+      if (numQuestion < quizLength+1) {
+        $scope.setActiveQuestion(numQuestion-1);
 
         var url = "//geoip.nekudo.com/api/";
         $http
@@ -172,7 +172,7 @@
           })
         })
 
-        numQuestion++;
+        numQuestion = numQuestion + 1;
       } else {
         $scope.error = false;
         $scope.finalize = true;
@@ -181,9 +181,11 @@
 
     $scope.questionAnsweredPrev = () => {
 
-      if (numQuestion > 0) {
-        numQuestion--;
-        $scope.setActiveQuestion(numQuestion);
+
+      if (numQuestion > 1) {
+        numQuestion = numQuestion - 1;
+        console.log(numQuestion)
+        $scope.setActiveQuestion(numQuestion-1);
         
         var url = "//geoip.nekudo.com/api/";
         $http
