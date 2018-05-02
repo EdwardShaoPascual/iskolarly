@@ -11,6 +11,10 @@
   color: #FFF !important;
 }
 
+.Navigation .dropdown-menu {
+  background-color: #1f2833 !important;
+}
+
 .Navigation_Brand {
   font-family: 'Gloria Hallelujah', cursive !important;
 }
