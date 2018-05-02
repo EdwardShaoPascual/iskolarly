@@ -24,7 +24,6 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="bower_components/hover/css/hover-min.css">
   <link rel="stylesheet" type="text/css" href="bower_components/toastr/toastr.min.css">
-  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
   <link rel="stylesheet" type="text/css" href="css/landing.css">
   <link rel="stylesheet" type="text/css" href="css/nav.css">
   <link rel="stylesheet" type="text/css" href="css/home.css">
@@ -34,6 +33,7 @@
   <link rel="stylesheet" type="text/css" href="css/question.css">
   <link rel="stylesheet" type="text/css" href="css/quiz.css">
   <link rel="stylesheet" type="text/css" href="css/radio.css">
+  <link rel="stylesheet" type="text/css" href="css/report.css">
   
   <body>  
       <div ng-app="app">
@@ -59,12 +59,12 @@
                       <a href="/#/courses" class="Navigation_Pages">Courses</a>
                     </li>
                   </ul>
-                  <ul class="nav navbar-nav navbar-right">
+                  <ul class="nav navbar-nav navbar-right" ng-controller="courses-controller" ng-init="check_auth()">
                     <li class="dropdown">
                       <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="Navigation_Pages">Other Option <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)">View Courses' Report</a></li>
-                        <li role="separator" class="divider"></li>
+                        <li ng-if="session.role === 'Instructor'"><a href="/#/report">View Courses' Report</a></li>
+                        <li ng-if="session.role === 'Instructor'" role="separator" class="divider"></li>
                         <li><a href="javascript:void(0)" ng-click="user_logout()">Log Out</a></li>
                       </ul>
                     </li>
@@ -89,7 +89,6 @@
         <script type="text/javascript" src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript" src="bower_components/toastr/toastr.min.js"></script>
         <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-        <script type="text/javascript" src="bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
         <script type="text/javascript" src="app.js"></script>
         
         <!-- ng-services -->
