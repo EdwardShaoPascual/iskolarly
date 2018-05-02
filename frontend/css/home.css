@@ -169,3 +169,31 @@ hr {
 .Home_margin {
   width: 100% !important;
 }
+
+#owl-demo .item{
+  background: #3fbf79;
+  padding: 0px !important;
+  margin: auto !important;
+  width: 100% !important;
+  color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.customNavigation{
+  text-align: center;
+}
+
+.home-grow {
+  width: 100% !important;
+}
+
+.home-contain {
+  padding-left: 0px !important;
+}
+
+.owl-carousel {
+  width: 96% !important;
+}

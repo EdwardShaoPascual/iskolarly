@@ -5,7 +5,7 @@
 		.module('app')
 		.controller('nav-controller',nav_controller);
 
-    landing_controller.$inject = ['$scope', '$window', '$rootScope','$location', '$interval', 'NavService'];    
+    nav_controller.$inject = ['$scope', '$window', '$rootScope','$location', '$interval', 'NavService'];    
 
 		function nav_controller($scope, $window, $rootScope, $location, $interval, NavService) {
       
