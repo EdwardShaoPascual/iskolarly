@@ -65,30 +65,46 @@
             <h2>Courses</h2>
           </div>
           <div>
-            <div class="row">
-              <span ng-repeat="course in courses | filter: { course_title : search_filter }">
-              <div class="col-xs-1 hidden-sm hidden-md hidden-lg"/>
-              <div id="Course_Card_{{course.course_id}}" class="hvr-grow col-xs-10 col-sm-5 col-md-5 col-lg-4">
-                  <div class="panel panel-default panel-card">
-                    <div class="panel-heading">
-                      <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
-                    </div>
-                    <div class="panel-figure">
-                      <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
-                    </div>
-                    <div class="panel-body text-center">
-                      <h4 class="panel-header"><a class="Course_Title" href="/#/course/{{course.course_id}}">{{course.course_title}}</a></h4>
-                      <h5 class="Course_Section panel-header">{{course.course_section}}</h5>
-                      <small>{{course.course_description}}.</small>
+            <div class="home-contain container">
+              
+                <div id="owl-demo" class="owl-carousel owl-theme">
+                    <div class="item" ng-repeat="course in courses">
+            
+                        <div class="col-xs-1 hidden-sm hidden-md hidden-lg"/>
+                        <div id="Course_Card_{{course.course_id}}" class="hvr-grow home-grow col-xs-10 col-sm-5 col-md-5 col-lg-4">
+                          <div class="panel panel-default panel-card">
+                            <div class="panel-heading">
+                              <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
+                            </div>
+                            <div class="panel-figure">
+                              <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
+                            </div>
+                            <div class="quiz-panel-body panel-body text-center">
+                              <h4 class="panel-header"><a class="Course_Title" href="/#/course/{{course.course_id}}">{{course.course_title}}</a></h4>
+                              <h5 class="Course_Section panel-header">{{course.course_section}}</h5>
+                              <small>{{course.course_description}}.</small>
+                            </div>
+                          </div>
+            
+                          <div class="Course_Code" ng-if="session.role === 'Instructor'">
+                            <small>Course Code: <span class="Course_Code-bold">{{course.course_code}}</span></small>
+                          </div>
+            
+                          <div class="Course_Code" ng-if="session.role === 'Student'"></div>
+                        </div>
+                        <div class="col-xs-1 hidden-sm hidden-md hidden-lg"/>
+            
                     </div>
                   </div>
-                  <div class="Course_Code" ng-if="session.role === 'Instructor'">
-                    <small>Course Code: <span class="Course_Code-bold">{{course.course_code}}</span></small>
+                    
+                  <div class="customNavigation">
+                    <a class="btn prev">Previous</a>
+                    <a class="btn next">Next</a>
+                    <a class="btn play">Autoplay</a>
+                    <a class="btn stop">Stop</a>
                   </div>
-                  <div class="Course_Code" ng-if="session.role === 'Student'"></div>
-                </div>
-                <div class="col-xs-1 hidden-sm hidden-md hidden-lg"/>
-            </span>
+
+
             </div>
           </div>
         </div>
@@ -98,3 +114,34 @@
     </div>
   </div>
 </span>
+
+<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
+<script type="text/javascript" src="bower_components/owl-carousel-v1/owl-carousel/owl.carousel.min.js"></script>  
+<script>
+$(document).ready(function() {
+  
+   var owl = $("#owl-demo");
+  
+   owl.owlCarousel({
+       items : 4,
+      //  itemsDesktop : [1000,3],
+       itemsDesktopSmall : [900,2], 
+       itemsTablet: [600,1],
+       itemsMobile : false 
+   });
+  
+   $(".next").click(function(){
+     owl.trigger('owl.next');
+   })
+   $(".prev").click(function(){
+     owl.trigger('owl.prev');
+   })
+   $(".play").click(function(){
+     owl.trigger('owl.play',1000); //owl.play event accept autoPlay speed as second parameter
+   })
+   $(".stop").click(function(){
+     owl.trigger('owl.stop');
+   })
+  
+ });
+</script>
