@@ -150,7 +150,7 @@ exports.edit_questionnaires = (req, res, next) => {
       if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
         return res.status(400).send("Fill all the fields");
       } else if (req.query.questionnaire_no < req.query.questionnaire_item) {
-        return res.status(400).send("Questionnaire no should be less than or equal to items");
+        return res.status(400).send("Questionnaire number should be greater than or equal to items");
       }
 
       db.query(query_string, request_data, (errs, result) => {

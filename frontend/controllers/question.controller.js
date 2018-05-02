@@ -10,6 +10,10 @@
   function question_controller($routeParams, $scope, $rootScope, $window, QuestionService) {
     let questionnaire_id = $routeParams.questionnaire_id;
     $scope.isDisabled = true;
+    $scope.questionnaire_info = {};
+    $scope.questionnaire = {
+      questionnaire_id: ''
+    }
     $rootScope.typeText;
     
     $scope.questionsData = {
@@ -31,9 +35,9 @@
 			QuestionService
 			.get_questions(questionnaire_id)
 			.then(function(res) {
-        $scope.user = res;
-        $('#val_name').text($scope.user[0].questionnaire_name);
-        $('#items').text($scope.user[0].questionnaire_no + " items");
+        $scope.questionnaire_info = res;
+        $('#val_name').text($scope.questionnaire_info[0].questionnaire_name);
+        $('#items').text($scope.questionnaire_info[0].questionnaire_no + " items");
 			}, function(err) {
 			})
     }
@@ -191,6 +195,23 @@
         })
       });
     }
+
+    $scope.publish_quiz = () => {
+      let url = window.location.href
+      let res = url.split("/");
+      $scope.questionnaire.questionnaire_id = res[res.length-1];
+      if ($scope.questionnaire_info[0].items > $scope.user.length) {
+        toastr.error('Insufficient questions in the pool for this quiz before publishing!','Error')
+      } else {
+        QuestionService
+        .publish_quiz($scope.questionnaire)
+        .then(function(res) {
+          toastr.success('The quiz have been published successfully!', 'Success')
+        }, function(err) {
+        })
+      }
+    }
+
   }
 
 })();

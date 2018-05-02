@@ -172,6 +172,24 @@
       return deferred.promise;
     }
 
+    const publish_quiz = function (data) {
+      let deferred = $q.defer();
+      
+      $http({
+        method: 'POST',
+        params: data,
+        url: '/api/publish_quiz/',
+        headers: headers
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+    }
+
     let service = {};
     service.view_questions = view_questions;
     service.get_questions = get_questions;
@@ -183,6 +201,7 @@
     service.view_answers = view_answers;
     service.add_answers = add_answers;
     service.delete_answers = delete_answers;
+    service.publish_quiz = publish_quiz;
     return service;
   }
 
