@@ -114,6 +114,33 @@ html {
   padding-left: 0px !important;
 }
 
+.Landing_Content-head {
+  font-family: 'Open Sans', sans-serif !important;
+  color: rgba(102, 252, 241, 1);
+  font-weight: bolder !important;
+  font-size: 34px;
+  text-align: center;
+}
+
+.Landing_Content {
+  font-family: proxima_nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 20px;
+  color: rgba(255,255,255,1) !important;  
+  text-align: center;
+  text-justify: inter-word;
+}
+
+.Landing_Content .glyphicon{
+  font-size: 17px;
+  color: rgba(102, 252, 241, 1);
+  text-align: center;
+  text-justify: inter-word;
+}
+
+.Landing_Content-below {
+  margin-bottom: 75px !important;
+}
+
 small {
   font-family: 'Open Sans', sans-serif;
   color: rgba(255,255,255,0.65) !important;  
@@ -199,7 +226,10 @@ small {
 @media screen and (max-width:991px) {
   .Landing_over_split {
     border: 0px;
-  } 
+  }
+  .Landing_Responsive {
+    margin-top: 100px;
+  }
 }
 
 @media screen and (max-width: 1199px) {
@@ -242,6 +272,32 @@ small {
   }
 }
 
+@media screen and (max-width: 1199px) {
+  .Landing_Content-head {
+    font-family: 'Open Sans', sans-serif !important;
+    color: rgba(102, 252, 241, 1);
+    font-weight: bolder !important;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 15px !important;
+  }
+  
+  .Landing_Content {
+    font-family: proxima_nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    color: rgba(255,255,255,1) !important;  
+    text-align: center;
+    text-justify: inter-word;
+  }
+  
+  .Landing_Content .glyphicon{
+    font-size: 17px;
+    color: rgba(102, 252, 241, 1);
+    text-align: center;
+    text-justify: inter-word;
+  }
+}
+
 .btn-primary {
   background-color: #3dbea7 !important;
   border: #3dbea7 !important;
@@ -264,3 +320,4 @@ small {
 .modal-header {
   text-align: center !important;
 }
+
