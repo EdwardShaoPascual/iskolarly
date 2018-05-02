@@ -46,7 +46,6 @@ exports.add_questions = (req, res, next) => {
   let request_data = [req.query.questionnaire_id, req.query.question_desc, req.query.type]
 
   if (!req.query.question_desc && !req.query.type) {
-    console.log("Fill all the fields");
     return res.status(400).send("Fill all the fields");
   }
 

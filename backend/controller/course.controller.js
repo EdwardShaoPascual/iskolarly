@@ -193,7 +193,6 @@ exports.upload_attachment = (req, res, next) => {
           console.log(error);
           return res.status(500).send(err);
         } else {
-          console.log(rest);
           return res.send(rest);
         }
       })
