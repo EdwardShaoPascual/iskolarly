@@ -10,23 +10,26 @@ const db = require(__dirname + '/../lib/mysql');
 exports.get_quiz = (req, res, next) => {
   let query_string = 'SELECT qn.*, qe.questionnaire_name FROM questions qn, questionnaires qe WHERE qn.questionnaire_id = ? AND qe.questionnaire_id = ?';
   let request_data = [req.params.questionnaire_id, req.params.questionnaire_id]
-
-  db.query(query_string, request_data, (err, result) => {
-    if (err) {
-      return res.status(500).send(err);
-    } else {
-      let query = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-      let request = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' ipv4=' + req.query.ip;
-      let activity = "Quiz " + req.query.questionnaire_id + " Start";
-      db.query(query, [activity, request], (error, rest, args, last_query) => {
-        if (error) {
-          return res.status(500).send({message: "An error has encountered"})
-        } else {
-          res.send(result);          
-        }
-      });
-    }
-  });
+  if (req.session.user === undefined) {
+    res.status(500).send({message: "There is no active session!"});
+  } else {
+    db.query(query_string, request_data, (err, result) => {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+        let query = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
+        let request = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' ipv4=' + req.query.ip;
+        let activity = "Quiz " + req.query.questionnaire_id + " Start";
+        db.query(query, [activity, request], (error, rest, args, last_query) => {
+          if (error) {
+            return res.status(500).send({message: "An error has encountered"})
+          } else {
+            res.send(result);          
+          }
+        });
+      }
+    });
+  }
 }
 
 exports.get_answers = (req, res, next) => {

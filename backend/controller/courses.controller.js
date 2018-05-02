@@ -4,7 +4,7 @@ const db = require(__dirname + '/../lib/mysql');
 
 exports.view_courses = (req, res, next) => {
   let query_string = ""
-  if (req.session.user.role === '' || req.session.user.role === undefined) {
+  if (req.session.user === undefined || req.session.user === '') {
     return res.status(500).send({message: "There is no active session yet"});
   }
   else if (req.session.user.role === 'Instructor') {
