@@ -69,3 +69,16 @@ exports.insert_questionlog = (req, res, next) => {
     }
   });
 }
+
+exports.insert_score = (req, res, next) => {
+  let query_string = 'INSERT INTO score (user_id, questionnaire_id, correct_num) VALUES (?, ?, ?)';
+  let request_data = [req.session.user.username, req.query.questionnaire_id, req.query.score];
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send({message: "An error has encountered"})
+    } else {
+      res.send(result);
+    }
+  });
+}
