@@ -1,6 +1,14 @@
 .Navigation {
   padding: 0px !important;
   margin: 0px !important;
+  background-color: #1f2833;
+  background: #1f2833;
+  border-radius: 0px !important;
+  border: 0px !important;
+}
+
+.Navigation a {
+  color: #FFF !important;
 }
 
 .Navigation_Brand {
