@@ -140,6 +140,21 @@ CREATE TABLE answers (
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS score;
+CREATE TABLE score (
+	score_id						int NOT NULL AUTO_INCREMENT,
+	user_id							int NOT NULL,
+	questionnaire_id				int NOT NULL,
+	correct_num						int NOT NULL,
+	PRIMARY KEY						(score_id),
+	CONSTRAINT						`fk_announcement_user`
+		FOREIGN KEY (user_id) REFERENCES user (user_id)
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT						`fk_score_questionnaires`
+		FOREIGN KEY (questionnaire_id) REFERENCES questionnaires (questionnaire_id)
+		ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 DROP TABLE IF EXISTS activity_log;
 CREATE TABLE activity_log (
 	activity_id						int NOT NULL AUTO_INCREMENT,

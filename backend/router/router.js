@@ -52,6 +52,7 @@ module.exports = (router) => {
   // POST
   router.post('/api/insert_quizlog',                                  quiz_controller.insert_quizlog);
   router.post('/api/insert_questionlog',                              quiz_controller.insert_questionlog);
+  router.post('/api/insert_score',                                    quiz_controller.insert_score);
   
   // -- COURSES PAGE ROUTES --
   // GET

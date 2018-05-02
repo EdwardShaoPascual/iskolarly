@@ -168,9 +168,9 @@
     var i = 1;
     function addTableRow() {
       var tempTr = $('<tr><td><input type="url" id="answers_' + i + 
-                     '" class="form-control" /></td><td><select id="rights_' + i + 
-                     '" class="form-control"><option>Yes</option><option>No</option></select></td><td><span class="glyphicon glyphicon-minus removeBtn" id="removes_' + i + 
-                     '"></span></td></tr>').on('click', function () {
+                      '" class="form-control" /></td><td><select id="rights_' + i + 
+                      '" class="form-control"><option>Yes</option><option>No</option></select></td><td><span class="glyphicon glyphicon-minus removeBtns" id="removes_' + i + 
+                      '"></span></td></tr>').on('click', function () {
         $(document.body).on('click', '.TreatmentHistoryRemove', function (e) {
           $(this).closest('tr').remove();
         });

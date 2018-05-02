@@ -31,7 +31,8 @@
 
     $scope.quizData = {}
     $scope.questionData = {}
-
+    $scope.scoreData = {}
+    
     $scope.quiz_get = () => {
       var url = "//geoip.nekudo.com/api/";
       $http
@@ -251,6 +252,16 @@
       })
 
       $scope.markQuiz();
+
+      $scope.scoreData.score = $scope.numCorrect;
+      $scope.scoreData.questionnaire_id = $routeParams.questionnaire_id;
+      
+      QuizService
+      .insert_score($scope.scoreData)
+      .then(function(res) {
+      }, function(error) {
+      })
+
       $scope.changeState("quiz", false);
       $scope.changeState("results", true);
     }
