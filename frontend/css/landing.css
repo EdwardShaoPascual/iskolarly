@@ -123,14 +123,25 @@ html {
 }
 
 .Landing_Content {
-  font-family: proxima_nova,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 20px;
   color: rgba(255,255,255,1) !important;  
   text-align: center;
+}
+
+.Landing_Content_Final {
+  font-size: 20px;
+  color: rgba(255,255,255,1) !important;  
   text-justify: inter-word;
 }
 
 .Landing_Content .glyphicon{
+  font-size: 17px;
+  color: rgba(102, 252, 241, 1);
+  text-align: center;
+  text-justify: inter-word;
+}
+
+.Landing_Content_Final .glyphicon{
   font-size: 17px;
   color: rgba(102, 252, 241, 1);
   text-align: center;

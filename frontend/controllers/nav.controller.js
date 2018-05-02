@@ -19,6 +19,9 @@
         } else if ($location.path() == "/courses") {
           $scope.home = false;
           $scope.courses = true;
+        } else if ($location.path() == "/report") {
+          $scope.home = false;
+          $scope.courses = false;
         } else {
           $scope.home = false;
           $scope.courses = true;

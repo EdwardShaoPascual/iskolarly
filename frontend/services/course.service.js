@@ -189,6 +189,7 @@
       return deferred.promise;
     }
 
+    // For filestack API
     const upload_attachment = function (data, filename) {
       let deferred = $q.defer();
       const client = filestack.init('AfRyXmtm3T9a3AspPfDlwz');
