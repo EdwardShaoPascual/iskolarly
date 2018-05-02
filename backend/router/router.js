@@ -5,6 +5,7 @@ const landing_controller = require(__dirname + '/../controller/landing.controlle
 const quiz_controller = require(__dirname + '/../controller/quiz.controller.js');
 const course_controller = require(__dirname + '/../controller/course.controller.js');
 const courses_controller = require(__dirname + '/../controller/courses.controller.js');
+const nav_controller = require(__dirname + '/../controller/nav.controller.js');
 
 module.exports = (router) => {
 
@@ -63,6 +64,10 @@ module.exports = (router) => {
   router.post('/api/create_course',                                   courses_controller.create_course);
   router.post('/api/enroll_course',                                   courses_controller.enroll_course);
 
+  // -- COURSES PAGE ROUTES --
+  // POST
+  router.post('/api/logout',                                          nav_controller.user_logout);
+  
 	router.all('*', (req, res, next) => {
 	  res.status(404).send({message: 'Unmatched route :('});
 	});  

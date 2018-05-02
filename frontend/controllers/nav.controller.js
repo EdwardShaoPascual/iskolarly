@@ -3,9 +3,11 @@
 (() =>{
 	angular
 		.module('app')
-		.controller('nav-controller',NavCtrl);
+		.controller('nav-controller',nav_controller);
 
-		function NavCtrl($scope, $window, $rootScope, $location, $interval) {
+    landing_controller.$inject = ['$scope', '$window', '$rootScope','$location', '$interval', 'NavService'];    
+
+		function nav_controller($scope, $window, $rootScope, $location, $interval, NavService) {
       
       $scope.home = true;
       $scope.courses = false;
@@ -24,6 +26,17 @@
         if ($location.path() == "/")
           return false;
         else return true;
+      }
+
+      $scope.user_logout = () => {
+        NavService
+        .user_logout()
+        .then(function(res) {
+          toastr.success(res.message, "Success");
+          window.location.href = "/#/"
+        }, function(err) {
+          toastr.error(res.message, "Error");
+        })
       }
 
 		}
