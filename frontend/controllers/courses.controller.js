@@ -44,6 +44,34 @@
       }, function(err) {
         toastr.error(err.data.message, 'Error');
       })
+      .then(function(res) {
+        $(document).ready(function() {
+  
+          var owl = $("#owl-demo");
+         
+          owl.owlCarousel({
+              items : 4,
+             //  itemsDesktop : [1000,3],
+              itemsDesktopSmall : [900,2], 
+              itemsTablet: [600,1],
+              itemsMobile : false 
+          });
+         
+          $(".next").click(function(){
+            owl.trigger('owl.next');
+          })
+          $(".prev").click(function(){
+            owl.trigger('owl.prev');
+          })
+          $(".play").click(function(){
+            owl.trigger('owl.play',1000); //owl.play event accept autoPlay speed as second parameter
+          })
+          $(".stop").click(function(){
+            owl.trigger('owl.stop');
+          })
+         
+       });
+      })
     }
 
     $scope.enroll_course = () => {
