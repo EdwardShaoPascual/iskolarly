@@ -137,10 +137,6 @@ html {
   text-justify: inter-word;
 }
 
-.Landing_Content-below {
-  margin-bottom: 75px !important;
-}
-
 small {
   font-family: 'Open Sans', sans-serif;
   color: rgba(255,255,255,0.65) !important;  
@@ -229,6 +225,9 @@ small {
   }
   .Landing_Responsive {
     margin-top: 100px;
+  }
+  .Landing_Content-below {
+    margin-bottom: 75px !important;
   }
 }
 
