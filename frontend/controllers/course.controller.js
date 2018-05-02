@@ -249,14 +249,19 @@
         questionnaire_no: questionnaire_no,
         questionnaire_item: questionnaire_item
       }
-      CourseService
-      .edit_questionnaires($scope.edit_questionnairesData)
-      .then(function(res) {
-        $('.modal').modal('hide');
-        toastr.success('The quiz information has been updated', 'Success');
-      }, function(err) {
-        toastr.error(err.data, 'Error');
-      })
+
+      if ($scope.edit_questionnairesData.questionnaire_item > $scope.edit_questionnairesData.questionnaire_no) {
+        toastr.error('Questionnaire number should be greater than or equal to items.', 'Error');
+      } else {
+        CourseService
+        .edit_questionnaires($scope.edit_questionnairesData)
+        .then(function(res) {
+          $('.modal').modal('hide');
+          toastr.success('The quiz information has been updated', 'Success');
+        }, function(err) {
+          toastr.error(err.data, 'Error');
+        })
+      }
     }
 
     $scope.questionnaires_delete = (data, index) => {
