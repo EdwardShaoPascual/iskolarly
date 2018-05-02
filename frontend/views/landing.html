@@ -1,253 +1,110 @@
-<div ng-controller="landing-controller" class="Landing fill">
-  <div id="Landing_load" class="Landing_over">
-    <div class="vertical-center">
-      <div class="container">
-        <div class="Landing_Responsive row">
-          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"/>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-              <div class="row">
-                <div class="Landing_over_split col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                  <!-- OC Name -->
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                      <div class="Landing_over_brand row">
-                        <img src="./../assets/idea-xxl.png" class="Landing_over_brand_logo col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" />
-                        <div class="Landing_over_brand_logo_label col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">ISKOLarly</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                      <button type="button" class="Landing_over_button btn" id="Login" data-toggle="modal" data-target=".bd-example-modal-lgi">SIGN  IN</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                      <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"/>
-                        <div class="Landing_over_quest col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                          <div>ALREADY HAVE AN ACCOUNT?</div>
-                        </div>
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"/>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                      <button type="button" class="Landing_over_button btn" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">SIGN  UP</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+<span ng-controller="courses-controller" ng-init="check_auth()">
+  <div ng-controller="landing-controller" class="Landing fill">
+    <div id="Landing_load" class="Landing_over">
+      <div class="vertical-center">
+        <div class="container">
+          <div class="Landing_Responsive row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"/>
+              <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                <div class="row">
+                  <div class="Landing_over_split col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                    <!-- OC Name -->
                     <div class="row">
-                    <div class="col-lg-12">
-                      <h1 class="Landing_Content-head">
-                        Make the most out of your academics right here, right now
-                      </h1>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                        <div class="Landing_over_brand row">
+                          <img src="./../assets/idea-xxl.png" class="Landing_over_brand_logo col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" />
+                          <div class="Landing_over_brand_logo_label col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">ISKOLarly</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                        <button type="button" class="Landing_over_button btn" id="Login" data-toggle="modal" data-target=".bd-example-modal-lgi">SIGN  IN</button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                        <div class="row">
+                          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"/>
+                          <div class="Landing_over_quest col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                            <div>ALREADY HAVE AN ACCOUNT?</div>
+                          </div>
+                          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                        <button type="button" class="Landing_over_button btn" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">SIGN  UP</button>
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <p class="Landing_Content">
-                        Iskolarly is here to promote the new way of accessing your academics in best of both worlds.
-                        This platform is your personal gateway to appreciate eLearning and away-from-home eduacation
-                        from the inside out.
-                      </p>
+                  <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+                      <div class="row">
+                      <div class="col-lg-12">
+                        <h1 class="Landing_Content-head">
+                          Make the most out of your academics right here, right now
+                        </h1>
+                      </div>
                     </div>
-                  </div>
-                  <div class="Landing_Content-below row">
-                    <div class="col-lg-12">
-                      <p class="Landing_Content">
-                        <i class="glyphicon glyphicon-ok"></i> 101% Free of Charge <br/>
-                        <i class="glyphicon glyphicon-ok"></i> 101% Control of Students' Performance
-                      </p>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <p class="Landing_Content">
+                          Iskolarly is here to promote the new way of accessing your academics in best of both worlds.
+                          This platform is your personal gateway to appreciate eLearning and away-from-home eduacation
+                          from the inside out.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="Landing_Content-below row">
+                      <div class="col-lg-12">
+                        <p class="Landing_Content">
+                          <i class="glyphicon glyphicon-ok"></i> 101% Free of Charge <br/>
+                          <i class="glyphicon glyphicon-ok"></i> 101% Survey of Students' Performance
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"/>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"/>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  
-  <div ng-controller="landing-controller" class="modal fade bd-example-modal-lgi" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content modal-fx">
-        <div class="modal-header">
-          <h4 class="modal-title">Sign In</h4>
-        </div>
-        <div class="modal-body">
-            <form>
-              <!-- Email -->
-              <div class="form-group has-success has-feedback">
-                <label class="control-label" for="inputGroupSuccess1">Username</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input ng-model="loginData.username" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter username">
-                </div>
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                <small id="emailHelp" class="form-text text-muted">We'll never share your information with anyone else.</small>
-              </div>
-              <!-- Password -->
-              <div class="form-group has-success has-feedback">
-                <label class="control-label" for="inputGroupSuccess1">Password</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input ng-model="loginData.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
-                </div>
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-              </div>
-              <button ng-click="login()" type="submit" class="btn btn-primary">Sign in</button>
-              <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div ng-controller="landing-controller" class="modal fade bd-example-modal-lgs" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    
+    <div ng-controller="landing-controller" class="modal fade bd-example-modal-lgi" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content modal-fx">
           <div class="modal-header">
-            <h4 class="modal-title">Sign Up</h4>
+            <h4 class="modal-title">Sign In</h4>
           </div>
           <div class="modal-body">
               <form>
-                <!-- Name information -->
-                <div class="row">
-                  <div class="col-lg-4 form-group has-success has-feedback Landing_Subs">
-                    <label class="control-label" for="inputGroupSuccess1">First Name</label>
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-align-left"></i></span>
-                      <input ng-model="registerData.firstname" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter First Name">
-                    </div>
-                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                  </div>
-                  
-                  <div class="col-lg-4 form-group has-success has-feedback Landing_Subs">
-                    <label class="control-label" for="inputGroupSuccess1">Middle Name</label>
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-align-center"></i></span>                        
-                      <input ng-model="registerData.middlename" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
-                    </div>
-                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                  </div>
-
-                  <div class="col-lg-4 form-group has-success has-feedback Landing_Subs">
-                    <label class="control-label" for="inputGroupSuccess1">Last Name</label>
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-align-right"></i></span>                                                
-                      <input ng-model="registerData.lastname" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Last Name">
-                    </div>
-                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                  </div>
-                </div>
-                <!-- Name information helper -->
-                <div class="row">
-                  <div class="col-lg-12">
-                      <small id="identityHelp" class="form-text text-muted">We'll never expose your identity to anyone.</small>
-                  </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <small id="identityHelp" class="form-text text-muted">&nbsp;</small>
-                    </div>
-                  </div>
-                <!-- Datetime Picker for Birthday, Gender -->
-                <div class="row">
-                  <div class="col-lg-4 form-group has-success has-feedback">
-                    <label class="control-label" for="inputGroupSuccess1">Birthdate</label>
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>                        
-                      <input ng-model="registerData.birthday" type="date" class="form-control datepick" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
-                    </div>
-                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                  </div>
-
-                  <div ng-if="registerData.role == 'Student'" class="col-lg-4 form-group has-success has-feedback">
-                    <label class="control-label" for="inputGroupSuccess1">College</label>
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                        
-                      <select ng-init="registerData.college = registerData.college || '-----------'" ng-model="registerData.college" class="form-control" id="sel1">
-                        <option value="-----------">-----------</option>
-                        <option value="CA">CA</option>
-                        <option value="CAS">CAS</option>
-                        <option value="CDC">CDC</option>
-                        <option value="CEAT">CEAT</option>
-                        <option value="CEM">CEM</option>
-                        <option value="CFNR">CFNR</option>
-                        <option value="CHE">CHE</option>
-                        <option value="CPAf">CPAf</option>
-                        <option value="CVM">CVM</option>
-                        <option value="SESAM">SESAM</option>
-                        <option value="GS">GS</option>
-                      </select>
-                    </div>
-                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                  </div>
-
-                  <div ng-if="registerData.role == 'Student'" class="col-lg-4 form-group has-success has-feedback">
-                      <label class="control-label" for="inputGroupSuccess1">Course</label>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>                                                
-                        <input ng-model="registerData.course" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Course">
-                      </div>
-                      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                    </div>
-                </div>
                 <!-- Email -->
-                <div class="form-group has-success has-feedback">
-                  <label class="control-label" for="inputGroupSuccess1">Email address</label>
-                  <div class="input-group">
-                    <span class="input-group-addon">@</span>
-                    <input ng-model="registerData.email" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
-                  </div>
-                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                  <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-                </div>
-                <!-- Username -->
                 <div class="form-group has-success has-feedback">
                   <label class="control-label" for="inputGroupSuccess1">Username</label>
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
-                    <input ng-model="registerData.username" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter username">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input ng-model="loginData.username" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter username">
                   </div>
                   <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                   <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your information with anyone else.</small>
                 </div>
                 <!-- Password -->
                 <div class="form-group has-success has-feedback">
                   <label class="control-label" for="inputGroupSuccess1">Password</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input ng-model="registerData.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
+                    <input ng-model="loginData.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
                   </div>
                   <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                   <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                 </div>
-                
-                <div class="middle">
-                  <div class="classifier">You're a</div>
-                  <label ng-click="changeRoleToStd()">
-                    <input type="radio" name="radio" ng-checked="roleRadio.std"/>
-                    <div class="student box">
-                      <div>Student</div>
-                    </div>
-                  </label>
-                  <label ng-click="changeRoleToIns()" ng-checked="roleRadio.ins">
-                    <input type="radio" name="radio"/>
-                    <div class="instructor box">
-                      <div>Instructor</div>
-                    </div>
-                  </label>
-                </div>
-                <button ng-click="register()" type="submit" class="btn btn-primary">Sign up</button>
+                <button ng-click="login()" type="submit" class="btn btn-primary">Sign in</button>
                 <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
               </form>
           </div>
@@ -255,4 +112,149 @@
       </div>
     </div>
 
-</div>
+    <div ng-controller="landing-controller" class="modal fade bd-example-modal-lgs" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                  <!-- Name information -->
+                  <div class="row">
+                    <div class="col-lg-4 form-group has-success has-feedback Landing_Subs">
+                      <label class="control-label" for="inputGroupSuccess1">First Name</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-align-left"></i></span>
+                        <input ng-model="registerData.firstname" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter First Name">
+                      </div>
+                      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                    </div>
+                    
+                    <div class="col-lg-4 form-group has-success has-feedback Landing_Subs">
+                      <label class="control-label" for="inputGroupSuccess1">Middle Name</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-align-center"></i></span>                        
+                        <input ng-model="registerData.middlename" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
+                      </div>
+                      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                    </div>
+
+                    <div class="col-lg-4 form-group has-success has-feedback Landing_Subs">
+                      <label class="control-label" for="inputGroupSuccess1">Last Name</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-align-right"></i></span>                                                
+                        <input ng-model="registerData.lastname" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Last Name">
+                      </div>
+                      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                    </div>
+                  </div>
+                  <!-- Name information helper -->
+                  <div class="row">
+                    <div class="col-lg-12">
+                        <small id="identityHelp" class="form-text text-muted">We'll never expose your identity to anyone.</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <small id="identityHelp" class="form-text text-muted">&nbsp;</small>
+                      </div>
+                    </div>
+                  <!-- Datetime Picker for Birthday, Gender -->
+                  <div class="row">
+                    <div class="col-lg-4 form-group has-success has-feedback">
+                      <label class="control-label" for="inputGroupSuccess1">Birthdate</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>                        
+                        <input ng-model="registerData.birthday" type="date" class="form-control datepick" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter Middle Name">
+                      </div>
+                      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                    </div>
+
+                    <div ng-if="registerData.role == 'Student'" class="col-lg-4 form-group has-success has-feedback">
+                      <label class="control-label" for="inputGroupSuccess1">College</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>                        
+                        <select ng-init="registerData.college = registerData.college || '-----------'" ng-model="registerData.college" class="form-control" id="sel1">
+                          <option value="-----------">-----------</option>
+                          <option value="CA">CA</option>
+                          <option value="CAS">CAS</option>
+                          <option value="CDC">CDC</option>
+                          <option value="CEAT">CEAT</option>
+                          <option value="CEM">CEM</option>
+                          <option value="CFNR">CFNR</option>
+                          <option value="CHE">CHE</option>
+                          <option value="CPAf">CPAf</option>
+                          <option value="CVM">CVM</option>
+                          <option value="SESAM">SESAM</option>
+                          <option value="GS">GS</option>
+                        </select>
+                      </div>
+                      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                    </div>
+
+                    <div ng-if="registerData.role == 'Student'" class="col-lg-4 form-group has-success has-feedback">
+                        <label class="control-label" for="inputGroupSuccess1">Course</label>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>                                                
+                          <input ng-model="registerData.course" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Course">
+                        </div>
+                        <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                      </div>
+                  </div>
+                  <!-- Email -->
+                  <div class="form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">Email address</label>
+                    <div class="input-group">
+                      <span class="input-group-addon">@</span>
+                      <input ng-model="registerData.email" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter email">
+                    </div>
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  </div>
+                  <!-- Username -->
+                  <div class="form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">Username</label>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
+                      <input ng-model="registerData.username" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Enter username">
+                    </div>
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  </div>
+                  <!-- Password -->
+                  <div class="form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">Password</label>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                      <input ng-model="registerData.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password">
+                    </div>
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                  </div>
+                  
+                  <div class="middle">
+                    <div class="classifier">You're a</div>
+                    <label ng-click="changeRoleToStd()">
+                      <input type="radio" name="radio" ng-checked="roleRadio.std"/>
+                      <div class="student box">
+                        <div>Student</div>
+                      </div>
+                    </label>
+                    <label ng-click="changeRoleToIns()" ng-checked="roleRadio.ins">
+                      <input type="radio" name="radio"/>
+                      <div class="instructor box">
+                        <div>Instructor</div>
+                      </div>
+                    </label>
+                  </div>
+                  <button ng-click="register()" type="submit" class="btn btn-primary">Sign up</button>
+                  <button class="btn cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</span>

@@ -5,9 +5,9 @@
 	.module('app')
 	.controller('courses-controller', courses_controller);
 
-  courses_controller.$inject = ['$scope', '$window', '$timeout', 'CoursesService'];
+  courses_controller.$inject = ['$scope', '$window', '$location', '$timeout', 'CoursesService'];
 
-	function courses_controller($scope, $window, $timeout, CoursesService) {
+	function courses_controller($scope, $window, $location, $timeout, CoursesService) {
     
     $scope.courses = [];
     $scope.course_code = {
@@ -28,7 +28,11 @@
       .check_auth()
       .then(function(res) {
         $scope.session = res;
+        if ($location.path() === '/') {
+          window.location.href = '/#/home';
+        }
       }, function (err) {
+        window.location.href = '/#/'
       })
     }
 

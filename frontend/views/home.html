@@ -1,49 +1,51 @@
-<div class="Home col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-  <div class="row show-grid">
-    <div ng-controller="courses-controller" ng-init="check_auth()" class="Home_margin col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
-      <div class="row">
-        <div class="Home_ann_header col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <h2>Announcements</h2>
-        </div>
-        
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <div ng-if="session.role === 'Student'" ng-controller="course-controller" ng-init="announcements_view_stud()" class="Home_ann_announcement card Home_scroll_announce col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
-              <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
-              <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
-              {{announcement.post}}
+<span ng-controller="courses-controller" ng-init="check_auth()">
+  <div class="Home col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="show-grid container">
+      <div ng-controller="courses-controller" ng-init="check_auth()" class="Home_margin col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+        <div class="row">
+          <div class="Home_ann_header col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h2>Announcements</h2>
+          </div>
+          
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div ng-if="session.role === 'Student'" ng-controller="course-controller" ng-init="announcements_view_stud()" class="Home_ann_announcement card Home_scroll_announce col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
+                <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
+                <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
+                {{announcement.post}}
 
-              <div class="panel-body" ng-if="announcement.questionnaire_id !== null">
-                <div class="well">
-                  <div class="Thumb_Panel row">
-                    <div class="thumbnail hidden-xs hidden-sm hidden-md col-lg-2"/>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
-                      <div class="row">
-                        <div class="home col-lg-12">
-                          <a class="Announcement_Quiz" href="/#/quiz/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
+                <div class="panel-body" ng-if="announcement.questionnaire_id !== null">
+                  <div class="well">
+                    <div class="Thumb_Panel row">
+                      <div class="thumbnail hidden-xs hidden-sm hidden-md col-lg-2"/>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+                        <div class="row">
+                          <div class="home col-lg-12">
+                            <a class="Announcement_Quiz" href="/#/quiz/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>  
+                </div>  
+              </div>
             </div>
-          </div>
 
-          <div ng-if="session.role === 'Instructor'" ng-controller="course-controller" ng-init="announcements_view_inst()" class="Home_ann_announcement card Home_scroll_announce col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
-              <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
-              <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
-              {{announcement.post}}
-              
-              <div class="panel-body" ng-if="announcement.questionnaire_id !== null">
-                <div class="well">
-                  <div class="Thumb_Panel row">
-                    <div class="thumbnail hidden-xs hidden-sm hidden-md col-lg-2"/>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
-                      <div class="row">
-                        <div class="home col-lg-12">
-                          <a class="Announcement_Quiz" href="/#/question/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
+            <div ng-if="session.role === 'Instructor'" ng-controller="course-controller" ng-init="announcements_view_inst()" class="Home_ann_announcement card Home_scroll_announce col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
+                <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
+                <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
+                {{announcement.post}}
+                
+                <div class="panel-body" ng-if="announcement.questionnaire_id !== null">
+                  <div class="well">
+                    <div class="Thumb_Panel row">
+                      <div class="thumbnail hidden-xs hidden-sm hidden-md col-lg-2"/>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+                        <div class="row">
+                          <div class="home col-lg-12">
+                            <a class="Announcement_Quiz" href="/#/question/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -51,48 +53,48 @@
                 </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
-      <!-- <hr class="col-md-9 col-lg-9 col-xl-9" /> -->
-      <div ng-controller="courses-controller" ng-init="courses_view(); check_auth();">
-        <div class="Home_ann_padding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
-        <div class="Home_ann_header col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <h2>Courses</h2>
-        </div>
-        <div>
-          <div class="row">
-            <span ng-repeat="course in courses | filter: { course_title : search_filter }">
-            <div class="col-xs-1 hidden-sm hidden-md hidden-lg"/>
-            <div id="Course_Card_{{course.course_id}}" class="hvr-grow col-xs-10 col-sm-5 col-md-5 col-lg-4">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
-                  </div>
-                  <div class="panel-figure">
-                    <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
-                  </div>
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header"><a class="Course_Title" href="/#/course/{{course.course_id}}">{{course.course_title}}</a></h4>
-                    <h5 class="Course_Section panel-header">{{course.course_section}}</h5>
-                    <small>{{course.course_description}}.</small>
-                  </div>
-                </div>
-                <div class="Course_Code" ng-if="session.role === 'Instructor'">
-                  <small>Course Code: <span class="Course_Code-bold">{{course.course_code}}</span></small>
-                </div>
-                <div class="Course_Code" ng-if="session.role === 'Student'"></div>
-              </div>
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+        <!-- <hr class="col-md-9 col-lg-9 col-xl-9" /> -->
+        <div ng-controller="courses-controller" ng-init="courses_view(); check_auth();">
+          <div class="Home_ann_padding col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+          <div class="Home_ann_header col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h2>Courses</h2>
+          </div>
+          <div>
+            <div class="row">
+              <span ng-repeat="course in courses | filter: { course_title : search_filter }">
               <div class="col-xs-1 hidden-sm hidden-md hidden-lg"/>
-          </span>
+              <div id="Course_Card_{{course.course_id}}" class="hvr-grow col-xs-10 col-sm-5 col-md-5 col-lg-4">
+                  <div class="panel panel-default panel-card">
+                    <div class="panel-heading">
+                      <small class="small-text course-small">{{course.firstname + ' ' + course.lastname}}</small>
+                    </div>
+                    <div class="panel-figure">
+                      <img class="circle-img img-responsive img-circle" src="../assets/landing.jpg" />
+                    </div>
+                    <div class="panel-body text-center">
+                      <h4 class="panel-header"><a class="Course_Title" href="/#/course/{{course.course_id}}">{{course.course_title}}</a></h4>
+                      <h5 class="Course_Section panel-header">{{course.course_section}}</h5>
+                      <small>{{course.course_description}}.</small>
+                    </div>
+                  </div>
+                  <div class="Course_Code" ng-if="session.role === 'Instructor'">
+                    <small>Course Code: <span class="Course_Code-bold">{{course.course_code}}</span></small>
+                  </div>
+                  <div class="Course_Code" ng-if="session.role === 'Student'"></div>
+                </div>
+                <div class="col-xs-1 hidden-sm hidden-md hidden-lg"/>
+            </span>
+            </div>
           </div>
         </div>
+
+
       </div>
-
-
     </div>
   </div>
-</div>
+</span>
