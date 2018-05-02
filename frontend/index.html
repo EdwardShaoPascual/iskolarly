@@ -38,24 +38,34 @@
       <div ng-app="app">
         <div ng-controller="nav-controller">
           <div ng-show="checkURL()" class="ng-hide">
-
-            <nav class="navbar navbar-default">
+            <nav class="Navigation navbar navbar-default">
               <div class="container-fluid">
                 <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="true">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a href="/#/home" class="navbar-brand">Iskolarly</a>
+                  <a href="/#/home" class="Navigation_Brand navbar-brand">Iskolarly</a>
                 </div>
-                <div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-9" aria-expanded="true">
+                <div class="Navigation_Pages navbar-collapse collapse in" id="bs-example-navbar-collapse-9" aria-expanded="true">
                   <ul class="nav navbar-nav">
-                    <li class="active">
-                      <a href="/#/home">Home</a>
-                    </li><li>
-                      <a href="/#/courses">Courses</a>
+                    <li ng-class="{active: home}">
+                      <a href="/#/home" class="Navigation_Pages">Home</a>
+                    </li>
+                    <li ng-class="{active: courses}">
+                      <a href="/#/courses" class="Navigation_Pages">Courses</a>
+                    </li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                      <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Option <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">View Courses' Report</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="javascript:void(0)">Log Out</a></li>
+                      </ul>
                     </li>
                   </ul>
                 </div>
@@ -65,8 +75,7 @@
           </div>
         </div>
 
-          <div ng-view></div>
-        <!-- </div> -->
+        <div ng-view></div>
 
         <script src="https://static.filestackapi.com/v3/filestack.js"></script>
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
