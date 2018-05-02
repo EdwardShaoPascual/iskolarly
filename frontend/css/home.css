@@ -42,7 +42,7 @@
 .Home_ann_header {
   font-family: 'Titillium Web', sans-serif;
   color: rgba(236,240,241,1) !important;
-  padding-left: 50px;
+  text-align: center;
 }
 
 .Home_course_header {
@@ -138,6 +138,10 @@
   background-color: inherit;
   font-family: 'Open Sans', sans-serif;
   color: #fff !important;
+}
+
+.Home .container {
+  padding: 0px !important;
 }
 
 .custom-announce {
