@@ -302,12 +302,8 @@
 
       reader.onload = function(e) {
           $scope.$apply(function() {
-              let a = document.createElement("a");
-              document.body.appendChild(a);
-              a.style = "display: none";
-
-              $scope.csvFile = reader.result
-              $scope.file = new Blob([$scope.csvFile], {type : 'application/pdf'});              
+            $scope.csvFile = reader.result
+            $scope.file = new Blob([$scope.csvFile], {type : 'application/pdf'});
           });
       };
       let csvFileInput = document.getElementById('fileupload');    
@@ -343,6 +339,7 @@
           type: "success"
         })
         document.getElementById("fileupload").value = null;
+        $scope.note_info.post = '';
       }, function(err) {
       })
     }

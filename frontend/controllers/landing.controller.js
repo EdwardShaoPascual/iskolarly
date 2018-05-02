@@ -29,6 +29,7 @@
       email: '',
       username: '',
       password: '',
+      repassword: '',
       course: '',
       birthday: '',
       college: '',
@@ -101,12 +102,16 @@
           $scope.registerData.email === "" || 
           $scope.registerData.username === "" ||
           $scope.registerData.password === "" ||
+          $scope.registerData.repassword === "" ||
           $scope.registerData.course === "" ||
           $scope.registerData.birthday === "" ||
           $scope.registerData.college === "" ||
           $scope.registerData.role === "") {
         toastr.error("Please fill all the missing fields!", 'Error');                         
       } 
+      else if ($scope.registerData.password !== $scope.registerData.repassword) {
+        toastr.error("Password does not match! Please re-type your password again.", 'Error');                         
+      }
       else if (pattern.test($scope.registerData.email) === false) {
         toastr.error("Invalid input of email address!", 'Error');             
       }
