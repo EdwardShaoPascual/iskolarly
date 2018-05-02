@@ -147,7 +147,7 @@ CREATE TABLE score (
 	questionnaire_id				int NOT NULL,
 	correct_num						int NOT NULL,
 	PRIMARY KEY						(score_id),
-	CONSTRAINT						`fk_announcement_user`
+	CONSTRAINT						`fk_score_user`
 		FOREIGN KEY (user_id) REFERENCES user (user_id)
 		ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT						`fk_score_questionnaires`
