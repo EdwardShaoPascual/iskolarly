@@ -42,6 +42,7 @@ module.exports = (router) => {
   router.post('/api/delete_question/:question_id',                    question_controller.delete_questions);
   router.post('/api/add_answer',                                      question_controller.add_answers);
   router.post('/api/delete_answer/:answer_id',                        question_controller.delete_answers);
+  router.post('/api/publish_quiz/',                                   question_controller.publish_quiz);
   
   // -- QUIZ PAGE ROUTES --
   // GET

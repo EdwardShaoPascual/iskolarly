@@ -112,6 +112,7 @@ CREATE TABLE questionnaires (
 	items							int NOT NULL,
 	datetime_start					datetime NOT NULL,
 	datetime_end					datetime NOT NULL,
+	published						boolean NOT NULL DEFAULT 0,
 	PRIMARY KEY						(questionnaire_id)
 );
 

@@ -6,7 +6,8 @@
     </div>
     
     <button id="export-btn" ng-init="questions_check()" ng-disabled="isDisabled" ng-model="isDisabled" class="btn btn-primary" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">Add Question</button>
-
+    <button id="export-btn" ng-click="publish_quiz()" class="btn btn-primary" id="Signup">Publish Quiz</button>
+    
     <div ng-init="questions_view()" >
       <div class="accord-edit" id="accordion" ng-repeat="questions in user">
         <div class="card">

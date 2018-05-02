@@ -185,13 +185,13 @@
       $scope.questionnairesData.datetime_start = $('#datetime_start').val();
       $scope.questionnairesData.datetime_end = $('#datetime_start').val();
 
-      if ($scope.questionnairesData.items < $scope.questionnairesData.questionnaire_no) {
-        toastr.error('Questionnaire no should be less than or equal to items.', 'Error');
+      if ($scope.questionnairesData.items > $scope.questionnairesData.questionnaire_no) {
+        toastr.error('Questionnaire number should be greater than or equal to items.', 'Error');
       } else {
         CourseService
         .add_questionnaires($scope.questionnairesData)
         .then(function(res) {
-          toastr.success("The quiz has been added", 'Success');
+          toastr.success("The quiz has been added, you may now add questions and publish it afterwards to make it accessible by the students!", 'Success');
           $timeout(() => {
             let time = moment().format('ll').split(',')[0];
             let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;

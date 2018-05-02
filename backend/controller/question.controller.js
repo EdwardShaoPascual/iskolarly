@@ -115,3 +115,16 @@ exports.delete_answers = (req, res, next) => {
     }
   });
 }
+
+exports.publish_quiz = (req, res, next) => {
+  let query_string = 'UPDATE questionnaires SET published = ? WHERE questionnaire_id = ?';
+  let request_data = [1,req.query.questionnaire_id]
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}
