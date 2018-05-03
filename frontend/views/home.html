@@ -10,7 +10,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div ng-if="session.role === 'Student'" ng-controller="course-controller" ng-init="announcements_view_stud()" class="Home_ann_announcement card Home_scroll_announce col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
-                <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
+                <strong><a href="/#/course/{{announcement.course_id}}">{{announcement.course_title}} {{announcement.course_section}}</a></strong><br>
                 <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
                 <pre class="Home_Announcement-changecolor" ng-bind-html="trust(announcement.post)"></pre>
                 <div class="panel-body" ng-if="announcement.questionnaire_id !== null">
@@ -32,7 +32,7 @@
 
             <div ng-if="session.role === 'Instructor'" ng-controller="course-controller" ng-init="announcements_view_inst()" class="Home_ann_announcement card Home_scroll_announce col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
-                <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
+                <strong><a href="/#/course/{{announcement.course_id}}">{{announcement.course_title}} {{announcement.course_section}}</a></strong><br>
                 <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
                 <pre class="Home_Announcement-changecolor" ng-bind-html="trust(announcement.post)"></pre>
                 <div class="panel-body" ng-if="announcement.questionnaire_id !== null">

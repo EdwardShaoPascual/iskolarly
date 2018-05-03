@@ -42,7 +42,6 @@
 .Home_ann_header {
   font-family: 'Titillium Web', sans-serif;
   color: rgba(236,240,241,1) !important;
-  text-align: center;
 }
 
 .Home_course_header {
@@ -200,4 +199,10 @@ hr {
 
 .owl-carousel {
   width: 96% !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .Home_ann_header {
+    text-align: center;    
+  }  
 }
