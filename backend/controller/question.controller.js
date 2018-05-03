@@ -29,11 +29,11 @@ exports.get_questions = (req, res, next) => {
 }
 
 exports.check_questions = (req, res, next) => {
-  let query_string = 'SELECT COUNT(*) AS size, qe.questionnaire_no FROM questions qn, questionnaires qe WHERE qe.questionnaire_id = ? AND qn.questionnaire_id = ?'
+  let query_string = 'SELECT COUNT(*) AS size, qe.items FROM questions qn, questionnaires qe WHERE qe.questionnaire_id = ? AND qn.questionnaire_id = ?'
   let request_data = [req.query.questionnaire_id, req.query.questionnaire_id]
 
   db.query(query_string, request_data, (err, result) => {
-    if (result[0].size >= result[0].questionnaire_no) {
+    if (result[0].size >= result[0].items || result[0].items === null) {
       return res.status(500).send(err);
     } else {
       res.send(result);

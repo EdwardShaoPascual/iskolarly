@@ -109,7 +109,6 @@ CREATE TABLE questionnaires (
 	course_id						int NOT NULL,
 	questionnaire_name				varchar(256) NOT NULL,
 	questionnaire_desc				varchar(256) NOT NULL,
-	questionnaire_no				int NOT NULL,
 	items							int NOT NULL,
 	datetime_start					datetime NOT NULL,
 	datetime_end					datetime NOT NULL,
@@ -128,6 +127,16 @@ CREATE TABLE questions (
 	type							enum("Text", "Image") NOT NULL,
 	PRIMARY KEY						(question_id),
 	CONSTRAINT						`fk_questions_questionnaires`
+		FOREIGN KEY (questionnaire_id) REFERENCES questionnaires (questionnaire_id)
+		ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS questions_quiz;
+CREATE TABLE questions_quiz (
+	questionnaire_id				int NOT NULL,
+	question_no						int NOT NULL,
+	attempts						int NOT NULL,
+	CONSTRAINT						`fk_questions_quiz_questionnaires`
 		FOREIGN KEY (questionnaire_id) REFERENCES questionnaires (questionnaire_id)
 		ON UPDATE CASCADE ON DELETE CASCADE
 );

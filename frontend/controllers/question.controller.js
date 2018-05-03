@@ -38,7 +38,7 @@
         if (res.length !== 0) {
           $scope.questionnaire_info = res;
           $('#val_name').text($scope.questionnaire_info[0].questionnaire_name);
-          $('#items').text($scope.questionnaire_info[0].questionnaire_no + " items");
+          $('#items').text($scope.questionnaire_info[0].items + " items");
         }
 			}, function(err) {
 			})
@@ -202,6 +202,7 @@
       let url = window.location.href
       let res = url.split("/");
       $scope.questionnaire.questionnaire_id = res[res.length-1];
+      
       if ($scope.questionnaire_info[0].items > $scope.user.length) {
         toastr.error('Insufficient questions in the pool for this quiz before publishing!','Error')
       } else {

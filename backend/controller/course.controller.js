@@ -102,10 +102,10 @@ exports.view_questionnaires = (req, res, next) => {
 }
 
 exports.add_questionnaires = (req, res, next) => {
-  let query_string = 'INSERT INTO questionnaires (questionnaire_name, course_id, questionnaire_desc, questionnaire_no, items, datetime_start, datetime_end) VALUES (?,?,?,?,?,?,?)'
-  let request_data = [req.query.questionnaire_name, req.query.course_id, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.items, req.query.datetime_start, req.query.datetime_end]
+  let query_string = 'INSERT INTO questionnaires (questionnaire_name, course_id, questionnaire_desc, items, datetime_start, datetime_end) VALUES (?,?,?,?,?,?)'
+  let request_data = [req.query.questionnaire_name, req.query.course_id, req.query.questionnaire_desc, req.query.items, req.query.datetime_start, req.query.datetime_end]
 
-  if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
+  if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.items) {
     return res.status(400).send("Please fill all the missing fields!");
   }
 
@@ -141,16 +141,14 @@ exports.get_info_questionnaires = (req, res, next) => {
 }
 
 exports.edit_questionnaires = (req, res, next) => {
-  let query_string2 = 'SELECT COUNT(*) AS size, qe.questionnaire_no FROM questions qn, questionnaires qe WHERE qe.questionnaire_id = ? AND qn.questionnaire_id = ?'
+  let query_string2 = 'SELECT COUNT(*) AS size, qe.items FROM questions qn, questionnaires qe WHERE qe.questionnaire_id = ? AND qn.questionnaire_id = ?'
   let request_data2 = [req.query.questionnaire_id, req.query.questionnaire_id]
 
   db.query(query_string2, request_data2, (errs, results) => {
-      let query_string = 'UPDATE questionnaires SET questionnaire_name = ?, questionnaire_desc = ?, questionnaire_no = ?, items = ? WHERE questionnaire_id = ?'
-      let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.questionnaire_item, req.query.questionnaire_id]
-      if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
+      let query_string = 'UPDATE questionnaires SET questionnaire_name = ?, questionnaire_desc = ?, items = ? WHERE questionnaire_id = ?'
+      let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_items, req.query.questionnaire_id]
+      if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.items) {
         return res.status(400).send("Fill all the fields");
-      } else if (req.query.questionnaire_no < req.query.questionnaire_item) {
-        return res.status(400).send("Questionnaire number should be greater than or equal to items");
       }
 
       db.query(query_string, request_data, (errs, result) => {
