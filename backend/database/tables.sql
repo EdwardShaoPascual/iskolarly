@@ -114,7 +114,7 @@ CREATE TABLE questionnaires (
 	datetime_start					datetime NOT NULL,
 	datetime_end					datetime NOT NULL,
 	published						boolean NOT NULL DEFAULT 0,
-	-- PRIMARY KEY						(questionnaire_id),
+	PRIMARY KEY						(questionnaire_id)
 	-- CONSTRAINT						`fk_questionnaires_course`
 	-- 	FOREIGN KEY (course_id) REFERENCES course (course_id)
 	-- 	ON UPDATE CASCADE ON DELETE CASCADE
