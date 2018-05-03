@@ -12,9 +12,12 @@
     $scope.isDisabled = true;
     $scope.questionnaire_info = {};
     $scope.questionnaire = {
-      questionnaire_id: ''
+      question_no: '',
+      attempts: ''
     }
     $rootScope.typeText;
+    $rootScope.items;
+    $rootScope.user;
     
     $scope.questionsData = {
       questionnaire_id: questionnaire_id,
@@ -27,6 +30,7 @@
 			.view_questions(questionnaire_id)
 			.then(function(res) {
         $scope.user = res;
+        $rootScope.user = res;
 			}, function(err) {
 			})
 		}
@@ -37,6 +41,7 @@
 			.then(function(res) {
         if (res.length !== 0) {
           $scope.questionnaire_info = res;
+          $rootScope.items = $scope.questionnaire_info[0].items;
           $('#val_name').text($scope.questionnaire_info[0].questionnaire_name);
           $('#items').text($scope.questionnaire_info[0].items + " items");
         }
@@ -189,10 +194,7 @@
             title: "Success!",
             text: "File has been deleted.",
             type: "success"
-          })
-          // $scope.user.splice(index, 1);
-          // $('.modal').hide();
-          // $('.modal').modal('hide');          
+          })     
         }, function(err) {
         })
       });
@@ -201,15 +203,26 @@
     $scope.publish_quiz = () => {
       let url = window.location.href
       let res = url.split("/");
-      $scope.questionnaire.questionnaire_id = res[res.length-1];
-      
-      if ($scope.questionnaire_info[0].items > $scope.user.length) {
+      $scope.questionnaire.questionnaire_id = $routeParams.questionnaire_id;
+      $scope.questionnaire.items = $rootScope.items;
+
+      console.log($scope.questionnaire);
+
+      if ($scope.questionnaire.items > $rootScope.user.length) {
         toastr.error('Insufficient questions in the pool for this quiz before publishing!','Error')
+      } else if ($scope.questionnaire.question_no > $scope.questionnaire.items) {
+        toastr.error('Questions to display should be lower or equal to the number of items!','Error')
       } else {
         QuestionService
         .publish_quiz($scope.questionnaire)
         .then(function(res) {
-          toastr.success('The quiz have been published successfully!', 'Success')
+          swal({
+            title: "Success!",
+            text: "File has been added.",
+            type: "success"
+          })
+          $('.modal').hide();
+          $('.modal').modal('hide');  
         }, function(err) {
         })
       }

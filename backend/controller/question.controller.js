@@ -116,8 +116,8 @@ exports.delete_answers = (req, res, next) => {
 }
 
 exports.publish_quiz = (req, res, next) => {
-  let query_string = 'UPDATE questionnaires SET published = ? WHERE questionnaire_id = ?';
-  let request_data = [1,req.query.questionnaire_id]
+  let query_string = 'INSERT INTO questions_quiz (questionnaire_id, question_no, attempts) VALUES (?,?,?)';
+  let request_data = [req.query.questionnaire_id, req.query.question_no, req.query.attempts]
 
   db.query(query_string, request_data, (err, result) => {
     if (err) {

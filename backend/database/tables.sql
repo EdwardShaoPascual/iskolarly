@@ -203,16 +203,16 @@ CREATE TRIGGER tr_course_course_code AFTER INSERT ON `course`
 	END;|  
 delimiter ;
 
--- delimiter |
+delimiter |
 
--- CREATE TRIGGER in_occupy_trig AFTER INSERT ON `answers` 
--- 	FOR EACH ROW
--- 	BEGIN
--- 		UPDATE questions SET has_answer = '1' WHERE question_id = NEW.question_id;
--- 	END;|
--- delimiter ;
+CREATE TRIGGER in_occupy_trig AFTER INSERT ON `questions_quiz` 
+	FOR EACH ROW
+	BEGIN
+		UPDATE questionnaires SET published = '1' WHERE questionnaire_id = NEW.questionnaire_id;
+	END;|
+delimiter ;
 
--- delimiter |
+delimiter |
 
 -- CREATE TRIGGER del_occupy_trig AFTER DELETE ON `answers` 
 -- 	FOR EACH ROW
