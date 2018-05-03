@@ -12,8 +12,7 @@
               <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
                 <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
                 <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
-                {{announcement.post}}
-
+                <pre class="Home_Announcement-changecolor" ng-bind-html="trust(announcement.post)"></pre>
                 <div class="panel-body" ng-if="announcement.questionnaire_id !== null">
                   <div class="well">
                     <div class="Thumb_Panel row">
@@ -35,8 +34,7 @@
               <div class="Home_ann_announcement_cont card-block" ng-repeat="announcement in announce">
                 <strong>{{announcement.course_title}} {{announcement.course_section}}</strong><br>
                 <hr class="col-md-9 col-lg-9 col-xl-9 hr_black" /><br>
-                {{announcement.post}}
-                
+                <pre class="Home_Announcement-changecolor" ng-bind-html="trust(announcement.post)"></pre>
                 <div class="panel-body" ng-if="announcement.questionnaire_id !== null">
                   <div class="well">
                     <div class="Thumb_Panel row">

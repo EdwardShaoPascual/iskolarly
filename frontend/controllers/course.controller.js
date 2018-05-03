@@ -318,7 +318,7 @@
         CourseService
         .upload_attachment($scope.file,$scope.filename)
         .then(function(res) {
-          $scope.insert_uploaded(res);
+          $scope.insert_uploaded(res, user);
         }, function(err) {
         })
       } else {
@@ -326,20 +326,37 @@
       }
     }
 
-    $scope.insert_uploaded = (file_info) => {
+    $scope.insert_uploaded = (file_info, data) => {
       let url = window.location.href
       let res = url.split("/");
       $scope.note_info.course_id = res[res.length-1];
       CourseService
       .insert_uploaded(file_info, $scope.note_info)
       .then(function(res) {
-        swal({
-          title: "Success!",
-          text: file_info.filename + " has been added.",
-          type: "success"
-        })
+        toastr.success(file_info.filename + " has been added.");
+        $timeout(() => {
+          let time = moment().format('ll').split(',')[0];
+          let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+          if ($scope.note_info.post.match(urls)) {
+            $scope.note_info.post = $scope.note_info.post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
+          }
+          let datum = {
+            post: $scope.note_info.post,
+            firstname: data.firstname,
+            lastname: data.lastname,
+            time_posted: time,
+            attachment_id: res.insertId,
+            attachment_name: file_info.filename,
+            url: file_info.url,
+            type: 'Handout',
+            questionnaire_id: null
+          }
+          $scope.announcements.unshift(datum);
+          $scope.$apply();
+          $('.modal').modal('hide');          
+          $scope.note_info.post = '';                   
+        }, 100);
         document.getElementById("fileupload").value = null;
-        $scope.note_info.post = '';
       }, function(err) {
       })
     }
