@@ -306,14 +306,16 @@
 
     $scope.continue_upload = (user) => {
       $scope.note_info.user_id = user.user_id
-      if($scope.note_info.post.length !== 0) {
-        $scope.active_loading = 1;        
+      if($scope.note_info.post.length !== 0 && $scope.active_loading === 0) {
+        $scope.active_loading = 1;  
         CourseService
         .upload_attachment($scope.file,$scope.filename)
         .then(function(res) {
           $scope.insert_uploaded(res, user);
         }, function(err) {
         })
+      } else if($scope.note_info.post.length !== 0 && $scope.active_loading === 1) {
+        toastr.error('Please wait the upload to finish', 'Error');
       } else {
         toastr.error('Please fill the note field', 'Error');
       }
