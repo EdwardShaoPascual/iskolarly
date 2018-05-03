@@ -12,6 +12,7 @@
     $scope.user = new Array();
     $scope.announce = new Array();
     $scope.active = 1;
+    $scope.active_loading = 0;
     $scope.active_option = 1;
     $scope.trust = $sce.trustAsHtml;
     $scope.filename = '';
@@ -315,6 +316,7 @@
     $scope.continue_upload = (user) => {
       $scope.note_info.user_id = user.user_id
       if($scope.note_info.post.length !== 0) {
+        $scope.active_loading = 1;        
         CourseService
         .upload_attachment($scope.file,$scope.filename)
         .then(function(res) {
@@ -334,6 +336,7 @@
       .insert_uploaded(file_info, $scope.note_info)
       .then(function(res) {
         toastr.success(file_info.filename + " has been added.");
+        $scope.active_loading = 0;        
         $timeout(() => {
           let time = moment().format('ll').split(',')[0];
           let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
