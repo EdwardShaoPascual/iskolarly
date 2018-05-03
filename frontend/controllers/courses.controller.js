@@ -5,9 +5,9 @@
 	.module('app')
 	.controller('courses-controller', courses_controller);
 
-  courses_controller.$inject = ['$scope', '$window', '$location', '$timeout', 'CoursesService'];
+  courses_controller.$inject = ['$scope', '$rootScope', '$routeParams', '$window', '$location', '$timeout', 'CoursesService'];
 
-	function courses_controller($scope, $window, $location, $timeout, CoursesService) {
+	function courses_controller($scope, $rootScope, $routeParams, $window, $location, $timeout, CoursesService) {
     
     $scope.courses = [];
     $scope.course_code = {
@@ -22,12 +22,17 @@
     $scope.session = {};
 
     $scope.search_filter = '';
+    $rootScope.user_id;
+
+    $scope.inst = {}
 
     $scope.check_auth = () => {
       CoursesService
       .check_auth()
       .then(function(res) {
         $scope.session = res;
+        $rootScope.user_id = $scope.session.user_id;
+
         if ($location.path() === '/') {
           window.location.href = '/#/home';
         }
@@ -135,6 +140,21 @@
           toastr.error(err.data.message, 'Error');
         })
       }
+    }
+
+    $scope.check_inst = () => {
+      $scope.inst.user_id = $rootScope.user_id;
+      $scope.inst.questionnaire_id = $routeParams.questionnaire_id;
+
+      CoursesService
+      .check_inst($scope.inst)
+      .then(function(res) {
+        if (res.length === 0) {
+          window.location.href = '/#/error_404';      
+        }
+      }, function(err) {
+        window.location.href = '/#/error_404';
+      })
     }
   }
 

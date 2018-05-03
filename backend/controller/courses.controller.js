@@ -83,3 +83,16 @@ exports.check_auth = (req, res, next) => {
     res.send(req.session.user);
   }
 }
+
+exports.check_inst = (req, res, next) => {
+  let query_string = 'SELECT * FROM course LEFT JOIN questionnaires ON course.course_id = questionnaires.course_id WHERE questionnaires.questionnaire_id = ? AND course.user_id = ?';
+  let request_data = [req.query.questionnaire_id, req.query.user_id];
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}

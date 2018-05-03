@@ -57,6 +57,7 @@ module.exports = (router) => {
   
   // -- COURSES PAGE ROUTES --
   // GET
+  router.get('/api/check_inst',                                       courses_controller.check_inst);
   router.get('/api/check_auth',                                       courses_controller.check_auth);
   router.get('/api/view_courses',                                     courses_controller.view_courses);
   

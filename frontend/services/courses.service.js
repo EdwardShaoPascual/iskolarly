@@ -83,11 +83,29 @@
       return deferred.promise;
     }
 
+    function check_inst(data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        params: data,
+        url: '/api/check_inst'
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
     let service = {};
     service.view_courses = view_courses;
     service.create_course = create_course;
     service.enroll_course = enroll_course;
     service.check_auth = check_auth;
+    service.check_inst = check_inst;
     return service;
   }
 
