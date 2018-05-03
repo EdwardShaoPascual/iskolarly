@@ -5,9 +5,9 @@
 	.module('app')
   .controller('course-controller', course_controller);
 
-  course_controller.$inject = ['$scope', '$window', '$sce', '$timeout', '$http', 'CourseService'];
+  course_controller.$inject = ['$scope', '$routeParams', '$window', '$sce', '$timeout', '$http', 'CourseService'];
 
-	function course_controller($scope, $window, $sce, $timeout, $http, CourseService) {
+	function course_controller($scope, $routeParams, $window, $sce, $timeout, $http, CourseService) {
     
     $scope.user = new Array();
     $scope.announce = new Array();
@@ -185,7 +185,8 @@
       $scope.questionnairesData.post = $scope.note_info.post;
       $scope.questionnairesData.datetime_start = $('#datetime_start').val();
       $scope.questionnairesData.datetime_end = $('#datetime_start').val();
-
+      $scope.questionnairesData.course_id = $routeParams.course_id;
+      
       if ($scope.questionnairesData.items > $scope.questionnairesData.questionnaire_no) {
         toastr.error('Questionnaire number should be greater than or equal to items.', 'Error');
       } else {
@@ -207,7 +208,8 @@
               questionnaire_id: res.insertId,
               questionnaire_name: $scope.questionnairesData.questionnaire_name,
               questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
-              questionnaire_no: $scope.questionnairesData.questionnaire_no
+              questionnaire_no: $scope.questionnairesData.questionnaire_no,
+              attachment_id: null
             }
             $scope.announcements.unshift(datum);
             $scope.$apply();

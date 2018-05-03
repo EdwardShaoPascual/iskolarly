@@ -35,9 +35,11 @@
 			QuestionService
 			.get_questions(questionnaire_id)
 			.then(function(res) {
-        $scope.questionnaire_info = res;
-        $('#val_name').text($scope.questionnaire_info[0].questionnaire_name);
-        $('#items').text($scope.questionnaire_info[0].questionnaire_no + " items");
+        if (res.length !== 0) {
+          $scope.questionnaire_info = res;
+          $('#val_name').text($scope.questionnaire_info[0].questionnaire_name);
+          $('#items').text($scope.questionnaire_info[0].questionnaire_no + " items");
+        }
 			}, function(err) {
 			})
     }

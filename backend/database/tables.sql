@@ -106,7 +106,7 @@ CREATE TABLE record (
 DROP TABLE IF EXISTS questionnaires;
 CREATE TABLE questionnaires (
 	questionnaire_id				int NOT NULL AUTO_INCREMENT,
-	-- course_id						int NOT NULL,
+	course_id						int NOT NULL,
 	questionnaire_name				varchar(256) NOT NULL,
 	questionnaire_desc				varchar(256) NOT NULL,
 	questionnaire_no				int NOT NULL,
@@ -114,10 +114,10 @@ CREATE TABLE questionnaires (
 	datetime_start					datetime NOT NULL,
 	datetime_end					datetime NOT NULL,
 	published						boolean NOT NULL DEFAULT 0,
-	PRIMARY KEY						(questionnaire_id)
-	-- CONSTRAINT						`fk_questionnaires_course`
-	-- 	FOREIGN KEY (course_id) REFERENCES course (course_id)
-	-- 	ON UPDATE CASCADE ON DELETE CASCADE
+	PRIMARY KEY						(questionnaire_id),
+	CONSTRAINT						`fk_questionnaires_course`
+		FOREIGN KEY (course_id) REFERENCES course (course_id)
+		ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS questions;
