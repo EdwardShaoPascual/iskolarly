@@ -197,7 +197,7 @@
                             <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/quiz/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
                           </div>
                           <div class="Announcement_Quiz_Edit col-xs-3 col-sm-2 col-md-1 col-lg-1">
-                            <button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded custom quiz_edit_glyph" ng-click="questionnaires_get_info(announcement.questionnaire_id)">
+                            <button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded custom quiz_edit_glyph" ng-if="session.role === 'Instructor'" ng-click="questionnaires_get_info(announcement.questionnaire_id)">
                               <span class="float-right glyphicon glyphicon-pencil"></span>
                             </button>
                           </div>
@@ -257,20 +257,12 @@
                     </div>
                   </div>
 
+                  <!-- Items -->
                   <div class="form-group">
                     <label class="control-label" for="inputGroupSuccess1">Items</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
                       <input ng-model="questionnairesData.items" type="number" min="1" class="form-control" aria-describedby="inputGroupSuccess1Status">
-                    </div>
-                  </div>
-
-                  <!-- Question number -->
-                  <div class="form-group">
-                    <label class="control-label" for="inputGroupSuccess1">Set no. of questions</label>
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
-                      <input ng-model="questionnairesData.questionnaire_no" type="number" min="1" class="form-control" aria-describedby="inputGroupSuccess1Status">
                     </div>
                   </div>
                   
@@ -338,20 +330,12 @@
                 </div>
               </div>
 
+              <!-- Items -->
               <div class="form-group">
                 <label class="control-label" for="inputGroupSuccess1">Items</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
                   <input ng-model="questionnairesData.items" id="edit_quest_item" type="number" min="1" class="form-control" aria-describedby="inputGroupSuccess1Status">
-                </div>
-              </div>
-
-              <!-- Question number -->
-              <div class="form-group">
-                <label class="control-label" for="inputGroupSuccess1">Set no. of questions</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
-                  <input ng-model="questionnairesData.questionnaire_no" type="number" min="1" class="form-control" id="edit_quest_no">
                 </div>
               </div>
 

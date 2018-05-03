@@ -34,7 +34,6 @@
 		$scope.questionnairesData = {
       questionnaire_name: '',
       questionnaire_desc: '',
-      questionnaire_no: '',
       items: '',
       datetime_start: '',
       datetime_end: ''
@@ -44,7 +43,7 @@
       questionnaire_id: '',
       questionnaire_name: '',
       questionnaire_desc: '',
-      questionnaire_no: ''
+      items: ''
     }
 
     $scope.emptyPrompt = () => {
@@ -188,39 +187,35 @@
       $scope.questionnairesData.datetime_end = $('#datetime_start').val();
       $scope.questionnairesData.course_id = $routeParams.course_id;
       
-      if ($scope.questionnairesData.items > $scope.questionnairesData.questionnaire_no) {
-        toastr.error('Questionnaire number should be greater than or equal to items.', 'Error');
-      } else {
-        CourseService
-        .add_questionnaires($scope.questionnairesData)
-        .then(function(res) {
-          toastr.success("The quiz has been added, you may now add questions and publish it afterwards to make it accessible by the students!", 'Success');
-          $timeout(() => {
-            let time = moment().format('ll').split(',')[0];
-            let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
-            if ($scope.note_info.post.match(urls)) {
-              $scope.note_info.post = $scope.note_info.post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
-            }
-            let datum = {
-              post: $scope.note_info.post,
-              firstname: data.firstname,
-              lastname: data.lastname,
-              time_posted: time,
-              questionnaire_id: res.insertId-1,
-              questionnaire_name: $scope.questionnairesData.questionnaire_name,
-              questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
-              questionnaire_no: $scope.questionnairesData.questionnaire_no,
-              attachment_id: null
-            }
-            $scope.announcements.unshift(datum);
-            $scope.$apply();
-            $('.modal').modal('hide');          
-            $scope.note_info.post = '';                   
-          }, 100);
-        }, function(err) {
-          toastr.error(err.data, 'Error');
-        })
-      }
+      CourseService
+      .add_questionnaires($scope.questionnairesData)
+      .then(function(res) {
+        toastr.success("The quiz has been added, you may now add questions and publish it afterwards to make it accessible by the students!", 'Success');
+        $timeout(() => {
+          let time = moment().format('ll').split(',')[0];
+          let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+          if ($scope.note_info.post.match(urls)) {
+            $scope.note_info.post = $scope.note_info.post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
+          }
+          let datum = {
+            post: $scope.note_info.post,
+            firstname: data.firstname,
+            lastname: data.lastname,
+            time_posted: time,
+            questionnaire_id: res.insertId-1,
+            questionnaire_name: $scope.questionnairesData.questionnaire_name,
+            questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
+            items: $scope.questionnairesData.items,
+            attachment_id: null
+          }
+          $scope.announcements.unshift(datum);
+          $scope.$apply();
+          $('.modal').modal('hide');          
+          $scope.note_info.post = '';                   
+        }, 100);
+      }, function(err) {
+        toastr.error(err.data, 'Error');
+      })
     }
     
     $scope.questionnaires_get_info = (data) => {
@@ -232,7 +227,6 @@
         $('#edit_quest_id').val($scope.questionnairesInfo.questionnaire_id);
         $('#edit_quest_name').val($scope.questionnairesInfo.questionnaire_name);
         $('#edit_quest_desc').val($scope.questionnairesInfo.questionnaire_desc);
-        $('#edit_quest_no').val($scope.questionnairesInfo.questionnaire_no);
         $('#edit_quest_item').val($scope.questionnairesInfo.items);
 			}, function(err) {
         toastr.error("An error has been encountered", "Error");
@@ -243,29 +237,23 @@
       let questionnaire_id = $('#edit_quest_id').val();
       let questionnaire_name = $('#edit_quest_name').val();
       let questionnaire_desc = $('#edit_quest_desc'). val();
-      let questionnaire_no = $('#edit_quest_no').val();
-      let questionnaire_item = $('#edit_quest_item').val();
+      let items = $('#edit_quest_item').val();
 
       $scope.edit_questionnairesData = {
         questionnaire_id: questionnaire_id,
         questionnaire_name: questionnaire_name,
         questionnaire_desc: questionnaire_desc,
-        questionnaire_no: questionnaire_no,
-        questionnaire_item: questionnaire_item
+        items: items
       }
 
-      if ($scope.edit_questionnairesData.questionnaire_item > $scope.edit_questionnairesData.questionnaire_no) {
-        toastr.error('Questionnaire number should be greater than or equal to items.', 'Error');
-      } else {
-        CourseService
-        .edit_questionnaires($scope.edit_questionnairesData)
-        .then(function(res) {
-          $('.modal').modal('hide');
-          toastr.success('The quiz information has been updated', 'Success');
-        }, function(err) {
-          toastr.error(err.data, 'Error');
-        })
-      }
+      CourseService
+      .edit_questionnaires($scope.edit_questionnairesData)
+      .then(function(res) {
+        $('.modal').modal('hide');
+        toastr.success('The quiz information has been updated', 'Success');
+      }, function(err) {
+        toastr.error(err.data, 'Error');
+      })
     }
 
     $scope.questionnaires_delete = (data, index) => {
