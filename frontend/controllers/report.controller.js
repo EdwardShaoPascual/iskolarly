@@ -23,7 +23,6 @@
         ReportService
         .list_questionnaires()
         .then(function(res) {
-          console.log(res);
           $scope.questionnaires = res;
         }, function(err) {
           toastr.error(err.message, 'Error');
