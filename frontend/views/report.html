@@ -2,11 +2,24 @@
   <div class="">
     <p class="Course_Header">Courses' Report</p>
     <form class="Report row">
-      
+      <select class="col-lg-2 js-example-basic-single" name="state">
+        <option ng-repeat="course in courses" value="{{course.course_title}}">{{course.course_title}}</option>
+      </select>
+      <select class="col-lg-2 js-example-basic-single" name="state">
+        <option value="Quiz">Quiz</option>
+        <option value="Assignment">Assignment</option>
+        <option value="Activity Log">Activity Log</option>
+      </select>
+      <select class="col-lg-2 js-example-basic-single" name="state">
+        <option value="Quiz">Sample Quiz</option>
+      </select>
+      <button id="export-btn" class="btn btn-primary" id="Signup">Go</button>
     </form>
   </div>
 </div>
 
 <script>
-
+  $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+  });
 </script>
