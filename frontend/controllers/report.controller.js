@@ -10,13 +10,12 @@
 		function report_controller($scope, $window, $interval, ReportService) {
 
       $scope.display = '';
-      $scope.course_selected = '';
+      $scope.course_selected = '0';
+      $scope.questionnaire_selected = '';
       $scope.questionnaires = {};
 
-      $scope.rerender = () => {
-        $(document).ready(function() {
-          $('.js-example-basic-single').select2();
-        });
+      $scope.assign = (courses) => {
+        console.log(courses);
       }
 
       $scope.list_questionnaires = () => {
@@ -27,6 +26,11 @@
         }, function(err) {
           toastr.error(err.message, 'Error');
         })
+      }
+
+      $scope.generate_report = () => {
+        $scope.course_selected = $('#course_selected').val();
+        $scope.questionnaire_selected = $('#questionnaire_selected').val();
       }
 
 		}
