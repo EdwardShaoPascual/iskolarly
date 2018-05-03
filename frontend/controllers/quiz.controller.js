@@ -96,7 +96,7 @@
             $scope.questionData.ip = response.data.ip;
             $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
             $scope.questionData.question_id = $scope.quizQuestions[0].question_id;
-            $scope.questionData.activity = "Question " + $scope.quizQuestions[0].question_id + " Viewed";
+            $scope.questionData.activity = "Question Viewed";
           })
           .then(function(response) {
             QuizService
@@ -140,7 +140,7 @@
         $scope.questionData.ip = response.data.ip;
         $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
         $scope.questionData.question_id = $scope.quizQuestions[$scope.activeQuestion].question_id;
-        $scope.questionData.activity = "Question " + $scope.quizQuestions[$scope.activeQuestion].question_id + " Viewed";
+        $scope.questionData.activity = "Question Viewed";
       })
       .then(function(response) {
         QuizService
@@ -163,7 +163,7 @@
           $scope.questionData.ip = response.data.ip;
           $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
           $scope.questionData.question_id = $scope.quizQuestions[$scope.activeQuestion].question_id;
-          $scope.questionData.activity = "Question " + $scope.quizQuestions[$scope.activeQuestion].question_id + " Viewed";
+          $scope.questionData.activity = "Question Viewed";
         })
         .then(function(response) {
           QuizService
@@ -196,7 +196,7 @@
           $scope.questionData.ip = response.data.ip;
           $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
           $scope.questionData.question_id = $scope.quizQuestions[$scope.activeQuestion].question_id;
-          $scope.questionData.activity = "Question " + $scope.quizQuestions[$scope.activeQuestion].question_id + " Viewed";
+          $scope.questionData.activity = "Question Viewed";
         })
         .then(function(response) {
           QuizService
@@ -219,7 +219,7 @@
         $scope.questionData.ip = response.data.ip;
         $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
         $scope.questionData.question_id = $scope.quizQuestions[$scope.activeQuestion].question_id;
-        $scope.questionData.activity = "Question " + $scope.quizQuestions[$scope.activeQuestion].question_id + " Answered";
+        $scope.questionData.activity = "Question Answered";
       })
       .then(function(response) {
         QuizService
@@ -242,6 +242,7 @@
       .then(function(response) {
         $scope.quizData.ip = response.data.ip;
         $scope.quizData.questionnaire_id = $rootScope.questionnaire_id;
+        $scope.quizData.score = $scope.numCorrect;
       })
       .then(function(response) {
         QuizService
@@ -254,14 +255,14 @@
 
       $scope.markQuiz();
 
-      $scope.scoreData.score = $scope.numCorrect;
-      $scope.scoreData.questionnaire_id = $rootScope.questionnaire_id;
+      // $scope.scoreData.score = $scope.numCorrect;
+      // $scope.scoreData.questionnaire_id = $rootScope.questionnaire_id;
       
-      QuizService
-      .insert_score($scope.scoreData)
-      .then(function(res) {
-      }, function(error) {
-      })
+      // QuizService
+      // .insert_score($scope.scoreData)
+      // .then(function(res) {
+      // }, function(error) {
+      // })
 
       $scope.changeState("quiz", false);
       $scope.changeState("results", true);

@@ -123,7 +123,16 @@ exports.publish_quiz = (req, res, next) => {
     if (err) {
       return res.status(500).send(err);
     } else {
-      res.send(result);
+      let query_string2 = 'INSERT INTO quiz (user_id, questionnaire_id, attempted_ans) VALUES (?,?,?)';
+      let request_data2 = [req.query.user_id, req.query.questionnaire_id, 0]
+
+      db.query(query_string2, request_data2, (errt, rest) => {
+        if (errt) {
+          return res.status(500).send(errt);
+        } else {
+          res.send(result);
+        }
+      });
     }
   });
 }

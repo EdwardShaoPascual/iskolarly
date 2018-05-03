@@ -141,6 +141,21 @@ CREATE TABLE questions_quiz (
 		ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS quiz;
+CREATE TABLE quiz (
+	quiz_id								int NOT NULL AUTO_INCREMENT,
+	user_id								int NOT NULL,
+	questionnaire_id					int NOT NULL,
+	attempted_ans						int NOT NULL,
+	PRIMARY KEY							(quiz_id),
+	CONSTRAINT							`fk_quiz_user`
+		FOREIGN KEY (user_id) REFERENCES user (user_id)
+		ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT							`fk_quiz_questionnaires`
+		FOREIGN KEY (questionnaire_id) REFERENCES questionnaires (questionnaire_id)
+		ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 DROP TABLE IF EXISTS answers;
 CREATE TABLE answers (
 	answer_id						int NOT NULL AUTO_INCREMENT,
@@ -212,7 +227,7 @@ CREATE TRIGGER in_occupy_trig AFTER INSERT ON `questions_quiz`
 	END;|
 delimiter ;
 
-delimiter |
+-- delimiter |
 
 -- CREATE TRIGGER del_occupy_trig AFTER DELETE ON `answers` 
 -- 	FOR EACH ROW

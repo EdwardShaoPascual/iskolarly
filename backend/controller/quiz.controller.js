@@ -18,8 +18,8 @@ exports.get_quiz = (req, res, next) => {
         return res.status(500).send(err);
       } else {
         let query = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-        let request = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' ipv4=' + req.query.ip;
-        let activity = "Quiz " + req.query.questionnaire_id + " Start";
+        let request = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.params.questionnaire_id + ' ipv4=' + req.query.ip;
+        let activity = "Quiz Start";
         db.query(query, [activity, request], (error, rest, args, last_query) => {
           if (error) {
             return res.status(500).send({message: "An error has encountered"})
@@ -46,17 +46,38 @@ exports.get_answers = (req, res, next) => {
 }
 
 exports.insert_quizlog = (req, res, next) => {
-  let query_string = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-  let request_data = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' ipv4=' + req.query.ip;
-  let activity = "Quiz " + req.query.questionnaire_id + " End";
+  let query_str = 'SELECT attempted_ans FROM quiz WHERE user_id = ? AND questionnaire_id = ?';
+  let req_data = [req.session.user.user_id, req.query.questionnaire_id]
 
-  db.query(query_string, [activity, request_data], (err, result, args, last_query) => {
-    if (err) {
+  db.query(query_str, req_data, (errt, rest) => {
+    if (errt) {
       return res.status(500).send({message: "An error has encountered"})
     } else {
-      res.send(result);
+
+      let query_string = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
+      let request_data = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.query.questionnaire_id + ' score=' + req.query.score + ' attempt=' + (rest[0].attempted_ans+1) + ' ipv4=' + req.query.ip;
+      let activity = "Quiz End";
+
+      db.query(query_string, [activity, request_data], (err, result, args, last_query) => {
+        if (err) {
+          return res.status(500).send({message: "An error has encountered"})
+        } else {
+      
+          let quer_str = 'UPDATE quiz SET attempted_ans = ? WHERE user_id = ? AND questionnaire_id = ?';
+          let reqt_data = [rest[0].attempted_ans+1, req.session.user.user_id, req.query.questionnaire_id]
+    
+          db.query(quer_str, reqt_data, (error, reslt) => {
+            if (error) {
+              return res.status(500).send({message: "An error has encountered"})
+            } else {
+              res.send(result);
+            }
+          });
+        }
+      });
     }
   });
+
 }
 
 exports.insert_questionlog = (req, res, next) => {

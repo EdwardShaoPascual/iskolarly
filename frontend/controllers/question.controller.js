@@ -200,13 +200,12 @@
       });
     }
 
-    $scope.publish_quiz = () => {
+    $scope.publish_quiz = (id) => {
       let url = window.location.href
       let res = url.split("/");
+      $scope.questionnaire.user_id = id;
       $scope.questionnaire.questionnaire_id = $routeParams.questionnaire_id;
       $scope.questionnaire.items = $rootScope.items;
-
-      console.log($scope.questionnaire);
 
       if ($scope.questionnaire.items > $rootScope.user.length) {
         toastr.error('Insufficient questions in the pool for this quiz before publishing!','Error')
