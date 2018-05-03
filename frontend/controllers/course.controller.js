@@ -100,6 +100,7 @@
     }
 
     $scope.create_note = (data) => {
+      $scope.active_loading = 1;
       let url = window.location.href
       let res = url.split("/");
       $scope.note_info.course_id = res[res.length-1];
@@ -111,6 +112,7 @@
         .create_note($scope.note_info)
         .then(function(res) {
           toastr.success("Note successfully added!", 'Success');
+          $scope.active_loading = 0;
           $timeout(() => {
             let time = moment().format('ll').split(',')[0];
             let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
