@@ -65,14 +65,14 @@
 			QuestionService
 			.add_questions($scope.questionsData)
 			.then(function(res) {
-        $scope.user = res;
+        $('.modal').hide();
+        $('.modal').modal('hide');
         swal({
           title: "Success!",
-          text: "File has been added.",
+          text: "Question has been added.",
           type: "success"
         })
-        $('.modal').hide();
-        $('.modal').modal('hide');          
+        location.reload();        
 			}, function(err) {
         swal("Oops!", "Fill all fields", "error");
 			})
@@ -95,8 +95,10 @@
         .then(function(res) {
           swal({
             title: "Success!",
-            text: "File has been deleted.",
+            text: "Question has been deleted.",
             type: "success"
+          }, () => {
+            location.reload();            
           })
           $scope.user.splice(index, 1);
           $('.modal').hide();
