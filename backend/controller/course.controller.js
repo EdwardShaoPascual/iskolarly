@@ -141,23 +141,18 @@ exports.get_info_questionnaires = (req, res, next) => {
 }
 
 exports.edit_questionnaires = (req, res, next) => {
-  let query_string2 = 'SELECT COUNT(*) AS size, qe.items FROM questions qn, questionnaires qe WHERE qe.questionnaire_id = ? AND qn.questionnaire_id = ?'
-  let request_data2 = [req.query.questionnaire_id, req.query.questionnaire_id]
+  let query_string = 'UPDATE questionnaires SET questionnaire_name = ?, questionnaire_desc = ?, items = ? WHERE questionnaire_id = ?'
+  let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.items, req.query.questionnaire_id]
+  if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.items) {
+    return res.status(400).send("Fill all the fields");
+  }
 
-  db.query(query_string2, request_data2, (errs, results) => {
-      let query_string = 'UPDATE questionnaires SET questionnaire_name = ?, questionnaire_desc = ?, items = ? WHERE questionnaire_id = ?'
-      let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_items, req.query.questionnaire_id]
-      if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.items) {
-        return res.status(400).send("Fill all the fields");
-      }
-
-      db.query(query_string, request_data, (errs, result) => {
-        if (errs) {
-          return res.status(400).send("An error has been encountered");
-        } else {
-          return res.send(result);
-        }
-      });
+  db.query(query_string, request_data, (errs, result) => {
+    if (errs) {
+      return res.status(400).send("An error has been encountered");
+    } else {
+      return res.send(result);
+    }
   });
 }
 
