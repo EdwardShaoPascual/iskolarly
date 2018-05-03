@@ -24,7 +24,7 @@ exports.retrieve_course = (req,res, next) => {
 }
 
 exports.retrieve_announcement = (req,res, next) => {
-  let query_string = 'SELECT * FROM announcement LEFT JOIN questionnaires ON announcement.questionnaire_id = questionnaires.questionnaire_id LEFT JOIN attachment ON announcement.attachment_id = attachment.attachment_id NATURAL JOIN user NATURAL JOIN (SELECT course_id, course_title, course_section, course_description FROM course) as course where course_id = ? ORDER BY time_posted DESC';
+  let query_string = 'SELECT * FROM announcement LEFT JOIN questionnaires ON announcement.questionnaire_id = questionnaires.questionnaire_id LEFT JOIN attachment ON announcement.attachment_id = attachment.attachment_id NATURAL JOIN user NATURAL JOIN (SELECT course.course_id as id_course, course_title, course_section, course_description FROM course) as course where announcement.course_id = ? ORDER BY time_posted DESC';
 
   db.query(query_string, [req.query.course_id], (err, result) => {
     if (err) {
@@ -102,8 +102,8 @@ exports.view_questionnaires = (req, res, next) => {
 }
 
 exports.add_questionnaires = (req, res, next) => {
-  let query_string = 'INSERT INTO questionnaires (questionnaire_name, questionnaire_desc, questionnaire_no, items, datetime_start, datetime_end) VALUES (?,?,?,?,?,?)'
-  let request_data = [req.query.questionnaire_name, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.items, req.query.datetime_start, req.query.datetime_end]
+  let query_string = 'INSERT INTO questionnaires (questionnaire_name, course_id, questionnaire_desc, questionnaire_no, items, datetime_start, datetime_end) VALUES (?,?,?,?,?,?,?)'
+  let request_data = [req.query.questionnaire_name, req.query.course_id, req.query.questionnaire_desc, req.query.questionnaire_no, req.query.items, req.query.datetime_start, req.query.datetime_end]
 
   if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.questionnaire_no) {
     return res.status(400).send("Please fill all the missing fields!");
