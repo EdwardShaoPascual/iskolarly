@@ -123,7 +123,8 @@
               firstname: data.firstname,
               lastname: data.lastname,
               time_posted: time,
-              questionnaire_id: null
+              questionnaire_id: null,
+              attachment_id: null
             }
             $scope.announcements.unshift(datum);
             $scope.$apply();
@@ -205,7 +206,7 @@
               firstname: data.firstname,
               lastname: data.lastname,
               time_posted: time,
-              questionnaire_id: res.insertId,
+              questionnaire_id: res.insertId-1,
               questionnaire_name: $scope.questionnairesData.questionnaire_name,
               questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
               questionnaire_no: $scope.questionnairesData.questionnaire_no,

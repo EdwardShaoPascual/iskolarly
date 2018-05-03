@@ -5,35 +5,29 @@
 		.module('app')
 		.controller('report-controller',report_controller);
 
-    report_controller.$inject = ['$scope', '$window', '$interval'];    
+    report_controller.$inject = ['$scope', '$window', '$interval', 'ReportService'];    
 
-		function report_controller($scope, $window, $interval) {
+		function report_controller($scope, $window, $interval, ReportService) {
 
       $scope.display = '';
-
-      $scope.checkURL = () => {
-        if ($location.path() == "/home") {
-          $scope.home = true;
-          $scope.courses = false;
-        } else if ($location.path() == "/courses") {
-          $scope.home = false;
-          $scope.courses = true;
-        } else if ($location.path() == "/report") {
-          $scope.home = false;
-          $scope.courses = false;
-        } else {
-          $scope.home = false;
-          $scope.courses = true;
-        }
-        if ($location.path() == "/")
-          return false;
-        else return true;
-      }
+      $scope.course_selected = '';
+      $scope.questionnaires = {};
 
       $scope.rerender = () => {
         $(document).ready(function() {
           $('.js-example-basic-single').select2();
         });
+      }
+
+      $scope.list_questionnaires = () => {
+        ReportService
+        .list_questionnaires()
+        .then(function(res) {
+          console.log(res);
+          $scope.questionnaires = res;
+        }, function(err) {
+          toastr.error(err.message, 'Error');
+        })
       }
 
 		}
