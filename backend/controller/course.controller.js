@@ -41,7 +41,6 @@ exports.retrieve_announcement = (req,res, next) => {
           delete result[i].college;
           result[i].time_posted = moment(result[i].time_posted).format('ll').split(',')[0];
         }
-        console.log(result);
         res.send(result);
       }
 
