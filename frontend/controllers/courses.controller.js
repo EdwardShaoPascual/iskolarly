@@ -31,6 +31,10 @@
         if ($location.path() === '/') {
           window.location.href = '/#/home';
         }
+
+        if (($location.path() === '/question/' + $location.path().split("/").slice(-1)[0]) && ($scope.session.role === 'Student')) {
+          window.location.href = '/#/error_404';
+        }
       }, function (err) {
         window.location.href = '/#/'
       })
@@ -64,7 +68,7 @@
             owl.trigger('owl.prev');
           })
           $(".play").click(function(){
-            owl.trigger('owl.play',1000); //owl.play event accept autoPlay speed as second parameter
+            owl.trigger('owl.play',1500); //owl.play event accept autoPlay speed as second parameter
           })
           $(".stop").click(function(){
             owl.trigger('owl.stop');
