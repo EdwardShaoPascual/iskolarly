@@ -40,6 +40,15 @@
         if (($location.path() === '/question/' + $location.path().split("/").slice(-1)[0]) && ($scope.session.role === 'Student')) {
           window.location.href = '/#/error_404';
         }
+        if ($location.path() === '/report' && $scope.session.role === 'Student') {
+          swal({
+            title: "Unauthorized Access",
+            text: "This page is meant for instructors only",
+            type: "error"
+          }, () => {
+            window.location.href = '/#/home';
+          });
+        }
       }, function (err) {
         window.location.href = '/#/'
       })

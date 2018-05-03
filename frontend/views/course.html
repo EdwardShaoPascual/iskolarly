@@ -125,7 +125,8 @@
                   </span>
                 </div>
                 <div class="col-xs-12 col-md-2 col-lg-2 centralized" ng-if="active_option === 1 || active_option === 3">
-                  <button type="submit" class="btn btn-primary" ng-if="active_option === 1" ng-click="create_note(session)">Create Note</button>
+                  <button type="submit" class="btn btn-primary" ng-if="active_option === 1 && active_loading === 0" ng-click="create_note(session)">Create Note</button>
+                  <button type="submit" class="btn btn-primary" ng-if="active_option === 1 && active_loading === 1">Create Note</button>
                   <button type="submit" class="btn btn-primary" ng-if="active_option === 3 && note_info.post.length !== 0" data-toggle="modal" data-target=".bd-example-modal-lgs">Create Quiz</button>
                   <button type="submit" class="btn btn-primary" ng-if="active_option === 3 && note_info.post.length === 0" ng-click="emptyPrompt()">Create Quiz</button>
                 </div>

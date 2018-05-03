@@ -100,6 +100,7 @@
     }
 
     $scope.create_note = (data) => {
+      $scope.active_loading = 1;
       let url = window.location.href
       let res = url.split("/");
       $scope.note_info.course_id = res[res.length-1];
@@ -111,6 +112,7 @@
         .create_note($scope.note_info)
         .then(function(res) {
           toastr.success("Note successfully added!", 'Success');
+          $scope.active_loading = 0;
           $timeout(() => {
             let time = moment().format('ll').split(',')[0];
             let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
@@ -122,7 +124,8 @@
               firstname: data.firstname,
               lastname: data.lastname,
               time_posted: time,
-              questionnaire_id: null
+              questionnaire_id: null,
+              attachment_id: null
             }
             $scope.announcements.unshift(datum);
             $scope.$apply();
@@ -201,7 +204,7 @@
             firstname: data.firstname,
             lastname: data.lastname,
             time_posted: time,
-            questionnaire_id: res.insertId,
+            questionnaire_id: res.insertId-1,
             questionnaire_name: $scope.questionnairesData.questionnaire_name,
             questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
             items: $scope.questionnairesData.items,
@@ -305,14 +308,16 @@
 
     $scope.continue_upload = (user) => {
       $scope.note_info.user_id = user.user_id
-      if($scope.note_info.post.length !== 0) {
-        $scope.active_loading = 1;        
+      if($scope.note_info.post.length !== 0 && $scope.active_loading === 0) {
+        $scope.active_loading = 1;  
         CourseService
         .upload_attachment($scope.file,$scope.filename)
         .then(function(res) {
           $scope.insert_uploaded(res, user);
         }, function(err) {
         })
+      } else if($scope.note_info.post.length !== 0 && $scope.active_loading === 1) {
+        toastr.error('Please wait the upload to finish', 'Error');
       } else {
         toastr.error('Please fill the note field', 'Error');
       }

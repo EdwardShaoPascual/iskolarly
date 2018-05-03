@@ -1,8 +1,8 @@
 <div class="Course row" ng-controller="courses-controller" ng-init="check_auth(); courses_view()">
-  <div ng-controller="report-controller">
+  <div ng-controller="report-controller" ng-init="list_questionnaires()">
     <p class="Course_Header">Courses' Report</p>
-    <form class="Report row">
-      <select class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state">
+    <form class="Report row" ng-controller="course-controller">
+      <select class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-model="course_selected" ng-init="course_selected = '1'">
         <option ng-repeat="course in courses" value="{{course.course_id}}">{{course.course_title}}</option>
       </select><br class="hidden-md hidden-lg"/>
       <select class="col-xs-8 col-md-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-init="display = 'Quiz'" ng-model="display">
@@ -11,11 +11,22 @@
         <option value="Activity Log">Activity Log</option>
       </select><br class="hidden-md hidden-lg"/>
       <select class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-disabled="display === 'Activity Log'">
-        <option ng-if="display === 'Quiz'" value="Sample Quiz">Sample Quiz</option>
+        <option ng-repeat="questionnaire in questionnaires | filter: {course_id: course_selected}" value="{{questionnaire.questionnaire_id}}" ng-if="display === 'Quiz'">{{questionnaire.questionnaire_name}}</option>
         <option ng-if="display === 'Assignment'" value="Sample Assignment">Sample Assignment</option>
-      </select><br class="hidden-md hidden-lg"/>
+      </select>
+      <br class="hidden-md hidden-lg"/>
       <button id="export-btn" class="Report_Submit btn btn-primary" id="Signup">Submit</button>
-    </form>
+    </form><br/><br/>
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-3">
+        <canvas id="myChart" width="400" height="400"></canvas>
+      </div>
+      <div class="col-lg-3">
+        <canvas id="myChart1" width="400" height="400"></canvas>
+      </div>
+      <div class="col-lg-3"></div>
+    </div>
   </div>
 </div>
 
@@ -27,4 +38,52 @@
     });
   });
   
+</script>
+<script>
+  let ctx = document.getElementById("myChart");
+  let myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ["Passed", "Failed"],
+        datasets: [{
+            label: '# of Votes',
+            data: [50,100],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        
+    }
+  });
+  ctx = document.getElementById("myChart1");
+  myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ["Passed", "Failed"],
+        datasets: [{
+            label: '# of Votes',
+            data: [50,100],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        
+    }
+  });
 </script>

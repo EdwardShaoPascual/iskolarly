@@ -27,7 +27,8 @@
     "moment": "^2.22.1",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "owl-carousel-v1": "^1.3.3",
-    "select2": "^4.0.5"
+    "select2": "^4.0.5",
+    "chart.js": "^2.7.2"
   },
   "resolutions": {
     "jquery": "^3.2.1",
