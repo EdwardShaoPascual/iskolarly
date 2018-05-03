@@ -1,19 +1,20 @@
 <div class="Course row" ng-controller="courses-controller" ng-init="check_auth(); courses_view()">
-  <div class="">
+  <div ng-controller="report-controller">
     <p class="Course_Header">Courses' Report</p>
     <form class="Report row">
-      <select class="col-lg-2 js-example-basic-single" name="state">
-        <option ng-repeat="course in courses" value="{{course.course_title}}">{{course.course_title}}</option>
-      </select>
-      <select class="col-lg-2 js-example-basic-single" name="state">
+      <select class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state">
+        <option ng-repeat="course in courses" value="{{course.course_id}}">{{course.course_title}}</option>
+      </select><br class="hidden-md hidden-lg"/>
+      <select class="col-xs-8 col-md-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-init="display = 'Quiz'" ng-model="display">
         <option value="Quiz">Quiz</option>
         <option value="Assignment">Assignment</option>
         <option value="Activity Log">Activity Log</option>
-      </select>
-      <select class="col-lg-2 js-example-basic-single" name="state">
-        <option value="Quiz">Sample Quiz</option>
-      </select>
-      <button id="export-btn" class="btn btn-primary" id="Signup">Go</button>
+      </select><br class="hidden-md hidden-lg"/>
+      <select class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-disabled="display === 'Activity Log'">
+        <option ng-if="display === 'Quiz'" value="Sample Quiz">Sample Quiz</option>
+        <option ng-if="display === 'Assignment'" value="Sample Assignment">Sample Assignment</option>
+      </select><br class="hidden-md hidden-lg"/>
+      <button id="export-btn" class="Report_Submit btn btn-primary" id="Signup">Submit</button>
     </form>
   </div>
 </div>
@@ -21,5 +22,9 @@
 <script>
   $(document).ready(function() {
     $('.js-example-basic-single').select2();
+    $(".js-example-basic-hide-search").select2({
+      minimumResultsForSearch: Infinity
+    });
   });
+  
 </script>
