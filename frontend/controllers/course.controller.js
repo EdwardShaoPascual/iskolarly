@@ -204,7 +204,7 @@
             firstname: data.firstname,
             lastname: data.lastname,
             time_posted: time,
-            questionnaire_id: res.insertId-1,
+            questionnaire_id: res.insertId,
             questionnaire_name: $scope.questionnairesData.questionnaire_name,
             questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
             items: $scope.questionnairesData.items,
@@ -213,7 +213,14 @@
           $scope.announcements.unshift(datum);
           $scope.$apply();
           $('.modal').modal('hide');          
-          $scope.note_info.post = '';                   
+          $scope.note_info.post = '';
+          $scope.questionnairesData = {
+            questionnaire_name: '',
+            questionnaire_desc: '',
+            items: '',
+            datetime_start: '',
+            datetime_end: ''
+          }
         }, 100);
       }, function(err) {
         toastr.error(err.data, 'Error');
