@@ -5,9 +5,9 @@
   .module('app')
   .controller('quiz-controller', quiz_controller);
 
-  quiz_controller.$inject = ['$http', '$routeParams', '$rootScope', '$scope', '$window', 'QuizService'];
+  quiz_controller.$inject = ['$http', '$routeParams', '$rootScope', '$route', '$scope', '$window', 'QuizService'];
 
-  function quiz_controller($http, $routeParams, $rootScope, $scope, $window, QuizService) {
+  function quiz_controller($http, $routeParams, $rootScope, $route, $scope, $window, QuizService) {
     var numQuestionsAnswered = 0;
     let quizLength;
     let numQuestion = 1;
@@ -306,6 +306,7 @@
     }
 
     $scope.reset = () => {
+      $route.reload();
       $scope.changeState("results", false);
       $scope.changeState("quiz", true);
       $scope.numCorrect = 0;
