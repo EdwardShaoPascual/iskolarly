@@ -27,6 +27,8 @@
     $scope.inst = {}
 
     $scope.check_auth = () => {
+      $('.modal').hide();
+      $('.modal').modal('hide');
       CoursesService
       .check_auth()
       .then(function(res) {
@@ -101,9 +103,29 @@
         .enroll_course($scope.course_code)
         .then(function(res) {
           toastr.success('Your enrollment is successful!', 'Success');
+          $timeout(() => {
+            let datum = $scope.course_data;
+            datum.firstname = res[0].firstname;
+            datum.lastname = res[0].lastname;
+            datum.course_code = res[0].course_code;
+            datum.course_id = res[0].course_id;
+            datum.course_description = res[0].course_description;
+            datum.course_section = res[0].course_section;
+            datum.course_title = res[0].course_title;
+            console.log(datum);
+            $scope.courses.unshift(datum);
+            $scope.$apply();
+            $scope.course_data = {
+              course_title: '',
+              course_section: '',
+              course_description: ''
+            }
+            $scope.course_code = {
+              code: ''
+            }
+          }, 100);
           $('.modal').hide();
           $('.modal').modal('hide');
-          $scope.course_code = ""
         }, function(err) {
           toastr.error(err.message, 'Error');
         })
@@ -144,7 +166,7 @@
             }
           }, 100);
           $('.modal').hide();
-          $('.modal').modal('hide');          
+          $('.modal').modal('hide');
         }, function(err) {
           toastr.error(err.data.message, 'Error');
         })

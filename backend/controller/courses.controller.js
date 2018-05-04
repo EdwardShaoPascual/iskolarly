@@ -24,7 +24,7 @@ exports.view_courses = (req, res, next) => {
 exports.enroll_course = (req, res, next) => {
   let payload = [req.query.code, req.session.user.user_id];
 
-  let query_string = 'SELECT course_id FROM course_code where course_code = ? AND NOW() BETWEEN time_start AND time_end';
+  let query_string = 'SELECT * FROM course_code NATURAL JOIN (SELECT * FROM course NATURAL JOIN user) as ucourse where course_code = ? AND NOW() BETWEEN time_start AND time_end';
 
   db.query(query_string, [req.query.code], (err, result) => {
     if (err) {
@@ -40,9 +40,10 @@ exports.enroll_course = (req, res, next) => {
             let call_query_string = 'INSERT INTO course_user (course_id, user_id) VALUES (?,?)';
             db.query(call_query_string, [result[0].course_id, req.session.user.user_id], (errors, resu) => {
               if (errors) {
-              return res.status(500).send({message: "An error has encountered"});            
+                return res.status(500).send({message: "An error has encountered"});            
               } else {
-              res.send(resu);
+                delete result[0].password;
+                res.send(result);
               }
             })
           }
