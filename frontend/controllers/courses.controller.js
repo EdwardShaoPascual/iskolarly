@@ -40,9 +40,10 @@
           window.location.href = '/#/home';
         }
 
-        if (($location.path() === '/question/' + $location.path().split("/").slice(-1)[0]) && ($scope.session.role === 'Student')) {
+        if ($scope.session.role === 'Student' && $location.path().includes('/question')) {
           window.location.href = '/#/error_404';
         }
+
         if ($location.path() === '/report' && $scope.session.role === 'Student') {
           swal({
             title: "Unauthorized Access",
