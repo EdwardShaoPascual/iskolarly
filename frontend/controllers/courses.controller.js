@@ -186,15 +186,16 @@
     $scope.check_inst = () => {
       $scope.inst.user_id = $rootScope.user_id;
       $scope.inst.questionnaire_id = $routeParams.questionnaire_id;
-      alert("DITO YAN");
       CoursesService
       .check_inst($scope.inst)
       .then(function(res) {
         if (res.length === 0) {
+          console.log(0);
           window.location.href = '/#/error_404';      
         }
       }, function(err) {
-        window.location.href = '/#/error_404';
+          console.log(1);
+          window.location.href = '/#/error_404';
       })
     }
   }
