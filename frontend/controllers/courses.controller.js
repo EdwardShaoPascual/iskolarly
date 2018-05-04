@@ -33,6 +33,7 @@
       .check_auth()
       .then(function(res) {
         $scope.session = res;
+        $rootScope.session = res;
         $rootScope.user_id = $scope.session.user_id;
 
         if ($location.path() === '/') {
@@ -54,6 +55,14 @@
       }, function (err) {
         window.location.href = '/#/'
       })
+    }
+
+    $scope.check_role = () => {
+      if ($rootScope.session.role === 'Student') {
+        return false;
+      } else if ($rootScope.session.role === 'Instructor') {
+        return true;          
+      }
     }
 
     $scope.courses_view = () => {

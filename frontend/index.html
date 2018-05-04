@@ -63,12 +63,12 @@
                       <a href="/#/courses" class="Navigation_Pages">Courses</a>
                     </li>
                   </ul>
-                  <ul class="nav navbar-nav navbar-right" ng-controller="courses-controller" ng-init="check_auth()">
+                  <ul class="nav navbar-nav navbar-right" ng-controller="courses-controller">
                     <li class="dropdown">
                       <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="Navigation_Pages">Other Option <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li><a href="/#/report">View Courses' Report</a></li>
-                        <li role="separator" class="divider"></li>
+                        <li ng-show="check_role()"><a href="/#/report">View Courses' Report</a></li>
+                        <li ng-show="check_role()" role="separator" class="divider"></li>
                         <li><a href="javascript:void(0)" ng-click="user_logout()">Log Out</a></li>
                       </ul>
                     </li>
