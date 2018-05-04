@@ -44,7 +44,7 @@
           window.location.href = '/#/error_404';
         }
 
-        if ($location.path() === '/report' && $scope.session.role === 'Student') {
+        if ($location.path() === '/report' && $rootScope.session.role === 'Student') {
           swal({
             title: "Unauthorized Access",
             text: "This page is meant for instructors only",
