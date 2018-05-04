@@ -186,7 +186,7 @@
     $scope.check_inst = () => {
       $scope.inst.user_id = $rootScope.user_id;
       $scope.inst.questionnaire_id = $routeParams.questionnaire_id;
-
+      alert("DITO YAN");
       CoursesService
       .check_inst($scope.inst)
       .then(function(res) {
