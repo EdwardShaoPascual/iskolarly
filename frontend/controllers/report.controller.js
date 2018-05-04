@@ -7,7 +7,7 @@
 
     report_controller.$inject = ['$scope', '$window', '$interval', 'ReportService'];    
 
-		function report_controller($scope, $window, $interval, ReportService) {
+    function report_controller($scope, $window, $interval, ReportService) {
 
       $scope.display = '';
       $scope.course_selected = '0';
