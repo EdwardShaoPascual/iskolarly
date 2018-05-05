@@ -59,7 +59,6 @@ exports.insert_quizlog = (req, res, next) => {
       let query_string = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
       let request_data = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.query.questionnaire_id + ' score=' + req.query.score + ' attempt=' + (rest[0].attempted_ans+1) + ' ipv4=' + req.query.ip + ' reference_id=' + req.query.activity_quiz;
       let activity = "Quiz End";
-      console.log("X");
       db.query(query_string, [activity, request_data], (err, result, args, last_query) => {
         if (err) {
           return res.status(500).send({message: "An error has encountered"})
@@ -71,7 +70,6 @@ exports.insert_quizlog = (req, res, next) => {
             if (error) {
               return res.status(500).send({message: "An error has encountered"})
             } else {
-              console.log("Y");
               res.send(result);
             }
           });

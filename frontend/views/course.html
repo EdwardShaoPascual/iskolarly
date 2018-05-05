@@ -321,6 +321,7 @@
                       <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                       <textarea ng-model="questionnairesData.questionnaire_desc" type="text" rows="5" class="form-control" aria-describedby="inputGroupSuccess1Status" placeholder="Add description here"></textarea>
                     </div>
+                    <small>Remaining Characters: {{256 - questionnairesData.questionnaire_desc.length}}</small>            
                   </div>
 
                   <!-- Items -->
@@ -394,6 +395,7 @@
                   <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                   <textarea ng-model="questionnairesInfo.questionnaire_desc" type="text" rows="5" class="form-control" id="edit_quest_desc" placeholder="Add description here"></textarea>
                 </div>
+                <small>Remaining Characters: {{256 - questionnairesInfo.questionnaire_desc.length}}</small>
               </div>
 
               <!-- Items -->
