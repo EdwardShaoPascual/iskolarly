@@ -24,7 +24,10 @@ exports.get_quiz = (req, res, next) => {
           if (error) {
             return res.status(500).send({message: "An error has encountered"})
           } else {
-            res.send(result);          
+            let return_data = [];
+            return_data[0] = result;
+            return_data[1] = rest.insertId;
+            res.send(return_data);
           }
         });
       }
@@ -54,9 +57,8 @@ exports.insert_quizlog = (req, res, next) => {
       return res.status(500).send({message: "An error has encountered"})
     } else {
       let query_string = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-      let request_data = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.query.questionnaire_id + ' score=' + req.query.score + ' attempt=' + (rest[0].attempted_ans+1) + ' ipv4=' + req.query.ip;
+      let request_data = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.query.questionnaire_id + ' score=' + req.query.score + ' attempt=' + (rest[0].attempted_ans+1) + ' ipv4=' + req.query.ip + ' reference_id=' + req.query.activity_quiz;
       let activity = "Quiz End";
-
       db.query(query_string, [activity, request_data], (err, result, args, last_query) => {
         if (err) {
           return res.status(500).send({message: "An error has encountered"})

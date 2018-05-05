@@ -4,7 +4,7 @@ const db = require(__dirname + '/../lib/mysql');
 const moment = require('moment');
 
 exports.list_questionnaires = (req, res, next) => {
-  let query_string = 'SELECT * FROM questionnaires';
+  let query_string = 'SELECT * FROM questionnaires WHERE questionnaires.datetime_end <= (SELECT CURRENT_TIMESTAMP())';
 
   db.query(query_string, [], (err, result) => {
     if (err) {

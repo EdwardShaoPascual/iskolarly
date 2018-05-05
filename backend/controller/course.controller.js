@@ -40,6 +40,11 @@ exports.retrieve_announcement = (req,res, next) => {
           delete result[i].role;
           delete result[i].college;
           result[i].time_posted = moment(result[i].time_posted).format('ll').split(',')[0];
+          if (req.session.user.role === 'Student' && result[i].published === 0) {
+            result.splice(i,1);
+            i--;
+            
+          }
         }
         res.send(result);
       }
@@ -104,7 +109,6 @@ exports.view_questionnaires = (req, res, next) => {
 exports.add_questionnaires = (req, res, next) => {
   let query_string = 'INSERT INTO questionnaires (questionnaire_name, course_id, questionnaire_desc, items, datetime_start, datetime_end) VALUES (?,?,?,?,?,?)'
   let request_data = [req.query.questionnaire_name, req.query.course_id, req.query.questionnaire_desc, req.query.items, req.query.datetime_start, req.query.datetime_end]
-
   if (!req.query.questionnaire_name || !req.query.questionnaire_desc || !req.query.items) {
     return res.status(400).send("Please fill all the missing fields!");
   }

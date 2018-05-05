@@ -186,45 +186,50 @@
       $scope.questionnairesData.course_id = window.location.href.split("/")[5];
       $scope.questionnairesData.post = $scope.note_info.post;
       $scope.questionnairesData.datetime_start = $('#datetime_start').val();
-      $scope.questionnairesData.datetime_end = $('#datetime_start').val();
+      $scope.questionnairesData.datetime_end = $('#datetime_end').val();
       $scope.questionnairesData.course_id = $routeParams.course_id;
       
-      CourseService
-      .add_questionnaires($scope.questionnairesData)
-      .then(function(res) {
-        toastr.success("The quiz has been added, you may now add questions and publish it afterwards to make it accessible by the students!", 'Success');
-        $timeout(() => {
-          let time = moment().format('ll').split(',')[0];
-          let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
-          if ($scope.note_info.post.match(urls)) {
-            $scope.note_info.post = $scope.note_info.post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
-          }
-          let datum = {
-            post: $scope.note_info.post,
-            firstname: data.firstname,
-            lastname: data.lastname,
-            time_posted: time,
-            questionnaire_id: res.insertId,
-            questionnaire_name: $scope.questionnairesData.questionnaire_name,
-            questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
-            items: $scope.questionnairesData.items,
-            attachment_id: null
-          }
-          $scope.announcements.unshift(datum);
-          $scope.$apply();
-          $('.modal').modal('hide');          
-          $scope.note_info.post = '';
-          $scope.questionnairesData = {
-            questionnaire_name: '',
-            questionnaire_desc: '',
-            items: '',
-            datetime_start: '',
-            datetime_end: ''
-          }
-        }, 100);
-      }, function(err) {
-        toastr.error(err.data, 'Error');
-      })
+      if ($scope.questionnairesData.questionnaire_desc.length > 256) {
+        toastr.error('Questionnaire description must be in length of at most 256 characters!', 'Error');
+      } 
+      else {
+        CourseService
+        .add_questionnaires($scope.questionnairesData)
+        .then(function(res) {
+          toastr.success("The quiz has been added, you may now add questions and publish it afterwards to make it accessible by the students!", 'Success');
+          $timeout(() => {
+            let time = moment().format('ll').split(',')[0];
+            let urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+            if ($scope.note_info.post.match(urls)) {
+              $scope.note_info.post = $scope.note_info.post.replace(urls, "<a href=\"$1\" target=\"_blank\">$1</a>")
+            }
+            let datum = {
+              post: $scope.note_info.post,
+              firstname: data.firstname,
+              lastname: data.lastname,
+              time_posted: time,
+              questionnaire_id: res.insertId,
+              questionnaire_name: $scope.questionnairesData.questionnaire_name,
+              questionnaire_desc: $scope.questionnairesData.questionnaire_desc,
+              items: $scope.questionnairesData.items,
+              attachment_id: null
+            }
+            $scope.announcements.unshift(datum);
+            $scope.$apply();
+            $('.modal').modal('hide');          
+            $scope.note_info.post = '';
+            $scope.questionnairesData = {
+              questionnaire_name: '',
+              questionnaire_desc: '',
+              items: '',
+              datetime_start: '',
+              datetime_end: ''
+            }
+          }, 100);
+        }, function(err) {
+          toastr.error(err.data, 'Error');
+        })
+      }
     }
     
     $scope.questionnaires_get_info = (data) => {
@@ -255,14 +260,18 @@
         items: items
       }
 
-      CourseService
-      .edit_questionnaires($scope.edit_questionnairesData)
-      .then(function(res) {
-        $('.modal').modal('hide');
-        toastr.success('The quiz information has been updated', 'Success');
-      }, function(err) {
-        toastr.error(err.data, 'Error');
-      })
+      if ($scope.edit_questionnairesData.questionnaire_desc.length > 256) {
+        toastr.error('Questionnaire description must be in length of at most 256 characters!', 'Error');
+      } else {
+        CourseService
+        .edit_questionnaires($scope.edit_questionnairesData)
+        .then(function(res) {
+          $('.modal').modal('hide');
+          toastr.success('The quiz information has been updated', 'Success');
+        }, function(err) {
+          toastr.error(err.data, 'Error');
+        })
+      }
     }
 
     $scope.questionnaires_delete = (data, index) => {
