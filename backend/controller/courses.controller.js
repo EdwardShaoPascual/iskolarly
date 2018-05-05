@@ -98,6 +98,19 @@ exports.check_inst = (req, res, next) => {
   });
 }
 
+exports.check_quiz = (req,res, next) => {
+  let query_string = 'SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?';
+  let request_data = [req.session.user.user_id, req.params.questionnaire_id]
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send({message: "An error has encountered"});
+    } else {
+      res.send(result);
+    }
+  });
+}
+
 exports.check_attempt = (req,res, next) => {
   let query_string = 'SELECT * FROM quiz WHERE user_id = ? AND questionnaire_id = ?';
   let request_data = [req.session.user.user_id, req.params.questionnaire_id]
@@ -114,10 +127,12 @@ exports.check_attempt = (req,res, next) => {
           if (errt) {
             return res.status(500).send({message: "An error has encountered"});
           } else {
+            res.send(result);
           }
         })
+      } else {
+        res.send(result);
       }
-      res.send(result);
     }
   });
 }

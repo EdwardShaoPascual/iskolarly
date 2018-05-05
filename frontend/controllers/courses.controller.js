@@ -40,6 +40,14 @@
           $scope.check_inst();
         }
 
+        if ($location.path().includes('/quiz')) {
+          $scope.check_quiz();
+        }
+
+        if ($location.path().includes('/attempt')) {
+          $scope.check_attempt();
+        }
+
         if ($location.path() === '/') {
           window.location.href = '/#/home';
         }
@@ -204,12 +212,28 @@
       })
     }
 
+    $scope.check_quiz = () => {
+      CoursesService
+      .check_quiz($routeParams.questionnaire_id)
+      .then(function(res) {
+        if (res.length === 0) {
+          window.location.href = '/#/error_404';          
+        } else if ((res[0].attempts - res[0].attempted_ans) === 0) {
+          window.location.href = '/#/error_404';      
+        }
+      }, function(err) {
+        window.location.href = '/#/error_404';
+      })
+    }
+
     $scope.check_attempt = () => {
       CoursesService
       .check_attempt($routeParams.questionnaire_id)
       .then(function(res) {
-        if ((res[0].attempts - res[0].attempted_ans) === 0) {
-          window.location.href = '/#/error_404';      
+        if (res.length === 0) {
+          window.location.href = '/#/error_404';
+        } else if ((res[0].attempts - res[0].attempted_ans) === 0) {
+          window.location.href = '/#/error_404';
         }
       }, function(err) {
           window.location.href = '/#/error_404';

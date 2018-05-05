@@ -18,8 +18,7 @@
 
       $http({
         method: 'GET',
-        url: '/api/view_attempt/' + data,
-        headers: headers
+        url: '/api/view_attempt/' + data
       })
       .then(function(res) {
         deferred.resolve(res.data);

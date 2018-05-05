@@ -17,6 +17,7 @@
       .then(function(res) {
         $scope.user = res[0];
 			}, function(err) {
+        toastr.error(err.data.message, 'Error');
       })
     }
 

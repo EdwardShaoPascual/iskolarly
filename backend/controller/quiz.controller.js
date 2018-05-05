@@ -17,19 +17,42 @@ exports.get_quiz = (req, res, next) => {
       if (err) {
         return res.status(500).send(err);
       } else {
-        let query = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-        let request = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.params.questionnaire_id + ' ipv4=' + req.query.ip;
-        let activity = "Quiz Start";
-        db.query(query, [activity, request], (error, rest, args, last_query) => {
-          if (error) {
-            return res.status(500).send({message: "An error has encountered"})
-          } else {
-            let return_data = [];
-            return_data[0] = result;
-            return_data[1] = rest.insertId;
-            res.send(return_data);
-          }
-        });
+
+        if (result.length !== 0) {
+          let query_str = 'SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?';
+          let req_data = [req.session.user.user_id, req.params.questionnaire_id]
+
+          db.query(query_str, req_data, (errt, reslt) => {
+            if (errt) {
+              return res.status(500).send({message: "An error has encountered"})
+            } else {
+
+              if ((reslt[0].attempts - reslt[0].attempted_ans) !== 0) {
+
+                let query = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
+                let request = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.params.questionnaire_id + ' attempt=' + (reslt[0].attempted_ans+1) + ' ipv4=' + req.query.ip;
+                let activity = "Quiz Start";
+                db.query(query, [activity, request], (error, rest, args, last_query) => {
+                  if (error) {
+                    return res.status(500).send({message: "An error has encountered"})
+                  } else {
+                    let return_data = [];
+                    return_data[0] = result;
+                    return_data[1] = rest.insertId;
+                    res.send(return_data);
+                  }
+                });
+              } else {
+                res.send(result)      
+              }
+              
+            }
+          });
+
+        } else {
+          res.send(result)
+        }
+
       }
     });
   }
@@ -57,7 +80,7 @@ exports.insert_quizlog = (req, res, next) => {
       return res.status(500).send({message: "An error has encountered"})
     } else {
       let query_string = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
-      let request_data = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.query.questionnaire_id + ' score=' + req.query.score + ' attempt=' + (rest[0].attempted_ans+1) + ' ipv4=' + req.query.ip + ' reference_id=' + req.query.activity_quiz;
+      let request_data = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.query.questionnaire_id + ' score=' + req.query.score + ' ipv4=' + req.query.ip + ' reference_id=' + req.query.activity_quiz;
       let activity = "Quiz End";
       db.query(query_string, [activity, request_data], (err, result, args, last_query) => {
         if (err) {

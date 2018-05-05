@@ -1,4 +1,4 @@
-<span ng-controller="courses-controller" ng-init="check_auth(); check_attempt()">
+<span ng-controller="courses-controller" ng-init="check_auth()">
   <div class="Course_Spec" ng-controller="course-controller">
     
     <div class="container" ng-controller="attempt-controller" ng-init="attempt_view()">
@@ -12,7 +12,7 @@
       
       <form class="form-inline well well-sm clearfix">
         <span class="pull-left">
-          Remaining attempts: {{user.attempts - user.attempted_ans}}
+          Remaining attempt(s): {{user.attempts - user.attempted_ans}}
         </span>
         <button ng-if="(user.attempts - user.attempted_ans) !== 0" class="btn btn-warning pull-right" ng-click="quiz_page()">
           <strong>Start Quiz</strong>
