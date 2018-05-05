@@ -5,14 +5,16 @@
 		.module('app')
 		.controller('report-controller',report_controller);
 
-    report_controller.$inject = ['$scope', '$window', '$interval', 'ReportService'];    
+    report_controller.$inject = ['$scope', '$window', '$interval', '$rootScope', 'ReportService'];    
 
-    function report_controller($scope, $window, $interval, ReportService) {
+    function report_controller($scope, $window, $interval, $rootScope, ReportService) {
 
-      $scope.display = '';
-      $scope.course_selected = '0';
-      $scope.questionnaire_selected = '';
+      $scope.display = 'Quiz';
       $scope.questionnaires = {};
+      $scope.report_data = {
+        course_selected: '',
+        questionnaire_selected: ''
+      };
 
       $scope.list_questionnaires = () => {
         ReportService
@@ -25,8 +27,11 @@
       }
 
       $scope.generate_report = () => {
-        $scope.course_selected = $('#course_selected').val();
-        $scope.questionnaire_selected = $('#questionnaire_selected').val();
+        $scope.report_data.course_selected = $('#course_selected').val();
+        $scope.report_data.questionnaire_selected = $('#questionnaire_selected').val();
+        if (($scope.report_data.course_selected === '' || $scope.report_data.questionnaire_selected === null) && $scope.display === 'Quiz') {
+          toastr.error("Invalid choice of course or quiz", "Error");
+        }
       }
 
       $scope.initialize_graph = () => {

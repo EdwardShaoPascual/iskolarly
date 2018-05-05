@@ -2,7 +2,7 @@
   <div ng-controller="report-controller" ng-init="list_questionnaires(); initialize_graph()">
     <p class="Course_Header">Courses' Report</p>
     <form class="Report row" ng-controller="course-controller">
-      <select id="course_selected" class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-model="course_selected">
+      <select id="course_selected" class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-model="report_data.course_selected">
         <option ng-repeat="course in courses" value="{{course.course_id}}">{{course.course_title}}</option>
       </select><br class="hidden-md hidden-lg"/>
       <select class="col-xs-8 col-md-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-init="display = 'Quiz'" ng-model="display">
@@ -11,7 +11,7 @@
         <option value="Activity Log">Activity Log</option>
       </select><br class="hidden-md hidden-lg"/>
       <select id="questionnaire_selected" class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-disabled="display === 'Activity Log'">
-        <option ng-repeat="questionnaire in questionnaires | filter: {course_id: course_selected}" value="{{questionnaire.questionnaire_id}}" ng-if="display === 'Quiz'">{{questionnaire.questionnaire_name}}</option>
+        <option ng-repeat="questionnaire in questionnaires | filter: {course_id: report_data.course_selected}" value="{{questionnaire.questionnaire_id}}" ng-if="display === 'Quiz' && report_data.course_selected !== ''">{{questionnaire.questionnaire_name}}</option>
         <option ng-if="display === 'Assignment'" value="Sample Assignment">Sample Assignment</option>
       </select>
       <br class="hidden-md hidden-lg"/>
