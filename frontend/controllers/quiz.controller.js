@@ -46,9 +46,10 @@
         QuizService
         .get_quiz($rootScope.questionnaire_id, $scope.quizData)
         .then(function(res) {
-          $scope.user = res;
+          $scope.user = res[0];
           $scope.size = $scope.user.length;
           $rootScope.questionnaire_name = $scope.user[0].questionnaire_name;
+          $rootScope.activity_quiz = res[1];
           
           for (let i = 0; i < $scope.size; i++) {
             $scope.users = [];
@@ -182,8 +183,6 @@
     }
 
     $scope.questionAnsweredPrev = () => {
-
-
       if (numQuestion > 1) {
         numQuestion = numQuestion - 1;
         console.log(numQuestion)
@@ -235,7 +234,7 @@
       $scope.finalize = false;
       $scope.activeQuestion = 0;
       numQuestionsAnswered = 0;
-
+      
       var url = "//geoip.nekudo.com/api/";
       $http
       .get(url)
@@ -243,6 +242,7 @@
         $scope.quizData.ip = response.data.ip;
         $scope.quizData.questionnaire_id = $rootScope.questionnaire_id;
         $scope.quizData.score = $scope.numCorrect;
+        $scope.quizData.activity_quiz = $rootScope.activity_quiz;
       })
       .then(function(response) {
         QuizService
