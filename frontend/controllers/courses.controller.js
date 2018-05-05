@@ -58,6 +58,9 @@
           });
         }
       }, function (err) {
+        if ($location.path() !== '/') {
+          toastr.error(err.message + "!", "Error");
+        }
         window.location.href = '/#/'
       })
     }
