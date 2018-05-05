@@ -26,6 +26,10 @@ mainApp.config(function($routeProvider, $locationProvider) {
       templateUrl: 'views/question.html',
       controller: 'question-controller'
     })
+    .when('/attempt/:questionnaire_id', {
+      templateUrl: 'views/attempt.html'
+      // controller: 'attempt-controller'
+    })
     .when('/report', {
       templateUrl: 'views/report.html'
     })

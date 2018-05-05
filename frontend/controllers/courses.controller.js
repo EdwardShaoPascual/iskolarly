@@ -203,6 +203,18 @@
           window.location.href = '/#/error_404';
       })
     }
+
+    $scope.check_quiz = () => {
+      CoursesService
+      .check_quiz($routeParams.questionnaire_id)
+      .then(function(res) {
+        if ((res[0].attempts - res[0].attempted_ans) === 0) {
+          window.location.href = '/#/error_404';      
+        }
+      }, function(err) {
+          window.location.href = '/#/error_404';
+      })
+    }
   }
 
 })();

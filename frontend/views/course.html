@@ -195,7 +195,7 @@
                         <div class="row">
                           <div class="Quiz col-xs-9 col-sm-10 col-md-11 col-lg-11">
                             <a class="Announcement_Quiz" ng-if="session.role === 'Instructor'" href="/#/question/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
-                            <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/quiz/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
+                            <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/attempt/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
                           </div>
                           <div class="Announcement_Quiz_Edit col-xs-3 col-sm-2 col-md-1 col-lg-1">
                             <button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded custom quiz_edit_glyph" ng-if="session.role === 'Instructor'" ng-click="questionnaires_get_info(announcement.questionnaire_id)">
@@ -260,7 +260,7 @@
                         <div class="row">
                           <div class="Quiz col-xs-9 col-sm-10 col-md-11 col-lg-11">
                             <a class="Announcement_Quiz" ng-if="session.role === 'Instructor'" href="/#/question/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
-                            <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/quiz/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
+                            <a class="Announcement_Quiz" ng-if="session.role === 'Student'" href="/#/attempt/{{announcement.questionnaire_id}}" target="_blank">{{announcement.questionnaire_name}}</a>
                           </div>
                           <div class="Announcement_Quiz_Edit col-xs-3 col-sm-2 col-md-1 col-lg-1">
                             <button type="button" data-toggle="modal" data-target=".bd-example-modal-lgs-2" class="btn btn-success btn-rounded custom quiz_edit_glyph" ng-if="session.role === 'Instructor'" ng-click="questionnaires_get_info(announcement.questionnaire_id)">
