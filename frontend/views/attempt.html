@@ -1,5 +1,5 @@
-<span ng-controller="courses-controller" ng-init="check_auth()">
-  <div class="Course_Spec" ng-controller="attempt-controller">
+<span ng-controller="courses-controller" ng-init="check_auth(); check_attempt()">
+  <div class="Course_Spec" ng-controller="course-controller">
     
     <div class="container" ng-controller="attempt-controller" ng-init="attempt_view()">
       <div class="page-header">

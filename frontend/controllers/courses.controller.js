@@ -204,9 +204,9 @@
       })
     }
 
-    $scope.check_quiz = () => {
+    $scope.check_attempt = () => {
       CoursesService
-      .check_quiz($routeParams.questionnaire_id)
+      .check_attempt($routeParams.questionnaire_id)
       .then(function(res) {
         if ((res[0].attempts - res[0].attempted_ans) === 0) {
           window.location.href = '/#/error_404';      

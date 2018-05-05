@@ -100,12 +100,12 @@
       return deferred.promise;
     }
 
-    function check_quiz(data) {
+    function check_attempt(data) {
       let deferred = $q.defer();
 
       $http({
         method: 'GET',
-        url: '/api/check_quiz/' + data,
+        url: '/api/check_attempt/' + data,
         headers: headers
       })
       .then(function(res) {
@@ -123,7 +123,7 @@
     service.enroll_course = enroll_course;
     service.check_auth = check_auth;
     service.check_inst = check_inst;
-    service.check_quiz = check_quiz;
+    service.check_attempt = check_attempt;
     return service;
   }
 

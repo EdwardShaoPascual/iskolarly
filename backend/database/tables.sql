@@ -147,6 +147,7 @@ CREATE TABLE quiz (
 	user_id								int NOT NULL,
 	questionnaire_id					int NOT NULL,
 	attempted_ans						int NOT NULL,
+	-- score								int NOT NULL,
 	PRIMARY KEY							(quiz_id),
 	CONSTRAINT							`fk_quiz_user`
 		FOREIGN KEY (user_id) REFERENCES user (user_id)

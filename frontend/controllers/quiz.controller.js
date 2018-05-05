@@ -307,7 +307,7 @@
 
     $scope.reset = () => {
       $scope.url = '/#/attempt/' + $rootScope.questionnaire_id;
-      window.location = $scope.url;
+      window.location.href = $scope.url;
 
       $scope.changeState("results", false);
       $scope.changeState("quiz", true);
