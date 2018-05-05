@@ -186,7 +186,7 @@
       $scope.questionnairesData.course_id = window.location.href.split("/")[5];
       $scope.questionnairesData.post = $scope.note_info.post;
       $scope.questionnairesData.datetime_start = $('#datetime_start').val();
-      $scope.questionnairesData.datetime_end = $('#datetime_start').val();
+      $scope.questionnairesData.datetime_end = $('#datetime_end').val();
       $scope.questionnairesData.course_id = $routeParams.course_id;
       
       CourseService

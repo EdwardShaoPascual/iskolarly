@@ -26,7 +26,6 @@ exports.login = function(req, res, next) {
           let activity = "Login Account";
           db.query(queryStringCB, [activity,activityDescription], (err, rest, args, last_query) => {
             if (err) {
-              console.log(err);
               return res.status(500).send({message: "An error has encountered"})
             }
             return res.status(200).send(rest);
