@@ -306,7 +306,9 @@
     }
 
     $scope.reset = () => {
-      $route.reload();
+      $scope.url = '/#/attempt/' + $rootScope.questionnaire_id;
+      window.location = $scope.url;
+
       $scope.changeState("results", false);
       $scope.changeState("quiz", true);
       $scope.numCorrect = 0;

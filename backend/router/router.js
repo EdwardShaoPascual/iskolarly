@@ -7,6 +7,7 @@ const course_controller = require(__dirname + '/../controller/course.controller.
 const courses_controller = require(__dirname + '/../controller/courses.controller.js');
 const nav_controller = require(__dirname + '/../controller/nav.controller.js');
 const report_controller = require(__dirname + '/../controller/report.controller.js');
+const attempt_controller = require(__dirname + '/../controller/attempt.controller.js');
 
 module.exports = (router) => {
 
@@ -58,6 +59,7 @@ module.exports = (router) => {
   
   // -- COURSES PAGE ROUTES --
   // GET
+  router.get('/api/check_quiz/:questionnaire_id/',                    courses_controller.check_quiz);
   router.get('/api/check_inst',                                       courses_controller.check_inst);
   router.get('/api/check_auth',                                       courses_controller.check_auth);
   router.get('/api/view_courses',                                     courses_controller.view_courses);
@@ -74,6 +76,10 @@ module.exports = (router) => {
   // GET
   router.get('/api/list_questionnaires',                              report_controller.list_questionnaires);
   
+  // -- ATTEMPT PAGE ROUTES --
+  // GET
+  router.get('/api/view_attempt/:questionnaire_id',                   attempt_controller.view_attempt);
+
 	router.all('*', (req, res, next) => {
 	  res.status(404).send({message: 'Unmatched route :('});
 	});  
