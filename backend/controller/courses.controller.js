@@ -111,6 +111,32 @@ exports.check_quiz = (req,res, next) => {
   });
 }
 
+exports.check_course = (req,res, next) => {
+  if (req.session.user.role === 'Instructor') {
+    let query_string = 'SELECT * FROM course WHERE user_id = ? AND course_id = ?';
+    let request_data = [req.session.user.user_id, req.params.course_id]
+
+    db.query(query_string, request_data, (err, result) => {
+      if (err) {
+        return res.status(500).send({message: "An error has encountered"});
+      } else {
+        res.send(result);
+      }
+    });
+  } else {
+    let query_string = 'SELECT * FROM course_user WHERE user_id = ? AND course_id = ?';
+    let request_data = [req.session.user.user_id, req.params.course_id]
+
+    db.query(query_string, request_data, (err, result) => {
+      if (err) {
+        return res.status(500).send({message: "An error has encountered"});
+      } else {
+        res.send(result);
+      }
+    });
+  }
+}
+
 exports.check_attempt = (req,res, next) => {
   let query_string = 'SELECT * FROM quiz WHERE user_id = ? AND questionnaire_id = ?';
   let request_data = [req.session.user.user_id, req.params.questionnaire_id]

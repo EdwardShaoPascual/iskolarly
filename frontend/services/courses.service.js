@@ -100,6 +100,22 @@
       return deferred.promise;
     }
 
+    function check_course(data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/api/check_course/' + data
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
     function check_quiz(data) {
       let deferred = $q.defer();
 
@@ -139,6 +155,7 @@
     service.check_auth = check_auth;
     service.check_inst = check_inst;
     service.check_quiz = check_quiz;
+    service.check_course = check_course;
     service.check_attempt = check_attempt;
     return service;
   }

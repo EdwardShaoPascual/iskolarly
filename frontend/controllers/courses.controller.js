@@ -36,6 +36,10 @@
         $rootScope.session = res;
         $rootScope.user_id = $scope.session.user_id;
 
+        if ($location.path().includes('/course/')) {
+          $scope.check_course();
+        }
+
         if ($location.path().includes('/question')) {
           $scope.check_inst();
         }
@@ -209,6 +213,18 @@
         }
       }, function(err) {
           window.location.href = '/#/error_404';
+      })
+    }
+
+    $scope.check_course = () => {
+      CoursesService
+      .check_course($routeParams.course_id)
+      .then(function(res) {
+        if (res.length === 0) {
+          window.location.href = '/#/error_404';          
+        }
+      }, function(err) {
+        window.location.href = '/#/error_404';
       })
     }
 
