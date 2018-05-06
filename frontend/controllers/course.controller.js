@@ -374,6 +374,36 @@
       }, function(err) {
       })
     }
+
+    $scope.post_delete = (data, index) => {
+      $scope.announcement_id = data;
+      swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      },
+      function(){
+        CourseService
+        .delete_post($scope.announcement_id)
+        .then(function(res) {
+          swal({
+            title: "Success!",
+            text: "Question has been deleted.",
+            type: "success"
+          }, () => {
+            location.reload();            
+          })
+          $scope.user.splice(index, 1);
+          $('.modal').hide();
+          $('.modal').modal('hide');          
+        }, function(err) {
+        })
+      });
+    }
   }
 
 })();

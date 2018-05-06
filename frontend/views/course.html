@@ -231,6 +231,7 @@
                     {{announcement.firstname}} {{announcement.lastname}}
                     <p class="Announcement_Detail_Time">{{announcement.time_posted}}</p>
                   </div>
+                  <span class="glyphicon glyphicon-remove post_glyph_remove" ng-click="post_delete(announcement.announcement_id, $index)"></span>
                 </div>
                 <div class="panel-body"><pre ng-bind-html="trust(announcement.post)"></pre></div>
                 <div class="panel-body" ng-if="announcement.attachment_id !== null">

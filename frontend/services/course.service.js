@@ -232,6 +232,26 @@
       return deferred.promise;
     }
 
+    const delete_post = function (data) {
+      let deferred = $q.defer();
+      
+      $http({
+        method: 'POST',
+        params: data,
+        url: '/api/delete_post/' + data,
+        headers: headers
+      })
+      .then(function(res) {
+        // $window.location.href = '/#/post';
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+    }
+
+
     let service = {};
     service.retrieve_course = retrieve_course;
     service.retrieve_announcement = retrieve_announcement;
@@ -245,6 +265,7 @@
     service.delete_questionnaires = delete_questionnaires;
     service.upload_attachment = upload_attachment;
     service.insert_uploaded = insert_uploaded;
+    service.delete_post = delete_post;
     return service;
   }
 

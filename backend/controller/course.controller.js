@@ -196,3 +196,16 @@ exports.upload_attachment = (req, res, next) => {
     }
   });
 }
+
+exports.delete_post = (req, res, next) => {
+  let query_string = 'DELETE FROM announcement WHERE announcement_id = ?';
+  let request_data = [req.params.announcement_id]
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}
