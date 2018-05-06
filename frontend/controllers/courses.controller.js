@@ -5,9 +5,9 @@
 	.module('app')
 	.controller('courses-controller', courses_controller);
 
-  courses_controller.$inject = ['$scope', '$rootScope', '$routeParams', '$window', '$location', '$timeout', 'CoursesService'];
+  courses_controller.$inject = ['$scope', '$rootScope', '$route', '$routeParams', '$window', '$location', '$timeout', 'CoursesService'];
 
-	function courses_controller($scope, $rootScope, $routeParams, $window, $location, $timeout, CoursesService) {
+	function courses_controller($scope, $rootScope, $route, $routeParams, $window, $location, $timeout, CoursesService) {
     
     $scope.courses = [];
     $scope.course_code = {
@@ -49,7 +49,11 @@
         }
 
         if ($location.path().includes('/attempt')) {
-          $scope.check_attempt();
+          if ($scope.session.role === 'Student') {
+            $scope.check_attempt();
+          } else {
+            window.location.href = '/#/error_404';
+          }
         }
 
         if ($location.path() === '/') {
@@ -247,9 +251,7 @@
       .check_attempt($routeParams.questionnaire_id)
       .then(function(res) {
         if (res.length === 0) {
-          window.location.href = '/#/error_404';
-        } else if ((res[0].attempts - res[0].attempted_ans) === 0) {
-          window.location.href = '/#/error_404';
+          $route.reload();
         }
       }, function(err) {
           window.location.href = '/#/error_404';

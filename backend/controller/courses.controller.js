@@ -138,26 +138,43 @@ exports.check_course = (req,res, next) => {
 }
 
 exports.check_attempt = (req,res, next) => {
-  let query_string = 'SELECT * FROM quiz WHERE user_id = ? AND questionnaire_id = ?';
-  let request_data = [req.session.user.user_id, req.params.questionnaire_id]
+  let query = 'SELECT * FROM questionnaires NATURAL JOIN course_user WHERE user_id = ? and questionnaire_id = ?';
+  let request = [req.session.user.user_id, req.params.questionnaire_id]
 
-  db.query(query_string, request_data, (err, result) => {
-    if (err) {
+  db.query(query, request, (error, reslt) => {
+    if (error) {
       return res.status(500).send({message: "An error has encountered"});
     } else {
-      if (result.length == 0) {
-        let query_str = 'INSERT INTO quiz (user_id, questionnaire_id, attempted_ans) VALUES (?, ?, ?)';
-        let req_data = [req.session.user.user_id, req.params.questionnaire_id, 0]
+      if (reslt.length !== 0) {
+        
+        let query_string = 'SELECT * FROM quiz WHERE user_id = ? AND questionnaire_id = ?';
+        let request_data = [req.session.user.user_id, req.params.questionnaire_id]
 
-        db.query(query_str, req_data, (errt, rest) => {
-          if (errt) {
+        db.query(query_string, request_data, (err, result) => {
+          if (err) {
             return res.status(500).send({message: "An error has encountered"});
           } else {
-            res.send(result);
+            if (result.length == 0) {
+        
+              let query_str = 'INSERT INTO quiz (user_id, questionnaire_id, attempted_ans) VALUES (?, ?, ?)';
+              let req_data = [req.session.user.user_id, req.params.questionnaire_id, 0]
+
+              db.query(query_str, req_data, (errt, rest) => {
+                if (errt) {
+                  return res.status(500).send({message: "An error has encountered"});
+                } else {
+                  res.send(result);
+                }
+              })
+            } else {
+              res.send(result);
+            }
+        
           }
-        })
+        });
+
       } else {
-        res.send(result);
+        return res.status(500).send({message: "An error has encountered"});
       }
     }
   });
