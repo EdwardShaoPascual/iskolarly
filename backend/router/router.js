@@ -59,8 +59,8 @@ module.exports = (router) => {
   
   // -- COURSES PAGE ROUTES --
   // GET
-  router.get('/api/check_attempt/:questionnaire_id/',                 courses_controller.check_attempt);
-  router.get('/api/check_quiz/:questionnaire_id/',                    courses_controller.check_quiz);
+  router.get('/api/check_attempt/:questionnaire_id',                  courses_controller.check_attempt);
+  router.get('/api/check_quiz/:questionnaire_id',                     courses_controller.check_quiz);
   router.get('/api/check_course/:course_id',                          courses_controller.check_course);
   router.get('/api/check_inst',                                       courses_controller.check_inst);
   router.get('/api/check_auth',                                       courses_controller.check_auth);

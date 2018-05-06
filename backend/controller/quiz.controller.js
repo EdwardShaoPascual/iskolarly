@@ -27,7 +27,9 @@ exports.get_quiz = (req, res, next) => {
               return res.status(500).send({message: "An error has encountered"})
             } else {
 
-              if ((reslt[0].attempts - reslt[0].attempted_ans) !== 0) {
+              if (reslt.length === 0) {
+                res.send(result);
+              } else if ((reslt[0].attempts - reslt[0].attempted_ans) !== 0) {
 
                 let query = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
                 let request = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.params.questionnaire_id + ' attempt=' + (reslt[0].attempted_ans+1) + ' ipv4=' + req.query.ip;
@@ -43,14 +45,14 @@ exports.get_quiz = (req, res, next) => {
                   }
                 });
               } else {
-                res.send(result)      
+                res.send(result); 
               }
               
             }
           });
 
         } else {
-          res.send(result)
+          res.send(result);
         }
 
       }

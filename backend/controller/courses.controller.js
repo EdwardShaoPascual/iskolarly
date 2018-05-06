@@ -98,7 +98,7 @@ exports.check_inst = (req, res, next) => {
   });
 }
 
-exports.check_quiz = (req,res, next) => {
+exports.check_quiz = (req, res, next) => {
   let query_string = 'SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?';
   let request_data = [req.session.user.user_id, req.params.questionnaire_id]
 
@@ -111,7 +111,7 @@ exports.check_quiz = (req,res, next) => {
   });
 }
 
-exports.check_course = (req,res, next) => {
+exports.check_course = (req, res, next) => {
   if (req.session.user.role === 'Instructor') {
     let query_string = 'SELECT * FROM course WHERE user_id = ? AND course_id = ?';
     let request_data = [req.session.user.user_id, req.params.course_id]
@@ -137,7 +137,7 @@ exports.check_course = (req,res, next) => {
   }
 }
 
-exports.check_attempt = (req,res, next) => {
+exports.check_attempt = (req, res, next) => {
   let query = 'SELECT * FROM questionnaires NATURAL JOIN course_user WHERE user_id = ? and questionnaire_id = ?';
   let request = [req.session.user.user_id, req.params.questionnaire_id]
 
