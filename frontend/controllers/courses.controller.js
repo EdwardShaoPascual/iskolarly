@@ -77,6 +77,7 @@
             window.location.href = '/#/home';
           });
         }
+        console.clear();        
       }, function (err) {
         if ($location.path() !== '/') {
           toastr.error(err.message + "!", "Error");

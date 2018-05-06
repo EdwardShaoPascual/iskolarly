@@ -78,6 +78,7 @@ module.exports = (router) => {
   // -- REPORT PAGE ROUTES --
   // GET
   router.get('/api/list_questionnaires',                              report_controller.list_questionnaires);
+  router.get('/api/retrieve_activity_logs',                           report_controller.retrieve_activity_logs)
   
   // -- ATTEMPT PAGE ROUTES --
   // GET
