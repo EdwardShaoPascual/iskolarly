@@ -44,8 +44,12 @@
           $scope.check_inst();
         }
 
-        if ($location.path().includes('/quiz/')) {
-          $scope.check_quiz();
+        if ($location.path().includes('/quiz')) {
+          if ($scope.session.role === 'Student') {
+            $scope.check_quiz();
+          } else {
+            window.location.href = '/#/error_404';
+          }
         }
 
         if ($location.path().includes('/attempt')) {
