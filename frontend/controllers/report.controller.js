@@ -11,6 +11,10 @@
 
       $scope.display = 'Quiz';
       $scope.questionnaires = {};
+      $scope.activity_log = {};
+      $scope.quiz_log = {
+        ave_time_all: ''
+      }
       $scope.report_data = {
         course_selected: '',
         questionnaire_selected: ''
@@ -21,6 +25,7 @@
         .list_questionnaires()
         .then(function(res) {
           $scope.questionnaires = res;
+          console.clear();
         }, function(err) {
           toastr.error(err.message, 'Error');
         })
@@ -31,6 +36,58 @@
         $scope.report_data.questionnaire_selected = $('#questionnaire_selected').val();
         if (($scope.report_data.course_selected === '' || $scope.report_data.questionnaire_selected === null) && $scope.display === 'Quiz') {
           toastr.error("Invalid choice of course or quiz", "Error");
+        } else {
+          ReportService.
+          retrieve_activity_logs()
+          .then(function(res) {
+            $scope.activity_log = res;
+            if ($scope.display === 'Quiz') {
+              let filtered_quiz = [];
+              let filtered_quiz_start = [];
+              let filtered_quiz_end = [];
+              // Getting the quiz-related logs
+              for(let i=0; i<res.length; i++) {
+                if (res[i].activity_type.includes('Quiz') && res[i].activity_info.includes("questionnaire_id="+$scope.report_data.questionnaire_selected)) {
+                  filtered_quiz.push(res[i]);
+                }
+                if (res[i].activity_type.includes('Quiz Start') && res[i].activity_info.includes("questionnaire_id="+$scope.report_data.questionnaire_selected)) {
+                  filtered_quiz_start.push(res[i]);
+                }
+                if (res[i].activity_type.includes('Quiz End') && res[i].activity_info.includes("questionnaire_id="+$scope.report_data.questionnaire_selected)) {
+                  filtered_quiz_end.push(res[i]);
+                }
+              }
+              
+              // For averaging time (overall)
+              let ave_time = 0;
+              for(let i=0; i<filtered_quiz_end.length; i++) {
+                let referDate = '';
+                let date = filtered_quiz_end[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                let reference = filtered_quiz_end[i].activity_info.split(' ')[7].split('=')[1];
+                for(let j=0; j<filtered_quiz_start.length; j++) {
+                  if (filtered_quiz_start[j].activity_id == reference) {
+                    referDate = filtered_quiz_start[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                    break;
+                  }
+                }
+                ave_time = ave_time + (new Date(date) - new Date(referDate));
+              }
+              ave_time /= filtered_quiz_end.length;
+              let average = new Date(ave_time);
+              let seconds = average.getSeconds();
+              let minutes = average.getMinutes();
+              let hour = Math.floor(minutes/60);
+              let final_time = {
+                seconds: seconds+"."+ave_time.toString().substring(0,2),
+                minutes: minutes%60,
+                hour: hour
+              }
+              // End of averaging time (overall) 
+              
+            }
+          }, function(err) {
+              toastr.error(err.message, "Error");
+          })
         }
       }
 

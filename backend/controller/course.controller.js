@@ -40,7 +40,7 @@ exports.retrieve_announcement = (req,res, next) => {
           delete result[i].role;
           delete result[i].college;
           result[i].time_posted = moment(result[i].time_posted).format('ll').split(',')[0];
-          if (req.session.user.role === 'Student' && result[i].published === 0) {
+          if (req.session.user !== undefined && req.session.user.role === 'Student' && result[i].published === 0) {
             result.splice(i,1);
             i--;
             

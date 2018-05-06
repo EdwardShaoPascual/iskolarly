@@ -30,9 +30,27 @@
 
         return deferred.promise;
       }
+
+      const retrieve_activity_logs = function () {
+        let deferred = $q.defer();
+        $http({
+          method: 'GET',
+          xhrFields: {withCredentials: true},
+          url: '/api/retrieve_activity_logs',
+          headers: headers
+        })
+        .then(function(res) {
+          deferred.resolve(res.data);
+        }, function(err) {
+          deferred.reject(err);
+        })
+
+        return deferred.promise;
+      }
       
       let service = {};
       service.list_questionnaires  			= list_questionnaires;
+      service.retrieve_activity_logs 		= retrieve_activity_logs;
       return service;
 
     }

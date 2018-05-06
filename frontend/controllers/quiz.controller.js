@@ -307,7 +307,6 @@
 
     $scope.reset = () => {
       $scope.url = '/#/attempt/' + $rootScope.questionnaire_id;
-      window.location.href = $scope.url;
 
       $scope.changeState("results", false);
       $scope.changeState("quiz", true);
@@ -318,6 +317,7 @@
         data.selected = null;
         data.correct = null;
       }
+      window.close();
     }
   }
   
