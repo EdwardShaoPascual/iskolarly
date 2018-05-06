@@ -99,8 +99,8 @@ exports.check_inst = (req, res, next) => {
 }
 
 exports.check_quiz = (req, res, next) => {
-  let query_string = 'SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?';
-  let request_data = [req.session.user.user_id, req.params.questionnaire_id]
+  let query_string = 'SELECT q.* FROM announcement, (SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?) as q WHERE announcement.questionnaire_id = ?';
+  let request_data = [req.session.user.user_id, req.params.questionnaire_id, req.params.questionnaire_id]
 
   db.query(query_string, request_data, (err, result) => {
     if (err) {
@@ -138,8 +138,8 @@ exports.check_course = (req, res, next) => {
 }
 
 exports.check_attempt = (req, res, next) => {
-  let query = 'SELECT * FROM questionnaires NATURAL JOIN course_user WHERE user_id = ? and questionnaire_id = ?';
-  let request = [req.session.user.user_id, req.params.questionnaire_id]
+  let query = 'SELECT q.* FROM announcement, (SELECT * FROM questionnaires NATURAL JOIN course_user WHERE user_id = ? and questionnaire_id = ? and published = ?) as q WHERE announcement.questionnaire_id = ?';
+  let request = [req.session.user.user_id, req.params.questionnaire_id, 1, req.params.questionnaire_id]
 
   db.query(query, request, (error, reslt) => {
     if (error) {
