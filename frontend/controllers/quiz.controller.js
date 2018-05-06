@@ -26,6 +26,7 @@
     $scope.quizActive = true;
     $scope.resultsActive = false;
     $scope.correctAnswers = new Array();
+    $scope.numCorrectAnswers = new Array();
     $scope.numCorrect = 0;
     $rootScope.questionnaire_name;
     $rootScope.questionnaire_id = $routeParams.questionnaire_id;
@@ -72,12 +73,18 @@
                 jsonArg.correct = null;
                 $scope.choice = new Array();
 
+                let count = 0;
                 for (let i = 0; i < $scope.users.length; i++) {
                   $scope.choice.push({ choices: '' + $scope.users[i].choices + '' });
 
-                  if ($scope.users[i].is_right === "Yes")
+                  if ($scope.users[i].is_right === "Yes") {
                     $scope.correctAnswers.push(i);
+                    count = count + 1;
+                  }
                 }
+
+                $scope.numCorrectAnswers.push(count);
+                console.log($scope.correctAnswers);
 
                 jsonArg.set_of_choices = $scope.choice;
                 $scope.quizQuestions.push(jsonArg);
@@ -283,13 +290,25 @@
     }
 
     $scope.markQuiz = () => {
+      let temp = 0;
+      let count = temp;
       for (let i = 0; i < $scope.quizQuestions.length; i++) {
-        if ($scope.quizQuestions[i].selected === $scope.correctAnswers[i]) {
-          $scope.quizQuestions[i].correct = true;
-          $scope.numCorrect++;
-        } else {
-          $scope.quizQuestions[i].correct = false;
+        let j = $scope.numCorrectAnswers[i];
+        while (j != 0) {
+          if ($scope.quizQuestions[i].selected === $scope.correctAnswers[count]) {
+            $scope.quizQuestions[i].correct = true;
+            $scope.numCorrect++;
+            break;
+          } else {
+            $scope.quizQuestions[i].correct = false;
+          }
+
+          count = count + 1;
+          j = j - 1;
         }
+        
+        temp = temp + $scope.numCorrectAnswers[i];
+        count = temp;
       }
     }
 
@@ -298,9 +317,21 @@
     }
 
     $scope.getAnswerClass = (index) => {
-      if (index === $scope.correctAnswers[$scope.activeQuestion]) {
-        return "bg-success";
-      } else if (index === $scope.quizQuestions[$scope.activeQuestion].selected){
+      let temp = 0;
+      let count = $scope.numCorrectAnswers[$scope.activeQuestion];
+      
+      for (let i = 0; i < $scope.activeQuestion; i++)
+        temp = temp + $scope.numCorrectAnswers[i];  
+
+      while (count != 0) {
+        if (index === $scope.correctAnswers[temp]) {
+          return "bg-success";
+        }
+        count = count - 1;
+        temp = temp + 1;
+      }
+
+      if (index === $scope.quizQuestions[$scope.activeQuestion].selected) {
         return "p-3 mb-2 bg-danger";
       }
     }
