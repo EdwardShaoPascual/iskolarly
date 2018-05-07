@@ -38,6 +38,8 @@
         hour: ''
       }
       $scope.average_scores = {
+        normal: '',
+        normal_percentage: '',
         highest: '',
         highest_percentage: ''
       }
@@ -110,15 +112,16 @@
                       }
                     }
                     ave_time = ave_time + (new Date(date) - new Date(referDate));
-                    console.log(filtered_quiz_end[i].activity_info.split(' ')[5].split('=')[1]);
                     score_ave += parseInt(filtered_quiz_end[i].activity_info.split(' ')[5].split('=')[1]);
                   }
-                  console.log(score_ave / filtered_quiz_end.length);
+                  score_ave /= filtered_quiz_end.length;
                   ave_time /= filtered_quiz_end.length;
                   let average = new Date(ave_time);
                   let seconds = average.getSeconds();
                   let minutes = average.getMinutes();
                   let hour = Math.floor(minutes/60);
+                  $scope.average_scores.normal = score_ave;
+                  $scope.average_scores.normal_percentage = ((score_ave / $scope.over_score) * 100).toFixed(2);
                   $scope.final_time = {
                     seconds: seconds+"."+ave_time.toString().substring(0,2),
                     minutes: minutes%60,

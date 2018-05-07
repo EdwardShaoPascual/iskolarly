@@ -39,9 +39,7 @@
       <div class="col-xs-1 col-lg-2"/>
       <div class="Reports col-xs-5 col-lg-4" ng-if="get_flag === 1">
         <h4>Average Overall Tries' Score: <br/>
-          <span ng-if="final_time.hour !== 0">{{final_time.hour}} hour(s)</span>
-          <span ng-if="final_time.minutes !== 0">{{final_time.minutes}} minute(s)</span>
-          <span ng-if="final_time.seconds !== 0">{{final_time.seconds}} second(s)</span>
+          <span>{{average_scores.normal}} / {{over_score}} ({{average_scores.normal_percentage}}%)</span>
         </h4>        
       </div>
       <div class="Reports col-xs-5 col-lg-4" ng-if="get_flag === 1">
