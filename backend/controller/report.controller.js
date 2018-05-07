@@ -24,3 +24,14 @@ exports.retrieve_activity_logs = (req, res, next) => {
     res.send(result);
   })
 }
+
+exports.retrieve_user = (req, res, next) => {
+  let query_string = 'SELECT * FROM course_user WHERE course_id = ?';
+
+  db.query(query_string, [req.query.course_selected], (err, result) => {
+    if (err) {
+     return res.status(500).send({message: "An error has been encountered"});   
+    }
+    res.send(result);
+  })
+}
