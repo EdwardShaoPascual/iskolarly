@@ -82,14 +82,20 @@
         if ($location.path() !== '/') {
           toastr.error(err.message + "!", "Error");
         }
+        console.clear();        
         window.location.href = '/#/'
       })
     }
 
     $scope.check_role = () => {
-      if ($rootScope.session.role === 'Student') {
+      if ($rootScope.session === undefined) {
+        console.clear();        
+        return false;
+      } else if ($rootScope.session.role === 'Student') {
+        console.clear();        
         return false;
       } else if ($rootScope.session.role === 'Instructor') {
+        console.clear();        
         return true;          
       }
     }
