@@ -26,6 +26,7 @@
     $scope.quizActive = true;
     $scope.resultsActive = false;
     $scope.correctAnswers = new Array();
+    $scope.numCorrectAnswers = new Array();
     $scope.numCorrect = 0;
     $rootScope.questionnaire_name;
     $rootScope.questionnaire_id = $routeParams.questionnaire_id;
@@ -47,67 +48,75 @@
         .get_quiz($rootScope.questionnaire_id, $scope.quizData)
         .then(function(res) {
           $scope.user = res[0];
-          $scope.size = $scope.user.length;
-          $rootScope.questionnaire_name = $scope.user[0].questionnaire_name;
-          $rootScope.activity_quiz = res[1];
-          
-          for (let i = 0; i < $scope.size; i++) {
-            $scope.users = [];
-            let math = Math.floor(Math.random() * $scope.size);
+          if (res.length !== 0) {
+            $scope.size = $scope.user.length;
+            $rootScope.questionnaire_name = $scope.user[0].questionnaire_name;
+            $rootScope.activity_quiz = res[1];
+            
+            for (let i = 0; i < $scope.size; i++) {
+              $scope.users = [];
+              let math = Math.floor(Math.random() * $scope.size);
 
-            if (jQuery.inArray(math, numArray) == -1) {
-              numArray[count++] = math;
-              
-              $scope.question_id = $scope.user[math].question_id;
-              QuizService
-              .get_answers($scope.question_id)
-              .then(function(rest) {
-                $scope.users = rest;
+              if (jQuery.inArray(math, numArray) == -1) {
+                numArray[count++] = math;
                 
-                var jsonArg = new Object();
-                jsonArg.question_id = math + 1;
-                jsonArg.type = $scope.user[math].type;
-                jsonArg.question_desc = $scope.user[math].question_desc;
-                jsonArg.selected = null;
-                jsonArg.correct = null;
-                $scope.choice = new Array();
+                $scope.question_id = $scope.user[math].question_id;
+                QuizService
+                .get_answers($scope.question_id)
+                .then(function(rest) {
+                  $scope.users = rest;
+                  
+                  var jsonArg = new Object();
+                  jsonArg.question_id = math + 1;
+                  jsonArg.type = $scope.user[math].type;
+                  jsonArg.question_desc = $scope.user[math].question_desc;
+                  jsonArg.selected = null;
+                  jsonArg.correct = null;
+                  $scope.choice = new Array();
 
-                for (let i = 0; i < $scope.users.length; i++) {
-                  $scope.choice.push({ choices: '' + $scope.users[i].choices + '' });
+                  let count = 0;
+                  for (let i = 0; i < $scope.users.length; i++) {
+                    $scope.choice.push({ choices: '' + $scope.users[i].choices + '' });
 
-                  if ($scope.users[i].is_right === "Yes")
-                    $scope.correctAnswers.push(i);
-                }
+                    if ($scope.users[i].is_right === "Yes") {
+                      $scope.correctAnswers.push(i);
+                      count = count + 1;
+                    }
+                  }
 
-                jsonArg.set_of_choices = $scope.choice;
-                $scope.quizQuestions.push(jsonArg);
-                quizLength = $scope.quizQuestions.length;
-              }, function(errt) {
-              })
-              
-            } else {
-              i--;
+                  $scope.numCorrectAnswers.push(count);
+                  console.log($scope.correctAnswers);
+
+                  jsonArg.set_of_choices = $scope.choice;
+                  $scope.quizQuestions.push(jsonArg);
+                  quizLength = $scope.quizQuestions.length;
+                }, function(errt) {
+                })
+                
+              } else {
+                i--;
+              }
             }
-          }
-          
-          var url = "//geoip.nekudo.com/api/";
-          $http
-          .get(url)
-          .then(function(response) {
-            $scope.questionData.ip = response.data.ip;
-            $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
-            $scope.questionData.question_id = $scope.quizQuestions[0].question_id;
-            $scope.questionData.activity = "Question Viewed";
-          })
-          .then(function(response) {
-            QuizService
-            .insert_questionlog($scope.questionData)
-            .then(function(res) {
-
-            }, function(er) {
-
+            
+            var url = "//geoip.nekudo.com/api/";
+            $http
+            .get(url)
+            .then(function(response) {
+              $scope.questionData.ip = response.data.ip;
+              $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
+              $scope.questionData.question_id = $scope.quizQuestions[0].question_id;
+              $scope.questionData.activity = "Question Viewed";
             })
-          });
+            .then(function(response) {
+              QuizService
+              .insert_questionlog($scope.questionData)
+              .then(function(res) {
+
+              }, function(er) {
+
+              })
+            });
+          }
           
         }, function(err) {
         })
@@ -283,13 +292,25 @@
     }
 
     $scope.markQuiz = () => {
+      let temp = 0;
+      let count = temp;
       for (let i = 0; i < $scope.quizQuestions.length; i++) {
-        if ($scope.quizQuestions[i].selected === $scope.correctAnswers[i]) {
-          $scope.quizQuestions[i].correct = true;
-          $scope.numCorrect++;
-        } else {
-          $scope.quizQuestions[i].correct = false;
+        let j = $scope.numCorrectAnswers[i];
+        while (j != 0) {
+          if ($scope.quizQuestions[i].selected === $scope.correctAnswers[count]) {
+            $scope.quizQuestions[i].correct = true;
+            $scope.numCorrect++;
+            break;
+          } else {
+            $scope.quizQuestions[i].correct = false;
+          }
+
+          count = count + 1;
+          j = j - 1;
         }
+        
+        temp = temp + $scope.numCorrectAnswers[i];
+        count = temp;
       }
     }
 
@@ -298,15 +319,28 @@
     }
 
     $scope.getAnswerClass = (index) => {
-      if (index === $scope.correctAnswers[$scope.activeQuestion]) {
-        return "bg-success";
-      } else if (index === $scope.quizQuestions[$scope.activeQuestion].selected){
+      let temp = 0;
+      let count = $scope.numCorrectAnswers[$scope.activeQuestion];
+      
+      for (let i = 0; i < $scope.activeQuestion; i++)
+        temp = temp + $scope.numCorrectAnswers[i];  
+
+      while (count != 0) {
+        if (index === $scope.correctAnswers[temp]) {
+          return "bg-success";
+        }
+        count = count - 1;
+        temp = temp + 1;
+      }
+
+      if (index === $scope.quizQuestions[$scope.activeQuestion].selected) {
         return "p-3 mb-2 bg-danger";
       }
     }
 
     $scope.reset = () => {
       $scope.url = '/#/attempt/' + $rootScope.questionnaire_id;
+      window.location.href = $scope.url;
 
       $scope.changeState("results", false);
       $scope.changeState("quiz", true);
