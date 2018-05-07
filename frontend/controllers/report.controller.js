@@ -221,7 +221,7 @@
 
       }
 
-      $scope.initialize_graph = (standing) => {
+      $scope.initialize_graph = (standing, timeTable) => {
         // Passing/Failing Graph
         let ctx = document.getElementById("passrate");
         let myChart = new Chart(ctx, {
@@ -251,12 +251,12 @@
         myChart = new Chart(ctx, {
           type: 'line',
           data: {
-              labels: ["Aug. 1", "Aug. 2", "Aug. 3", "Aug. 4", "Aug. 5", "Aug. 6", "Aug. 7", "Aug. 8", "Aug. 9", "Aug. 10", "Aug. 11"],
+              labels: timeTable.dateArray,
               xAxisID: "Quiz Time Span",
               yAxisID: "Students' Score",
               datasets: [{
                   label: 'Average score of students per day',
-                  data: [0,5,15,11,10,4,12,7,15,14,11,15],
+                  data: timeTable.dataArray,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)'
