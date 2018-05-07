@@ -61,21 +61,48 @@
 			})
     }
     
-		$scope.questions_add = () => {
-			QuestionService
-			.add_questions($scope.questionsData)
-			.then(function(res) {
-        $('.modal').hide();
-        $('.modal').modal('hide');
-        swal({
-          title: "Success!",
-          text: "Question has been added.",
-          type: "success"
+		$scope.questions_add = (data) => {    
+      let id;
+      let flag = 0;
+      if (data == 0) id = $("input[type=text]:last").attr("id");
+      else id = $("input[type=url]:last").attr("id");
+
+      for (let i=0; i<=parseInt(id.substr(id.length -1)); i++) {
+        let a, b;
+        if (data == 0) {
+          a = $('#answer_'+i).val();
+          b = $('#right_'+i).val();
+        } else {
+          a = $('#answers_'+i).val();
+          b = $('#rights_'+i).val();
+        }
+
+        if(a != undefined && b != undefined) {
+          if (b == 'Yes') {
+            flag = 1;
+            break;
+          }
+        }
+      }
+
+      if (flag == 1) {
+        QuestionService
+        .add_questions($scope.questionsData)
+        .then(function(res) {
+          $('.modal').hide();
+          $('.modal').modal('hide');
+          swal({
+            title: "Success!",
+            text: "Question has been added.",
+            type: "success"
+          })
+          location.reload();        
+        }, function(err) {
+          swal("Oops!", "Fill all fields", "error");
         })
-        location.reload();        
-			}, function(err) {
-        swal("Oops!", "Fill all fields", "error");
-			})
+      } else {
+        toastr.error('At least one of the choices is right!','Error')        
+      }
     }
 
     $scope.questions_delete = (data, index) => {
@@ -139,11 +166,11 @@
 
     $scope.answers_add = (data) => {    
       let id;
+      let flag = 0;
       if (data == 0) id = $("input[type=text]:last").attr("id");
       else id = $("input[type=url]:last").attr("id");
 
-
-      for(let i=0; i<=parseInt(id.substr(id.length -1)); i++) {
+      for (let i=0; i<=parseInt(id.substr(id.length -1)); i++) {
         let a, b;
         if (data == 0) {
           a = $('#answer_'+i).val();
@@ -154,25 +181,45 @@
         }
 
         if(a != undefined && b != undefined) {
-          $scope.answersData = {
-            choices: a,
-            is_right: b
+          if (b == 'Yes') {
+            flag = 1;
+            break;
+          }
+        }
+      }
+
+      if (flag == 1) {
+        for(let i=0; i<=parseInt(id.substr(id.length -1)); i++) {
+          let a, b;
+          if (data == 0) {
+            a = $('#answer_'+i).val();
+            b = $('#right_'+i).val();
+          } else {
+            a = $('#answers_'+i).val();
+            b = $('#rights_'+i).val();
           }
 
-          QuestionService
-          .add_answers($scope.answersData)
-          .then(function(res) {
-            $scope.user = res;
-            swal({
-              title: "Success!",
-              text: "File has been added.",
-              type: "success"
+          if(a != undefined && b != undefined) {
+            $scope.answersData = {
+              choices: a,
+              is_right: b
+            }
+
+            QuestionService
+            .add_answers($scope.answersData)
+            .then(function(res) {
+              $scope.user = res;
+              swal({
+                title: "Success!",
+                text: "File has been added.",
+                type: "success"
+              })
+              $('.modal').hide();
+              $('.modal').modal('hide');          
+            }, function(err) {
+              swal("Oops!", "Fill all fields", "error");
             })
-            $('.modal').hide();
-            $('.modal').modal('hide');          
-          }, function(err) {
-            swal("Oops!", "Fill all fields", "error");
-          })
+          }
         }
       }
     }
