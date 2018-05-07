@@ -179,7 +179,7 @@
     function addTableRow() {
       var tempTr = $('<tr><td><input type="text" id="answer_' + i + 
                      '" class="form-control" /></td><td><select id="right_' + i + 
-                     '" class="form-control"><option>Yes</option><option>No</option></select></td><td><span class="glyphicon glyphicon-minus removeBtns" id="remove_' + i + 
+                     '" class="form-control"><option>Yes</option><option>No</option></select></td><td><span class="glyphicon glyphicon-minus removeBtn" id="remove_' + i + 
                      '"></span></td></tr>').on('click', function () {
         $(document.body).on('click', '.TreatmentHistoryRemove', function (e) {
           $(this).closest('tr').remove();
