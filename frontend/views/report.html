@@ -17,6 +17,24 @@
       <br class="hidden-md hidden-lg"/>
       <button id="export-btn" class="Report_Submit btn btn-primary" id="Signup" ng-click="generate_report()">Submit</button>
     </form><br/><br/>
+    <div class="row">
+      <div class="col-lg-2"/>
+      <div class="Reports col-lg-4" ng-if="get_flag === 1">
+        <h4>Overall Average Time Answering the Quiz: <br/>
+          <span ng-if="final_time.hour !== 0">{{final_time.hour}} hour(s)</span>
+          <span ng-if="final_time.minutes !== 0">{{final_time.minutes}} minute(s)</span>
+          <span ng-if="final_time.seconds !== 0">{{final_time.seconds}} second(s)</span>
+        </h4>        
+      </div>
+      <div class="Reports col-lg-4" ng-if="get_flag === 1">
+        <h4>Highest Scores Average Time Answering the Quiz: <br/>
+          <span ng-if="final_time_highest.hour !== 0">{{final_time_highest.hour}} hour(s)</span>
+          <span ng-if="final_time_highest.minutes !== 0">{{final_time_highest.minutes}} minute(s)</span>
+          <span ng-if="final_time_highest.seconds !== 0">{{final_time_highest.seconds}} second(s)</span>
+        </h4>        
+      </div>
+      <div class="col-lg-2"/>
+    </div>
     <div class="Report_Figures row">
       <div class="col-xs-1 col-lg-3"></div>
       <div class="col-xs-10 col-lg-3">

@@ -3,6 +3,11 @@
   text-align: center !important;
 }
 
+.Reports {
+  text-align: center;
+  color: #fff;
+}
+
 .Report_Figures {
   margin-bottom: 75px;
 }
