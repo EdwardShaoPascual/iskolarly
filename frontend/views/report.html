@@ -1,5 +1,5 @@
 <div class="Course row" ng-controller="courses-controller" ng-init="check_auth(); courses_view()">
-  <div ng-controller="report-controller" ng-init="list_questionnaires(); initialize_graph()">
+  <div ng-controller="report-controller" ng-init="list_questionnaires()">
     <p class="Course_Header">Courses' Report</p>
     <form class="Report row" ng-controller="course-controller">
       <select id="course_selected" class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-model="report_data.course_selected">
@@ -15,7 +15,8 @@
         <option ng-if="display === 'Assignment'" value="Sample Assignment">Sample Assignment</option>
       </select>
       <br class="hidden-md hidden-lg"/>
-      <button id="export-btn" class="Report_Submit btn btn-primary" id="Signup" ng-click="generate_report()">Submit</button>
+      <button id="export-btn" class="Report_Submit btn btn-primary" id="Signup" ng-click="generate_report()" ng-if="loading === 0">Submit</button>
+      <button id="export-btn" class="Report_Submit Course_Preloader btn btn-primary" id="Signup" ng-if="loading === 1">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-repeat"></i>&nbsp;&nbsp;&nbsp;</button>
     </form><br/><br/>
     <div class="row">
       <div class="col-lg-2"/>

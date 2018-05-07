@@ -9,6 +9,7 @@
 
     function report_controller($scope, $window, $interval, $rootScope, ReportService) {
 
+      $scope.loading = 0;
       $scope.display = 'Quiz';
       $scope.questionnaires = {};
       $scope.activity_log = {};
@@ -54,6 +55,7 @@
           if (($scope.report_data.course_selected === '' || $scope.report_data.questionnaire_selected === null) && $scope.display === 'Quiz') {
             toastr.error("Invalid choice of course or quiz", "Error");
           } else {
+            $scope.loading = 1;
             ReportService
             .retrieve_activity_logs()
             .then(function(res) {
@@ -150,9 +152,10 @@
                   minutes: minutes%60,
                   hour: hour
                 }
-                // End of averaging time (highest) 
+                // End of averaging time (highest)
+                $scope.initialize_graph()
                 $scope.get_flag = 1;
-                
+                $scope.loading = 0;
               }
             }, function(err) {
                 toastr.error(err.message, "Error");
