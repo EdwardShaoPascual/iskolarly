@@ -47,14 +47,21 @@
       $scope.generate_report = () => {
         $scope.report_data.course_selected = $('#course_selected').val();
         $scope.report_data.questionnaire_selected = $('#questionnaire_selected').val();
-
+        $scope.display = $('#display').val();
+        console.log($scope.report_data.course_selected === '? string: ?');
         ReportService
         .retrieve_user($scope.report_data)
         .then(function(res) {
           $scope.course_users = res;
-          if (($scope.report_data.course_selected === '' || $scope.report_data.questionnaire_selected === null) && $scope.display === 'Quiz') {
+          if ($scope.display === 'Quiz' && ($scope.report_data.course_selected === '' || $scope.report_data.questionnaire_selected === null || $scope.report_data.course_selected === '? string: ?')) {
             toastr.error("Invalid choice of course or quiz", "Error");
-          } else {
+            $scope.report_data.course_selected = '';
+          } 
+          else if ($scope.display === 'Activity Log' && ($scope.report_data.course_selected === '' || $scope.report_data.course_selected === null || $scope.report_data.course_selected === '? string: ?')) {
+            toastr.error("Invalid choice of course for activity logging", "Error");
+            $scope.report_data.course_selected = '';
+          }
+          else {
             $scope.loading = 1;
             ReportService
             .retrieve_activity_logs()

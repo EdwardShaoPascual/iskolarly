@@ -5,7 +5,7 @@
       <select id="course_selected" class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-model="report_data.course_selected">
         <option ng-repeat="course in courses" value="{{course.course_id}}">{{course.course_title}}</option>
       </select><br class="hidden-md hidden-lg"/>
-      <select class="col-xs-8 col-md-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-init="display = 'Quiz'" ng-model="display">
+      <select class="col-xs-8 col-md-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-init="display = 'Quiz'" id="display" ng-model="display">
         <option value="Quiz">Quiz</option>
         <option value="Assignment">Assignment</option>
         <option value="Activity Log">Activity Log</option>
@@ -18,7 +18,7 @@
       <button id="export-btn" class="Report_Submit btn btn-primary" id="Signup" ng-click="generate_report()" ng-if="loading === 0">Submit</button>
       <button id="export-btn" class="Report_Submit Course_Preloader btn btn-primary" id="Signup" ng-if="loading === 1">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-repeat"></i>&nbsp;&nbsp;&nbsp;</button>
     </form><br/><br/>
-    <div class="row">
+    <div class="row" ng-if="display === 'Quiz'">
       <div class="col-lg-2"/>
       <div class="Reports col-lg-4" ng-if="get_flag === 1">
         <h4>Overall Average Time Answering the Quiz: <br/>
