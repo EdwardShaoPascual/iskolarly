@@ -14,6 +14,10 @@
       $scope.questionnaires = {};
       $scope.activity_log = {};
       $scope.course_users = {};
+      $scope.timeTable = {
+        dateArray: [],
+        dataArray: []
+      };
       $scope.over_score = 0;
       $scope.get_flag = 0;
       $scope.standing = {
@@ -126,6 +130,7 @@
                   }
                   // End of averaging time (overall) 
 
+                  $scope.dateLabels = new Map();
 
                   // For averaging time (highest), getting the Pass/Fail graph and getting the highest average
                   let highest_ave = 0;
@@ -136,6 +141,15 @@
                     // Get your quizzes
                     for(let j=0; j<filtered_quiz_end.length; j++) {
                       if (filtered_quiz_end[j].activity_info.includes("user_id=" + $scope.course_users[i].user_id)) {
+                        let dateString = filtered_quiz_end[j].activity_info.split(' ')[0].replace('[','').replace(']','');
+                        let date = dateFormat('%M %d %Y', new Date(dateString))
+
+                        if (!$scope.dateLabels.has(date)) {
+                          $scope.dateLabels.set(date, 1);
+                        } else {
+                          $scope.dateLabels.set(date, $scope.dateLabels.get(date)+1)
+                        }
+
                         scores.push(filtered_quiz_end[j]);
                       }
                     }
@@ -187,7 +201,10 @@
                   }
                   // End of averaging time (highest)
 
-                  $scope.initialize_graph($scope.standing);
+                  $scope.timeTable.dateArray = Array.from($scope.dateLabels.keys())
+                  $scope.timeTable.dataArray = Array.from($scope.dateLabels.values())
+
+                  $scope.initialize_graph($scope.standing, $scope.timeTable);
                   $scope.get_flag = 1;
                   $scope.loading = 0;
                 }
