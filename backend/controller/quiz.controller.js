@@ -8,26 +8,26 @@ const db = require(__dirname + '/../lib/mysql');
 // const winston = require('winston');
 
 exports.get_quiz = (req, res, next) => {
-  let query_string = 'SELECT qn.*, qe.questionnaire_name FROM questions qn, questionnaires qe WHERE qn.questionnaire_id = ? AND qe.questionnaire_id = ?';
-  let request_data = [req.params.questionnaire_id, req.params.questionnaire_id]
+  let query_str = 'SELECT q.* FROM announcement, (SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?) as q WHERE announcement.questionnaire_id = ?';
+  let req_data = [req.session.user.user_id, req.params.questionnaire_id, req.params.questionnaire_id]
   if (req.session.user === undefined) {
     res.status(500).send({message: "There is no active session!"});
   } else {
-    db.query(query_string, request_data, (err, result) => {
-      if (err) {
-        return res.status(500).send(err);
+    db.query(query_str, req_data, (errt, reslt) => {
+      if (errt) {
+        return res.status(500).send(errt);
       } else {
 
-        if (result.length !== 0) {
-          let query_str = 'SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?';
-          let req_data = [req.session.user.user_id, req.params.questionnaire_id]
+        if (reslt.length !== 0) {
+          let query_string = 'SELECT qn.*, qe.questionnaire_name FROM questions qn, questionnaires qe WHERE qn.questionnaire_id = ? AND qe.questionnaire_id = ? ORDER BY RAND() LIMIT ?';
+          let request_data = [req.params.questionnaire_id, req.params.questionnaire_id, reslt[0].question_no]
 
-          db.query(query_str, req_data, (errt, reslt) => {
-            if (errt) {
+          db.query(query_string, request_data, (err, result) => {
+            if (err) {
               return res.status(500).send({message: "An error has encountered"})
             } else {
 
-              if (reslt.length === 0) {
+              if (result.length === 0) {
                 res.send(result);
               } else if ((reslt[0].attempts - reslt[0].attempted_ans) !== 0) {
 
@@ -52,7 +52,7 @@ exports.get_quiz = (req, res, next) => {
           });
 
         } else {
-          res.send(result);
+          res.send(reslt);
         }
 
       }

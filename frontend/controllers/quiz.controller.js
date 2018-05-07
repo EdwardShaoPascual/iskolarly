@@ -48,73 +48,75 @@
         .get_quiz($rootScope.questionnaire_id, $scope.quizData)
         .then(function(res) {
           $scope.user = res[0];
-          $scope.size = $scope.user.length;
-          $rootScope.questionnaire_name = $scope.user[0].questionnaire_name;
-          $rootScope.activity_quiz = res[1];
-          
-          for (let i = 0; i < $scope.size; i++) {
-            $scope.users = [];
-            let math = Math.floor(Math.random() * $scope.size);
+          if (res.length !== 0) {
+            $scope.size = $scope.user.length;
+            $rootScope.questionnaire_name = $scope.user[0].questionnaire_name;
+            $rootScope.activity_quiz = res[1];
+            
+            for (let i = 0; i < $scope.size; i++) {
+              $scope.users = [];
+              let math = Math.floor(Math.random() * $scope.size);
 
-            if (jQuery.inArray(math, numArray) == -1) {
-              numArray[count++] = math;
-              
-              $scope.question_id = $scope.user[math].question_id;
-              QuizService
-              .get_answers($scope.question_id)
-              .then(function(rest) {
-                $scope.users = rest;
+              if (jQuery.inArray(math, numArray) == -1) {
+                numArray[count++] = math;
                 
-                var jsonArg = new Object();
-                jsonArg.question_id = math + 1;
-                jsonArg.type = $scope.user[math].type;
-                jsonArg.question_desc = $scope.user[math].question_desc;
-                jsonArg.selected = null;
-                jsonArg.correct = null;
-                $scope.choice = new Array();
+                $scope.question_id = $scope.user[math].question_id;
+                QuizService
+                .get_answers($scope.question_id)
+                .then(function(rest) {
+                  $scope.users = rest;
+                  
+                  var jsonArg = new Object();
+                  jsonArg.question_id = math + 1;
+                  jsonArg.type = $scope.user[math].type;
+                  jsonArg.question_desc = $scope.user[math].question_desc;
+                  jsonArg.selected = null;
+                  jsonArg.correct = null;
+                  $scope.choice = new Array();
 
-                let count = 0;
-                for (let i = 0; i < $scope.users.length; i++) {
-                  $scope.choice.push({ choices: '' + $scope.users[i].choices + '' });
+                  let count = 0;
+                  for (let i = 0; i < $scope.users.length; i++) {
+                    $scope.choice.push({ choices: '' + $scope.users[i].choices + '' });
 
-                  if ($scope.users[i].is_right === "Yes") {
-                    $scope.correctAnswers.push(i);
-                    count = count + 1;
+                    if ($scope.users[i].is_right === "Yes") {
+                      $scope.correctAnswers.push(i);
+                      count = count + 1;
+                    }
                   }
-                }
 
-                $scope.numCorrectAnswers.push(count);
-                console.log($scope.correctAnswers);
+                  $scope.numCorrectAnswers.push(count);
+                  console.log($scope.correctAnswers);
 
-                jsonArg.set_of_choices = $scope.choice;
-                $scope.quizQuestions.push(jsonArg);
-                quizLength = $scope.quizQuestions.length;
-              }, function(errt) {
-              })
-              
-            } else {
-              i--;
+                  jsonArg.set_of_choices = $scope.choice;
+                  $scope.quizQuestions.push(jsonArg);
+                  quizLength = $scope.quizQuestions.length;
+                }, function(errt) {
+                })
+                
+              } else {
+                i--;
+              }
             }
-          }
-          
-          var url = "//geoip.nekudo.com/api/";
-          $http
-          .get(url)
-          .then(function(response) {
-            $scope.questionData.ip = response.data.ip;
-            $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
-            $scope.questionData.question_id = $scope.quizQuestions[0].question_id;
-            $scope.questionData.activity = "Question Viewed";
-          })
-          .then(function(response) {
-            QuizService
-            .insert_questionlog($scope.questionData)
-            .then(function(res) {
-
-            }, function(er) {
-
+            
+            var url = "//geoip.nekudo.com/api/";
+            $http
+            .get(url)
+            .then(function(response) {
+              $scope.questionData.ip = response.data.ip;
+              $scope.questionData.questionnaire_id = $rootScope.questionnaire_id;
+              $scope.questionData.question_id = $scope.quizQuestions[0].question_id;
+              $scope.questionData.activity = "Question Viewed";
             })
-          });
+            .then(function(response) {
+              QuizService
+              .insert_questionlog($scope.questionData)
+              .then(function(res) {
+
+              }, function(er) {
+
+              })
+            });
+          }
           
         }, function(err) {
         })
@@ -338,6 +340,7 @@
 
     $scope.reset = () => {
       $scope.url = '/#/attempt/' + $rootScope.questionnaire_id;
+      window.location.href = $scope.url;
 
       $scope.changeState("results", false);
       $scope.changeState("quiz", true);
