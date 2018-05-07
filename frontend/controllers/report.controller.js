@@ -119,9 +119,14 @@
                   // Get your quizzes
                   for(let j=0; j<filtered_quiz_end.length; j++) {
                     if (filtered_quiz_end[j].activity_info.includes("user_id=" + $scope.course_users[i].user_id)) {
+                      let dateString = filtered_quiz_end[j].activity_info.split(' ')[0].replace('[','').replace(']','');
+                      let date = new Date(dateString);
+                      console.log(dateFormat('%M %d %Y', date))
+                      
                       scores.push(filtered_quiz_end[j]);
                     }
                   }
+
                   // Get the highest score
                   for(let j=0; j<scores.length; j++) {
                     if (scores[j].activity_info.split(' ')[5].split('=')[1] > highest) {
