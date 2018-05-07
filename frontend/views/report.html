@@ -39,24 +39,24 @@
       <div class="col-xs-1 col-lg-2"/>
       <div class="Reports col-xs-5 col-lg-4" ng-if="get_flag === 1">
         <h4>Average Overall Tries' Score: <br/>
-          <span>{{average_scores.normal}} / {{over_score}} ({{average_scores.normal_percentage}}%)</span>
+          <span>{{average_scores.normal}} / {{over_score}} <br/> ({{average_scores.normal_percentage}}%)</span>
         </h4>        
       </div>
       <div class="Reports col-xs-5 col-lg-4" ng-if="get_flag === 1">
         <h4>Average Best Score: <br/>
-          <span>{{average_scores.highest}} / {{over_score}} ({{average_scores.highest_percentage}}%)</span>
+          <span>{{average_scores.highest}} / {{over_score}} <br/> ({{average_scores.highest_percentage}}%)</span>
         </h4>        
       </div>
       <div class="col-xs-1 col-lg-2"/>
     </div>
-    <div class="Reports row">
+    <div class="Reports row" ng-if="display === 'Quiz'">
       <br/><br/>
       <div class="col-xs-12">
         <h4 ng-if="get_flag === 1">Students' Performance Statistics:</h4>
       </div>
       <br/>
     </div>
-    <div class="Reports row">
+    <div class="Reports row" ng-if="display === 'Quiz'">
       <br/><br/>
       <div class="col-xs-2 col-sm-3 col-lg-2"></div>
       <div class="col-xs-4 col-sm-3 col-lg-3">
@@ -69,7 +69,7 @@
       <br/>
     </div>
     
-    <div class="Report_Figures row">
+    <div class="Report_Figures row" ng-if="display === 'Quiz'">
       <div class="col-xs-2 col-sm-3 col-lg-2"></div>
       <div class="col-xs-4 col-sm-3 col-lg-3">
         <canvas id="passrate" width="200" height="200"></canvas>

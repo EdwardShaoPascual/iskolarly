@@ -75,7 +75,7 @@
             toastr.error("Invalid choice of course for activity logging", "Error");
             $scope.report_data.course_selected = '';
           }
-          else {
+          else if ($scope.display === 'Quiz') {
             $scope.loading = 1;
             ReportService
             .retrieve_quiz_items($scope.report_data)
@@ -85,7 +85,7 @@
               .retrieve_activity_logs()
               .then(function(res) {
                 $scope.activity_log = res;
-                if ($scope.display === 'Quiz') {
+                if ($scope.display === 'Quiz' && ($scope.report_data.course_selected !== '' || $scope.report_data.questionnaire_selected !== null || $scope.report_data.course_selected === '? string: ?')) {
                   let filtered_quiz = [];
                   let filtered_quiz_start = [];
                   let filtered_quiz_end = [];
