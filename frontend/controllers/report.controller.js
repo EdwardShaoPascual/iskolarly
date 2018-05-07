@@ -269,7 +269,20 @@
               }]
           },
           options: {
-              
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'number of quiz attempts'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'days quiz is taken'
+                }
+              }]
+            }
           }
         });
       }
