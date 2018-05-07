@@ -35,3 +35,14 @@ exports.retrieve_user = (req, res, next) => {
     res.send(result);
   })
 }
+
+exports.retrieve_quiz_items = (req, res, next) => {
+  let query_string = 'SELECT * FROM questions_quiz WHERE questionnaire_id = ?';
+
+  db.query(query_string, [req.query.questionnaire_selected], (err, result) => {
+    if (err) {
+     return res.status(500).send({message: "An error has been encountered"});   
+    }
+    res.send(result);
+  })
+}

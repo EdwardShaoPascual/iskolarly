@@ -65,11 +65,30 @@
 
         return deferred.promise;
       }
+
+      const retrieve_quiz_items = function (data) {
+        let deferred = $q.defer();
+        $http({
+          method: 'GET',
+          params: data,
+          xhrFields: {withCredentials: true},
+          url: '/api/retrieve_quiz_items',
+          headers: headers
+        })
+        .then(function(res) {
+          deferred.resolve(res.data);
+        }, function(err) {
+          deferred.reject(err);
+        })
+
+        return deferred.promise;
+      }
       
       let service = {};
       service.list_questionnaires  			= list_questionnaires;
       service.retrieve_activity_logs 		= retrieve_activity_logs;
       service.retrieve_user   		      = retrieve_user;  
+      service.retrieve_quiz_items   		= retrieve_quiz_items;  
       return service;
 
     }

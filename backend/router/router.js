@@ -79,7 +79,8 @@ module.exports = (router) => {
   // GET
   router.get('/api/list_questionnaires',                              report_controller.list_questionnaires);
   router.get('/api/retrieve_user',                                    report_controller.retrieve_user);
-  router.get('/api/retrieve_activity_logs',                           report_controller.retrieve_activity_logs)
+  router.get('/api/retrieve_activity_logs',                           report_controller.retrieve_activity_logs);
+  router.get('/api/retrieve_quiz_items',                              report_controller.retrieve_quiz_items);
   
   // -- ATTEMPT PAGE ROUTES --
   // GET
