@@ -18,31 +18,34 @@
       <button id="export-btn" class="Report_Submit Course_Preloader btn btn-primary" id="Signup" ng-if="loading === 1">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-repeat"></i>&nbsp;&nbsp;&nbsp;</button>
     </form><br/><br/>
     <div class="row" ng-if="display === 'Quiz'">
-      <div class="col-lg-2"/>
-      <div class="Reports col-lg-4" ng-if="get_flag === 1">
+      <div class="col-xs-1 col-lg-2"/>
+      <div class="Reports col-xs-5 col-lg-4" ng-if="get_flag === 1">
         <h4>Overall Average Time Answering the Quiz: <br/>
           <span ng-if="final_time.hour !== 0">{{final_time.hour}} hour(s)</span>
           <span ng-if="final_time.minutes !== 0">{{final_time.minutes}} minute(s)</span>
           <span ng-if="final_time.seconds !== 0">{{final_time.seconds}} second(s)</span>
         </h4>        
       </div>
-      <div class="Reports col-lg-4" ng-if="get_flag === 1">
+      <div class="Reports col-xs-5 col-lg-4" ng-if="get_flag === 1">
         <h4>Highest Scores Average Time Answering the Quiz: <br/>
           <span ng-if="final_time_highest.hour !== 0">{{final_time_highest.hour}} hour(s)</span>
           <span ng-if="final_time_highest.minutes !== 0">{{final_time_highest.minutes}} minute(s)</span>
           <span ng-if="final_time_highest.seconds !== 0">{{final_time_highest.seconds}} second(s)</span>
         </h4>        
       </div>
-      <div class="col-lg-2"/>
+      <div class="col-xs-1 col-lg-2"/>
     </div>
     <div class="Reports row">
       <br/><br/>
-      <h4 ng-if="get_flag === 1">Students' Performance Statistics:</h4>
+      <div class="col-xs-12">
+        <h4 ng-if="get_flag === 1">Pass or Fail</h4>
+        <h4 ng-if="get_flag === 1">Students' Performance Statistics:</h4>
+      </div>
       <br/>
     </div>
     <div class="Report_Figures row">
-      <div class="col-xs-1 col-lg-4"></div>
-      <div class="col-xs-10 col-lg-4">
+      <div class="col-xs-2 col-sm-3 col-lg-4"></div>
+      <div class="col-xs-8 col-sm-6 col-lg-4">
         <canvas id="passrate" width="200" height="200"></canvas>
       </div>
       <div class="col-xs-1 hidden-sm hidden-md hidden-lg"></div>      

@@ -144,6 +144,8 @@
                       $scope.standing.fail++;
                     }
 
+                    console.log($scope.standing);
+
                     // Get the average if two or more with higher score exists
                     let highestCount = 0;
                     let ave_time_iteration = 0;
