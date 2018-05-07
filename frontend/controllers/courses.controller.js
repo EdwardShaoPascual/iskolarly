@@ -92,10 +92,8 @@
         console.clear();        
         return false;
       } else if ($rootScope.session.role === 'Student') {
-        console.clear();        
         return false;
       } else if ($rootScope.session.role === 'Instructor') {
-        console.clear();        
         return true;          
       }
     }

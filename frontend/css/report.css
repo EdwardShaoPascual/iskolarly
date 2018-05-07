@@ -12,6 +12,14 @@
   margin-bottom: 75px;
 }
 
+.Report_Students {
+  margin-bottom: 25px;
+}
+
+.Report_Students_DD {
+  width: 100%;
+}
+
 @media only screen and (max-width: 991px) {
   .Report_Submit {
     margin-top: 10px;

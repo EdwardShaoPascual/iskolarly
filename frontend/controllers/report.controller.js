@@ -14,6 +14,11 @@
       $scope.questionnaires = {};
       $scope.activity_log = {};
       $scope.course_users = {};
+      $scope.filtered = {
+        quiz: [],
+        quiz_end: [],
+        quiz_start: []
+      }
       $scope.timeTable = {
         dateArray: [],
         dataArray: []
@@ -21,6 +26,7 @@
       $scope.over_score = 0;
       $scope.num_of_tries = 0;
       $scope.get_flag = 0;
+      $scope.get_flag_student = 0;
       $scope.standing = {
         pass: 0,
         fail: 0
@@ -47,6 +53,15 @@
         normal_percentage: '',
         highest: '',
         highest_percentage: ''
+      }
+      $scope.student = {
+        user_id: '',
+        ave_score: 0,
+        ave_score_percentage: 0,
+        ave_time_hours: 0,
+        ave_time_minutes: 0,
+        ave_time_seconds: 0,
+        highest_score_percentage: 0
       }
 
       $scope.list_questionnaires = () => {
@@ -95,15 +110,18 @@
                   for(let i=0; i<res.length; i++) {
                     if (res[i].activity_type.includes('Quiz') && res[i].activity_info.includes("questionnaire_id="+$scope.report_data.questionnaire_selected)) {
                       filtered_quiz.push(res[i]);
+                      $scope.filtered.quiz.push(res[i]);
                     }
                     if (res[i].activity_type.includes('Quiz Start') && res[i].activity_info.includes("questionnaire_id="+$scope.report_data.questionnaire_selected)) {
                       filtered_quiz_start.push(res[i]);
+                      $scope.filtered.quiz_start.push(res[i]);
                     }
                     if (res[i].activity_type.includes('Quiz End') && res[i].activity_info.includes("questionnaire_id="+$scope.report_data.questionnaire_selected)) {
                       filtered_quiz_end.push(res[i]);
+                      $scope.filtered.quiz_end.push(res[i]);
                     }
                   }
-    
+
                   // For averaging time (overall)
                   let ave_time = 0;
                   let score_ave = 0;
@@ -212,6 +230,7 @@
                   $scope.initialize_graph($scope.standing, $scope.timeTable);
                   $scope.get_flag = 1;
                   $scope.loading = 0;
+
                 }
               }, function(err) {
                   toastr.error(err.message, "Error");
@@ -220,7 +239,50 @@
             
           }
         })
+      }
 
+      $scope.get_student_info = () => {
+        $scope.get_flag_student = 0;        
+        $scope.student.student_id = $('#student_selected').val();
+        let scores = [];
+        let highest = -999999;
+        for (let i=0; i<$scope.filtered.quiz_end.length; i++) {
+          if($scope.filtered.quiz_end[i].activity_info.split(' ')[2].split('=')[1] === $scope.student.student_id) {
+            scores.push($scope.filtered.quiz_end[i]);
+            if ($scope.filtered.quiz_end[i].activity_info.split(' ')[5].split('=')[1] > highest) {
+              highest = parseInt($scope.filtered.quiz_end[i].activity_info.split(' ')[5].split('=')[1]);
+            }
+          }
+        }
+        let ave_time = 0;
+        let score_ave = 0;
+        for(let i=0; i<scores.length; i++) {
+          let referDate = '';
+          let date = scores[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+          let reference = scores[i].activity_info.split(' ')[7].split('=')[1];
+          for(let j=0; j<$scope.filtered.quiz_start.length; j++) {
+            if ($scope.filtered.quiz_start[j].activity_id == reference) {
+              referDate = $scope.filtered.quiz_start[j].activity_info.split(' ')[0].replace('[','').replace(']','');
+              break;
+            }
+          }
+          ave_time = ave_time + (new Date(date) - new Date(referDate));
+          score_ave += parseInt(scores[i].activity_info.split(' ')[5].split('=')[1]);
+        }
+        score_ave /= scores.length;
+        ave_time /= ($scope.course_users.length * $scope.num_of_tries);
+        let average = new Date(ave_time);
+        let seconds = average.getSeconds();
+        let minutes = average.getMinutes();
+        let hour = Math.floor(minutes/60);
+        $scope.student.ave_score = score_ave;
+        $scope.student.ave_score_percentage = ((score_ave / $scope.over_score) * 100).toFixed(2);
+        $scope.student.ave_time_hours = hour;
+        $scope.student.ave_time_minutes = minutes;
+        $scope.student.ave_time_seconds = seconds;
+        $scope.student.highest_score = highest;        
+        $scope.student.highest_score_percentage = ((highest / $scope.over_score) * 100).toFixed(2);
+        $scope.get_flag_student = 1;
       }
 
       $scope.initialize_graph = (standing, timeTable) => {

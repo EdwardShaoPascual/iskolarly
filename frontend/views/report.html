@@ -74,6 +74,42 @@
       </div>
       <div class="col-xs-1 col-sm-2 col-md-2 col-lg-2"></div>      
     </div>
+    <form class="Report Report_Students row" ng-show="get_flag === 1">
+      <select id="student_selected" class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state">
+        <option ng-repeat="user in course_users" value="{{user.user_id}}">{{user.firstname}} {{user.middlename.charAt(0)}}. {{user.lastname}} </option>
+      </select>
+      <button id="export-btn" class="Report_Submit btn btn-primary" id="Signup" ng-click="get_student_info()" ng-if="loading === 0">Submit</button>
+      <button id="export-btn" class="Report_Submit Course_Preloader btn btn-primary" id="Signup" ng-if="loading === 1">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-repeat"></i>&nbsp;&nbsp;&nbsp;</button>
+    </form>
+    <div class="row" ng-if="get_flag_student === 1">
+      <div class="col-xs-1 col-lg-2"/>
+      <div class="Reports col-xs-10 col-lg-8" ng-if="get_flag_student === 1">
+        <h4>Overall Scores' Average Time Answering the Quiz: 
+          <span ng-if="student.ave_time_hours !== 0">{{student.ave_time_hours}} hour(s)</span>
+          <span ng-if="student.ave_time_minutes !== 0">{{student.ave_time_minutes}} minute(s)</span>
+          <span ng-if="student.ave_time_seconds !== 0">{{student.ave_time_seconds}} second(s)</span>
+        </h4>        
+      </div>
+      <div class="col-xs-1 col-lg-2"/>
+    </div>
+    <div class="row" ng-if="get_flag_student === 1">
+      <div class="col-xs-1 col-lg-2"/>
+      <div class="Reports col-xs-10 col-lg-8" ng-if="get_flag_student === 1">
+        <h4>Average Score from the Quiz Attempts: 
+          <span>{{student.ave_score}} / {{over_score}} ({{student.ave_score_percentage}}%)</span>
+        </h4>        
+      </div>
+      <div class="col-xs-1 col-lg-2"/>
+    </div>
+    <div class="Report_Students row" ng-if="get_flag_student === 1">
+      <div class="col-xs-1 col-lg-2"/>
+      <div class="Reports col-xs-10 col-lg-8" ng-if="get_flag_student === 1">
+        <h4>Highest Score from the Quiz Attempts: 
+          <span>{{student.highest_score}} / {{over_score}} ({{student.highest_score_percentage}}%)</span>
+        </h4>        
+      </div>
+      <div class="col-xs-1 col-lg-2"/>
+    </div>
     
   </div>
 </div>
@@ -85,5 +121,4 @@
       minimumResultsForSearch: Infinity
     });
   });
-  
 </script>

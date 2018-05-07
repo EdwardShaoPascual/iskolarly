@@ -26,7 +26,7 @@ exports.retrieve_activity_logs = (req, res, next) => {
 }
 
 exports.retrieve_user = (req, res, next) => {
-  let query_string = 'SELECT * FROM course_user WHERE course_id = ?';
+  let query_string = 'SELECT * FROM course_user NATURAL JOIN (SELECT user_id, firstname, middlename, lastname FROM user) as couser WHERE course_id = ?';
 
   db.query(query_string, [req.query.course_selected], (err, result) => {
     if (err) {
