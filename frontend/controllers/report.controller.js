@@ -126,7 +126,7 @@
                   let seconds = average.getSeconds();
                   let minutes = average.getMinutes();
                   let hour = Math.floor(minutes/60);
-                  $scope.average_scores.normal = score_ave;
+                  $scope.average_scores.normal = score_ave.toFixed(2);
                   $scope.average_scores.normal_percentage = ((score_ave / $scope.over_score) * 100).toFixed(2);
                   $scope.final_time = {
                     seconds: seconds+"."+ave_time.toString().substring(0,2),
@@ -197,7 +197,7 @@
                   seconds = average.getSeconds();
                   minutes = average.getMinutes();
                   hour = Math.floor(minutes/60);
-                  $scope.average_scores.highest = highest_ave;
+                  $scope.average_scores.highest = highest_ave.toFixed(2);
                   $scope.average_scores.highest_percentage = ((highest_ave/$scope.over_score) * 100).toFixed(2);
                   $scope.final_time_highest = {
                     seconds: seconds+"."+ave_time.toString().substring(0,2),
