@@ -19,6 +19,7 @@
         dataArray: []
       };
       $scope.over_score = 0;
+      $scope.num_of_tries = 0;
       $scope.get_flag = 0;
       $scope.standing = {
         pass: 0,
@@ -81,6 +82,7 @@
             .retrieve_quiz_items($scope.report_data)
             .then(function(res) {
               $scope.over_score = res[0].question_no;
+              $scope.num_of_tries = res[0].attempts;
               ReportService
               .retrieve_activity_logs()
               .then(function(res) {
@@ -117,9 +119,9 @@
                     }
                     ave_time = ave_time + (new Date(date) - new Date(referDate));
                     score_ave += parseInt(filtered_quiz_end[i].activity_info.split(' ')[5].split('=')[1]);
-                  }
+                  }                  
                   score_ave /= filtered_quiz_end.length;
-                  ave_time /= filtered_quiz_end.length;
+                  ave_time /= ($scope.course_users.length * $scope.num_of_tries);
                   let average = new Date(ave_time);
                   let seconds = average.getSeconds();
                   let minutes = average.getMinutes();
@@ -255,7 +257,7 @@
               xAxisID: "Quiz Time Span",
               yAxisID: "Students' Score",
               datasets: [{
-                  label: 'Average score of students per day',
+                  label: 'Number of quiz attempts per day',
                   data: timeTable.dataArray,
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
