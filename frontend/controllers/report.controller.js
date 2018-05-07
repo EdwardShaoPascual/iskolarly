@@ -37,6 +37,10 @@
         minutes: '',
         hour: ''
       }
+      $scope.average_scores = {
+        highest: '',
+        highest_percentage: ''
+      }
 
       $scope.list_questionnaires = () => {
         ReportService
@@ -94,6 +98,7 @@
     
                   // For averaging time (overall)
                   let ave_time = 0;
+                  let score_ave = 0;
                   for(let i=0; i<filtered_quiz_end.length; i++) {
                     let referDate = '';
                     let date = filtered_quiz_end[i].activity_info.split(' ')[0].replace('[','').replace(']','');
@@ -105,7 +110,10 @@
                       }
                     }
                     ave_time = ave_time + (new Date(date) - new Date(referDate));
+                    console.log(filtered_quiz_end[i].activity_info.split(' ')[5].split('=')[1]);
+                    score_ave += parseInt(filtered_quiz_end[i].activity_info.split(' ')[5].split('=')[1]);
                   }
+                  console.log(score_ave / filtered_quiz_end.length);
                   ave_time /= filtered_quiz_end.length;
                   let average = new Date(ave_time);
                   let seconds = average.getSeconds();
@@ -119,7 +127,8 @@
                   // End of averaging time (overall) 
 
 
-                  // For averaging day (highest)
+                  // For averaging time (highest), getting the Pass/Fail graph and getting the highest average
+                  let highest_ave = 0;
                   ave_time = 0;
                   for(let i=0; i<$scope.course_users.length; i++) {
                     let scores = [];
@@ -136,16 +145,13 @@
                         highest = scores[j].activity_info.split(' ')[5].split('=')[1];
                       }
                     }
-                    
+                    highest_ave += parseInt(highest);
                     // Get the passing and failing rate
                     if ((highest) >= ($scope.over_score * 0.60)) {
                       $scope.standing.pass++;
                     } else {
                       $scope.standing.fail++;
                     }
-
-                    console.log($scope.standing);
-
                     // Get the average if two or more with higher score exists
                     let highestCount = 0;
                     let ave_time_iteration = 0;
@@ -166,11 +172,14 @@
                     }
                     ave_time = ave_time + (ave_time_iteration/highestCount);
                   };
+                  highest_ave /= $scope.course_users.length;
                   ave_time /= $scope.course_users.length;
                   average = new Date(ave_time);
                   seconds = average.getSeconds();
                   minutes = average.getMinutes();
                   hour = Math.floor(minutes/60);
+                  $scope.average_scores.highest = highest_ave;
+                  $scope.average_scores.highest_percentage = ((highest_ave/$scope.over_score) * 100).toFixed(2);
                   $scope.final_time_highest = {
                     seconds: seconds+"."+ave_time.toString().substring(0,2),
                     minutes: minutes%60,
