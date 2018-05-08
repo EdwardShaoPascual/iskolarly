@@ -90,9 +90,10 @@
         .then(function(res) {
           for (let i=0; i<res.length; i++) {
             let object = {};
-            object.activity_type = res[0].activity_type;            
+            object.activity_type = res[0].activity_type;
+            $scope.arrayDataSet.push(object)
           }
-          
+          console.log($scope.arrayDataSet);
         }, function(err) {
           toastr.error(err.message, 'Error');          
         });
