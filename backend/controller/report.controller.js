@@ -46,3 +46,8 @@ exports.retrieve_quiz_items = (req, res, next) => {
     res.send(result);
   })
 }
+
+exports.process_data = (req, res, next) => {
+  // console.log(req.query[0]);
+  
+}
