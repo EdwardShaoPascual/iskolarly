@@ -82,6 +82,17 @@
         })
       }
 
+      $scope.generate_activity = () => {
+        ReportService
+        .retrieve_activity_logs()
+        .then(function(res) {
+          $scope.activity_logs = res;
+          console.log(res)
+        }, function(err) {
+          toastr.error(err.message, 'Error');          
+        });
+      }
+
       $scope.generate_report = () => {
         $scope.report_data.course_selected = $('#course_selected').val();
         $scope.report_data.questionnaire_selected = $('#questionnaire_selected').val();
