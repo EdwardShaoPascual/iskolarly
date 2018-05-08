@@ -129,6 +129,7 @@
           <table class="Report_Table table table-bordered table-responsive">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Date</th>
                 <th>Activity</th>
                 <th>Username</th>
@@ -142,6 +143,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="activity in arrayDataSet">
+                <td>{{activity.id}}</td>
                 <td>{{activity.date}}</td>
                 <td>{{activity.activity_type}}</td>
                 <td>{{activity.username}}</td>

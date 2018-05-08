@@ -103,6 +103,7 @@
                 }
 
                 object.date = dateFormat('%M %d %Y', new Date(res[i].activity_info.split(' ')[0].replace('[','').replace(']','')));
+                object.id = res[i].activity_id;
                 object.activity_type = res[i].activity_type;
                 object.username = res[i].activity_info.split(' ')[1].split('=')[1];
 
@@ -117,6 +118,7 @@
                 $scope.arrayDataSet.push(object)
               }
             }
+            console.log($scope.arrayDataSet.length);
           }, function(err) {
             toastr.error(err.message, 'Error');
           });
