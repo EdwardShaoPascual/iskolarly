@@ -11,6 +11,7 @@
 
       $scope.loading = 0;
       $scope.display = 'Quiz';
+      $scope.arrayDataSet = [];
       $scope.questionnaires = {};
       $scope.activity_log = {};
       $scope.course_users = {};
@@ -83,11 +84,15 @@
       }
 
       $scope.generate_activity = () => {
+        $scope.arrayDataSet = [];
         ReportService
         .retrieve_activity_logs()
         .then(function(res) {
-          $scope.activity_logs = res;
-          console.log(res)
+          for (let i=0; i<res.length; i++) {
+            let object = {};
+            object.activity_type = res[0].activity_type;            
+          }
+          
         }, function(err) {
           toastr.error(err.message, 'Error');          
         });
