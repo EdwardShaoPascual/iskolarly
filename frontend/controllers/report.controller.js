@@ -84,26 +84,30 @@
       }
 
       $scope.generate_activity = () => {
-        $scope.arrayDataSet = [];
-        ReportService
-        .retrieve_activity_logs()
-        .then(function(res) {
-          for (let i=0; i<res.length; i++) {
-            let object = {};
-            if (res[i].activity_type === 'Quiz Start') {
-              res[i].activity_type = 'Quiz Started';
-            } else if (res[i].activity_type === 'Quiz End') {
-              res[i].activity_type = 'Quiz Ended';
+        $scope.report_data.course_selected = $('#course_selected').val();
+        if ($scope.report_data.course_selected === '? string: ?') {
+          
+        } else {
+          $scope.arrayDataSet = [];
+          ReportService
+          .retrieve_activity_logs()
+          .then(function(res) {
+            for (let i=0; i<res.length; i++) {
+              let object = {};
+              if (res[i].activity_type === 'Quiz Start') {
+                res[i].activity_type = 'Quiz Started';
+              } else if (res[i].activity_type === 'Quiz End') {
+                res[i].activity_type = 'Quiz Ended';
+              }
+              object.activity_type = res[i].activity_type;
+              // console.log(res[i].activity_info.split(' '));
+              object.username = res[i].activity_info.split(' ')[1].split('=')[1];
+              $scope.arrayDataSet.push(object)
             }
-            object.activity_type = res[i].activity_type;
-            console.log(res[i].activity_info.split(' '));
-            object.username = res[i].activity_info.split(' ')[1].split('=')[1];
-            $scope.arrayDataSet.push(object)
-          }
-          console.log($scope.arrayDataSet);
-        }, function(err) {
-          toastr.error(err.message, 'Error');          
-        });
+          }, function(err) {
+            toastr.error(err.message, 'Error');          
+          });
+        }
       }
 
       $scope.generate_report = () => {
@@ -121,7 +125,10 @@
           else if ($scope.display === 'Activity Log' && ($scope.report_data.course_selected === '' || $scope.report_data.course_selected === null || $scope.report_data.course_selected === '? string: ?')) {
             toastr.error("Invalid choice of course for activity logging", "Error");
             $scope.report_data.course_selected = '';
-          }
+          } 
+          else if ($scope.display === 'Activity Log') {
+            $scope.generate_activity();
+          } 
           else if ($scope.display === 'Quiz') {
             $scope.loading = 1;
             ReportService
