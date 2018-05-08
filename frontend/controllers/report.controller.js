@@ -101,7 +101,18 @@
           .retrieve_activity_logs()
           .then(function(res) {
             for (let i=0; i<res.length; i++) {
-              let object = {};
+              let object = {
+                id: '',
+                date: '',
+                activity_type: '',
+                username: '',
+                viewed_time: '',
+                answered_time: '',
+                started_time: '',
+                ended_time: '',
+                ipv4: ''
+              };
+
               if (res[i].activity_type.includes('Quiz') || res[i].activity_type.includes('Question')) {
                 
                 if (res[i].activity_type === 'Quiz Start') {
@@ -135,10 +146,14 @@
                     object.ended_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
                   }
                 }
-                
                 $scope.arrayDataSet.push(object)
               }
             }
+            ReportService
+            .process_data($scope.arrayDataSet)
+            .then(function(res) {
+              console.log(res);
+            });
           }, function(err) {
             toastr.error(err.message, 'Error');
           });

@@ -82,6 +82,9 @@ module.exports = (router) => {
   router.get('/api/retrieve_activity_logs',                           report_controller.retrieve_activity_logs);
   router.get('/api/retrieve_quiz_items',                              report_controller.retrieve_quiz_items);
   
+  // POST  
+  router.post('/api/process_data',                                    report_controller.process_data);
+
   // -- ATTEMPT PAGE ROUTES --
   // GET
   router.get('/api/view_attempt/:questionnaire_id',                   attempt_controller.view_attempt);
