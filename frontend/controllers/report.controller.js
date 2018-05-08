@@ -61,7 +61,14 @@
         ave_time_hours: 0,
         ave_time_minutes: 0,
         ave_time_seconds: 0,
-        highest_score_percentage: 0
+        highest_score_percentage: 0,
+        highest_ave_time_hours: 0,
+        highest_ave_time_minutes: 0,
+        highest_ave_time_seconds: 0
+      }
+      $scope.high = {
+        user_highest: [],
+        user_highest_time: []
       }
 
       $scope.list_questionnaires = () => {
@@ -153,12 +160,13 @@
                   }
                   // End of averaging time (overall) 
 
-                  $scope.dateLabels = new Map();
 
                   // For averaging time (highest), getting the Pass/Fail graph and getting the highest average
+                  $scope.dateLabels = new Map();
                   let highest_ave = 0;
                   ave_time = 0;
                   for(let i=0; i<$scope.course_users.length; i++) {
+                    $scope.high.user_highest.push($scope.course_users[i].user_id);
                     let scores = [];
                     let highest = -99999999;
                     // Get your quizzes
@@ -207,6 +215,7 @@
                         highestCount++;
                       }
                     }
+                    $scope.high.user_highest_time.push(ave_time_iteration/highestCount);
                     ave_time = ave_time + (ave_time_iteration/highestCount);
                   };
                   highest_ave /= $scope.course_users.length;
@@ -246,6 +255,7 @@
         $scope.student.student_id = $('#student_selected').val();
         let scores = [];
         let highest = -999999;
+        let index = $scope.high.user_highest.indexOf(parseInt($scope.student.student_id));
         for (let i=0; i<$scope.filtered.quiz_end.length; i++) {
           if($scope.filtered.quiz_end[i].activity_info.split(' ')[2].split('=')[1] === $scope.student.student_id) {
             scores.push($scope.filtered.quiz_end[i]);
@@ -283,6 +293,16 @@
         $scope.student.highest_score = highest;        
         $scope.student.highest_score_percentage = ((highest / $scope.over_score) * 100).toFixed(2);
         $scope.get_flag_student = 1;
+        let highest_score_ave = $scope.high.user_highest_time[index];
+        highest_score_ave /= $scope.course_users.length;
+        average = new Date(highest_score_ave);
+        seconds = average.getSeconds();
+        minutes = average.getMinutes();
+        hour = Math.floor(minutes/60);
+        $scope.student.highest_ave_time_hours = hour;
+        $scope.student.highest_ave_time_minutes = minutes;
+        $scope.student.highest_ave_time_seconds = seconds;
+        console.log($scope.student);
       }
 
       $scope.initialize_graph = (standing, timeTable) => {
