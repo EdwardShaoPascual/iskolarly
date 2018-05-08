@@ -145,7 +145,7 @@
                 <td>{{activity.date}}</td>
                 <td>{{activity.activity_type}}</td>
                 <td>{{activity.username}}</td>
-                <td>{{activity.viewed_time}}</td>
+                <td>{{activity.viewed_time | date: 'H:m:s'}}</td>
                 <td class="text-center">{{activity.answered_time}}</td>
                 <td class="text-center">{{activity.started_time}}</td>
                 <td class="text-center">{{activity.ended_time}}</td>

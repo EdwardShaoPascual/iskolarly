@@ -94,28 +94,24 @@
           .then(function(res) {
             for (let i=0; i<res.length; i++) {
               let object = {};
-              if (res[i].activity_type == 'Question Viewed') {
-                object.date = dateFormat('%M %d %Y', new Date(res[i].activity_info.split(' ')[3].split('=')[1]));
-                console.log(dateFormat('%M %d %Y', new Date(res[i].activity_info.split(' ')[3].split('=')[1])))
+              if (res[i].activity_type.includes('Quiz') || res[i].activity_type.includes('Question')) {
+                
+                if (res[i].activity_type === 'Quiz Start') {
+                  res[i].activity_type = 'Quiz Started';
+                } else if (res[i].activity_type === 'Quiz End') {
+                  res[i].activity_type = 'Quiz Ended';
+                }
+
+                object.date = dateFormat('%M %d %Y', new Date(res[i].activity_info.split(' ')[0].replace('[','').replace(']','')));
                 object.activity_type = res[i].activity_type;
                 object.username = res[i].activity_info.split(' ')[1].split('=')[1];
-                object.viewed_time = res[i].activity_info.split(' ')[3].split('=')[1];
+                object.viewed_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
                 
                 $scope.arrayDataSet.push(object)
               }
-  
-              if (res[i].activity_type === 'Quiz Start') {
-                res[i].activity_type = 'Quiz Started';
-              } else if (res[i].activity_type === 'Quiz End') {
-                res[i].activity_type = 'Quiz Ended';
-              }
-              object.activity_type = res[i].activity_type;
-              // console.log(res[i].activity_info.split(' '));
-              object.username = res[i].activity_info.split(' ')[1].split('=')[1];
-              $scope.arrayDataSet.push(object)
             }
           }, function(err) {
-            toastr.error(err.message, 'Error');          
+            toastr.error(err.message, 'Error');
           });
         }
       }
