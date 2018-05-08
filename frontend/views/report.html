@@ -129,9 +129,10 @@
           <table class="Report_Table table table-bordered table-responsive">
             <thead>
               <tr>
+                <th>Date</th>
                 <th>Activity</th>
                 <th>Username</th>
-                <th class="custom-table text-center">Time Viewed</th>
+                <th>Time Viewed</th>
                 <th class="text-center">Time Answered</th>
                 <th class="text-center">Time Started</th>
                 <th class="text-center">Time Ended</th>
@@ -141,13 +142,14 @@
             </thead>
             <tbody>
               <tr ng-repeat="activity in arrayDataSet">
+                <td>{{activity.date}}</td>
                 <td>{{activity.activity_type}}</td>
                 <td>{{activity.username}}</td>
-                <td class="custom-table text-center">10:00 pm</td>
-                <td class="text-center">11:00 pm</td>
-                <td class="text-center">11:00 am</td>
-                <td class="text-center">12:00 pm</td>
-                <td class="text-center">202.15.15.45</td>
+                <td>{{activity.viewed_time}}</td>
+                <td class="text-center">{{activity.answered_time}}</td>
+                <td class="text-center">{{activity.started_time}}</td>
+                <td class="text-center">{{activity.ended_time}}</td>
+                <td class="text-center">{{activity.ip_address}}</td>
               </tr>
             </tbody>
           </table>
