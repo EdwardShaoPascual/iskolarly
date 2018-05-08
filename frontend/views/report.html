@@ -147,11 +147,19 @@
                 <td>{{activity.date}}</td>
                 <td>{{activity.activity_type}}</td>
                 <td>{{activity.username}}</td>
+<<<<<<< HEAD
                 <td class="text-center">{{activity.viewed_time | date: 'H:m:s'}}</td>
                 <td class="text-center">{{activity.answered_time | date: 'H:m:s'}}</td>
                 <td class="text-center">{{activity.started_time | date: 'H:m:s'}}</td>
                 <td class="text-center">{{activity.ended_time | date: 'H:m:s'}}</td>
                 <td class="text-center">{{activity.ipv4}}</td>
+=======
+                <td class="text-center">{{activity.viewed_time | date: 'h:m:ss a'}}</td>
+                <td class="text-center">{{activity.answered_time | date: 'h:m:ss a'}}</td>
+                <td class="text-center">{{activity.started_time | date: 'h:m:ss a'}}</td>
+                <td class="text-center">{{activity.ended_time | date: 'h:m:ss a'}}</td>
+                <td class="text-center">{{activity.ip_address}}</td>
+>>>>>>> 0ed0560eab36628e3c7965ff8b73db24a596a0ea
               </tr>
             </tbody>
           </table>
