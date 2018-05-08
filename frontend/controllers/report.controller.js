@@ -105,6 +105,7 @@
 
                 object.date = dateFormat('%M %d %Y', new Date(res[i].activity_info.split(' ')[0].replace('[','').replace(']','')));
                 object.id = res[i].activity_id;
+                object.id_questionnaire = res[i].activity_info.split(' ')[4].split('=')[1];
                 object.activity_type = res[i].activity_type;
                 object.username = res[i].activity_info.split(' ')[1].split('=')[1];
                 let data = res[i].activity_info.split(' ');
@@ -114,6 +115,7 @@
                   }
                 }
                 if (res[i].activity_type.includes('Question')) {
+                  object.id_question = res[i].activity_info.split(' ')[5].split('=')[1];
                   if (res[i].activity_type.includes('Viewed')) {
                     object.viewed_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
                   } else {
