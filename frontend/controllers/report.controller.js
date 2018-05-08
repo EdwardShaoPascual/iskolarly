@@ -105,7 +105,14 @@
                 object.date = dateFormat('%M %d %Y', new Date(res[i].activity_info.split(' ')[0].replace('[','').replace(']','')));
                 object.activity_type = res[i].activity_type;
                 object.username = res[i].activity_info.split(' ')[1].split('=')[1];
-                object.viewed_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+
+                if (res[i].activity_type.includes('Question')) {
+                  object.viewed_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  object.answered_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                } else {
+                  object.started_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  object.ended_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                }
                 
                 $scope.arrayDataSet.push(object)
               }
