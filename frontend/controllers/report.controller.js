@@ -85,6 +85,7 @@
 
       $scope.generate_activity = () => {
         $scope.report_data.course_selected = $('#course_selected').val();
+        
         if ($scope.report_data.course_selected === '? string: ?') {
           
         } else {
@@ -106,7 +107,12 @@
                 object.id = res[i].activity_id;
                 object.activity_type = res[i].activity_type;
                 object.username = res[i].activity_info.split(' ')[1].split('=')[1];
-
+                let data = res[i].activity_info.split(' ');
+                for (let i=0; i < data.length; i++) {
+                  if (data[i].includes('ipv4=')) {
+                    object.ipv4 = data[i].split('=')[1];
+                  }
+                }
                 if (res[i].activity_type.includes('Question')) {
                   if (res[i].activity_type.includes('Viewed')) {
                     object.viewed_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
@@ -124,7 +130,6 @@
                 $scope.arrayDataSet.push(object)
               }
             }
-            console.log($scope.arrayDataSet.length);
           }, function(err) {
             toastr.error(err.message, 'Error');
           });
@@ -354,7 +359,6 @@
         $scope.student.highest_ave_time_hours = hour;
         $scope.student.highest_ave_time_minutes = minutes;
         $scope.student.highest_ave_time_seconds = seconds;
-        console.log($scope.student);
       }
 
       $scope.initialize_graph = (standing, timeTable) => {
