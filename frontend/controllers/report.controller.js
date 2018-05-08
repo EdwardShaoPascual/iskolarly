@@ -90,7 +90,14 @@
         .then(function(res) {
           for (let i=0; i<res.length; i++) {
             let object = {};
-            object.activity_type = res[0].activity_type;
+            if (res[i].activity_type === 'Quiz Start') {
+              res[i].activity_type = 'Quiz Started';
+            } else if (res[i].activity_type === 'Quiz End') {
+              res[i].activity_type = 'Quiz Ended';
+            }
+            object.activity_type = res[i].activity_type;
+            console.log(res[i].activity_info.split(' '));
+            object.username = res[i].activity_info.split(' ')[1].split('=')[1];
             $scope.arrayDataSet.push(object)
           }
           console.log($scope.arrayDataSet);

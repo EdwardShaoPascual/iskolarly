@@ -126,7 +126,7 @@
     <div class="row" ng-if="display === 'Activity Log'">
       <div class="container" ng-init="generate_activity()">
         <div id="table">
-          <table class="table table-bordered table-responsive">
+          <table class="Report_Table table table-bordered table-responsive">
             <thead>
               <tr>
                 <th>Activity</th>
@@ -142,7 +142,7 @@
             <tbody>
               <tr ng-repeat="activity in arrayDataSet">
                 <td>{{activity.activity_type}}</td>
-                <td>{{}}</td>
+                <td>{{activity.username}}</td>
                 <td class="custom-table text-center">10:00 pm</td>
                 <td class="text-center">11:00 pm</td>
                 <td class="text-center">11:00 am</td>
