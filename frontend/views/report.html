@@ -126,13 +126,15 @@
     <div class="row" ng-if="display === 'Activity Log'">
       <div class="container">
         <div id="table">
-          <table class="Report_Table table table-bordered table-responsive">
+          <table class="Report_Table table table-bordered table-responsive" id="export_table">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Date</th>
-                <th>Activity</th>
-                <th>Username</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Activity</th>
+                <th class="text-center">Quiz No</th>
+                <th class="text-center">Question No</th>
+                <th class="text-center">Username</th>
                 <th class="text-center">Time Viewed</th>
                 <th class="text-center">Time Answered</th>
                 <th class="text-center">Time Started</th>
@@ -144,13 +146,15 @@
             <tbody>
               <tr ng-repeat="activity in arrayDataSet">
                 <td>{{activity.id}}</td>
-                <td>{{activity.date}}</td>
-                <td>{{activity.activity_type}}</td>
-                <td>{{activity.username}}</td>
-                <td class="text-center">{{activity.viewed_time | date: 'H:m:s'}}</td>
-                <td class="text-center">{{activity.answered_time | date: 'H:m:s'}}</td>
-                <td class="text-center">{{activity.started_time | date: 'H:m:s'}}</td>
-                <td class="text-center">{{activity.ended_time | date: 'H:m:s'}}</td>
+                <td class="text-center">{{activity.date}}</td>
+                <td class="text-center">{{activity.activity_type}}</td>
+                <td class="text-center">{{activity.id_questionnaire}}</td>
+                <td class="text-center">{{activity.id_question}}</td>
+                <td class="text-center">{{activity.username}}</td>
+                <td class="text-center">{{activity.viewed_time | date: 'h:m:ss a'}}</td>
+                <td class="text-center">{{activity.answered_time | date: 'h:m:ss a'}}</td>
+                <td class="text-center">{{activity.started_time | date: 'h:m:ss a'}}</td>
+                <td class="text-center">{{activity.ended_time | date: 'h:m:ss a'}}</td>
                 <td class="text-center">{{activity.ipv4}}</td>
               </tr>
             </tbody>
