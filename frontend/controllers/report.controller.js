@@ -108,11 +108,17 @@
                 object.username = res[i].activity_info.split(' ')[1].split('=')[1];
 
                 if (res[i].activity_type.includes('Question')) {
-                  object.viewed_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
-                  object.answered_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  if (res[i].activity_type.includes('Viewed')) {
+                    object.viewed_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  } else {
+                    object.answered_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  }
                 } else {
-                  object.started_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
-                  object.ended_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  if (res[i].activity_type.includes('Start')) {
+                    object.started_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  } else {
+                    object.ended_time = res[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  }
                 }
                 
                 $scope.arrayDataSet.push(object)
