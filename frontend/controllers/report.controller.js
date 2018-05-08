@@ -72,6 +72,13 @@
         user_highest_time: []
       }
 
+      $scope.exportData = () => {
+        var blob = new Blob([document.getElementById('exportable').innerHTML], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+        });
+        saveAs(blob, "Report.xls");
+      }
+
       $scope.list_questionnaires = () => {
         ReportService
         .list_questionnaires()

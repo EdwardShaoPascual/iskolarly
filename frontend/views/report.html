@@ -125,8 +125,9 @@
     
     <div class="row" ng-if="display === 'Activity Log'">
       <div class="container">
-        <div id="table">
-          <table class="Report_Table table table-bordered table-responsive" id="export_table">
+        <button ng-click="exportData()">Export tayo oh!</button>  
+        <div id="exportable">
+          <table class="Report_Table table table-bordered table-responsive">
             <thead>
               <tr>
                 <th>ID</th>
