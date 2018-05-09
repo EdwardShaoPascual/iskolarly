@@ -12,17 +12,17 @@ json_file <- lapply(json_file, function(x) {
 })
 df <- data.frame(do.call("rbind", json_file))
 
-relation <- apriori(df, parameter=list(minlen=3, supp = 0.1, conf = 0.1))
+relation <- apriori(df, parameter=list(minlen=3))
 relation <- sort(relation, decreasing = TRUE, na.last = NA, by = "support")
 support <- capture.output(inspect(relation))
 print(support[1:6])
-write(support[1:6], 'inspect_supp.txt');
+write(support[], 'inspect_supp.txt');
 
-relation <- apriori(df, parameter=list(minlen=3, supp = 0.1, conf = 0.1))
+relation <- apriori(df, parameter=list(minlen=3))
 relation <- sort(relation, decreasing = TRUE, na.last = NA, by = "lift")
-support <- capture.output(inspect(relation))
-print(support[1:6])
-write(support[1:6], 'inspect_lift.txt');
+conf <- capture.output(inspect(relation))
+print(conf[1:6])
+write(conf[], 'inspect_lift.txt');
 
-output <- list(result = df)
+output <- list(result = "OK!")
 print(toJSON(output))
