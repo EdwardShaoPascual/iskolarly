@@ -29,6 +29,15 @@
   margin-bottom: 20px;
 }
 
+.Report_Download {
+  color: #fff;
+}
+
+.Report_Download:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 991px) {
   .Report_Submit {
     margin-top: 10px;

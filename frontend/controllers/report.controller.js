@@ -108,15 +108,15 @@
 
             for (let i=0; i<res.length; i++) {
               let object = {
-                id: '',
-                date: '',
-                activity_type: '',
-                username: '',
-                viewed_time: '',
-                answered_time: '',
-                started_time: '',
-                ended_time: '',
-                ipv4: ''
+                id: null,
+                date: null,
+                activity_type: null,
+                username: null,
+                viewed_time: null,
+                answered_time: null,
+                started_time: null,
+                ended_time: null,
+                ipv4: null
               };
 
               if (res[i].activity_type.includes('Quiz') || res[i].activity_type.includes('Question')) {
@@ -169,6 +169,7 @@
             a.textContent = "Download activity.json";
             
             document.getElementById('content').appendChild(a);
+            a.classList.add("Report_Download");
           }, function(err) {
             toastr.error(err.message, 'Error');
           });

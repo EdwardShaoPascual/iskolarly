@@ -20,7 +20,7 @@ json_file <-
 {"name":"Doe, Jane","group":"Yellow","age":22,"height":164,"wieght":68,"score":902}]'
  
 # arguments to JSON
-json_file <- fromJSON(json_file)
+json_file <- fromJSON(file = "/home/eddie/Documents/SP/iskolarly/backend/scripts/activity.json")
 
 json_file <- lapply(json_file, function(x) {
   x[sapply(x, is.null)] <- NA
