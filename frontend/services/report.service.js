@@ -103,6 +103,7 @@
       }
 
       const process_data = function (data) {
+        console.log(data);
         let deferred = $q.defer();
         $http({
           method: 'GET',

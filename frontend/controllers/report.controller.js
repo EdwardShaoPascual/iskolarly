@@ -10,6 +10,7 @@
     function report_controller($scope, $window, $interval, $rootScope, ReportService) {
 
       $scope.loading = 0;
+      $scope.logCount = 0;
       $scope.display = 'Quiz';
       $scope.arrayDataSet = [];
       $scope.questionnaires = {};
@@ -171,7 +172,7 @@
                 $scope.numberArray.push($scope.questionnaires[j].questionnaire_id);
               }
             }
-
+            $scope.logCount = 0;
             for (let i=0; i<res.length; i++) {
               let object = {
                 id: null,
@@ -182,7 +183,8 @@
                 answered_time: null,
                 started_time: null,
                 ended_time: null,
-                ipv4: null
+                ipv4: null,
+                id_question: null
               };
 
               if (res[i].activity_type.includes('Quiz') || res[i].activity_type.includes('Question')) {
@@ -221,6 +223,7 @@
                     }
                   }
                   $scope.arrayDataSet.push(object)
+                  $scope.logCount++;
                 }
               }
             }
@@ -228,7 +231,6 @@
             let json = JSON.stringify($scope.arrayDataSet);
             let blob = new Blob([json], {type: "application/json"});
             let url  = URL.createObjectURL(blob);
-            
             let a = document.createElement('a');
             a.download    = "activity.json";
             a.href        = url;
@@ -243,9 +245,12 @@
       }
 
       $scope.run_script = () => {
-        console.log($scope.arrayDataSet);
+        let data = {
+          datum: $scope.arrayDataSet,
+          count: $scope.logCount
+        }
         ReportService
-        .process_data($scope.arrayDataSet)
+        .process_data(data)
         .then(function(res) {
           console.log(res);
         }, function(err) {

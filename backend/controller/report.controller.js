@@ -1,8 +1,9 @@
 'use strict';
 
-const db      = require(__dirname + '/../lib/mysql');
-const moment  = require('moment');
-const R       = require('js-call-r');
+const db       = require(__dirname + '/../lib/mysql');
+const moment   = require('moment');
+const R        = require('js-call-r');
+const RScript  = require('r-script');
 
 exports.list_questionnaires = (req, res, next) => {
   let query_string = 'SELECT * FROM questionnaires WHERE questionnaires.datetime_end <= (SELECT CURRENT_TIMESTAMP())';
@@ -60,7 +61,15 @@ exports.retrieve_quiz_items = (req, res, next) => {
 }
 
 exports.process_data = (req, res, next) => {
-  const result = R.call(__dirname + '/../scripts/assoc.R', req.query)
+  let stringified = "["
+  for (let i=0; i<req.query.count; i++) {
+    stringified += req.query.datum[i]
+    if (i !== req.query.count - 1) {
+      stringified += ','
+    }
+  }
+  stringified += "]"
+  const result = R.call(__dirname + '/../scripts/assoc.R', stringified)
   .then((result) => {
     res.send(result);
   })
