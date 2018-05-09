@@ -149,15 +149,20 @@
                 $scope.arrayDataSet.push(object)
               }
             }
-            ReportService
-            .process_data($scope.arrayDataSet)
-            .then(function(res) {
-              console.log(res);
-            });
           }, function(err) {
             toastr.error(err.message, 'Error');
           });
         }
+      }
+
+      $scope.run_script = () => {
+        ReportService
+        .process_data($scope.arrayDataSet)
+        .then(function(res) {
+          console.log(res);
+        }, function(err) {
+          console.log(err);
+        });
       }
 
       $scope.generate_report = () => {

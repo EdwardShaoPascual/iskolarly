@@ -87,9 +87,8 @@
       const process_data = function (data) {
         let deferred = $q.defer();
         $http({
-          method: 'POST',
+          method: 'GET',
           params: data,
-          xhrFields: {withCredentials: true},
           url: '/api/process_data',
           headers: headers
         })

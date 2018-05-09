@@ -125,7 +125,10 @@
     
     <div class="row" ng-if="display === 'Activity Log'">
       <div class="container">
-        <button ng-click="exportData()">Export tayo oh!</button>  
+        <div class="Report_Exports col-lg-12">
+          <button class="btn btn-primary" ng-click="exportData()">Export Logs to Spreadsheet</button>  
+          <button class="btn btn-primary" ng-click="run_script()">Gather Behavioral Pattern(s)</button>  
+        </div>
         <div id="exportable">
           <table class="Report_Table table table-bordered table-responsive">
             <thead>
