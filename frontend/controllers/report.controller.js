@@ -167,8 +167,8 @@
             a.download    = "activity.json";
             a.href        = url;
             a.textContent = "Download activity.json";
-            
-            document.getElementById('content').appendChild(a);
+
+            a.click();
           }, function(err) {
             toastr.error(err.message, 'Error');
           });
