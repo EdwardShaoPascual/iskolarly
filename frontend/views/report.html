@@ -8,8 +8,9 @@
       <select class="col-xs-8 col-md-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-init="display = 'Quiz'" id="display" ng-model="display">
         <option value="Quiz">Quiz</option>
         <option value="Activity Log">Activity Log</option>
+        <option value="Scores">Scores</option>
       </select><br class="hidden-md hidden-lg"/>
-      <select id="questionnaire_selected" class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-disabled="display === 'Activity Log'">
+      <select id="questionnaire_selected" class="col-xs-8 col-md-2 col-lg-2 js-example-basic-single js-example-basic-hide-search" name="state" ng-disabled="display === 'Activity Log' || display === 'Scores'">
         <option ng-repeat="questionnaire in questionnaires | filter: {course_id: report_data.course_selected}" value="{{questionnaire.questionnaire_id}}" ng-if="display === 'Quiz' && report_data.course_selected !== ''">{{questionnaire.questionnaire_name}}</option>
         <option ng-if="display === 'Assignment'" value="Sample Assignment">Sample Assignment</option>
       </select>
@@ -161,6 +162,30 @@
                 <td class="text-center">{{activity.started_time | date: 'h:m:ss a'}}</td>
                 <td class="text-center">{{activity.ended_time | date: 'h:m:ss a'}}</td>
                 <td class="text-center">{{activity.ipv4}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-if="display === 'Scores'">
+      <div class="container">
+        <div class="Report_Exports col-lg-12">
+          <button class="btn btn-primary" ng-click="exportData()">Export Logs to Spreadsheet</button>  
+         </div>
+        <div id="exportreport">
+          <table class="Report_Table table table-bordered table-responsive">
+            <thead>
+              <tr>
+                <th class="text-center">{{headerData.student}}</th>
+                <th class="text-center" ng-repeat="quizCount in headerData.quiz">Quiz {{quizCount}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="record in recordDataSet">
+                <td>{{record.name}}</td>
+                <td class="text-center" ng-repeat="number in record.scores track by $index">{{number}}</td>
               </tr>
             </tbody>
           </table>

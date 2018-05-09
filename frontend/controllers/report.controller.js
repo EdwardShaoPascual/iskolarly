@@ -73,10 +73,17 @@
       }
 
       $scope.exportData = () => {
-        var blob = new Blob([document.getElementById('exportable').innerHTML], {
-            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
-        });
-        saveAs(blob, "Report.xls");
+        if ($scope.display === 'Scores') {
+          var blob = new Blob([document.getElementById('exportreport').innerHTML], {
+              type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+          });
+          saveAs(blob, "Grades.xls");
+        } else {
+          var blob = new Blob([document.getElementById('exportable').innerHTML], {
+              type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+          });
+          saveAs(blob, "Report.xls");
+        }
       }
 
       $scope.list_questionnaires = () => {
@@ -90,13 +97,72 @@
         })
       }
 
+      $scope.generate_record = () => {
+        $scope.report_data.course_selected = $('#course_selected').val();
+        if ($scope.report_data.course_selected === '? string: ?') {
+          
+        } else {
+          $scope.recordDataSet = [];
+          ReportService
+          .retrieve_record($scope.report_data)
+          .then(function(res) {
+            $scope.recordData = res;
+
+            $scope.headerData = []
+            $scope.headerData.student = 'Student Name';            
+            $scope.quizData = [];
+            $scope.quizCount = [];
+            let count = 1;
+
+            for (let i=0; i<res.length; i++) {
+              if (!$scope.quizCount.includes(res[i].questionnaire_id)) {
+                $scope.quizData.push(res[i].questionnaire_id);
+                $scope.quizCount.push(count);
+                count = count + 1;
+              }
+            }
+
+            $scope.headerData.quiz = $scope.quizCount;
+            $scope.nameData = []
+
+            for (let i=0; i<res.length; i++) {
+              if (!$scope.nameData.includes(res[i].name)) {
+                $scope.nameData.push(res[i].name);
+              }
+            }
+
+            for (let i=0; i<$scope.nameData.length; i++) {
+              let object = {
+                name: null,
+                scores: []
+              }
+
+              $scope.score = []
+              object.name = $scope.nameData[i];
+
+              for (let j=0; j<res.length; j++) {
+                if ($scope.nameData[i] === res[j].name) {
+                  $scope.score.push(res[i].highest_num);
+                }
+              }
+
+              object.scores = $scope.score;            
+              $scope.recordDataSet.push(object)
+            }
+
+          }, function(err) {
+            toastr.error(err.message, 'Error');
+          });
+        }
+      }
+
       $scope.generate_activity = () => {
         $scope.report_data.course_selected = $('#course_selected').val();
         if ($scope.report_data.course_selected === '? string: ?') {
           
         } else {
           $scope.arrayDataSet = [];
-          $scope.numberArray = []
+          $scope.numberArray = [];
           ReportService
           .retrieve_activity_logs()
           .then(function(res) {
@@ -205,7 +271,10 @@
           } 
           else if ($scope.display === 'Activity Log') {
             $scope.generate_activity();
-          } 
+          }
+          else if ($scope.display === 'Scores') {
+            $scope.generate_record();            
+          }
           else if ($scope.display === 'Quiz') {
             $scope.loading = 1;
             ReportService

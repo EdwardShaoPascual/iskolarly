@@ -263,18 +263,18 @@
       })
 
       $scope.markQuiz();
-
-      // $scope.scoreData.score = $scope.numCorrect;
-      // $scope.scoreData.questionnaire_id = $rootScope.questionnaire_id;
-      
-      // QuizService
-      // .insert_score($scope.scoreData)
-      // .then(function(res) {
-      // }, function(error) {
-      // })
-
       $scope.changeState("quiz", false);
       $scope.changeState("results", true);
+
+      $scope.scoreData.score = $scope.numCorrect;
+      $scope.scoreData.questionnaire_id = $rootScope.questionnaire_id;
+      
+      QuizService
+      .insert_score($scope.scoreData)
+      .then(function(res) {
+        $scope.user = res;
+      }, function(error) {
+      })
     }
 
     $scope.changeState = (metric, state) => {
