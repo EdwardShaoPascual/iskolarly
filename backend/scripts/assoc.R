@@ -16,6 +16,6 @@ json <- fromJSON(args)
 ret <- sumFunc(as.numeric(json$a),as.numeric(json$b))
  
 # convert return of function to list
-output <- list(result = ret)
+output <- list(result = ret, print = "WEW");
 # output JSON
 print(toJSON(output));
