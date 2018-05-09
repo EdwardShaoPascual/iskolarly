@@ -1,0 +1,6 @@
+      lhs                                  rhs                                 support confidence      lift count
+[1]   {date=May 07 2018,                                                                                         
+       username=jppascual}              => {id_questionnaire=1}              0.3661972  1.0000000 1.0000000    52
+[2]   {username=jppascual,                                                                                       
+       id_questionnaire=1}              => {date=May 07 2018}                0.3661972  1.0000000 1.8441558    52
+[3]   {date=May 07 2018,                                                                                         

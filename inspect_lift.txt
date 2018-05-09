@@ -1,0 +1,6 @@
+      lhs                                  rhs                                 support confidence      lift count
+[1]   {username=lptaglinao,                                                                                      
+       ipv4=110.54.236.52}              => {date=May 08 2018}                0.1056338  1.0000000 9.4666667    15
+[2]   {date=May 08 2018,                                                                                         
+       username=lptaglinao}             => {ipv4=110.54.236.52}              0.1056338  1.0000000 9.4666667    15
+[3]   {ipv4=110.54.236.52,                                                                                       
