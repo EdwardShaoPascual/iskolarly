@@ -102,11 +102,11 @@
       }
       
       let service = {};
-      service.list_questionnaires  			= list_questionnaires;
-      service.retrieve_activity_logs 		= retrieve_activity_logs;
-      service.retrieve_user   		      = retrieve_user;  
-      service.retrieve_quiz_items   		= retrieve_quiz_items;  
-      service.process_data   		        = process_data;  
+      service.list_questionnaires  			   = list_questionnaires;
+      service.retrieve_activity_logs 		   = retrieve_activity_logs;
+      service.retrieve_user   		         = retrieve_user;  
+      service.retrieve_quiz_items   		   = retrieve_quiz_items;  
+      service.process_data   		           = process_data;  
 
       return service;
 

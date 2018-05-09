@@ -49,9 +49,6 @@ exports.retrieve_quiz_items = (req, res, next) => {
 }
 
 exports.process_data = (req, res, next) => {
-  const result = R.callSync(__dirname + '/../scripts/assoc.R', {
-    a: 1,
-    b: 3
-  });
+  const result = R.callSync(__dirname + '/../scripts/assoc.R', req.query);
   res.send(result);
 }

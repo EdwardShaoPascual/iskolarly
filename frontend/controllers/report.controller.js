@@ -92,7 +92,6 @@
 
       $scope.generate_activity = () => {
         $scope.report_data.course_selected = $('#course_selected').val();
-        
         if ($scope.report_data.course_selected === '? string: ?') {
           
         } else {
@@ -156,6 +155,7 @@
       }
 
       $scope.run_script = () => {
+        console.log($scope.arrayDataSet);
         ReportService
         .process_data($scope.arrayDataSet)
         .then(function(res) {

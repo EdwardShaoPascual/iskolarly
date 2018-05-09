@@ -13,9 +13,9 @@ args <- commandArgs(trailingOnly = TRUE)
 json <- fromJSON(args)
  
 # call function
-ret <- sumFunc(as.numeric(json$a),as.numeric(json$b))
+# ret <- sumFunc(as.numeric(json$a),as.numeric(json$b))
  
 # convert return of function to list
-output <- list(result = ret, print = "WEW");
+# output <- list(result = ret, print = subJson$id);
 # output JSON
-print(toJSON(output));
+# print(toJSON(output));
