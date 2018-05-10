@@ -7,7 +7,8 @@
       </div>
       
       <button id="export-btn" ng-init="questions_check()" ng-disabled="isDisabled" ng-model="isDisabled" class="btn btn-primary" id="Signup" data-toggle="modal" data-target=".bd-example-modal-lgs">Add Question</button>
-      <button id="export-btn" class="btn btn-primary" id="publishModal" data-toggle="modal" data-target=".bd-example-modal-publish">Publish Quiz</button>
+      <button id="export-btn" ng-if="pub === false" class="btn btn-primary" id="publishModal" data-toggle="modal" data-target=".bd-example-modal-publish">Publish Quiz</button>
+      <button id="export-btn" ng-if="pub === true" ng-click="unpublish_quiz()" class="btn btn-primary">Unpublish Quiz</button>
       
       <div ng-init="questions_view()" >
         <div class="accord-edit" id="accordion" ng-repeat="questions in user">

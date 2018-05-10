@@ -70,7 +70,8 @@ module.exports = (router) => {
   // POST
   router.post('/api/create_course',                                   courses_controller.create_course);
   router.post('/api/enroll_course',                                   courses_controller.enroll_course);
-
+  router.post('/api/unpublish_quiz/:questionnaire_id',                courses_controller.unpublish_quiz);
+  
   // -- NAV ROUTES --
   // POST
   router.post('/api/logout',                                          nav_controller.user_logout);

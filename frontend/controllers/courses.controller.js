@@ -25,6 +25,7 @@
     $rootScope.user_id;
 
     $scope.inst = {}
+    $rootScope.pub = false;    
 
     $scope.check_auth = () => {
       $('.modal').hide();
@@ -221,6 +222,12 @@
       CoursesService
       .check_inst($scope.inst)
       .then(function(res) {
+        if (res[0].published === 0) {
+          $rootScope.pub = false;
+        } else {
+          $rootScope.pub = true;
+        }
+
         if (res.length === 0) {
           window.location.href = '/#/error_404';      
         }
@@ -267,6 +274,22 @@
           window.location.href = '/#/error_404';
       })
     }
+
+    $scope.unpublish_quiz = () => {
+      CoursesService
+      .unpublish_quiz($routeParams.questionnaire_id)
+      .then(function(res) {
+        swal({
+          title: "Success!",
+          text: "File has been updated.",
+          type: "success"
+        })
+        $route.reload()
+      }, function(err) {
+        window.location.href = '/#/error_404';
+      })
+    }
+
   }
 
 })();

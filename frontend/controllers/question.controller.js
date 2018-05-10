@@ -5,9 +5,9 @@
   .module('app')
   .controller('question-controller', question_controller);
 
-  question_controller.$inject = ['$routeParams', '$scope', '$rootScope', '$window', 'QuestionService'];
+  question_controller.$inject = ['$route', '$routeParams', '$scope', '$rootScope', '$window', 'QuestionService'];
 
-  function question_controller($routeParams, $scope, $rootScope, $window, QuestionService) {
+  function question_controller($route, $routeParams, $scope, $rootScope, $window, QuestionService) {
     let questionnaire_id = $routeParams.questionnaire_id;
     $scope.isDisabled = true;
     $scope.questionnaire_info = {};
@@ -53,11 +53,14 @@
       QuestionService
       .check_questions($scope.questionsData)
       .then(function(res) {
-        $scope.isDisabled = false;
-        return true;
+        if (res[0].size >= res[0].items || res[0].items === null) {
+          $scope.isDisabled = true;
+          return false;
+        } else {
+          $scope.isDisabled = false;
+          return true;
+        }
       }, function(err) {
-        $scope.isDisabled = true;
-        return false;
 			})
     }
     
@@ -269,7 +272,7 @@
             type: "success"
           })
           $('.modal').hide();
-          $('.modal').modal('hide');  
+          $('.modal').modal('hide');
         }, function(err) {
         })
       }

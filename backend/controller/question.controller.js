@@ -33,7 +33,7 @@ exports.check_questions = (req, res, next) => {
   let request_data = [req.query.questionnaire_id, req.query.questionnaire_id]
 
   db.query(query_string, request_data, (err, result) => {
-    if (result[0].size >= result[0].items || result[0].items === null) {
+    if (err) {
       return res.status(500).send(err);
     } else {
       res.send(result);

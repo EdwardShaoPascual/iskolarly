@@ -148,6 +148,22 @@
       return deferred.promise;
     }
 
+    function unpublish_quiz(data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'POST',
+        url: '/api/unpublish_quiz/' + data
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+    }
+
     let service = {};
     service.view_courses = view_courses;
     service.create_course = create_course;
@@ -157,6 +173,7 @@
     service.check_quiz = check_quiz;
     service.check_course = check_course;
     service.check_attempt = check_attempt;
+    service.unpublish_quiz = unpublish_quiz;
     return service;
   }
 
