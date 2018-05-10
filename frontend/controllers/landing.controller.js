@@ -94,6 +94,7 @@
       if ($scope.registerData.role == 'Instructor') {
         $scope.registerData.course = "N/A";
         $scope.registerData.college = "N/A";
+        $scope.registerData.student = "N/A";
       }
       $scope.registerData.username = $scope.registerData.username.replace(" ", "");
       let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
