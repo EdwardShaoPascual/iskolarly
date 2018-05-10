@@ -110,6 +110,7 @@
            $scope.recordData = res;
 
            $scope.headerData = []
+           $scope.headerData.stud_num = 'Student Number';   
            $scope.headerData.student = 'Student Name';            
            $scope.quizData = [];
            $scope.quizCount = [];
@@ -125,21 +126,25 @@
 
            $scope.headerData.quiz = $scope.quizCount;
            $scope.nameData = []
-
+           $scope.studData = []
+           
            for (let i=0; i<res.length; i++) {
              if (!$scope.nameData.includes(res[i].name)) {
                $scope.nameData.push(res[i].name);
+               $scope.studData.push(res[i].student_num);
              }
            }
 
            for (let i=0; i<$scope.nameData.length; i++) {
              let object = {
+               student_num: null,
                name: null,
                scores: []
              }
 
              $scope.score = []
              for (let j=0; j<$scope.quizData.length; j++) $scope.score[j] = 0;
+             object.student_num = $scope.studData[i];
              object.name = $scope.nameData[i];
 
              for (let j=0; j<res.length; j++) {

@@ -178,12 +178,14 @@
           <table class="Report_Table table table-bordered table-responsive">
             <thead>
               <tr>
+                <th class="text-center">{{headerData.stud_num}}</th>
                 <th class="text-center">{{headerData.student}}</th>
                 <th class="text-center" ng-repeat="quizCount in headerData.quiz">Quiz {{quizCount}}</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="record in recordDataSet">
+                <td>{{record.student_num}}</td>
                 <td>{{record.name}}</td>
                 <td class="text-center" ng-repeat="number in record.scores track by $index">{{number}}</td>
               </tr>

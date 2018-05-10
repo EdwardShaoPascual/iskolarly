@@ -42,7 +42,7 @@ exports.register = function(req, res, next) {
   
   let payload = req.query;
   
-  let queryStringStudent = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, course, birthday, college, role) VALUES (?,?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?,?)';
+  let queryStringStudent = 'INSERT INTO user (firstname, middlename, lastname, student_num, email, username, password, course, birthday, college, role) VALUES (?,?,?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?,?)';
   let queryStringInstr = 'INSERT INTO user (firstname, middlename, lastname, email, username, password, birthday, role) VALUES (?,?,?,?,?,?,STR_TO_DATE(?,"%d-%m-%Y"),?)';
   let saltRounds = 10;
   let pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -50,6 +50,7 @@ exports.register = function(req, res, next) {
   if (payload.firstname === "" || 
       payload.middlename === "" ||
       payload.lastname === "" ||
+      payload.student === "" ||
       payload.email === "" || 
       payload.username === "" ||
       payload.password === "" ||
@@ -67,13 +68,16 @@ exports.register = function(req, res, next) {
   } 
   else if (payload.password.length < 8) {
     res.status(400).send({message: "Password must be in length of at least 8 characters!"});
+  } 
+  else if (payload.role === 'Student' && payload.student.length !== 9) {
+    res.status(400).send({message: "Invalid student number!"});
   }
   else {
     if (payload.role === 'Student') {
       bcrypt.hash(payload.password, saltRounds, (err, hash) => {
         db.query(
           queryStringStudent, 
-          [payload.firstname, payload.middlename, payload.lastname,
+          [payload.firstname, payload.middlename, payload.lastname, payload.student,
           payload.email, payload.username, hash, payload.course,
           dateFormat(payload.birthday,"dd-mm-yyyy"), payload.college, payload.role], 
           (err,result,args,last_query) => {
@@ -89,7 +93,7 @@ exports.register = function(req, res, next) {
               });
               return res.status(200).send(result);
             } else if (err.code == "ER_DUP_ENTRY") {
-              return res.status(500).send({message: "The username or email address is already taken"})
+              return res.status(500).send({message: "The username or email address or student number is already taken"})
             }
             return res.status(500).send({message: "An error has encountered"})
           })
@@ -115,7 +119,7 @@ exports.register = function(req, res, next) {
               });
               return res.status(200).send(result);
             } else if (err.code == "ER_DUP_ENTRY") {
-              return res.status(500).send({message: "The username or email address is already taken"})
+              return res.status(500).send({message: "The username or email address or student number is already taken"})
             }
             return res.status(500).send({message: "An error has encountered"})
           })

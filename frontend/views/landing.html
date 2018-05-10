@@ -194,13 +194,23 @@
                     </div>
 
                     <div ng-if="registerData.role == 'Student'" class="col-lg-4 form-group has-success has-feedback">
-                        <label class="control-label" for="inputGroupSuccess1">Course</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>                                                
-                          <input ng-model="registerData.course" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Course">
-                        </div>
-                        <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                      <label class="control-label" for="inputGroupSuccess1">Course</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>                                                
+                        <input ng-model="registerData.course" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Course">
                       </div>
+                      <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                    </div>
+                  </div>
+                  <!-- Student Number -->
+                  <div ng-if="registerData.role == 'Student'" class="form-group has-success has-feedback">
+                    <label class="control-label" for="inputGroupSuccess1">Student Number</label>
+                    <div class="input-group">
+                      <span class="input-group-addon">@</span>
+                      <input ng-model="registerData.student" type="number" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Example: 2014*****">
+                    </div>
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
                   </div>
                   <!-- Email -->
                   <div class="form-group has-success has-feedback">

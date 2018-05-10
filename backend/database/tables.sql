@@ -13,6 +13,7 @@ CREATE TABLE user (
 	firstname					varchar(256) NOT NULL,
 	middlename					varchar(256) NOT NULL,
 	lastname					varchar(256) NOT NULL,
+	student_num					int,
 	email						varchar(256) NOT NULL,
 	username					varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
 	password					varchar(256) NOT NULL,
@@ -22,6 +23,7 @@ CREATE TABLE user (
 	college						enum('CA','CAS','CDC','CEAT','CEM','CFNR','CHE','CPAf','CVM','SESAM','GS'),
 	UNIQUE						(username),
 	UNIQUE						(email),
+	UNIQUE						(student_num),
 	PRIMARY KEY					(user_id)
 );
 
