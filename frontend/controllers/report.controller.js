@@ -10,6 +10,7 @@
    function report_controller($scope, $window, $interval, $rootScope, ReportService) {
 
      $scope.loading = 0;
+     $scope.loading_script = 0;
      $scope.logCount = 0;
      $scope.display = 'Quiz';
      $scope.arrayDataSet = [];
@@ -71,6 +72,10 @@
      $scope.high = {
        user_highest: [],
        user_highest_time: []
+     }
+     $scope.behavior_pattern = {
+       support: [],
+       lift: []
      }
 
      $scope.exportData = () => {
@@ -240,15 +245,28 @@
      }
 
      $scope.run_script = () => {
+       $scope.loading_script = 1;
+       let data_set = $scope.arrayDataSet.slice(0);
+       for (let i=0; i<data_set.length; i++) {
+        data_set[i].date = data_set[i].date.replace(/ /g, '-');
+        data_set[i].activity_type = data_set[i].activity_type.replace(/ /g, '-');
+       }
        let data = {
-         datum: $scope.arrayDataSet,
+         datum: data_set,
          count: $scope.logCount
        }
        ReportService
        .process_data(data)
        .then(function(res) {
          console.log(res);
-       }, function(err) {
+         $scope.behavior_pattern = res;
+         for (let i=0; i<data_set.length; i++) {
+          data_set[i].date = data_set[i].date.replace(/-/g, ' ');
+          data_set[i].activity_type = data_set[i].activity_type.replace(/-/g, ' ');
+         }
+         $scope.loading_script = 0;
+         $('#behavioralModal').modal('show');
+      }, function(err) {
          console.log(err);
        });
      }
