@@ -240,14 +240,23 @@
      }
 
      $scope.run_script = () => {
+       let data_set = $scope.arrayDataSet.slice(0);
+       for (let i=0; i<data_set.length; i++) {
+        data_set[i].date = data_set[i].date.replace(/ /g, '-');
+        data_set[i].activity_type = data_set[i].activity_type.replace(/ /g, '-');
+       }
        let data = {
-         datum: $scope.arrayDataSet,
+         datum: data_set,
          count: $scope.logCount
        }
        ReportService
        .process_data(data)
        .then(function(res) {
          console.log(res);
+         for (let i=0; i<data_set.length; i++) {
+          data_set[i].date = data_set[i].date.replace(/-/g, ' ');
+          data_set[i].activity_type = data_set[i].activity_type.replace(/-/g, ' ');
+         }
        }, function(err) {
          console.log(err);
        });
