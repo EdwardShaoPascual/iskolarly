@@ -17,9 +17,9 @@ exports.list_questionnaires = (req, res, next) => {
 }
 
 exports.retrieve_record = (req, res, next) => {
-  let query_string = 'select user.student_num, concat(user.lastname, \', \', user.firstname, \' \', user.middlename) as name, scores.* from user, (select user_id, questionnaire_id, max(correct_num) as highest_num from score group by user_id, questionnaire_id) as scores, course_user where user.user_id = scores.user_id = course_user.user_id and course_user.course_id = ? order by questionnaire_id, name';
+  let query_string = 'select user.student_num, concat(user.lastname, \', \', user.firstname, \' \', user.middlename) as name, scores.* from user, (select user_id, questionnaire_id, max(correct_num) as highest_num from score group by user_id, questionnaire_id) as scores, questionnaires where user.user_id = scores.user_id and questionnaires.questionnaire_id = scores.questionnaire_id and questionnaires.course_id = ? and user.role = ? order by questionnaire_id, name';
 
-  db.query(query_string, [req.query.course_selected], (err, result) => {
+  db.query(query_string, [req.query.course_selected, 'Student'], (err, result) => {
     if (err) {
      return res.status(500).send({message: "An error has been encountered"});   
     }
