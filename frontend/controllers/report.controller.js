@@ -233,17 +233,6 @@
                }
              }
            }
-
-           let json = JSON.stringify($scope.arrayDataSet);
-           let blob = new Blob([json], {type: "application/json"});
-           let url  = URL.createObjectURL(blob);
-           let a = document.createElement('a');
-           a.download    = "activity.json";
-           a.href        = url;
-           a.textContent = "Download activity.json";
-           
-           document.getElementById('content').appendChild(a);
-           a.classList.add("Report_Download");
          }, function(err) {
            toastr.error(err.message, 'Error');
          });

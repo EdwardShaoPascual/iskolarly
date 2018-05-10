@@ -1,0 +1,726 @@
+      lhs                                  rhs                               support confidence    lift count
+[1]   {ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              1.0000000        1.0 1.00000    75
+[2]   {date=May 10 2018,                                                                                     
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           1.0000000        1.0 1.00000    75
+[3]   {date=May 10 2018,                                                                                     
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            1.0000000        1.0 1.00000    75
+[4]   {username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.6533333        1.0 1.00000    49
+[5]   {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.6533333        1.0 1.00000    49
+[6]   {username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {date=May 10 2018}              0.6533333        1.0 1.00000    49
+[7]   {date=May 10 2018,                                                                                     
+       username=pvtan1}                 => {id_questionnaire=1}            0.6533333        1.0 1.00000    49
+[8]   {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {date=May 10 2018}              0.6533333        1.0 1.00000    49
+[9]   {date=May 10 2018,                                                                                     
+       username=pvtan1}                 => {ipv4=110.54.241.113}           0.6533333        1.0 1.00000    49
+[10]  {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.6533333        1.0 1.00000    49
+[11]  {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.6533333        1.0 1.00000    49
+[12]  {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.6533333        1.0 1.00000    49
+[13]  {activity_type=Question Viewed,                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.6266667        1.0 1.00000    47
+[14]  {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.6266667        1.0 1.00000    47
+[15]  {activity_type=Question Viewed,                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.6266667        1.0 1.00000    47
+[16]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed}   => {id_questionnaire=1}            0.6266667        1.0 1.00000    47
+[17]  {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113}             => {date=May 10 2018}              0.6266667        1.0 1.00000    47
+[18]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed}   => {ipv4=110.54.241.113}           0.6266667        1.0 1.00000    47
+[19]  {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.6266667        1.0 1.00000    47
+[20]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.6266667        1.0 1.00000    47
+[21]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.6266667        1.0 1.00000    47
+[22]  {activity_type=Question Viewed,                                                                        
+       username=pvtan1}                 => {id_questionnaire=1}            0.3600000        1.0 1.00000    27
+[23]  {activity_type=Question Viewed,                                                                        
+       username=pvtan1}                 => {ipv4=110.54.241.113}           0.3600000        1.0 1.00000    27
+[24]  {activity_type=Question Viewed,                                                                        
+       username=pvtan1}                 => {date=May 10 2018}              0.3600000        1.0 1.00000    27
+[25]  {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.3600000        1.0 1.00000    27
+[26]  {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.3600000        1.0 1.00000    27
+[27]  {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {date=May 10 2018}              0.3600000        1.0 1.00000    27
+[28]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1}                 => {id_questionnaire=1}            0.3600000        1.0 1.00000    27
+[29]  {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {date=May 10 2018}              0.3600000        1.0 1.00000    27
+[30]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1}                 => {ipv4=110.54.241.113}           0.3600000        1.0 1.00000    27
+[31]  {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.3600000        1.0 1.00000    27
+[32]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.3600000        1.0 1.00000    27
+[33]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.3600000        1.0 1.00000    27
+[34]  {username=lptaglinao,                                                                                  
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.3466667        1.0 1.00000    26
+[35]  {username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.3466667        1.0 1.00000    26
+[36]  {username=lptaglinao,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.3466667        1.0 1.00000    26
+[37]  {date=May 10 2018,                                                                                     
+       username=lptaglinao}             => {id_questionnaire=1}            0.3466667        1.0 1.00000    26
+[38]  {username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113}             => {date=May 10 2018}              0.3466667        1.0 1.00000    26
+[39]  {date=May 10 2018,                                                                                     
+       username=lptaglinao}             => {ipv4=110.54.241.113}           0.3466667        1.0 1.00000    26
+[40]  {username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.3466667        1.0 1.00000    26
+[41]  {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.3466667        1.0 1.00000    26
+[42]  {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.3466667        1.0 1.00000    26
+[43]  {id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.3200000        1.0 1.00000    24
+[44]  {ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.3200000        1.0 1.00000    24
+[45]  {id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.3200000        1.0 1.00000    24
+[46]  {date=May 10 2018,                                                                                     
+       id_question=4}                   => {id_questionnaire=1}            0.3200000        1.0 1.00000    24
+[47]  {ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {date=May 10 2018}              0.3200000        1.0 1.00000    24
+[48]  {date=May 10 2018,                                                                                     
+       id_question=4}                   => {ipv4=110.54.241.113}           0.3200000        1.0 1.00000    24
+[49]  {ipv4=110.54.241.113,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.3200000        1.0 1.00000    24
+[50]  {date=May 10 2018,                                                                                     
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.3200000        1.0 1.00000    24
+[51]  {date=May 10 2018,                                                                                     
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.3200000        1.0 1.00000    24
+[52]  {activity_type=Question Answered,                                                                      
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2666667        1.0 1.00000    20
+[53]  {activity_type=Question Answered,                                                                      
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.2666667        1.0 1.00000    20
+[54]  {activity_type=Question Answered,                                                                      
+       id_questionnaire=1}              => {date=May 10 2018}              0.2666667        1.0 1.00000    20
+[55]  {date=May 10 2018,                                                                                     
+       activity_type=Question Answered} => {id_questionnaire=1}            0.2666667        1.0 1.00000    20
+[56]  {activity_type=Question Answered,                                                                      
+       ipv4=110.54.241.113}             => {date=May 10 2018}              0.2666667        1.0 1.00000    20
+[57]  {date=May 10 2018,                                                                                     
+       activity_type=Question Answered} => {ipv4=110.54.241.113}           0.2666667        1.0 1.00000    20
+[58]  {activity_type=Question Viewed,                                                                        
+       username=lptaglinao}             => {id_questionnaire=1}            0.2666667        1.0 1.00000    20
+[59]  {activity_type=Question Viewed,                                                                        
+       username=lptaglinao}             => {ipv4=110.54.241.113}           0.2666667        1.0 1.00000    20
+[60]  {activity_type=Question Viewed,                                                                        
+       username=lptaglinao}             => {date=May 10 2018}              0.2666667        1.0 1.00000    20
+[61]  {activity_type=Question Answered,                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.2666667        1.0 1.00000    20
+[62]  {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2666667        1.0 1.00000    20
+[63]  {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.2666667        1.0 1.00000    20
+[64]  {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2666667        1.0 1.00000    20
+[65]  {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.2666667        1.0 1.00000    20
+[66]  {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.2666667        1.0 1.00000    20
+[67]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=lptaglinao}             => {id_questionnaire=1}            0.2666667        1.0 1.00000    20
+[68]  {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113}             => {date=May 10 2018}              0.2666667        1.0 1.00000    20
+[69]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=lptaglinao}             => {ipv4=110.54.241.113}           0.2666667        1.0 1.00000    20
+[70]  {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.2666667        1.0 1.00000    20
+[71]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2666667        1.0 1.00000    20
+[72]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.2666667        1.0 1.00000    20
+[73]  {id_question=2,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2533333        1.0 1.00000    19
+[74]  {ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {id_questionnaire=1}            0.2533333        1.0 1.00000    19
+[75]  {id_question=2,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.2533333        1.0 1.00000    19
+[76]  {date=May 10 2018,                                                                                     
+       id_question=2}                   => {id_questionnaire=1}            0.2533333        1.0 1.00000    19
+[77]  {ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {date=May 10 2018}              0.2533333        1.0 1.00000    19
+[78]  {date=May 10 2018,                                                                                     
+       id_question=2}                   => {ipv4=110.54.241.113}           0.2533333        1.0 1.00000    19
+[79]  {activity_type=Question Viewed,                                                                        
+       id_question=4}                   => {id_questionnaire=1}            0.2533333        1.0 1.00000    19
+[80]  {activity_type=Question Viewed,                                                                        
+       id_question=4}                   => {ipv4=110.54.241.113}           0.2533333        1.0 1.00000    19
+[81]  {activity_type=Question Viewed,                                                                        
+       id_question=4}                   => {date=May 10 2018}              0.2533333        1.0 1.00000    19
+[82]  {ipv4=110.54.241.113,                                                                                  
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.2533333        1.0 1.00000    19
+[83]  {date=May 10 2018,                                                                                     
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2533333        1.0 1.00000    19
+[84]  {date=May 10 2018,                                                                                     
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {id_questionnaire=1}            0.2533333        1.0 1.00000    19
+[85]  {activity_type=Question Viewed,                                                                        
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2533333        1.0 1.00000    19
+[86]  {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.2533333        1.0 1.00000    19
+[87]  {activity_type=Question Viewed,                                                                        
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.2533333        1.0 1.00000    19
+[88]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=4}                   => {id_questionnaire=1}            0.2533333        1.0 1.00000    19
+[89]  {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {date=May 10 2018}              0.2533333        1.0 1.00000    19
+[90]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=4}                   => {ipv4=110.54.241.113}           0.2533333        1.0 1.00000    19
+[91]  {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.2533333        1.0 1.00000    19
+[92]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2533333        1.0 1.00000    19
+[93]  {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.2533333        1.0 1.00000    19
+[94]  {activity_type=Question Answered,                                                                      
+       username=pvtan1}                 => {id_questionnaire=1}            0.2133333        1.0 1.00000    16
+[95]  {activity_type=Question Answered,                                                                      
+       id_questionnaire=1}              => {username=pvtan1}               0.2133333        0.8 1.22449    16
+[96]  {activity_type=Question Answered,                                                                      
+       username=pvtan1}                 => {ipv4=110.54.241.113}           0.2133333        1.0 1.00000    16
+[97]  {activity_type=Question Answered,                                                                      
+       ipv4=110.54.241.113}             => {username=pvtan1}               0.2133333        0.8 1.22449    16
+[98]  {activity_type=Question Answered,                                                                      
+       username=pvtan1}                 => {date=May 10 2018}              0.2133333        1.0 1.00000    16
+[99]  {date=May 10 2018,                                                                                     
+       activity_type=Question Answered} => {username=pvtan1}               0.2133333        0.8 1.22449    16
+[100] {activity_type=Question Answered,                                                                      
+       username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2133333        1.0 1.00000    16
+[101] {activity_type=Question Answered,                                                                      
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.2133333        1.0 1.00000    16
+[102] {activity_type=Question Answered,                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {username=pvtan1}               0.2133333        0.8 1.22449    16
+[103] {activity_type=Question Answered,                                                                      
+       username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {date=May 10 2018}              0.2133333        1.0 1.00000    16
+[104] {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       username=pvtan1}                 => {id_questionnaire=1}            0.2133333        1.0 1.00000    16
+[105] {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       id_questionnaire=1}              => {username=pvtan1}               0.2133333        0.8 1.22449    16
+[106] {activity_type=Question Answered,                                                                      
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {date=May 10 2018}              0.2133333        1.0 1.00000    16
+[107] {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       username=pvtan1}                 => {ipv4=110.54.241.113}           0.2133333        1.0 1.00000    16
+[108] {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       ipv4=110.54.241.113}             => {username=pvtan1}               0.2133333        0.8 1.22449    16
+[109] {activity_type=Question Answered,                                                                      
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {date=May 10 2018}              0.2133333        1.0 1.00000    16
+[110] {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       username=pvtan1,                                                                                      
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.2133333        1.0 1.00000    16
+[111] {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113}             => {id_questionnaire=1}            0.2133333        1.0 1.00000    16
+[112] {date=May 10 2018,                                                                                     
+       activity_type=Question Answered,                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_questionnaire=1}              => {username=pvtan1}               0.2133333        0.8 1.22449    16
+[113] {id_question=3,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[114] {ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[115] {id_question=3,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[116] {date=May 10 2018,                                                                                     
+       id_question=3}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[117] {ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[118] {date=May 10 2018,                                                                                     
+       id_question=3}                   => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[119] {activity_type=Question Viewed,                                                                        
+       id_question=2}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[120] {activity_type=Question Viewed,                                                                        
+       id_question=2}                   => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[121] {activity_type=Question Viewed,                                                                        
+       id_question=2}                   => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[122] {username=pvtan1,                                                                                      
+       id_question=4}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[123] {username=pvtan1,                                                                                      
+       id_question=4}                   => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[124] {username=pvtan1,                                                                                      
+       id_question=4}                   => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[125] {ipv4=110.54.241.113,                                                                                  
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[126] {date=May 10 2018,                                                                                     
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[127] {date=May 10 2018,                                                                                     
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[128] {activity_type=Question Viewed,                                                                        
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[129] {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[130] {activity_type=Question Viewed,                                                                        
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[131] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=2}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[132] {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[133] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=2}                   => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[134] {username=pvtan1,                                                                                      
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[135] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[136] {username=pvtan1,                                                                                      
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[137] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=4}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[138] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[139] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=4}                   => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[140] {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[141] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[142] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[143] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1866667        1.0 1.00000    14
+[144] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1866667        1.0 1.00000    14
+[145] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1866667        1.0 1.00000    14
+[146] {username=pvtan1,                                                                                      
+       id_question=2}                   => {id_questionnaire=1}            0.1600000        1.0 1.00000    12
+[147] {username=pvtan1,                                                                                      
+       id_question=2}                   => {ipv4=110.54.241.113}           0.1600000        1.0 1.00000    12
+[148] {username=pvtan1,                                                                                      
+       id_question=2}                   => {date=May 10 2018}              0.1600000        1.0 1.00000    12
+[149] {username=pvtan1,                                                                                      
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1600000        1.0 1.00000    12
+[150] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {id_questionnaire=1}            0.1600000        1.0 1.00000    12
+[151] {username=pvtan1,                                                                                      
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1600000        1.0 1.00000    12
+[152] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=2}                   => {id_questionnaire=1}            0.1600000        1.0 1.00000    12
+[153] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {date=May 10 2018}              0.1600000        1.0 1.00000    12
+[154] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=2}                   => {ipv4=110.54.241.113}           0.1600000        1.0 1.00000    12
+[155] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1600000        1.0 1.00000    12
+[156] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1600000        1.0 1.00000    12
+[157] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {id_questionnaire=1}            0.1600000        1.0 1.00000    12
+[158] {id_question=1,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[159] {ipv4=110.54.241.113,                                                                                  
+       id_question=1}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[160] {id_question=1,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[161] {date=May 10 2018,                                                                                     
+       id_question=1}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[162] {ipv4=110.54.241.113,                                                                                  
+       id_question=1}                   => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[163] {date=May 10 2018,                                                                                     
+       id_question=1}                   => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[164] {username=pvtan1,                                                                                      
+       id_question=3}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[165] {username=pvtan1,                                                                                      
+       id_question=3}                   => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[166] {username=pvtan1,                                                                                      
+       id_question=3}                   => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[167] {username=lptaglinao,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[168] {username=lptaglinao,                                                                                  
+       id_question=4}                   => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[169] {username=lptaglinao,                                                                                  
+       id_question=4}                   => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[170] {ipv4=110.54.241.113,                                                                                  
+       id_question=1,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[171] {date=May 10 2018,                                                                                     
+       id_question=1,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[172] {date=May 10 2018,                                                                                     
+       ipv4=110.54.241.113,                                                                                  
+       id_question=1}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[173] {username=pvtan1,                                                                                      
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[174] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[175] {username=pvtan1,                                                                                      
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[176] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=3}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[177] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[178] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=3}                   => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[179] {username=lptaglinao,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[180] {username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[181] {username=lptaglinao,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[182] {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[183] {username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[184] {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       id_question=4}                   => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[185] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=4}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[186] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=4}                   => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[187] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=4}                   => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[188] {username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[189] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[190] {date=May 10 2018,                                                                                     
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[191] {username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[192] {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[193] {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[194] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[195] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[196] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[197] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=4}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[198] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[199] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=4}                   => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[200] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1333333        1.0 1.00000    10
+[201] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1333333        1.0 1.00000    10
+[202] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1333333        1.0 1.00000    10
+[203] {username=lptaglinao,                                                                                  
+       id_question=4}                   => {activity_type=Question Viewed} 0.1200000        0.9 1.43617     9
+[204] {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1200000        1.0 1.00000     9
+[205] {username=lptaglinao,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {activity_type=Question Viewed} 0.1200000        0.9 1.43617     9
+[206] {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_question=4}                   => {ipv4=110.54.241.113}           0.1200000        1.0 1.00000     9
+[207] {username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {activity_type=Question Viewed} 0.1200000        0.9 1.43617     9
+[208] {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_question=4}                   => {date=May 10 2018}              0.1200000        1.0 1.00000     9
+[209] {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       id_question=4}                   => {activity_type=Question Viewed} 0.1200000        0.9 1.43617     9
+[210] {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1200000        1.0 1.00000     9
+[211] {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1200000        1.0 1.00000     9
+[212] {username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {activity_type=Question Viewed} 0.1200000        0.9 1.43617     9
+[213] {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1200000        1.0 1.00000     9
+[214] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1200000        1.0 1.00000     9
+[215] {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {activity_type=Question Viewed} 0.1200000        0.9 1.43617     9
+[216] {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {date=May 10 2018}              0.1200000        1.0 1.00000     9
+[217] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_question=4}                   => {ipv4=110.54.241.113}           0.1200000        1.0 1.00000     9
+[218] {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {activity_type=Question Viewed} 0.1200000        0.9 1.43617     9
+[219] {activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1200000        1.0 1.00000     9
+[220] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1200000        1.0 1.00000     9
+[221] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4}                   => {id_questionnaire=1}            0.1200000        1.0 1.00000     9
+[222] {date=May 10 2018,                                                                                     
+       username=lptaglinao,                                                                                  
+       ipv4=110.54.241.113,                                                                                  
+       id_question=4,                                                                                        
+       id_questionnaire=1}              => {activity_type=Question Viewed} 0.1200000        0.9 1.43617     9
+[223] {activity_type=Question Viewed,                                                                        
+       id_question=3}                   => {id_questionnaire=1}            0.1066667        1.0 1.00000     8
+[224] {activity_type=Question Viewed,                                                                        
+       id_question=3}                   => {ipv4=110.54.241.113}           0.1066667        1.0 1.00000     8
+[225] {activity_type=Question Viewed,                                                                        
+       id_question=3}                   => {date=May 10 2018}              0.1066667        1.0 1.00000     8
+[226] {activity_type=Question Viewed,                                                                        
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1066667        1.0 1.00000     8
+[227] {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {id_questionnaire=1}            0.1066667        1.0 1.00000     8
+[228] {activity_type=Question Viewed,                                                                        
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1066667        1.0 1.00000     8
+[229] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=3}                   => {id_questionnaire=1}            0.1066667        1.0 1.00000     8
+[230] {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {date=May 10 2018}              0.1066667        1.0 1.00000     8
+[231] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=3}                   => {ipv4=110.54.241.113}           0.1066667        1.0 1.00000     8
+[232] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=2}                   => {id_questionnaire=1}            0.1066667        1.0 1.00000     8
+[233] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=2}                   => {ipv4=110.54.241.113}           0.1066667        1.0 1.00000     8
+[234] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=2}                   => {date=May 10 2018}              0.1066667        1.0 1.00000     8
+[235] {activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1066667        1.0 1.00000     8
+[236] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       id_question=3,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1066667        1.0 1.00000     8
+[237] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       ipv4=110.54.241.113,                                                                                  
+       id_question=3}                   => {id_questionnaire=1}            0.1066667        1.0 1.00000     8
+[238] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1066667        1.0 1.00000     8
+[239] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {id_questionnaire=1}            0.1066667        1.0 1.00000     8
+[240] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1066667        1.0 1.00000     8
+[241] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=2}                   => {id_questionnaire=1}            0.1066667        1.0 1.00000     8
+[242] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {date=May 10 2018}              0.1066667        1.0 1.00000     8
+[243] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=2}                   => {ipv4=110.54.241.113}           0.1066667        1.0 1.00000     8
+[244] {activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {date=May 10 2018}              0.1066667        1.0 1.00000     8
+[245] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       id_question=2,                                                                                        
+       id_questionnaire=1}              => {ipv4=110.54.241.113}           0.1066667        1.0 1.00000     8
+[246] {date=May 10 2018,                                                                                     
+       activity_type=Question Viewed,                                                                        
+       username=pvtan1,                                                                                      
+       ipv4=110.54.241.113,                                                                                  
+       id_question=2}                   => {id_questionnaire=1}            0.1066667        1.0 1.00000     8
