@@ -33,6 +33,7 @@
       course: '',
       birthday: '',
       college: '',
+      student: '',
       role: 'Student'
     }
 
@@ -106,7 +107,8 @@
           $scope.registerData.course === "" ||
           $scope.registerData.birthday === "" ||
           $scope.registerData.college === "" ||
-          $scope.registerData.role === "") {
+          $scope.registerData.role === "" ||
+          $scope.registerData.student === "") {
         toastr.error("Please fill all the missing fields!", 'Error');                         
       } 
       else if ($scope.registerData.password !== $scope.registerData.repassword) {
@@ -144,6 +146,7 @@
               course: '',
               birthday: '',
               college: '',
+              student: '',
               role: 'Student'
             }
             $scope.roleRadio = {

@@ -66,7 +66,6 @@
       let flag = 0;
       if (data == 0) id = $("input[type=text]:last").attr("id");
       else id = $("input[type=url]:last").attr("id");
-
       for (let i=0; i<=parseInt(id.substr(id.length -1)); i++) {
         let a, b;
         if (data == 0) {
