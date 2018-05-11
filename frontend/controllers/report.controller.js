@@ -393,7 +393,10 @@
           } else if (key_value[0] === "viewed_time") {
             str += "viewing time (of a specific question), " + key_value[1];              
           }
-          $scope.behavior_pattern.lift.push(str);
+          str += ', WITH a lift value of ' + scrape[3];
+          if (parseFloat(scrape[3]) > 1.05) {
+            $scope.behavior_pattern.lift.push(str);
+          }
          }
 
          for (let i=0; i<data_set.length; i++) {
