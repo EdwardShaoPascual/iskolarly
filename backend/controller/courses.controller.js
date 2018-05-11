@@ -138,23 +138,23 @@ exports.check_course = (req, res, next) => {
 }
 
 exports.check_attempt = (req, res, next) => {
-  let query = 'SELECT quiz.* FROM quiz, (SELECT q.* FROM announcement, (SELECT * FROM questionnaires NATURAL JOIN course_user WHERE user_id = ? and questionnaire_id = ? and published = ?) as q WHERE announcement.questionnaire_id = ?) as quest WHERE quest.questionnaire_id = ? AND quiz.questionnaire_id = ? AND quiz.user_id = ?';
-  let request = [req.session.user.user_id, req.params.questionnaire_id, 1, req.params.questionnaire_id, req.params.questionnaire_id, req.params.questionnaire_id, req.session.user.user_id]
+  let query = 'SELECT q.* FROM announcement, (SELECT * FROM questionnaires NATURAL JOIN course_user WHERE user_id = ? and questionnaire_id = ? and published = ?) as q WHERE announcement.questionnaire_id = ?';
+  let request = [req.session.user.user_id, req.params.questionnaire_id, 1, req.params.questionnaire_id]
 
   db.query(query, request, (error, reslt) => {
     if (error) {
       return res.status(500).send({message: "An error has encountered"});
     } else {
-      if (reslt.length === 0) {
+      if (reslt.length !== 0) {
         
-        // let query_string = 'SELECT * FROM quiz WHERE user_id = ? AND questionnaire_id = ?';
-        // let request_data = [req.session.user.user_id, req.params.questionnaire_id]
+        let query_string = 'SELECT * FROM quiz WHERE user_id = ? AND questionnaire_id = ?';
+        let request_data = [req.session.user.user_id, req.params.questionnaire_id]
 
-        // db.query(query_string, request_data, (err, result) => {
-        //   if (err) {
-        //     return res.status(500).send({message: "An error has encountered"});
-        //   } else {
-        //     if (result.length == 0) {
+        db.query(query_string, request_data, (err, result) => {
+          if (err) {
+            return res.status(500).send({message: "An error has encountered"});
+          } else {
+            if (result.length == 0) {
         
               let query_str = 'INSERT INTO quiz (user_id, questionnaire_id, attempted_ans) VALUES (?, ?, ?)';
               let req_data = [req.session.user.user_id, req.params.questionnaire_id, 0]
@@ -166,12 +166,12 @@ exports.check_attempt = (req, res, next) => {
                   res.send(result);
                 }
               })
-            // } else {
-            //   res.send(result);
-            // }
+            } else {
+              res.send(result);
+            }
         
-          // }
-        // });
+          }
+        });
 
       } else {
         return res.status(500).send({message: "An error has encountered"});
