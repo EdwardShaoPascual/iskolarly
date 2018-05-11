@@ -203,12 +203,33 @@
           </div>
           <div class="modal-body">
             <form>
-              <div class="col-lg-12">
-                {{behavior_pattern.support}}
-
-                {{behavior_pattern.lift}}                
-              </div><br/>
-              <button class="btn cancel" data-dismiss="modal" aria-label="Close">Close</button>
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="Landing_Content"><b>TOP 5</b> Results from the <b>SUPPORT</b> criteria</p>
+                  <p class="Landing_Content-small"><b>SUPPORT</b> is an indication of how frequently the itemset appears in the dataset. <a class="Report_Link" href="https://en.wikipedia.org/wiki/Association_rule_learning#Support" target="__blank">[1]</a></p>
+                </div>
+                <div class="col-lg-12">
+                  <ul>
+                    <li ng-repeat="support in behavior_pattern.support">{{support}}</li><br/>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+                <div class="Divider col-lg-12">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="Landing_Content"><b>TOP 5</b> Results from the <b>LIFT</b> criteria</p>
+                  <p class="Landing_Content-small"><b>LIFT</b> is an indication of how strong is the relationship between the given parameters (LHS) and the matched parameter (RHS).</p>
+                </div>
+                <div class="col-lg-12">
+                  <ul>
+                    <li ng-repeat="lift in behavior_pattern.lift">{{lift}}</li><br/>
+                  </ul>
+                </div>
+              </div>
+              <button class="btn btn-primary" data-dismiss="modal" aria-label="Close">Close</button>
             </form>
           </div>
         </div>

@@ -258,10 +258,144 @@
        ReportService
        .process_data(data)
        .then(function(res) {
-         for (let i=0; i<5; i++) {
-          $scope.behavior_pattern.support.push(res.support[i]);
-          $scope.behavior_pattern.lift.push(res.lift[i]);
+         let iteration = res.support.length
+         if (iteration > 5 ) iteration = 5;
+         for (let i=0; i<iteration; i++) {
+          // SUPPORT
+          let scrape = res.support[i].split(' ');
+          let str = "Given ";
+          let str_gen = scrape[0].split(',');
+          for (let j=0; j<str_gen.length; j++) {
+            str_gen[j] = str_gen[j].replace(/{/g, '')
+            str_gen[j] = str_gen[j].replace(/}/g, '')
+            let key_value = str_gen[j].split('=');
+            if (key_value[0] === "activity_type") {
+              if (j == 0) str += "an ";
+              str += "activity type of " + key_value[1].replace(/-/g, ' ');
+            } else if (key_value[0] === "answered_time") {
+              if (j == 0) str += "an ";
+              str += "answer time (of a specific question) of " + key_value[1];
+            } else if (key_value[0] === "date") {
+              if (j == 0) str += "an ";
+              str += "access date of " + key_value[1].replace(/-/g, ' ');
+            } else if (key_value[0] === "ended_time") {
+              if (j == 0) str += "an ";
+              str += "end time (of a quiz) of " + key_value[1];
+            } else if (key_value[0] === "id_question") {
+              if (j == 0) str += "a ";
+              str += "question number of " + key_value[1];
+            } else if (key_value[0] === "id_questionnaire") {
+              if (j == 0) str += "a ";
+              str += "quiz number of " + key_value[1];              
+            } else if (key_value[0] === "ipv4") {
+              if (j == 0) str += "an ";
+              str += "IP address of " + key_value[1];
+            } else if (key_value[0] === "started_time") {
+              if (j == 0) str += "a ";
+              str += "start time (of a quiz) of " + key_value[1];              
+            } else if (key_value[0] === "username") {
+              if (j == 0) str += "a ";
+              str += "user name of " + key_value[1];                            
+            } else if (key_value[0] === "viewed_time") {
+              if (j == 0) str += "a ";
+              str += "view time (of a specific question) of " + key_value[1];              
+            }
+            if (j+1 === (str_gen.length - 1)) {
+              str += ' and '
+            } else if (j+1 !== str_gen.length) {
+              str += ', '
+            }
+          }
+          str += ', there is a high probability that the frequent ';
+          let inference = scrape[2].replace(/{/g, '')
+          inference = inference.replace(/}/g, '')
+          let key_value = inference.split('=');
+          if (key_value[0] === "activity_type") {
+            str += "activity done by the users is " + key_value[1].replace(/-/g, ' ');
+          } else if (key_value[0] === "answered_time") {
+            str += "answering time (of a specific question) is " + key_value[1];
+          } else if (key_value[0] === "date") {
+            str += "accessing date for all activities is " + key_value[1].replace(/-/g, ' ');
+          } else if (key_value[0] === "ended_time") {
+            str += "ending time (of a quiz) is " + key_value[1];
+          } else if (key_value[0] === "id_question") {
+            str += "answered question number is " + key_value[1];
+          } else if (key_value[0] === "id_questionnaire") {
+            str += "answered quiz number is " + key_value[1];              
+          } else if (key_value[0] === "ipv4") {
+            str += "IP address used is " + key_value[1];
+          } else if (key_value[0] === "started_time") {
+            str += "starting time (of a quiz) is " + key_value[1];              
+          } else if (key_value[0] === "username") {
+            str += "user is " + key_value[1];                            
+          } else if (key_value[0] === "viewed_time") {
+            str += "viewing time (of a specific question) is " + key_value[1];              
+          }
+          $scope.behavior_pattern.support.push(str);
+          str = ''
+          // LIFT
+          scrape = res.lift[i].split(' ');
+          str = "There is a strong relationship between the ";
+          str_gen = scrape[0].split(',');
+          for (let j=0; j<str_gen.length; j++) {
+            str_gen[j] = str_gen[j].replace(/{/g, '')
+            str_gen[j] = str_gen[j].replace(/}/g, '')
+            let key_value = str_gen[j].split('=');
+            if (key_value[0] === "activity_type") {
+              str += "activity type of " + key_value[1].replace(/-/g, ' ');
+            } else if (key_value[0] === "answered_time") {
+              str += "answer time (of a specific question) of " + key_value[1];
+            } else if (key_value[0] === "date") {
+              str += "access date of " + key_value[1].replace(/-/g, ' ');
+            } else if (key_value[0] === "ended_time") {
+              str += "end time (of a quiz) of " + key_value[1];
+            } else if (key_value[0] === "id_question") {
+              str += "question number of " + key_value[1];
+            } else if (key_value[0] === "id_questionnaire") {
+              str += "quiz number of " + key_value[1];              
+            } else if (key_value[0] === "ipv4") {
+              str += "IP address of " + key_value[1];
+            } else if (key_value[0] === "started_time") {
+              str += "start time (of a quiz) of " + key_value[1];              
+            } else if (key_value[0] === "username") {
+              str += "user name of " + key_value[1];                            
+            } else if (key_value[0] === "viewed_time") {
+              str += "view time (of a specific question) of " + key_value[1];              
+            }
+            if (j+1 === (str_gen.length - 1)) {
+              str += ' and '
+            } else if (j+1 !== str_gen.length) {
+              str += ', '
+            }
+          }
+          str += " AND the "
+          inference = scrape[2].replace(/{/g, '')
+          inference = inference.replace(/}/g, '')
+          key_value = inference.split('=');
+          if (key_value[0] === "activity_type") {
+            str += "activity done by the users, " + key_value[1].replace(/-/g, ' ');
+          } else if (key_value[0] === "answered_time") {
+            str += "answering time (of a specific question), " + key_value[1];
+          } else if (key_value[0] === "date") {
+            str += "accessing date for all activities, " + key_value[1].replace(/-/g, ' ');
+          } else if (key_value[0] === "ended_time") {
+            str += "ending time (of a quiz), " + key_value[1];
+          } else if (key_value[0] === "id_question") {
+            str += "answered question number, " + key_value[1];
+          } else if (key_value[0] === "id_questionnaire") {
+            str += "answered quiz number, " + key_value[1];              
+          } else if (key_value[0] === "ipv4") {
+            str += "IP address used, " + key_value[1];
+          } else if (key_value[0] === "started_time") {
+            str += "starting time (of a quiz), " + key_value[1];              
+          } else if (key_value[0] === "username") {
+            str += "user name, " + key_value[1];                            
+          } else if (key_value[0] === "viewed_time") {
+            str += "viewing time (of a specific question), " + key_value[1];              
+          }
+          $scope.behavior_pattern.lift.push(str);
          }
+
          for (let i=0; i<data_set.length; i++) {
           data_set[i].date = data_set[i].date.replace(/-/g, ' ');
           data_set[i].activity_type = data_set[i].activity_type.replace(/-/g, ' ');
