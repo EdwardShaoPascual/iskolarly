@@ -268,7 +268,9 @@
          }
          $scope.loading_script = 0;
          $('#behavioralModal').modal('show');
+         toastr.success("Generating of behavioral patterns is successful", "Success");
       }, function(err) {
+         toastr.error("An error has been encountered", "Error");
          console.log(err);
        });
      }
