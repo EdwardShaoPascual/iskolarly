@@ -351,7 +351,7 @@
         data.selected = null;
         data.correct = null;
       }
-      window.close();
+      // window.close();
     }
   }
   
