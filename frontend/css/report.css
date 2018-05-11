@@ -42,6 +42,11 @@
   overflow-x: auto;
 }
 
+.Report_Modal_Responsive {
+  width: 80vw !important;
+  word-wrap: break-word
+}
+
 @media only screen and (max-width: 991px) {
   .Report_Submit {
     margin-top: 10px;

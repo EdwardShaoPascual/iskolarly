@@ -258,8 +258,10 @@
        ReportService
        .process_data(data)
        .then(function(res) {
-         $scope.behavior_pattern.support = res.support;
-         $scope.behavior_pattern.lift = res.lift;
+         for (let i=0; i<5; i++) {
+          $scope.behavior_pattern.support.push(res.support[i]);
+          $scope.behavior_pattern.lift.push(res.lift[i]);
+         }
          for (let i=0; i<data_set.length; i++) {
           data_set[i].date = data_set[i].date.replace(/-/g, ' ');
           data_set[i].activity_type = data_set[i].activity_type.replace(/-/g, ' ');

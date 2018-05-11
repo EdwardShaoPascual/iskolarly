@@ -129,7 +129,7 @@
         <div class="Report_Exports col-lg-12">
           <button class="btn btn-primary" ng-click="exportData()">Export Logs to Spreadsheet</button>  
           <button class="btn btn-primary" ng-click="run_script()" ng-show="arrayDataSet.length !== 0" ng-if="loading_script === 0">Generate Behavioral Pattern(s)</button>  
-          <button id="export-btn" class="Report_Submit Course_Preloader btn btn-primary" id="Signup" ng-if="loading_script === 1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-repeat"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>          
+          <button id="export-btn" class="Course_Preloader btn btn-primary" id="Signup" ng-if="loading_script === 1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-repeat"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>          
         </div>
         <div class="Report_Table_Responsive col-lg-12" id="exportable">
           <table class="Report_Table table table-bordered table-responsive" fixed-header>
@@ -196,15 +196,17 @@
     </div>
     <!-- Behavioral Modal -->
     <div class="modal fade bd-example-modal-lgi" id="behavioralModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="Report_Modal_Responsive modal-dialog modal-lg">
         <div class="modal-content modal-fx">
           <div class="modal-header">
             <h4 class="modal-title">Behavioral Patterns</h4>
           </div>
           <div class="modal-body">
             <form>
-              <div >
-                {{behavior_pattern.support[0]}}
+              <div class="col-lg-12">
+                {{behavior_pattern.support}}
+
+                {{behavior_pattern.lift}}                
               </div><br/>
               <button class="btn cancel" data-dismiss="modal" aria-label="Close">Close</button>
             </form>
