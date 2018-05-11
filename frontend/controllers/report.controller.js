@@ -444,6 +444,11 @@
              ReportService
              .retrieve_activity_logs()
              .then(function(res) {
+               $scope.filtered = {
+                 quiz: [],
+                 quiz_start: [],
+                 quiz_end: []
+               }
                $scope.activity_log = res;
                if ($scope.display === 'Quiz' && ($scope.report_data.course_selected !== '' || $scope.report_data.questionnaire_selected !== null || $scope.report_data.course_selected === '? string: ?')) {
                  let filtered_quiz = [];
@@ -469,20 +474,20 @@
                  let ave_time = 0;
                  let score_ave = 0;
                  for(let i=0; i<filtered_quiz_end.length; i++) {
-                   let referDate = '';
-                   let date = filtered_quiz_end[i].activity_info.split(' ')[0].replace('[','').replace(']','');
-                   let reference = filtered_quiz_end[i].activity_info.split(' ')[7].split('=')[1];
-                   for(let j=0; j<filtered_quiz_start.length; j++) {
-                     if (filtered_quiz_start[j].activity_id == reference) {
-                       referDate = filtered_quiz_start[j].activity_info.split(' ')[0].replace('[','').replace(']','');
-                       break;
-                     }
-                   }
-                   ave_time = ave_time + (new Date(date) - new Date(referDate));
-                   score_ave += parseInt(filtered_quiz_end[i].activity_info.split(' ')[5].split('=')[1]);
+                  let referDate = '';
+                  let date = filtered_quiz_end[i].activity_info.split(' ')[0].replace('[','').replace(']','');
+                  let reference = filtered_quiz_end[i].activity_info.split(' ')[7].split('=')[1];
+                  for(let j=0; j<filtered_quiz_start.length; j++) {
+                    if (filtered_quiz_start[j].activity_id == reference) {
+                      referDate = filtered_quiz_start[j].activity_info.split(' ')[0].replace('[','').replace(']','');
+                      break;
+                    }
+                  }
+                  ave_time = ave_time + (new Date(date) - new Date(referDate));
+                  score_ave += parseInt(filtered_quiz_end[i].activity_info.split(' ')[5].split('=')[1]);
                  }                  
                  score_ave /= filtered_quiz_end.length;
-                 ave_time /= ($scope.course_users.length * $scope.num_of_tries);
+                 ave_time /= $scope.filtered.quiz_end.length;
                  let average = new Date(ave_time);
                  let seconds = average.getSeconds();
                  let minutes = average.getMinutes();
@@ -496,15 +501,18 @@
                  }
                  // End of averaging time (overall) 
 
-
                  // For averaging time (highest), getting the Pass/Fail graph and getting the highest average
                  $scope.dateLabels = new Map();
+                 $scope.standing = {
+                   pass: 0,
+                   fail: 0
+                 }
                  let highest_ave = 0;
                  ave_time = 0;
                  for(let i=0; i<$scope.course_users.length; i++) {
                    $scope.high.user_highest.push($scope.course_users[i].user_id);
                    let scores = [];
-                   let highest = -99999999;
+                   let highest = 0;
                    // Get your quizzes
                    for(let j=0; j<filtered_quiz_end.length; j++) {
                      if (filtered_quiz_end[j].activity_info.includes("user_id=" + $scope.course_users[i].user_id)) {
@@ -551,6 +559,9 @@
                        highestCount++;
                      }
                    }
+                   if (scores.length === 0) {
+                    highestCount++;
+                   }
                    $scope.high.user_highest_time.push(ave_time_iteration/highestCount);
                    ave_time = ave_time + (ave_time_iteration/highestCount);
                  };
@@ -590,7 +601,7 @@
        $scope.get_flag_student = 0;        
        $scope.student.student_id = $('#student_selected').val();
        let scores = [];
-       let highest = -999999;
+       let highest = 0;
        let index = $scope.high.user_highest.indexOf(parseInt($scope.student.student_id));
        for (let i=0; i<$scope.filtered.quiz_end.length; i++) {
          if($scope.filtered.quiz_end[i].activity_info.split(' ')[2].split('=')[1] === $scope.student.student_id) {
@@ -615,8 +626,12 @@
          ave_time = ave_time + (new Date(date) - new Date(referDate));
          score_ave += parseInt(scores[i].activity_info.split(' ')[5].split('=')[1]);
        }
-       score_ave /= scores.length;
-       ave_time /= ($scope.course_users.length * $scope.num_of_tries);
+       if (scores.length === 0) {
+        score_ave /= 1;
+       } else {
+        score_ave /= scores.length;
+       }
+       ave_time /= $scope.filtered.quiz_end.length;
        let average = new Date(ave_time);
        let seconds = average.getSeconds();
        let minutes = average.getMinutes();
@@ -629,8 +644,13 @@
        $scope.student.highest_score = highest;        
        $scope.student.highest_score_percentage = ((highest / $scope.over_score) * 100).toFixed(2);
        $scope.get_flag_student = 1;
-       let highest_score_ave = $scope.high.user_highest_time[index];
-       highest_score_ave /= $scope.course_users.length;
+       let highest_score_ave = 0;
+       if (scores.length === 0) {
+        highest_score_ave /= $scope.course_users.length;
+       } else {
+        highest_score_ave = $scope.high.user_highest_time[index];
+        highest_score_ave /= $scope.course_users.length;
+       }
        average = new Date(highest_score_ave);
        seconds = average.getSeconds();
        minutes = average.getMinutes();
