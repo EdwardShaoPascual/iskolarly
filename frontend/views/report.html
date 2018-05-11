@@ -24,14 +24,14 @@
         <h4>Overall Scores' Average Time Answering the Quiz: <br/>
           <span ng-if="final_time.hour !== 0">{{final_time.hour}} hour(s)</span>
           <span ng-if="final_time.minutes !== 0">{{final_time.minutes}} minute(s)</span>
-          <span ng-if="final_time.seconds !== 0">{{final_time.seconds}} second(s)</span>
+          <span>{{final_time.seconds}} second(s)</span>
         </h4>        
       </div>
       <div class="Reports col-xs-5 col-lg-4" ng-if="get_flag === 1">
         <h4>Best Scores' Average Time Answering the Quiz: <br/>
           <span ng-if="final_time_highest.hour !== 0">{{final_time_highest.hour}} hour(s)</span>
           <span ng-if="final_time_highest.minutes !== 0">{{final_time_highest.minutes}} minute(s)</span>
-          <span ng-if="final_time_highest.seconds !== 0">{{final_time_highest.seconds}} second(s)</span>
+          <span>{{final_time_highest.seconds}} second(s)</span>
         </h4>        
       </div>
       <div class="col-xs-1 col-lg-2"/>
@@ -89,7 +89,7 @@
         <h4>Overall Scores' Average Time Answering the Quiz: 
           <span ng-if="student.ave_time_hours !== 0">{{student.ave_time_hours}} hour(s)</span>
           <span ng-if="student.ave_time_minutes !== 0">{{student.ave_time_minutes}} minute(s)</span>
-          <span ng-if="student.ave_time_seconds !== 0">{{student.ave_time_seconds}} second(s)</span>
+          <span>{{student.ave_time_seconds}} second(s)</span>
         </h4>        
       </div>
       <div class="col-xs-1 col-lg-2"/>
@@ -100,7 +100,7 @@
         <h4>Best Scores' Average Time Answering the Quiz: 
           <span ng-if="student.highest_ave_time_hours !== 0">{{student.highest_ave_time_hours}} hour(s)</span>
           <span ng-if="student.highest_ave_time_minutes !== 0">{{student.highest_ave_time_minutes}} minute(s)</span>
-          <span ng-if="student.highest_ave_time_seconds !== 0">{{student.highest_ave_time_seconds}} second(s)</span>
+          <span>{{student.highest_ave_time_seconds}} second(s)</span>
         </h4>        
       </div>
       <div class="col-xs-1 col-lg-2"/>
