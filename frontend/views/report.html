@@ -1,4 +1,4 @@
-<div class="Course row" ng-controller="courses-controller" ng-init="check_auth(); courses_view()">
+<div class="Course col-lg-12" ng-controller="courses-controller" ng-init="check_auth(); courses_view()">
   <div ng-controller="report-controller" ng-init="list_questionnaires()">
     <p class="Course_Header">Courses' Report</p>
     <form class="Report row" ng-controller="course-controller">
@@ -131,8 +131,8 @@
           <button class="btn btn-primary" ng-click="run_script()" ng-show="arrayDataSet.length !== 0" ng-if="loading_script === 0">Generate Behavioral Pattern(s)</button>  
           <button id="export-btn" class="Report_Submit Course_Preloader btn btn-primary" id="Signup" ng-if="loading_script === 1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-repeat"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>          
         </div>
-        <div id="exportable">
-          <table class="Report_Table table table-bordered table-responsive">
+        <div class="Report_Table_Responsive col-lg-12" id="exportable">
+          <table class="Report_Table table table-bordered table-responsive" fixed-header>
             <thead>
               <tr>
                 <th>ID</th>
@@ -174,7 +174,7 @@
         <div class="Report_Exports col-lg-12">
           <button class="btn btn-primary" ng-click="exportData()">Export Logs to Spreadsheet</button>  
          </div>
-        <div id="exportreport">
+        <div class="Report_Table_Responsive col-lg-12" id="exportreport">
           <table class="Report_Table table table-bordered table-responsive">
             <thead>
               <tr>
@@ -203,8 +203,8 @@
           </div>
           <div class="modal-body">
             <form>
-              <div>
-                {{behavior_pattern}}
+              <div >
+                {{behavior_pattern.support[0]}}
               </div><br/>
               <button class="btn cancel" data-dismiss="modal" aria-label="Close">Close</button>
             </form>

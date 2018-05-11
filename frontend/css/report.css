@@ -38,6 +38,10 @@
   text-decoration: none;
 }
 
+.Report_Table_Responsive {
+  overflow-x: auto;
+}
+
 @media only screen and (max-width: 991px) {
   .Report_Submit {
     margin-top: 10px;
