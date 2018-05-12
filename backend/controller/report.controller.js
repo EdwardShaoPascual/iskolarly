@@ -69,7 +69,7 @@ exports.process_data = (req, res, next) => {
     }
   }
   stringified += "]"
-  fs.writeFile("./activity.json", stringified, function(err) {
+  fs.writeFile(__dirname + "/../../activity.json", stringified, function(err) {
     if(err) {
       return console.log(err);
     }
