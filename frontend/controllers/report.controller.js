@@ -154,7 +154,7 @@
 
              for (let j=0; j<res.length; j++) {
                if ($scope.nameData[i] === res[j].name) {
-                 $scope.score[$scope.quizData.indexOf(res[j].questionnaire_id)] = res[i].highest_num;
+                 $scope.score[$scope.quizData.indexOf(res[j].questionnaire_id)] = res[j].highest_num;
                }
              }
 
