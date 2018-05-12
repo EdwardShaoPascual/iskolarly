@@ -108,6 +108,7 @@
        if ($scope.report_data.course_selected === '? string: ?') {
          
        } else {
+         $scope.loading = 1;         
          $scope.recordDataSet = [];
          ReportService
          .retrieve_record($scope.report_data)
@@ -161,7 +162,7 @@
              object.scores = $scope.score;            
              $scope.recordDataSet.push(object)
            }
-
+           $scope.loading = 0;
          }, function(err) {
            toastr.error(err.message, 'Error');
          });
@@ -173,6 +174,7 @@
        if ($scope.report_data.course_selected === '? string: ?') {
          
        } else {
+         $scope.loading = 1;
          $scope.arrayDataSet = [];
          $scope.numberArray = [];
          ReportService
@@ -238,7 +240,8 @@
                }
              }
            }
-         }, function(err) {
+           $scope.loading = 0;
+        }, function(err) {
            toastr.error(err.message, 'Error');
          });
        }
