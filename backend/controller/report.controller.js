@@ -61,7 +61,6 @@ exports.retrieve_quiz_items = (req, res, next) => {
 }
 
 exports.process_data = (req, res, next) => {
-  console.log(req.query.datum);
   let stringified = "["
   for (let i=0; i<req.query.count; i++) {
     stringified += req.query.datum[i]
