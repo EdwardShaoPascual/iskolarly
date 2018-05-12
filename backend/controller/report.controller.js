@@ -61,10 +61,7 @@ exports.retrieve_quiz_items = (req, res, next) => {
 }
 
 exports.process_data = (req, res, next) => {
-  console.log("==================")
-  console.log("Processing Data:")
   console.log(req.query.datum);
-  console.log("==================")
   let stringified = "["
   for (let i=0; i<req.query.count; i++) {
     stringified += req.query.datum[i]
@@ -73,17 +70,16 @@ exports.process_data = (req, res, next) => {
     }
   }
   stringified += "]"
-  return stringified;
-  // fs.writeFile(__dirname + "/../../activity.json", stringified, function(err) {
-  //   if(err) {
-  //     return res.status(500).send(err);
-  //   }
-  //   const result = R.call(__dirname + '/../scripts/assoc.R', stringified)
-  //   .then((result) => {
-  //     res.send(result);
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).send(err);
-  //   })
-  // }); 
+  fs.writeFile(__dirname + "/../../activity.json", stringified, function(err) {
+    if(err) {
+      return res.status(500).send(err);
+    }
+    const result = R.call(__dirname + '/../scripts/assoc.R', stringified)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    })
+  }); 
 }
