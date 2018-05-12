@@ -106,7 +106,6 @@
         console.log("==================")
         console.log("Processing Data")
         console.log("==================")
-        console.log(__dirname)
         let deferred = $q.defer();
         $http({
           method: 'GET',
