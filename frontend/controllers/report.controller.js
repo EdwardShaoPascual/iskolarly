@@ -259,7 +259,7 @@
          count: $scope.logCount
        }
        ReportService
-       .process_data(data)
+       .process_data(data_set)
        .then(function(res) {
          let iteration = res.support.length
          if (iteration > 5 ) iteration = 5;

@@ -61,19 +61,14 @@ exports.retrieve_quiz_items = (req, res, next) => {
 }
 
 exports.process_data = (req, res, next) => {
-  let stringified = "["
-  for (let i=0; i<req.query.count; i++) {
-    stringified += req.query.datum[i]
-    if (i !== req.query.count - 1) {
-      stringified += ','
-    }
-  }
-  stringified += "]"
-  fs.writeFile(__dirname + "/../../activity.json", stringified, function(err) {
+  let key = Object.keys(req.body)[0];
+  key = "[" + key + "]"
+  key = key.replace(/ /g, '+');
+  fs.writeFile(__dirname + "/../../activity.json", key, function(err) {
     if(err) {
       return res.status(500).send(err);
     }
-    const result = R.call(__dirname + '/../scripts/assoc.R', stringified)
+    const result = R.call(__dirname + '/../scripts/assoc.R', key)
     .then((result) => {
       res.send(result);
     })
