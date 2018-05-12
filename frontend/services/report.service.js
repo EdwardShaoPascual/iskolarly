@@ -103,13 +103,9 @@
       }
 
       const process_data = function (data) {
-        console.log("==================")
-        console.log("Processing Data: ")
-        console.log(data);
-        console.log("==================")
         let deferred = $q.defer();
         $http({
-          method: 'GET',
+          method: 'POST',
           params: data,
           url: '/api/process_data',
           headers: headers
