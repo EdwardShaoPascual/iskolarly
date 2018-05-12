@@ -405,6 +405,7 @@
          $('#behavioralModal').modal('show');
          toastr.success("Generating of behavioral patterns is successful", "Success");
       }, function(err) {
+         console.log(err);
          toastr.error(err.data.message, "Error");
        });
      }
