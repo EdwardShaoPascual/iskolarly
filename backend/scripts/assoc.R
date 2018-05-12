@@ -2,7 +2,7 @@
 library('rjson')
 library('arules')
 # get arguments of cli
-args <- commandArgs(trailingOnly = TRUE)
+# args <- commandArgs(trailingOnly = TRUE)
 json_file <- fromJSON(file='activity.json')
 # json_file <- fromJSON(args)
 
