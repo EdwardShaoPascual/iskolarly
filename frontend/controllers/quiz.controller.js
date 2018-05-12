@@ -34,6 +34,7 @@
     $scope.quizData = {}
     $scope.questionData = {}
     $scope.scoreData = {}
+    $scope.date_data = {}
     
     $scope.quiz_get = () => {
       var url = "//geoip.nekudo.com/api/";
@@ -352,6 +353,39 @@
         data.correct = null;
       }
       // window.close();
+    }
+
+    $scope.view_time = () => {
+      var url = "//geoip.nekudo.com/api/";
+      $http
+      .get(url)
+      .then(function(response) {
+        $scope.country = response.data.country.name
+      })
+      .then(function(response) {
+        var url = "http://timezoneapi.io/api/address/?" + $scope.country;
+        $http
+        .get(url)
+        .then(function(resp) {
+          $scope.date = resp.data.data.addresses[0].datetime.date_time_ymd;
+        })
+        .then(function(resp) {
+          $scope.date_data.datetime = $scope.date.split('+')[0];
+          $scope.date_data.questionnaire_id = $rootScope.questionnaire_id;
+          
+          QuizService
+          .view_time($scope.date_data)
+          .then(function(res) {
+            if (res.length === 0) {
+              toastr.error("Quiz is not available", "Error");
+              window.location.href = '/#/attempt/' + $rootScope.questionnaire_id;
+            }
+          }, function(err) {
+            console.clear();
+            window.location.href = '/#/error_404';
+          })
+        })
+      });
     }
   }
   

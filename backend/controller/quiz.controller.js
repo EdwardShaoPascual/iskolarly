@@ -132,3 +132,16 @@ exports.insert_score = (req, res, next) => {
     }
   });
 }
+
+exports.view_time = (req, res, next) => {
+  let query_string = 'SELECT * FROM questionnaires WHERE questionnaire_id = ? AND datetime_end >= ?';
+  let request_data = [req.query.questionnaire_id, req.query.datetime]
+
+  db.query(query_string, request_data, (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  });
+}

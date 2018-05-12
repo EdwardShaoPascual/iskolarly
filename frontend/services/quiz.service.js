@@ -98,12 +98,32 @@
       
     }
 
+    const view_time = function(data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        params: data,
+        url: '/api/view_time',
+        headers: headers
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+      
+    }
+
     let service = {};
     service.get_quiz = get_quiz;
     service.get_answers = get_answers;
     service.insert_quizlog = insert_quizlog;
     service.insert_questionlog = insert_questionlog;
     service.insert_score = insert_score;
+    service.view_time = view_time;
     return service;
   }
 

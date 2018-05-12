@@ -4,6 +4,8 @@
     <div class="container" ng-controller="quiz-controller" ng-init="quiz_get()">
         
       <h1 class="text-sm-center">{{questionnaire_name}}</h1>
+      
+      <span ng-init="view_time()"></span>
 
       <div ng-show="quizActive">
         <div class="row">

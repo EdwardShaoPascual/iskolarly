@@ -52,7 +52,8 @@ module.exports = (router) => {
   // GET
   router.get('/api/get_quiz/:questionnaire_id',                       quiz_controller.get_quiz);
   router.get('/api/get_answer/:question_id',                          quiz_controller.get_answers);
-
+  router.get('/api/view_time',                                        quiz_controller.view_time);
+  
   // POST
   router.post('/api/insert_quizlog',                                  quiz_controller.insert_quizlog);
   router.post('/api/insert_questionlog',                              quiz_controller.insert_questionlog);
@@ -90,7 +91,8 @@ module.exports = (router) => {
   // -- ATTEMPT PAGE ROUTES --
   // GET
   router.get('/api/view_attempt/:questionnaire_id',                   attempt_controller.view_attempt);
-
+  router.get('/api/get_time',                                         attempt_controller.get_time);
+  
 	router.all('*', (req, res, next) => {
 	  res.status(404).send({message: 'Unmatched route :('});
 	});  

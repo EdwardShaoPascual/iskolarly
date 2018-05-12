@@ -29,8 +29,28 @@
       return deferred.promise;
     }
 
+    const get_time = function(data) {
+      let deferred = $q.defer();
+
+      $http({
+        method: 'GET',
+        params: data,
+        url: '/api/get_time',
+        headers: headers
+      })
+      .then(function(res) {
+        deferred.resolve(res.data);
+      }, function(err) {
+        deferred.reject(err.data);
+      })
+
+      return deferred.promise;
+      
+    }
+
     let service = {};
     service.view_attempt = view_attempt;
+    service.get_time = get_time;
     return service;
   }
 
