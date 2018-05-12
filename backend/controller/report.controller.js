@@ -73,6 +73,7 @@ exports.process_data = (req, res, next) => {
     if(err) {
       return console.log(err);
     }
+    console.log(__dirname);
     const result = R.call(__dirname + '/../scripts/assoc.R', stringified)
     .then((result) => {
       res.send(result);
