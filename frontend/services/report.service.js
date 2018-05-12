@@ -106,7 +106,7 @@
         let deferred = $q.defer();
         $http({
           method: 'POST',
-          data: data,
+          params: data,
           url: '/api/process_data',
           headers: headers
         })

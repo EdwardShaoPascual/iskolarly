@@ -250,17 +250,13 @@
      $scope.run_script = () => {
        $scope.loading_script = 1;
        let data_set = $scope.arrayDataSet.slice(0);
-       for (let i=0; i<data_set.length; i++) {
-        data_set[i].date = data_set[i].date.replace(/ /g, '-');
-        data_set[i].activity_type = data_set[i].activity_type.replace(/ /g, '-');
-       }
        let data = {
-         datum: data_set,
-         count: $scope.logCount
+         course_id: $scope.report_data.course_selected
        }
        ReportService
-       .process_data(data_set)
+       .process_data(data)
        .then(function(res) {
+         console.log(res);
          let iteration = res.support.length
          if (iteration > 5 ) iteration = 5;
          for (let i=0; i<iteration; i++) {
@@ -410,8 +406,8 @@
          $('#behavioralModal').modal('show');
          toastr.success("Generating of behavioral patterns is successful", "Success");
       }, function(err) {
-         toastr.error("An error has been encountered", "Error");
          console.log(err);
+         toastr.error(err.data.message, "Error");
        });
      }
 
