@@ -20,6 +20,7 @@
   "homepage": "https://github.com/EddieVallejos/iskolarly#readme",
   "dependencies": {
     "@google-cloud/storage": "^1.6.0",
+    "async": "^2.6.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "compression": "^1.7.1",
@@ -37,6 +38,7 @@
     "npm": "^5.8.0",
     "r-script": "0.0.3",
     "redis": "^2.8.0",
+    "shelljs": "^0.8.2",
     "winston": "^2.4.0"
   }
 }

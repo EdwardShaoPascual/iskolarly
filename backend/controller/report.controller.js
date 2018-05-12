@@ -4,6 +4,8 @@ const db          = require(__dirname + '/../lib/mysql');
 const moment      = require('moment');
 const R           = require('js-call-r');
 const fs          = require('fs');
+const async       = require('async');
+const shell       = require('shelljs');
 
 exports.list_questionnaires = (req, res, next) => {
   let query_string = 'SELECT * FROM questionnaires WHERE questionnaires.datetime_end <= (SELECT NOW())';
@@ -134,17 +136,23 @@ exports.process_data = (req, res, next) => {
           }
         }
         stringified = stringified + "]"
+        let return_data = {
+          support: [],
+          lift: []
+        }
         fs.writeFile(__dirname + "/../../activity.json", stringified, function(err) {
           if(err) {
             return res.status(500).send(err);
           }
-          const result = R.call(__dirname + '/../scripts/assoc.R', stringified)
-          .then((result) => {
-            res.send(result);
-          })
-          .catch((err) => {
-            res.status(500).send(err);
-          })
+          let out = shell.exec('Rscript backend/scripts/assoc.R',{silent:true}).stdout;
+          // console.log(out);
+          fs.readFile(__dirname + '/../../inspect_supp.txt', "UTF8", function(err, data) {
+            return_data.support = data.split('\n');
+            fs.readFile(__dirname + '/../../inspect_lift.txt', "UTF8", function(err_1, data_1) {
+              return_data.lift = data_1.split('\n');
+              res.send(return_data);              
+            })
+          }); 
         }); 
       })
     } else {

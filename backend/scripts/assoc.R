@@ -19,7 +19,6 @@ support <- capture.output(inspect(relation))
 relation <- apriori(df, parameter=list(minlen=3))
 relation <- sort(relation, decreasing = TRUE, na.last = NA, by = "lift")
 lift <- capture.output(inspect(relation))
-
 # ================================== SUPPORT ==================================
 return_support <- c()
 final_support <- c()
@@ -107,6 +106,3 @@ for (index in seq(1,length(final_lift), 7)) {
   str <- ''
 }
 write(return_lift, 'inspect_lift.txt');
-
-output <- list(support = return_support, lift = return_lift)
-print(toJSON(output))

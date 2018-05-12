@@ -256,6 +256,7 @@
        ReportService
        .process_data(data)
        .then(function(res) {
+         console.log(res);
          let iteration = res.support.length
          if (iteration > 5 ) iteration = 5;
          for (let i=0; i<iteration; i++) {
