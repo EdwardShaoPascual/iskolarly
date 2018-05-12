@@ -1,7 +1,6 @@
 {
   "apps": [{
-    "script" : "npm",
-    "args" : "run prod",
+    "script" : "./backend/index.js",
     "env": {
       "NODE_ENV": "production",
       "PORT": "8000"
