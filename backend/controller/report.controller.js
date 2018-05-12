@@ -71,14 +71,14 @@ exports.process_data = (req, res, next) => {
   stringified += "]"
   fs.writeFile(__dirname + "/../../activity.json", stringified, function(err) {
     if(err) {
-      return console.log(err);
+      return res.status(500).send(err);
     }
     const result = R.call(__dirname + '/../scripts/assoc.R', stringified)
     .then((result) => {
       res.send(result);
     })
     .catch((err) => {
-      res.status('500').send(err);
+      res.status(500).send(err);
     })
   }); 
 }
