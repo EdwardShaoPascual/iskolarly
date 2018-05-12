@@ -6,7 +6,7 @@ const R        = require('js-call-r');
 const fs       = require('fs');
 
 exports.list_questionnaires = (req, res, next) => {
-  let query_string = 'SELECT * FROM questionnaires WHERE questionnaires.datetime_end <= (SELECT CURRENT_TIMESTAMP())';
+  let query_string = 'SELECT * FROM questionnaires WHERE questionnaires.datetime_end <= (SELECT NOW())';
 
   db.query(query_string, [], (err, result) => {
     if (err) {
