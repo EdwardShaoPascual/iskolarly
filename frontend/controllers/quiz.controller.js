@@ -363,7 +363,7 @@
         $scope.country = response.data.country.name
       })
       .then(function(response) {
-        var url = "http://timezoneapi.io/api/address/?" + $scope.country;
+        var url = "//timezoneapi.io/api/address/?" + $scope.country;
         $http
         .get(url)
         .then(function(resp) {
