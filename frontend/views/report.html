@@ -18,6 +18,9 @@
       <button id="export-btn" class="Report_Submit btn btn-primary" id="Signup" ng-click="generate_report()" ng-if="loading === 0">Submit</button>
       <button id="export-btn" class="Report_Submit Course_Preloader btn btn-primary" id="Signup" ng-if="loading === 1">&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-repeat"></i>&nbsp;&nbsp;&nbsp;</button>
     </form><br/><br/>
+    <div class="Reports col-lg-12" ng-if="display === 'Quiz' && get_flag === 1">
+      <h4>All Students' Performance Numerical Statistics: </h4>
+    </div>
     <div class="row" ng-if="display === 'Quiz'">
       <div class="col-xs-1 col-lg-2"/>
       <div class="Reports col-xs-5 col-lg-4" ng-if="get_flag === 1">
@@ -97,7 +100,7 @@
     <div class="row" ng-if="get_flag_student === 1 && display === 'Quiz'">
       <div class="col-xs-1 col-lg-2"/>
       <div class="Reports col-xs-10 col-lg-8" ng-if="get_flag_student === 1">
-        <h4>Best Scores' Average Time Answering the Quiz: 
+        <h4>Best Score's Time Answering the Quiz: 
           <span ng-if="student.highest_ave_time_hours !== 0">{{student.highest_ave_time_hours}} hour(s)</span>
           <span ng-if="student.highest_ave_time_minutes !== 0">{{student.highest_ave_time_minutes}} minute(s)</span>
           <span>{{student.highest_ave_time_seconds}} second(s)</span>
