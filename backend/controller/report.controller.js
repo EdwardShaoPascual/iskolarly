@@ -99,6 +99,10 @@ exports.process_data = (req, res, next) => {
               new_result[i].activity_type = 'Quiz-Started';
             } else if (new_result[i].activity_type === 'Quiz End') {
               new_result[i].activity_type = 'Quiz-Ended';
+            } else if (new_result[i].activity_type === 'Question Viewed') {
+              new_result[i].activity_type = 'Question-Viewed';
+            } else if (new_result[i].activity_type === 'Question Answered') {
+              new_result[i].activity_type = 'Question-Answered';
             }
             let date = moment(new Date(new_result[i].activity_info.split(' ')[0].replace('[','').replace(']',''))).format('ll'); 
             date = date.replace(/,/g, '');
