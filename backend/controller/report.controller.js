@@ -91,7 +91,8 @@ exports.process_data = (req, res, next) => {
             started_time: null,
             ended_time: null,
             ipv4: null,
-            id_question: null
+            id_question: null,
+            score: null
           };
 
           if (new_result[i].activity_type.includes('Quiz') || new_result[i].activity_type.includes('Question')) {
@@ -99,6 +100,7 @@ exports.process_data = (req, res, next) => {
               new_result[i].activity_type = 'Quiz-Started';
             } else if (new_result[i].activity_type === 'Quiz End') {
               new_result[i].activity_type = 'Quiz-Ended';
+              object.score = new_result[i].activity_info.split(' ')[5].split('=')[1];
             } else if (new_result[i].activity_type === 'Question Viewed') {
               new_result[i].activity_type = 'Question-Viewed';
             } else if (new_result[i].activity_type === 'Question Answered') {
