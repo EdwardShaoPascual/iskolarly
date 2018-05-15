@@ -249,6 +249,10 @@
 
      $scope.run_script = () => {
        $scope.loading_script = 1;
+       $scope.behavior_pattern = {
+        support: [],
+        lift: []
+      }
        let data_set = $scope.arrayDataSet.slice(0);
        let data = {
          course_id: $scope.report_data.course_selected
@@ -256,7 +260,6 @@
        ReportService
        .process_data(data)
        .then(function(res) {
-         console.log(res);
          let iteration = res.support.length
          if (iteration > 5 ) iteration = 5;
          for (let i=0; i<iteration; i++) {
