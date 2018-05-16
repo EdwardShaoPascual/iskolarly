@@ -313,7 +313,11 @@
       reader.onload = function(e) {
           $scope.$apply(function() {
             $scope.csvFile = reader.result
-            $scope.file = new Blob([$scope.csvFile], {type : 'application/pdf'});
+            if ($scope.filename.includes('.pdf')) {
+              $scope.file = new Blob([$scope.csvFile], {type : 'application/pdf'});
+            } else {
+              $scope.file = new Blob([$scope.csvFile], {type : 'image/*'});
+            }
           });
       };
       let csvFileInput = document.getElementById('fileupload');    
