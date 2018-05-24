@@ -5,9 +5,8 @@ ISKOlarly
 > [Eddie Ron Adolph A. Vallejos](https://www.facebook.com/eydeeyown) and [John Edward P. Pascual](https://www.facebook.com/dwardpascual13)
 
 ## About the Repository
-```
 A repository of Eddie Ron Adolph A. Vallejos and John Edward P. Pascual for their special problem about automation and behavioral analysis of online classrooms.
-```
+
 ## Prerequisites
 
 ------------
