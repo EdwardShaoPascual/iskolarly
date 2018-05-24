@@ -13,6 +13,7 @@ A repository of Eddie Ron Adolph A. Vallejos and John Edward P. Pascual for thei
 
 ```
 * `sudo apt install npm`
+* `sudo apt install redis-server`
 * `sudo npm install -g nodemon`
 * `sudo npm install -g gulp`
 * `sudo npm install -g bower`
