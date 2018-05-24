@@ -1,5 +1,7 @@
 ISKOlarly
 ============
+Author:
+> Eddie Ron Adolph A. Vallejos and John Edward P. Pascual
 
 ```
 A repository of Eddie Ron Adolph A. Vallejos and John Edward P. Pascual for their special problem about automation and behavioral analysis of online classrooms.
