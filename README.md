@@ -2,7 +2,7 @@ ISKOlarly
 ============
 
 ## Authors
-> Eddie Ron Adolph A. Vallejos and John Edward P. Pascual
+> [Eddie Ron Adolph A. Vallejos](https://www.facebook.com/eydeeyown) and [John Edward P. Pascual](https://www.facebook.com/dwardpascual13)
 
 ## About the Repository
 ```
