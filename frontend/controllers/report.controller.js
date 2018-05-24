@@ -740,7 +740,7 @@
              xAxes: [{
                scaleLabel: {
                  display: true,
-                 labelString: 'days quiz is taken'
+                 labelString: 'dates quiz is taken'
                }
              }]
            }
