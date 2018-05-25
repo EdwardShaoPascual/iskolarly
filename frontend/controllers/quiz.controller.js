@@ -36,6 +36,7 @@
     $scope.scoreData = {}
     $scope.date_data = {}
     
+    // MVC getting the quiz
     $scope.quiz_get = () => {
       var url = "//geoip.nekudo.com/api/";
       $http
@@ -124,6 +125,7 @@
       })
     }
     
+    // MVC setting the activve question
     $scope.setActiveQuestion = (index) => {
       if(index === undefined) {
         var breakOut = false;
@@ -163,6 +165,7 @@
       })
     }
 
+    // MVC setting the next question to the interface
     $scope.questionAnsweredNext = () => {
       if (numQuestion < quizLength+1) {
         $scope.setActiveQuestion(numQuestion-1);
@@ -192,6 +195,7 @@
       }
     }
 
+    // MVC setting the previous question to the interface
     $scope.questionAnsweredPrev = () => {
       if (numQuestion > 1) {
         numQuestion = numQuestion - 1;
@@ -218,6 +222,7 @@
       }
     }
 
+    // MVC selecting an answer from the active question
     $scope.selectAnswer = (index) => {
       $scope.quizQuestions[$scope.activeQuestion].selected = index;
 
@@ -240,6 +245,7 @@
       })
     }
 
+    // MVC submitting the final answers for the whole quiz
     $scope.finalAnswers = () => {
       $scope.finalize = false;
       $scope.activeQuestion = 0;
@@ -278,6 +284,7 @@
       })
     }
 
+    // MVC changing the state of the interface on what to display
     $scope.changeState = (metric, state) => {
       if (metric === "quiz") {
         $scope.quizActive = state;
@@ -288,10 +295,12 @@
       }
     }
 
+    // MVC setting the active question index to the interface
     $scope.setResActiveQuestion = (index) => {
       $scope.activeQuestion = index;
     }
 
+    // MVC marking out the results of your final answers from a quiz
     $scope.markQuiz = () => {
       let temp = 0;
       let count = temp;
@@ -315,10 +324,12 @@
       }
     }
 
+    // MVC calculating the percentage of your attempt
     $scope.calculatePerc = () => {
       return $scope.numCorrect / $scope.quizQuestions.length * 100;
     }
 
+    // MVC getting the correct answer of the active question
     $scope.getAnswerClass = (index) => {
       let temp = 0;
       let count = $scope.numCorrectAnswers[$scope.activeQuestion];
@@ -355,6 +366,7 @@
       // window.close();
     }
 
+    // MVC getting the current time using an API
     $scope.view_time = () => {
       var url = "//geoip.nekudo.com/api/";
       $http

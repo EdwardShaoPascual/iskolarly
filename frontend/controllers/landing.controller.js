@@ -37,6 +37,7 @@
       role: 'Student'
     }
 
+    // MVC picking the role during registration of account
     $scope.changeRoleToStd = () => {
       $scope.registerData.role = 'Student';
       $scope.registerData.course = '';
@@ -59,6 +60,7 @@
       }
     }
 
+    // MVC getting the credentials and checking if exists for successful logging in
     $scope.login = () => {
       var url = "//geoip.nekudo.com/api/";
       $http
@@ -90,6 +92,7 @@
       })
     }
 
+    // MVC registration of account
     $scope.register = () => {
       if ($scope.registerData.role == 'Instructor') {
         $scope.registerData.course = "N/A";

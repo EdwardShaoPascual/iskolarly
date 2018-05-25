@@ -12,6 +12,7 @@
       $scope.home = true;
       $scope.courses = false;
 
+      // MVC checking the URL if valid or not
       $scope.checkURL = () => {
         if ($location.path() == "/home") {
           $scope.home = true;
@@ -31,6 +32,7 @@
         else return true;
       }
 
+      // MVC logging and destroying out the session
       $scope.user_logout = () => {
         NavService
         .user_logout()

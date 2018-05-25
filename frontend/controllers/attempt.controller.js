@@ -13,6 +13,7 @@
     $scope.date_data = {};
     $rootScope.disable = "wait";
 
+    // MVC get the attempts of a user
     $scope.attempt_view = () => {
       AttemptService
       .view_attempt($rootScope.questionnaire_id)
@@ -23,6 +24,7 @@
       })
     }
 
+    // MVC get the current time on an API    
     $scope.get_time = () => {
       var url = "//geoip.nekudo.com/api/";
       $http
@@ -57,6 +59,7 @@
       });
     }
 
+    // MVC proceed to quiz page if there are still remaining attempts    
     $scope.quiz_page = () => {
       $scope.url = '/#/quiz/' + $rootScope.questionnaire_id;
       window.location = $scope.url;

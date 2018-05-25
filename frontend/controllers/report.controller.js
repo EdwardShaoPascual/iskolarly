@@ -78,6 +78,7 @@
        lift: []
      }
 
+     // MVC exporting the data to xls / excel format
      $scope.exportData = () => {
        if ($scope.display === 'Scores') {
          var blob = new Blob([document.getElementById('exportreport').innerHTML], {
@@ -92,6 +93,7 @@
        }
      }
 
+     // MVC listing out the questionnaires for checking
      $scope.list_questionnaires = () => {
        ReportService
        .list_questionnaires()
@@ -103,6 +105,7 @@
        })
      }
 
+     // MVC generating the record table for scores
      $scope.generate_record = () => {
        $scope.report_data.course_selected = $('#course_selected').val();
        if ($scope.report_data.course_selected === '? string: ?') {
@@ -169,6 +172,7 @@
        }
      }
 
+     // MVC generating and preprocessing the activity log for displaying
      $scope.generate_activity = () => {
        $scope.report_data.course_selected = $('#course_selected').val();
        if ($scope.report_data.course_selected === '? string: ?') {
@@ -247,6 +251,7 @@
        }
      }
 
+     // MVC running the R script using a spawned shell for pattern mining process
      $scope.run_script = () => {
        $scope.loading_script = 1;
        $scope.behavior_pattern = {
@@ -414,6 +419,7 @@
        });
      }
 
+     // MVC generating the report statistics
      $scope.generate_report = () => {
        $scope.report_data.course_selected = $('#course_selected').val();
        $scope.report_data.questionnaire_selected = $('#questionnaire_selected').val();
@@ -607,6 +613,7 @@
        })
      }
 
+     // MVC generating an individual student's performance
      $scope.get_student_info = () => {
        $scope.get_flag_student = 0;        
        $scope.student.student_id = $('#student_selected').val();
@@ -682,6 +689,7 @@
        $scope.student.highest_ave_time_seconds = seconds;
      }
 
+     // MVC initializing the graph for data representation for the user interface
      $scope.initialize_graph = (standing, timeTable) => {
        // Passing/Failing Graph
        let ctx = document.getElementById("passrate");

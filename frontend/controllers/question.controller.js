@@ -25,6 +25,7 @@
       type: ''
     }
 
+    // MVC listing out the questions
     $scope.questions_view = () => {
 			QuestionService
 			.view_questions(questionnaire_id)
@@ -35,6 +36,7 @@
 			})
 		}
 
+    // MVC getting the questions
     $scope.questions_get = () => {
 			QuestionService
 			.get_questions(questionnaire_id)
@@ -49,6 +51,7 @@
 			})
     }
 
+    // MVC checking the questions
     $scope.questions_check = () => {
       QuestionService
       .check_questions($scope.questionsData)
@@ -64,6 +67,7 @@
 			})
     }
     
+    // MVC posting and adding a question
 		$scope.questions_add = (data) => {    
       let id;
       let flag = 0;
@@ -107,6 +111,7 @@
       }
     }
 
+    // MVC permanently delete question
     $scope.questions_delete = (data, index) => {
       $scope.question_id = data;
       swal({
@@ -137,6 +142,7 @@
       });
     }
 
+    // MVC getting the questions information
     $scope.questions_get_info = (data) => {
       $scope.question_id = data;
 
@@ -154,6 +160,7 @@
 			})
     }
 
+    // MVC listing out the answers to a given question
     $scope.answers_view = (data, index) => {
       $scope.answer = [];
       $scope.question_id = data;
@@ -166,6 +173,7 @@
       })
     }
 
+    // MVC posting and adding answers to a specific question
     $scope.answers_add = (data) => {    
       let id;
       let flag = 0;
@@ -226,6 +234,7 @@
       }
     }
 
+    // MVC permanently delete answer
     $scope.answers_delete = (data) => {
       $scope.answer_id = data;
       swal({
@@ -251,6 +260,7 @@
       });
     }
 
+    // MVC publishing quiz to make it accessible for the students
     $scope.publish_quiz = (id) => {
       let url = window.location.href
       let res = url.split("/");

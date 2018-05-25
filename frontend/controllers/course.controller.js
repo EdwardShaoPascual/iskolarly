@@ -46,10 +46,12 @@
       items: ''
     }
 
+    // MVC catching empty text boxes
     $scope.emptyPrompt = () => {
       toastr.error('Please fill the note field', 'Error');
     }
 
+    // MVC change active banner    
     $scope.change_active = (data) => {
       $scope.active = data;
       if (data == 1) {
@@ -59,10 +61,12 @@
       }
     }
 
+    // MVC change option for banner    
     $scope.change_option = (data) => {
       $scope.active_option = data;
     }
 
+    // MVC retrieving course and re-route to that course    
     $scope.retrieve_course = () => {
       let url = window.location.href
       let res = url.split("/");
@@ -80,6 +84,7 @@
       })
     }
 
+    // MVC retrieve announcement of a specific course    
     $scope.retrieve_announcement = () => {
       let url = window.location.href
       let res = url.split("/");
@@ -99,6 +104,7 @@
       })
     }
 
+    // MVC create announcement    
     $scope.create_note = (data) => {
       $scope.active_loading = 1;
       let url = window.location.href
@@ -137,6 +143,7 @@
       }
     }
 
+    // MVC getting announcement based on student's view    
     $scope.announcements_view_stud = () => {
 			CourseService
 			.stud_view_announcements()
@@ -154,6 +161,7 @@
       })
     }
 
+    // MVC getting announcement based on instructor's view    
     $scope.announcements_view_inst = () => {
 			CourseService
 			.inst_view_announcements()
@@ -171,6 +179,7 @@
       })
     }
 
+    // MVC getting questionnaires    
 		$scope.questionnaires_view = () => {
 			CourseService
 			.view_questionnaires()
@@ -182,6 +191,7 @@
       })
 		}
 
+    // MVC posting a quiz for specific course    
 		$scope.questionnaires_add = (data) => {
       $scope.questionnairesData.course_id = window.location.href.split("/")[5];
       $scope.questionnairesData.post = $scope.note_info.post;
@@ -232,6 +242,7 @@
       }
     }
     
+    // MVC getting information of a quiz    
     $scope.questionnaires_get_info = (data) => {
       $scope.questionnaire_id = data;
 			CourseService
@@ -247,6 +258,7 @@
 			})
     }
     
+    // MVC posting edits for a specific quiz    
     $scope.questionnaires_edit = () => {
       let questionnaire_id = $('#edit_quest_id').val();
       let questionnaire_name = $('#edit_quest_name').val();
@@ -274,6 +286,7 @@
       }
     }
 
+    // MVC permanently delete quiz of a specific course    
     $scope.questionnaires_delete = (data, index) => {
       $scope.questionnaire_id = data;
       swal({
@@ -300,11 +313,13 @@
       });
     }
 
+    // MVC getting to a question page for adding questions    
     $scope.page_view = (data) => {
       $scope.questionnaire_id = data;
       window.location.href = '#/question/' + $scope.questionnaire_id;
     }
 
+    // MVC uploading attachment in the FileStack API    
     $scope.upload_attachment = () => {
       // define reader
       let filedata = new FormData();
@@ -326,6 +341,7 @@
       reader.readAsArrayBuffer(csvFile);
     }
 
+    // MVC posting the uploaded file URL in the database    
     $scope.continue_upload = (user) => {
       $scope.note_info.user_id = user.user_id
       if($scope.note_info.post.length !== 0 && $scope.active_loading === 0) {
@@ -343,6 +359,7 @@
       }
     }
 
+    // MVC realtime add to front-end of file attachment    
     $scope.insert_uploaded = (file_info, data) => {
       let url = window.location.href
       let res = url.split("/");
@@ -379,6 +396,7 @@
       })
     }
 
+    // MVC permanently deleting an announcement    
     $scope.post_delete = (data, index) => {
       $scope.announcement_id = data;
       swal({

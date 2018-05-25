@@ -27,6 +27,7 @@
     $scope.inst = {}
     $rootScope.pub = false;    
 
+    // MVC checking the active session
     $scope.check_auth = () => {
       $('.modal').hide();
       $('.modal').modal('hide');
@@ -88,6 +89,7 @@
       })
     }
 
+    // MVC checking the role of the logged in user
     $scope.check_role = () => {
       if ($rootScope.session === undefined) {
         console.clear();        
@@ -99,6 +101,7 @@
       }
     }
 
+    // MVC getting the courses where the user involves
     $scope.courses_view = () => {
       CoursesService
       .view_courses()
@@ -137,6 +140,7 @@
       })
     }
 
+    // MVC posting an enrollment to a course using a course code
     $scope.enroll_course = () => {
       if ($scope.course_code.code === '') {
         toastr.error("Invalid course code!", 'Error');                         
@@ -175,6 +179,7 @@
       }
     }
 
+    // MVC creating a course if you're an instructor
     $scope.create_course = (data) => {
       if ($scope.course_data.course_title === '' ||
           $scope.course_data.course_description === '') {
@@ -216,6 +221,7 @@
       }
     }
 
+    // MVC checking the instructor validity
     $scope.check_inst = () => {
       $scope.inst.user_id = $scope.session.user_id;
       $scope.inst.questionnaire_id = $routeParams.questionnaire_id;
@@ -236,6 +242,7 @@
       })
     }
 
+    // MVC checking the course if existing
     $scope.check_course = () => {
       CoursesService
       .check_course($routeParams.course_id)
@@ -248,6 +255,7 @@
       })
     }
 
+    // MVC checking the quiz if really exists
     $scope.check_quiz = () => {
       CoursesService
       .check_quiz($routeParams.questionnaire_id)
@@ -263,6 +271,7 @@
       })
     }
 
+    // MVC checking the attempts of the user
     $scope.check_attempt = () => {
       CoursesService
       .check_attempt($routeParams.questionnaire_id)
@@ -275,6 +284,7 @@
       })
     }
 
+    // MVC unpublishing the quiz to make a specific quiz unaccessible    
     $scope.unpublish_quiz = () => {
       CoursesService
       .unpublish_quiz($routeParams.questionnaire_id)
