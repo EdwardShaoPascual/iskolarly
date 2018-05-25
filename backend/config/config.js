@@ -2,6 +2,7 @@
 
 const path  = require('path');
 
+// Config or the .env variables
 module.exports = {
     APP_NAME: 'Iskolarly App: An ICS Homegrown Online Classroom',
     APP_URL: 'http://localhost:8000',

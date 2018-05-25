@@ -2,7 +2,6 @@
 
 const db          = require(__dirname + '/../lib/mysql');
 const moment      = require('moment');
-const R           = require('js-call-r');
 const fs          = require('fs');
 const async       = require('async');
 const shell       = require('shelljs');
