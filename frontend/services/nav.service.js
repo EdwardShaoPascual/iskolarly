@@ -1,3 +1,8 @@
+/*
+  MVC Service for Nav Controller and Nav View
+  Author: Eddie Ron Adolph A. Vallejos and John Edward P. Pascual
+*/
+
 'use strict';
 
 (() => {

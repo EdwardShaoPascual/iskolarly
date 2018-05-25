@@ -1,3 +1,8 @@
+/*
+  MVC Service for Courses Controller and Courses View
+  Author: Eddie Ron Adolph A. Vallejos and John Edward P. Pascual
+*/
+
 'use strict';
 
 (() => {

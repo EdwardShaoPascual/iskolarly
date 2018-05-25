@@ -1,3 +1,8 @@
+/*
+  MVC Service for Question Controller and Question View
+  Author: Eddie Ron Adolph A. Vallejos and John Edward P. Pascual
+*/
+
 'use strict';
 
 (() => {

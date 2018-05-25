@@ -1,3 +1,8 @@
+/*
+  MVC Service for Quiz/Questionnaire Controller and Quiz/Questionnaire View
+  Author: Eddie Ron Adolph A. Vallejos and John Edward P. Pascual
+*/
+
 'use strict';
 
 (() => {

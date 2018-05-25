@@ -1,3 +1,8 @@
+/*
+  MVC Service for Attempt Controller and Attempt View
+  Author: Eddie Ron Adolph A. Vallejos and John Edward P. Pascual
+*/
+
 'use strict';
 
 (() => {
