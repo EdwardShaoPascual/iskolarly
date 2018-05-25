@@ -5,6 +5,7 @@ const bcrypt      = require('bcrypt');
 const dateFormat  = require('dateformat');
 const moment      = require('moment');
 
+// called to verify the input of the user if that account really exists
 exports.login = function(req, res, next) {
   let payload = req.query;
 
@@ -38,6 +39,7 @@ exports.login = function(req, res, next) {
   });
 }
 
+// registration call and form validation for registration to avoid uncaught server error and wrong format for the database
 exports.register = function(req, res, next) {
   
   let payload = req.query;

@@ -2,6 +2,7 @@
 
 const db = require(__dirname + '/../lib/mysql');
 
+// getting the list of courses for the user
 exports.view_courses = (req, res, next) => {
   let query_string = ""
   if (req.session.user === undefined || req.session.user === '') {
@@ -21,6 +22,7 @@ exports.view_courses = (req, res, next) => {
   });
 }
 
+// getting the course code if valid and enrolling the user on it if it really exists
 exports.enroll_course = (req, res, next) => {
   let payload = [req.query.code, req.session.user.user_id];
 
@@ -54,6 +56,7 @@ exports.enroll_course = (req, res, next) => {
   });
 }
 
+// creating a course
 exports.create_course = (req, res, next) => {
   let payload = [req.query.course_title,req.query.course_section,req.query.course_description,req.session.user.user_id];
 
@@ -77,6 +80,7 @@ exports.create_course = (req, res, next) => {
   });
 }
 
+// for checking of authentication or active session
 exports.check_auth = (req, res, next) => {
   if (req.session.user === '' || req.session.user === undefined) {
     return res.status(500).send({message: "There is no active session"});
@@ -85,6 +89,7 @@ exports.check_auth = (req, res, next) => {
   }
 }
 
+// checking the courses for a specific instructor
 exports.check_inst = (req, res, next) => {
   let query_string = 'SELECT * FROM course LEFT JOIN questionnaires ON course.course_id = questionnaires.course_id WHERE questionnaires.questionnaire_id = ? AND course.user_id = ?';
   let request_data = [req.query.questionnaire_id, req.query.user_id];
@@ -98,6 +103,7 @@ exports.check_inst = (req, res, next) => {
   });
 }
 
+// checking the existence of quizzes from the announcement table
 exports.check_quiz = (req, res, next) => {
   let query_string = 'SELECT q.* FROM announcement, (SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?) as q WHERE announcement.questionnaire_id = ?';
   let request_data = [req.session.user.user_id, req.params.questionnaire_id, req.params.questionnaire_id]
@@ -111,6 +117,7 @@ exports.check_quiz = (req, res, next) => {
   });
 }
 
+// verification of course if it really belongs/available for a specific user
 exports.check_course = (req, res, next) => {
   if (req.session.user.role === 'Instructor') {
     let query_string = 'SELECT * FROM course WHERE user_id = ? AND course_id = ?';
@@ -137,6 +144,7 @@ exports.check_course = (req, res, next) => {
   }
 }
 
+// checking the number of attempts made by the user
 exports.check_attempt = (req, res, next) => {
   let query = 'SELECT q.* FROM announcement, (SELECT * FROM questionnaires NATURAL JOIN course_user WHERE user_id = ? and questionnaire_id = ? and published = ?) as q WHERE announcement.questionnaire_id = ?';
   let request = [req.session.user.user_id, req.params.questionnaire_id, 1, req.params.questionnaire_id]
@@ -180,6 +188,7 @@ exports.check_attempt = (req, res, next) => {
   });
 }
 
+// unpublishing the quiz to make it unaccessible to the students
 exports.unpublish_quiz = (req, res, next) => {
   let query_string = 'UPDATE questionnaires SET published = ? WHERE questionnaire_id = ?';
   let request_data = [0, req.params.questionnaire_id];
