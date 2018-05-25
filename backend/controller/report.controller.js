@@ -6,6 +6,7 @@ const fs          = require('fs');
 const async       = require('async');
 const shell       = require('shelljs');
 
+// getting the list of questionnaires that are already finished
 exports.list_questionnaires = (req, res, next) => {
   let query_string = 'SELECT * FROM questionnaires WHERE questionnaires.datetime_end <= (SELECT NOW())';
 
@@ -17,6 +18,7 @@ exports.list_questionnaires = (req, res, next) => {
   })
 }
 
+// getting the record of the students
 exports.retrieve_record = (req, res, next) => {
   let query_string = 'select user.student_num, concat(user.lastname, \', \', user.firstname, \' \', user.middlename) as name, scores.* from user, (select user_id, questionnaire_id, max(correct_num) as highest_num from score group by user_id, questionnaire_id) as scores, questionnaires where user.user_id = scores.user_id and questionnaires.questionnaire_id = scores.questionnaire_id and questionnaires.course_id = ? and user.role = ? order by questionnaire_id, name';
 
@@ -28,6 +30,7 @@ exports.retrieve_record = (req, res, next) => {
   })
 }
 
+// retrieving the activity log for the pattern mining process and for displaying
 exports.retrieve_activity_logs = (req, res, next) => {
   let query_string = 'SELECT * FROM activity_log';
 
@@ -39,6 +42,7 @@ exports.retrieve_activity_logs = (req, res, next) => {
   })
 }
 
+// retrieving the user list for individual evaluation
 exports.retrieve_user = (req, res, next) => {
   let query_string = 'SELECT * FROM course_user NATURAL JOIN (SELECT user_id, firstname, middlename, lastname FROM user) as couser WHERE course_id = ?';
 
@@ -50,6 +54,7 @@ exports.retrieve_user = (req, res, next) => {
   })
 }
 
+// retrieving the questions of a quiz
 exports.retrieve_quiz_items = (req, res, next) => {
   let query_string = 'SELECT * FROM questions_quiz WHERE questionnaire_id = ?';
 
@@ -61,6 +66,7 @@ exports.retrieve_quiz_items = (req, res, next) => {
   })
 }
 
+// the actual preprocessing of data and the actual pattern mining using a spawned shell R script
 exports.process_data = (req, res, next) => {
   
   let query_string = 'SELECT * from questionnaires WHERE course_id = ? and datetime_end <= NOW()'

@@ -3,6 +3,7 @@
 const mysql  = require('mysql');
 const config = require(__dirname + '/../config/config');
 
+// the mysql configuration for queries and accessing data in the database
 const ENV = 'DEVELOPMENT';
 
 module.exports = mysql.createConnection({

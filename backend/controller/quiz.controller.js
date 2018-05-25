@@ -3,10 +3,9 @@
 const bcrypt      = require('bcrypt');
 const dateFormat  = require('dateformat');
 const moment      = require('moment');
-
 const db = require(__dirname + '/../lib/mysql');
-// const winston = require('winston');
 
+// getting the quiz for the actual answering
 exports.get_quiz = (req, res, next) => {
   let query_str = 'SELECT q.* FROM announcement, (SELECT * FROM questionnaires NATURAL JOIN questions_quiz NATURAL JOIN quiz WHERE user_id = ? AND questionnaire_id = ?) as q WHERE announcement.questionnaire_id = ?';
   let req_data = [req.session.user.user_id, req.params.questionnaire_id, req.params.questionnaire_id]
@@ -60,6 +59,7 @@ exports.get_quiz = (req, res, next) => {
   }
 }
 
+// getting the actual answers for the actual quiz attempt
 exports.get_answers = (req, res, next) => {
   let query_string = 'SELECT an.* FROM questions qn, answers an WHERE qn.question_id = ? AND an.question_id = ? ORDER BY RAND() LIMIT 0,4';
   let request_data = [req.params.question_id, req.params.question_id]
@@ -73,6 +73,7 @@ exports.get_answers = (req, res, next) => {
   });
 }
 
+// adding a quiz log to the activity log
 exports.insert_quizlog = (req, res, next) => {
   let query_str = 'SELECT * FROM quiz WHERE user_id = ? AND questionnaire_id = ?';
   let req_data = [req.session.user.user_id, req.query.questionnaire_id]
@@ -106,6 +107,7 @@ exports.insert_quizlog = (req, res, next) => {
 
 }
 
+// adding a question log to the activity log
 exports.insert_questionlog = (req, res, next) => {
   let query_string = 'INSERT INTO activity_log (activity_type, activity_info) VALUES (?,?)';
   let request_data = '[' + moment().format() + '] user=' + req.session.user.username + ' user_id=' + req.session.user.user_id + ' time=' + moment().format() + ' questionnaire_id=' + req.query.questionnaire_id + ' question_id=' + req.query.question_id + ' ipv4=' + req.query.ip;
@@ -120,6 +122,7 @@ exports.insert_questionlog = (req, res, next) => {
   });
 }
 
+// adding scores to the score table for automated recording
 exports.insert_score = (req, res, next) => {
   let query_string = 'INSERT INTO score (user_id, questionnaire_id, correct_num) VALUES (?, ?, ?)';
   let request_data = [req.session.user.user_id, req.query.questionnaire_id, req.query.score];
@@ -133,6 +136,7 @@ exports.insert_score = (req, res, next) => {
   });
 }
 
+// getting the quiz start time and end time before making it accessible
 exports.view_time = (req, res, next) => {
   let query_string = 'SELECT * FROM questionnaires WHERE questionnaire_id = ? AND datetime_end >= ?';
   let request_data = [req.query.questionnaire_id, req.query.datetime]

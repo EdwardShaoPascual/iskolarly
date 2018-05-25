@@ -2,10 +2,9 @@
 library('rjson')
 library('arules')
 # get arguments of cli
-# args <- commandArgs(trailingOnly = TRUE)
 json_file <- fromJSON(file='activity.json')
-# json_file <- fromJSON(args)
 
+# applying NA to null variables
 json_file <- lapply(json_file, function(x) {
   x[sapply(x, is.null)] <- NA
   unlist(x)
