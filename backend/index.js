@@ -1,5 +1,6 @@
 'use strict';
 
+// libraries and middleware initialization
 const config        = require(__dirname + '/config/config');
 const router        = require(__dirname + '/router/router');
 const express       = require('express');
@@ -46,6 +47,7 @@ start = () => {
     })
   }))
 
+  // loading of 3rd-party middlewares
   app.use(express.static(__dirname + '/../frontend/'));
   app.use(require('method-override')());
   app.use(body_parser.urlencoded({extended: true}));
@@ -53,6 +55,7 @@ start = () => {
   app.use(require('compression')());
   app.use(router(express.Router()));
 
+  // catching the wrong api call
   app.get('*', (req,res,next) => {
     res.redirect('/#/error_404')
   })
